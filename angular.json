@@ -28,10 +28,7 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "tsConfig": "projects/ngx-extension/tsconfig.spec.json",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ]
+            "polyfills": ["zone.js", "zone.js/testing"]
           }
         }
       }
@@ -53,19 +50,11 @@
             "outputPath": "dist/demo-application",
             "index": "projects/demo-application/src/index.html",
             "browser": "projects/demo-application/src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "projects/demo-application/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "projects/demo-application/src/favicon.ico",
-              "projects/demo-application/src/assets"
-            ],
-            "styles": [
-              "node_modules/@clr/ui/clr-ui.min.css",
-              "projects/demo-application/src/styles.scss"
-            ],
+            "assets": ["projects/demo-application/src/favicon.ico", "projects/demo-application/src/assets"],
+            "styles": ["node_modules/@clr/ui/clr-ui.min.css", "projects/demo-application/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -113,28 +102,17 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": [
-              "**/src/**/*.ts",
-              "**/src/**/*.html"
-            ]
+            "lintFilePatterns": ["**/src/**/*.ts", "**/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "projects/demo-application/tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "projects/demo-application/src/favicon.ico",
-              "projects/demo-application/src/assets"
-            ],
-            "styles": [
-              "projects/demo-application/src/styles.scss"
-            ],
+            "assets": ["projects/demo-application/src/favicon.ico", "projects/demo-application/src/assets"],
+            "styles": ["projects/demo-application/src/styles.scss"],
             "scripts": []
           }
         }
@@ -165,19 +143,13 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "tsConfig": "projects/clr-extension/tsconfig.spec.json",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ]
+            "polyfills": ["zone.js", "zone.js/testing"]
           }
         },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": [
-              "projects/clr-extension/**/*.ts",
-              "projects/clr-extension/**/*.html"
-            ]
+            "lintFilePatterns": ["projects/clr-extension/**/*.ts", "projects/clr-extension/**/*.html"]
           }
         }
       }
@@ -185,9 +157,6 @@
   },
   "cli": {
     "analytics": false,
-    "schematicCollections": [
-      "@angular-eslint/schematics",
-      "@schematics/angular"
-    ]
+    "schematicCollections": ["@angular-eslint/schematics", "@schematics/angular"]
   }
 }
