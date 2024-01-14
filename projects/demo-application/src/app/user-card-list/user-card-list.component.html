@@ -1,0 +1,29 @@
+<clx-page-container [title]="'Loading Users by <code>createAsyncState</code> Operator'">
+  @if (usersState$ | async; as usersState) {
+    @if (usersState.loading) {
+      <clx-spinner />
+    }
+
+    @if (usersState.error; as error) {
+      <clx-alert [error]="error" />
+    }
+
+    @if (usersState.data; as users) {
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        @for (user of users; track user.id.value) {
+          <div class="card !mt-0">
+            <div class="card-block flex gap-5">
+              <img [src]="user.picture.thumbnail" />
+              <dl class="grid grid-cols-2">
+                <dt class="font-medium">Name</dt>
+                <dd>{{ user.name.first }} {{ user.name.last }}</dd>
+                <dt class="font-medium">Gender</dt>
+                <dd>{{ user.gender }}</dd>
+              </dl>
+            </div>
+          </div>
+        }
+      </div>
+    }
+  }
+</clx-page-container>

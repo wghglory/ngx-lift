@@ -1,0 +1,45 @@
+<clx-page-container [title]="'Clarity Datagrid Using <code>dgState</code>, <code>createAsyncState</code> Operators'">
+  @if ({usersState: usersState$ | async, total: total$ | async}; as vm) {
+    <div>
+      <button class="btn btn-outline" (click)="userService.refreshList()" [disabled]="vm.usersState?.loading">
+        Refresh
+      </button>
+    </div>
+
+    <clr-datagrid
+      class="min-h-[200px]"
+      (clrDgRefresh)="refresh($event)"
+      [clrDgLoading]="vm.usersState?.loading === true"
+      [(clrDgSingleSelected)]="selectedItem"
+    >
+      <clr-dg-column [clrDgField]="'firstName'">First Name</clr-dg-column>
+      <clr-dg-column [clrDgField]="'lastName'">Last Name</clr-dg-column>
+      <clr-dg-column [clrDgField]="'email'">Email</clr-dg-column>
+      <clr-dg-column [clrDgField]="'gender'">Gender</clr-dg-column>
+
+      <clr-dg-placeholder>No data found</clr-dg-placeholder>
+
+      @for (user of vm.usersState?.data; track user.id.value) {
+        <clr-dg-row [clrDgItem]="user">
+          <clr-dg-cell>{{ user.name.first }}</clr-dg-cell>
+          <clr-dg-cell>{{ user.name.last }}</clr-dg-cell>
+          <clr-dg-cell>{{ user.email }}</clr-dg-cell>
+          <clr-dg-cell>{{ user.gender }}</clr-dg-cell>
+        </clr-dg-row>
+      }
+
+      <clr-dg-footer>
+        @if (!vm.total) {
+          No items
+        } @else {
+          {{ pagination.firstItem + 1 }} - {{ pagination.lastItem + 1 }} of {{ vm.total }} items
+        }
+        <clr-dg-pagination #pagination [clrDgPageSize]="10" [clrDgTotalItems]="vm.total || 0" />
+      </clr-dg-footer>
+    </clr-datagrid>
+
+    @if (vm.usersState?.error; as error) {
+      <clx-alert [error]="error" class="mb-4"></clx-alert>
+    }
+  }
+</clx-page-container>
