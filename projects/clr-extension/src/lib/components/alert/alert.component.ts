@@ -6,7 +6,7 @@ import {ClarityModule} from '@clr/angular';
 @Component({
   selector: 'clx-alert',
   templateUrl: './alert.component.html',
-  styleUrls: ['./alert.component.scss'],
+  styleUrl: './alert.component.scss',
   standalone: true,
   imports: [ClarityModule, CommonModule],
 })

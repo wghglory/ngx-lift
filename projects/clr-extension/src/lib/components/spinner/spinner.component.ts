@@ -7,6 +7,7 @@ import {ClarityModule} from '@clr/angular';
   standalone: true,
   imports: [CommonModule, ClarityModule],
   templateUrl: './spinner.component.html',
+  styleUrl: './spinner.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SpinnerComponent {
