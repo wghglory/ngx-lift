@@ -2,5 +2,6 @@
  * Public API Surface of ngx-extension
  */
 
-export * from './lib/ngx-extension.service';
-export * from './lib/ngx-extension.component';
+export * from './lib/models';
+export * from './lib/operators';
+export * from './lib/signals';
