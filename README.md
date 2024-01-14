@@ -1,8 +1,10 @@
-# Welcome to ngx-extension!
+# Welcome to [ngx-extension](https://ngx-extension.netlify.app/)!
 
-Welcome to review ngx-extension demos! This project has been crafted with the goal of enhancing and simplifying your
-Angular development experience. In the dynamic landscape of web development, Angular stands out as a robust framework,
-and ngx-extension complements it by offering a collection of utilities, operators, and components.
+Welcome to ngx-extension! This project has been crafted with the goal of enhancing and simplifying your Angular
+development experience. In the dynamic landscape of web development, Angular stands out as a robust framework, and
+ngx-extension complements it by offering a collection of utilities, operators, and components. Welcome to ngx-extension,
+a powerful Angular extension designed to enhance your development workflow. Explore its capabilities through our demo
+site and dive into the source code on GitHub.
 
 ## Key Objectives
 
@@ -27,11 +29,22 @@ and ngx-extension complements it by offering a collection of utilities, operator
 - **Continuous Improvement:** We are committed to continuous improvement and aim to adapt to the evolving needs of the
   Angular ecosystem. Your feedback and contributions are invaluable in this journey.
 
-## Getting Started
+## Get Started
 
-To explore the capabilities of ngx-extension, head over to our GitHub repository:
-[https://github.com/wghglory/ngx-extension](https://github.com/wghglory/ngx-extension). Clone the repository, check out
-the demos, and discover how ngx-extension can elevate your Angular development workflow.
+Explore its capabilities through our demo site and dive into the source code on GitHub.
+
+### Demo Site
+
+To experience the full potential of ngx-extension, visit our demo site at
+[https://ngx-extension.netlify.app/](https://ngx-extension.netlify.app/). The demo showcases various features and
+functionalities, providing an interactive way to understand the capabilities of ngx-extension.
+
+### Source Code
+
+For a deeper understanding of ngx-extension, review the source code available on GitHub:
+[https://github.com/wghglory/ngx-extension/tree/master/projects/ngx-extension](https://github.com/wghglory/ngx-extension/tree/master/projects/ngx-extension).
+Clone the repository to your local environment and explore the demos provided. Gain insights into how ngx-extension can
+elevate your Angular development workflow by examining the codebase and incorporating it into your projects.
 
 Thank you for considering ngx-extension for your Angular projects. We look forward to your involvement and feedback as
 we collectively strive to enhance the Angular development experience.
