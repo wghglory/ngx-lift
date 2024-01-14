@@ -1,22 +1,24 @@
-<div class="main-container">
-  <header class="header-6">
+<clr-main-container>
+  <clr-header>
     <div class="branding">
       <a class="nav-link" routerLink="/"> <h1 cds-text class="title">Ngx Extension</h1></a>
     </div>
-    <div class="header-nav">
+    <div class="header-nav" [clr-nav-level]="1">
       <!-- <a class="nav-link" routerLink="/" routerLinkActive="active"><span class="nav-text">Home</span></a> -->
     </div>
-  </header>
+  </clr-header>
 
   <div class="content-container">
-    <clr-vertical-nav>
+    <main class="content-area">
+      <router-outlet></router-outlet>
+    </main>
+    <clr-vertical-nav [clrVerticalNavCollapsible]="true" [clr-nav-level]="2">
       <a clrVerticalNavLink routerLink="/createAsyncState" routerLinkActive="active">createAsyncState</a>
-      <a clrVerticalNavLink routerLink="/switchMapWithAsyncState" routerLinkActive="active">switchMapWithAsyncState</a>
+      <a clrVerticalNavLink routerLink="/switchMapWithAsyncState" routerLinkActive="active">
+        switchMapWithAsyncState
+      </a>
       <a clrVerticalNavLink routerLink="/datagrid" routerLinkActive="active">Clarity Datagrid</a>
       <!-- <div class="nav-divider"></div> -->
     </clr-vertical-nav>
-    <div class="content-area">
-      <router-outlet></router-outlet>
-    </div>
   </div>
-</div>
+</clr-main-container>
