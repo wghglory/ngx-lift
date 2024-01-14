@@ -2,10 +2,10 @@ import {CommonModule} from '@angular/common';
 import {Component, inject} from '@angular/core';
 import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {ClarityModule} from '@clr/angular';
+import {AlertComponent, PageContainerComponent, SpinnerComponent} from 'clr-extension';
+import {switchMapWithAsyncState} from 'ngx-extension';
 import {filter} from 'rxjs';
 
-import {AlertComponent, PageContainerComponent, SpinnerComponent} from '../../../../clr-extension/src/public-api';
-import {switchMapWithAsyncState} from '../../../../ngx-extension/src/public-api';
 import {UserService} from '../shared/services/user.service';
 
 @Component({

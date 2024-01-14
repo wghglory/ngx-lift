@@ -3,16 +3,11 @@ import {HttpErrorResponse} from '@angular/common/http';
 import {Component, inject} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {ClarityModule, ClrDatagridStateInterface} from '@clr/angular';
+import {AlertComponent, convertToHttpParams, dgState, PageContainerComponent} from 'clr-extension';
 import {isEqual} from 'lodash-es';
+import {AsyncState, createAsyncState} from 'ngx-extension';
 import {BehaviorSubject, combineLatest, distinctUntilChanged, filter, map, share, switchMap} from 'rxjs';
 
-import {
-  AlertComponent,
-  convertToHttpParams,
-  dgState,
-  PageContainerComponent,
-} from '../../../../clr-extension/src/public-api';
-import {AsyncState, createAsyncState} from '../../../../ngx-extension/src/public-api';
 import {User} from '../shared/models/user.model';
 import {UserService} from '../shared/services/user.service';
 

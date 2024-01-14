@@ -1,9 +1,9 @@
 import {CommonModule} from '@angular/common';
 import {Component, inject} from '@angular/core';
 import {ClarityModule} from '@clr/angular';
+import {AlertComponent, PageContainerComponent, SpinnerComponent} from 'clr-extension';
+import {createAsyncState} from 'ngx-extension';
 
-import {AlertComponent, PageContainerComponent, SpinnerComponent} from '../../../../clr-extension/src/public-api';
-import {createAsyncState} from '../../../../ngx-extension/src/public-api';
 import {UserService} from '../shared/services/user.service';
 
 @Component({
