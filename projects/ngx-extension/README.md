@@ -1,29 +1,39 @@
-# NgxExtension
+# Welcome to ngx-extension!
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.0.
+Welcome to review ngx-extension demos! This project has been crafted with the goal of enhancing and simplifying your
+Angular development experience. In the dynamic landscape of web development, Angular stands out as a robust framework,
+and ngx-extension complements it by offering a collection of utilities, operators, and components.
 
-## Code scaffolding
+## Key Objectives
 
-Run `ng generate component component-name --project ngx-extension` to generate a new component. You can also use
-`ng generate directive|pipe|service|class|guard|interface|enum|module --project ngx-extension`.
+- **Utility Enhancement:** ngx-extension strives to provide a set of utilities that streamline common Angular
+  development tasks. These utilities are designed to boost your productivity and efficiency.
 
-> Note: Don't forget to add `--project ngx-extension` or else it will be added to the default project in your
-> `angular.json` file.
+- **Operator Support:** The project includes a range of operators that can be seamlessly integrated into your Angular
+  applications. These operators aim to simplify complex operations and promote cleaner, more maintainable code.
 
-## Build
+- **Component Repository:** ngx-extension comes bundled with a collection of reusable components. These components are
+  crafted with best practices in mind, allowing you to effortlessly integrate them into your projects and focus on
+  building outstanding user interfaces.
 
-Run `ng build ngx-extension` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Why Choose ngx-extension?
 
-## Publishing
+- **Simplified Development:** Our project is dedicated to simplifying the Angular development process, empowering
+  developers to build robust applications with ease.
 
-After building your library with `ng build ngx-extension`, go to the dist folder `cd dist/ngx-extension` and run
-`npm publish`.
+- **Community-Driven:** ngx-extension is an open-source project, and we welcome contributions from the community. Join
+  us in shaping the future of Angular development tools.
 
-## Running unit tests
+- **Continuous Improvement:** We are committed to continuous improvement and aim to adapt to the evolving needs of the
+  Angular ecosystem. Your feedback and contributions are invaluable in this journey.
 
-Run `ng test ngx-extension` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Getting Started
 
-## Further help
+To explore the capabilities of ngx-extension, head over to our GitHub repository:
+[https://github.com/wghglory/ngx-extension](https://github.com/wghglory/ngx-extension). Clone the repository, check out
+the demos, and discover how ngx-extension can elevate your Angular development workflow.
 
-To get more help on the Angular CLI use `ng help` or go check out the
-[Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Thank you for considering ngx-extension for your Angular projects. We look forward to your involvement and feedback as
+we collectively strive to enhance the Angular development experience.
+
+Happy coding!

@@ -1,29 +1,68 @@
-# ClrExtension
+# clr-extension Overview
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.0.
+The **clr-extension** library is designed to augment the capabilities of the Clarity library by providing a set of
+reusable components built on top of clarity components.
 
-## Code scaffolding
+## Features
 
-Run `ng generate component component-name --project clr-extension` to generate a new component. You can also use
-`ng generate directive|pipe|service|class|guard|interface|enum|module --project clr-extension`.
+1. **dgState Operator**
 
-> Note: Don't forget to add `--project clr-extension` or else it will be added to the default project in your
-> `angular.json` file.
+   The **clr-extension** library introduces the `dgState` operator, which enhances the functionality of the Clarity
+   library. This operator streamlines the management of datagrid state, making it more intuitive and efficient for
+   developers to work with Clarity datagrids.
 
-## Build
+2. **Datagrid Utilities**
 
-Run `ng build clr-extension` to build the project. The build artifacts will be stored in the `dist/` directory.
+   The library includes a set of utilities specifically tailored for Clarity datagrids. These utilities aim to simplify
+   common tasks and operations related to datagrids, providing developers with a more streamlined and cohesive
+   experience when working with Clarity components.
 
-## Publishing
+## Getting Started
 
-After building your library with `ng build clr-extension`, go to the dist folder `cd dist/clr-extension` and run
-`npm publish`.
+### Installation
 
-## Running unit tests
+To use **clr-extension** in your project, you can install it using your preferred package manager. For example, with
+npm:
 
-Run `ng test clr-extension` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```bash
+npm install clr-extension
+```
 
-## Further help
+### Usage
 
-To get more help on the Angular CLI use `ng help` or go check out the
-[Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```ts
+import {dgState, convertToHttpParams} from 'clr-extension';
+
+export class UserDatagridComponent {
+  private dgSource = new BehaviorSubject<ClrDatagridStateInterface | null>(null);
+  private dgState$ = this.dgSource.pipe(dgState());
+
+  usersState$ = this.dgState$.pipe(
+    switchMap((state) => {
+      const params = convertToHttpParams(state);
+      return this.userService.getUserAPI(params);
+    }),
+    share(),
+  );
+}
+```
+
+## Contributing
+
+We welcome contributions to the **clr-extension** library. If you encounter any issues, have feature requests, or would
+like to contribute code, please check out our
+[contribution guidelines](https://github.com/wghglory/ngx-extension/CONTRIBUTING.md).
+
+## License
+
+**clr-extension** is licensed under the MIT License.
+
+## Acknowledgments
+
+We would like to express our gratitude to the Clarity library maintainers and contributors for their foundational work
+that enables the development of **clr-extension**.
+
+---
+
+Feel free to explore the **clr-extension** library and enhance your Clarity datagrid implementation with ease! If you
+have any questions or concerns, please don't hesitate to reach out to us. Happy coding!
