@@ -9,4 +9,6 @@ import {Component, Input} from '@angular/core';
 })
 export class PageContainerComponent {
   @Input({required: true}) title = '';
+  // eslint-disable-next-line @angular-eslint/no-input-rename
+  @Input({alias: 'class'}) customClass = '';
 }
