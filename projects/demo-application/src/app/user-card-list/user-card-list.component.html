@@ -1,19 +1,90 @@
-<clx-page-container [title]="'Loading Users by <code>createAsyncState</code> Operator'">
-  @if (usersState$ | async; as usersState) {
-    @if (usersState.loading) {
-      <clx-spinner />
-    }
+<clx-page-container [title]="'createAsyncState'" class="space-y-9">
+  <section class="space-y-6">
+    <p>
+      The <code>createAsyncState</code> operator is a powerful custom rxjs operator for simplifying the handling of
+      asynchronous operations. It is specifically crafted to wrap API responses with a standardized structure, making it
+      convenient to subscribe to the observable and seamlessly integrate the data into HTML components.
+    </p>
 
-    @if (usersState.error; as error) {
-      <clx-alert [error]="error" />
-    }
+    <p>
+      This operator transforms an observable of type <code>T</code> into an observable of
+      <code>AsyncState&lt;T&gt;</code>. The <code>AsyncState</code> object encapsulates the following key states:
+    </p>
 
-    @if (usersState.data; as users) {
-      <div class="card-grid">
-        @for (user of users; track user.id.value) {
-          <app-user-card [user]="user" />
+    <ul>
+      <li><code>loading</code>: Indicates that the asynchronous operation is in progress.</li>
+      <li><code>error</code>: Represents any encountered errors during the operation.</li>
+      <li><code>data</code>: Holds the successful result of the operation.</li>
+    </ul>
+
+    <pre>
+export interface AsyncState&lt;T, E = HttpErrorResponse&gt; &#123;
+  loading: boolean;
+  error: E | null;
+  data: T | null;
+&#125;
+</pre
+    >
+
+    <p>
+      By using this operator, you can easily manage and respond to these different states in your application. The
+      resulting observable emits <code>AsyncState</code> objects, allowing you to handle loading spinners, display error
+      messages, and render content based on the received data.
+    </p>
+  </section>
+
+  <section class="space-y-6">
+    <h2>Example Code</h2>
+    <pre>
+&#64;Component(&#123;
+  template:
+    `&#64;if (usersState$ | async; as usersState) &#123;
+      &#64;if (usersState.loading) &#123;
+        &lt;clx-spinner /&gt;
+      &#125;
+
+      &#64;if (usersState.error; as error) &#123;
+        &lt;clx-alert [error]="error" /&gt;
+      &#125;
+
+      &#64;if (usersState.data; as users) &#123;
+        &lt;div class="card-grid"&gt;
+          &#64;for (user of users; track user.id.value) &#123;
+            &lt;app-user-card [user]="user" /&gt;
+          &#125;
+        &lt;/div&gt;
+      &#125;
+    &#125;`
+&#125;)
+export class UserCardListComponent &#123;
+  usersState$ = inject(UserService).getUsers(&#123; results: 9 &#125;).pipe(createAsyncState());
+&#125;</pre
+    >
+
+    @if (usersState$ | async; as usersState) {
+      <div>
+        <button class="btn btn-primary" (click)="loadExample()" [clrLoading]="usersState.loading">
+          Click to see UI behavior
+        </button>
+      </div>
+
+      <div class="min-h-[286px]">
+        @if (usersState.loading) {
+          <clx-spinner />
+        }
+
+        @if (usersState.error; as error) {
+          <clx-alert [error]="error" />
+        }
+
+        @if (usersState.data; as users) {
+          <div class="card-grid">
+            @for (user of users; track user.id.value) {
+              <app-user-card [user]="user" />
+            }
+          </div>
         }
       </div>
     }
-  }
+  </section>
 </clx-page-container>

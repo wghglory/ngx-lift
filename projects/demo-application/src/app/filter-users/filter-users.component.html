@@ -1,22 +1,35 @@
-<clx-page-container [title]="'Action Stream Switching to Another by <code>switchMapWithAsyncState</code>'">
-  <clr-radio-container clrInline>
-    <label>Select Gender</label>
-    <clr-radio-wrapper>
-      <input type="radio" clrRadio name="gender" required value="male" [formControl]="genderControl" />
-      <label>Male</label>
-    </clr-radio-wrapper>
-    <clr-radio-wrapper>
-      <input type="radio" clrRadio name="gender" required value="female" [formControl]="genderControl" />
-      <label>Female</label>
-    </clr-radio-wrapper>
-  </clr-radio-container>
+<clx-page-container title="switchMapWithAsyncState" class="space-y-9">
+  <p>
+    We often want to trigger a API request when the user clicks a button. How to switch from one stream to another?
+    <code>switchMapWithAsyncState</code> fits this scenario well and wrap your API response with
+    <code>AsyncState</code> shape. It acts as <code>switchMap</code> operator plus <code>createAsyncState</code>.
+  </p>
 
-  <div class="mt-6" *ngIf="searchState$ | async as vm">
-    <clx-spinner *ngIf="vm.loading" />
-    <clx-alert *ngIf="vm.error as error" [error]="error" />
+  <section class="space-y-6">
+    <h2>Example Code</h2>
 
-    <div *ngIf="vm.data as users" class="card-grid">
-      <app-user-card [user]="user" *ngFor="let user of users" />
+    <!-- TODO: add example code -->
+    <!-- <pre></pre> -->
+
+    <clr-radio-container clrInline>
+      <label>Select Gender</label>
+      <clr-radio-wrapper>
+        <input type="radio" clrRadio name="gender" required value="male" [formControl]="genderControl" />
+        <label>Male</label>
+      </clr-radio-wrapper>
+      <clr-radio-wrapper>
+        <input type="radio" clrRadio name="gender" required value="female" [formControl]="genderControl" />
+        <label>Female</label>
+      </clr-radio-wrapper>
+    </clr-radio-container>
+
+    <div class="mt-6" *ngIf="searchState$ | async as vm">
+      <clx-spinner *ngIf="vm.loading" />
+      <clx-alert *ngIf="vm.error as error" [error]="error" />
+
+      <div *ngIf="vm.data as users" class="card-grid">
+        <app-user-card [user]="user" *ngFor="let user of users" />
+      </div>
     </div>
-  </div>
+  </section>
 </clx-page-container>
