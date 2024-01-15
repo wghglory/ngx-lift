@@ -15,18 +15,8 @@
     <clx-spinner *ngIf="vm.loading" />
     <clx-alert *ngIf="vm.error as error" [error]="error" />
 
-    <div *ngIf="vm.data as users" class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-      <div class="card !mt-0" *ngFor="let user of users">
-        <div class="card-block flex gap-5">
-          <img [src]="user.picture.thumbnail" />
-          <dl class="grid grid-cols-2">
-            <dt class="font-medium">Name</dt>
-            <dd>{{ user.name.first }} {{ user.name.last }}</dd>
-            <dt class="font-medium">Gender</dt>
-            <dd>{{ user.gender }}</dd>
-          </dl>
-        </div>
-      </div>
+    <div *ngIf="vm.data as users" class="card-grid">
+      <app-user-card [user]="user" *ngFor="let user of users" />
     </div>
   </div>
 </clx-page-container>

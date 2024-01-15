@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.card-grid {
+  @apply grid md:grid-cols-2 xl:grid-cols-3 gap-5;
+}

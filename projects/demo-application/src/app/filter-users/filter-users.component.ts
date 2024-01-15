@@ -6,12 +6,21 @@ import {AlertComponent, PageContainerComponent, SpinnerComponent} from 'clr-exte
 import {switchMapWithAsyncState} from 'ngx-extension';
 import {filter} from 'rxjs';
 
+import {UserCardComponent} from '../shared/components/user-card/user-card.component';
 import {UserService} from '../shared/services/user.service';
 
 @Component({
   selector: 'app-filter-users',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, ClarityModule, PageContainerComponent, SpinnerComponent, AlertComponent],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    ClarityModule,
+    PageContainerComponent,
+    SpinnerComponent,
+    AlertComponent,
+    UserCardComponent,
+  ],
   templateUrl: './filter-users.component.html',
   styleUrl: './filter-users.component.scss',
 })
