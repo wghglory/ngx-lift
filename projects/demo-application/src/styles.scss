@@ -5,3 +5,11 @@
 .card-grid {
   @apply grid md:grid-cols-2 xl:grid-cols-3 gap-5;
 }
+
+pre {
+  @apply p-6 bg-gray-50;
+}
+
+code {
+  @apply bg-indigo-50 text-red-600 mx-1 p-1 rounded;
+}
