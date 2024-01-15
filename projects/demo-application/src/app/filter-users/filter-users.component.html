@@ -1,15 +1,17 @@
 <clx-page-container title="switchMapWithAsyncState" class="space-y-9">
   <p>
-    We often want to trigger a API request when the user clicks a button. How to switch from one stream to another?
-    <code>switchMapWithAsyncState</code> fits this scenario well and wrap your API response with
-    <code>AsyncState</code> shape. It acts as <code>switchMap</code> operator plus <code>createAsyncState</code>.
+    We frequently find ourselves needing to initiate an API request upon a user's button click. How do we seamlessly
+    transition from one stream to another? <code>switchMapWithAsyncState</code> is ideally suited for this scenario,
+    seamlessly incorporating both the functionality of the switchMap operator and the creation of an
+    <code>AsyncState</code> structure to encapsulate your API response. It effectively acts as a switchMap operator
+    while simultaneously implementing the creation of an <code>AsyncState</code> through its
+    <code>createAsyncState</code> capability.
   </p>
 
   <section class="space-y-6">
     <h2>Example Code</h2>
 
-    <!-- TODO: add example code -->
-    <!-- <pre></pre> -->
+    <app-code-block [code]="exampleCode" />
 
     <clr-radio-container clrInline>
       <label>Select Gender</label>
@@ -23,7 +25,7 @@
       </clr-radio-wrapper>
     </clr-radio-container>
 
-    <div class="mt-6" *ngIf="searchState$ | async as vm">
+    <div class="mt-6 min-h-[286px]" *ngIf="searchState$ | async as vm">
       <clx-spinner *ngIf="vm.loading" />
       <clx-alert *ngIf="vm.error as error" [error]="error" />
 

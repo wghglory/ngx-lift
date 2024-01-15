@@ -10,6 +10,6 @@ pre {
   @apply p-6 bg-gray-50;
 }
 
-code {
+code:not([class^='language-']) {
   @apply bg-indigo-50 text-red-600 mx-1 p-1 rounded;
 }

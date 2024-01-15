@@ -17,14 +17,7 @@
       <li><code>data</code>: Holds the successful result of the operation.</li>
     </ul>
 
-    <pre>
-export interface AsyncState&lt;T, E = HttpErrorResponse&gt; &#123;
-  loading: boolean;
-  error: E | null;
-  data: T | null;
-&#125;
-</pre
-    >
+    <app-code-block [code]="highlightedAsyncStateCode" />
 
     <p>
       By using this operator, you can easily manage and respond to these different states in your application. The
@@ -35,31 +28,7 @@ export interface AsyncState&lt;T, E = HttpErrorResponse&gt; &#123;
 
   <section class="space-y-6">
     <h2>Example Code</h2>
-    <pre>
-&#64;Component(&#123;
-  template:
-    `&#64;if (usersState$ | async; as usersState) &#123;
-      &#64;if (usersState.loading) &#123;
-        &lt;clx-spinner /&gt;
-      &#125;
-
-      &#64;if (usersState.error; as error) &#123;
-        &lt;clx-alert [error]="error" /&gt;
-      &#125;
-
-      &#64;if (usersState.data; as users) &#123;
-        &lt;div class="card-grid"&gt;
-          &#64;for (user of users; track user.id.value) &#123;
-            &lt;app-user-card [user]="user" /&gt;
-          &#125;
-        &lt;/div&gt;
-      &#125;
-    &#125;`
-&#125;)
-export class UserCardListComponent &#123;
-  usersState$ = inject(UserService).getUsers(&#123; results: 9 &#125;).pipe(createAsyncState());
-&#125;</pre
-    >
+    <app-code-block [code]="highlightedExampleCode" />
 
     @if (usersState$ | async; as usersState) {
       <div>
