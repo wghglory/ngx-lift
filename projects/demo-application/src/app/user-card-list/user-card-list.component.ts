@@ -1,5 +1,5 @@
 import {CommonModule} from '@angular/common';
-import {Component, inject} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {ClarityModule} from '@clr/angular';
 import {AlertComponent, PageContainerComponent, SpinnerComponent} from 'clr-extension';
 import {createAsyncState} from 'ngx-extension';
@@ -24,6 +24,7 @@ import {highlight} from '../shared/utils/highlight.util';
   ],
   templateUrl: './user-card-list.component.html',
   styleUrl: './user-card-list.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserCardListComponent {
   private userService = inject(UserService);
@@ -31,28 +32,38 @@ export class UserCardListComponent {
 
   usersState$ = this.refreshAction.pipe(
     startWith(undefined),
-    switchMap(() => this.userService.getUsers({results: 9}).pipe(createAsyncState())),
+    switchMap(() =>
+      this.userService.getUsers({results: 9}).pipe(
+        createAsyncState({
+          next: (res) => console.log(res), // success callback
+          error: (error) => console.error(error), // error callback
+        }),
+      ),
+    ),
   );
+
+  private callbackCode = `
+this.userService.getUsers().pipe(
+  createAsyncState({
+    next: (res) => console.log(res), // success callback
+    error: (error) => console.error(error), // error callback
+  }),
+).subscribe();
+  `;
+
+  highlightedCallbackCode = highlight(this.callbackCode);
 
   private exampleCode = `
 @Component({
   template: \`
     <ng-container *ngIf="usersState$ | async as usersState">
-      <ng-container *ngIf="usersState.loading">
-        <clx-spinner></clx-spinner>
-      </ng-container>
+      <clx-spinner *ngIf="usersState.loading"></clx-spinner>
 
-      <ng-container *ngIf="usersState.error as error">
-        <clx-alert [error]="error"></clx-alert>
-      </ng-container>
+      <clx-alert *ngIf="usersState.error as error" [error]="error"></clx-alert>
 
-      <ng-container *ngIf="usersState.data as users">
-        <div class="card-grid">
-          <ng-container *ngFor="let user of users; trackBy: user.id.value">
-            <app-user-card [user]="user"></app-user-card>
-          </ng-container>
-        </div>
-      </ng-container>
+      <div class="card-grid" *ngIf="usersState.data as users">
+        <app-user-card *ngFor="let user of users; trackBy: user.id.value" [user]="user"></app-user-card>
+      </div>
     </ng-container>
   \`,
 })

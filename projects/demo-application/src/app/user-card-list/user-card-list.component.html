@@ -1,9 +1,18 @@
 <clx-page-container [title]="'createAsyncState'" class="space-y-9">
   <section class="space-y-6">
     <p>
-      The <code>createAsyncState</code> operator is a powerful custom rxjs operator for simplifying the handling of
-      asynchronous operations. It is specifically crafted to wrap API responses with a standardized structure, making it
-      convenient to subscribe to the observable and seamlessly integrate the data into HTML components.
+      Imagine you're tasked with building a user list in your UI. Traditionally, this might involve defining variables
+      like loading, error, and users, then assigning values within your API subscribe method. However, as your page
+      requires multiple API requests, managing multiple loading and error variables becomes challenging, leading to
+      scattered variables throughout your component. This makes maintenance cumbersome and lacks cohesion with your
+      subscribe method.
+    </p>
+
+    <p>
+      The <code>createAsyncState</code> operator is a handy RxJS operator for simplifying the handling of asynchronous
+      operations. It is meticulously crafted to encapsulate API responses within a standardized structure, streamlining
+      the process of subscribing to observables. With this approach, integrating data seamlessly into HTML components
+      becomes not only convenient but also ensures a more organized and maintainable codebase.
     </p>
 
     <p>
@@ -18,6 +27,14 @@
     </ul>
 
     <app-code-block [code]="highlightedAsyncStateCode" />
+
+    <p>
+      The <code>createAsyncState</code> operator accepts an optional parameter,
+      <code>observerOrNextForOrigin?: Partial&lt;TapObserver&lt;T&gt;&gt; | ((value: T) => void)</code>, the same type
+      as RxJS <code>tap</code>. This allows you to pass callbacks for success and error scenarios if needed.
+    </p>
+
+    <app-code-block [code]="highlightedCallbackCode" />
 
     <p>
       By using this operator, you can easily manage and respond to these different states in your application. The
