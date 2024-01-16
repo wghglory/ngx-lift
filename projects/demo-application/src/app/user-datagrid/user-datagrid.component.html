@@ -1,45 +1,72 @@
-<clx-page-container [title]="'Clarity Datagrid Using <code>dgState</code>, <code>createAsyncState</code> Operators'">
-  @if ({usersState: usersState$ | async, total: total$ | async}; as vm) {
-    <div>
-      <button class="btn btn-outline" (click)="userService.refreshList()" [disabled]="vm.usersState?.loading">
-        Refresh
-      </button>
-    </div>
+<clx-page-container [title]="'dgState'" class="space-y-9">
+  <section class="space-y-6">
+    <p>
+      When utilizing Clarity Datagrid filtering, we employ the <code>dgState</code> operator to manage the timing of API
+      calls. This operator is designed to assess changes in the datagrid filters and intelligently handle API trigger
+      events. If the filters undergo modification, the operator introduces a debounce of 500ms before initiating the API
+      call. Conversely, for actions such as sorting or fetching the next page of data, the API call is made promptly
+      without any delay.
+    </p>
 
-    <clr-datagrid
-      class="min-h-[200px]"
-      (clrDgRefresh)="refresh($event)"
-      [clrDgLoading]="vm.usersState?.loading === true"
-      [(clrDgSingleSelected)]="selectedItem"
-    >
-      <clr-dg-column [clrDgField]="'firstName'">First Name</clr-dg-column>
-      <clr-dg-column [clrDgField]="'lastName'">Last Name</clr-dg-column>
-      <clr-dg-column [clrDgField]="'email'">Email</clr-dg-column>
-      <clr-dg-column [clrDgField]="'gender'">Gender</clr-dg-column>
+    <p>
+      Additionally, the <code>dgState</code> operator offers an optional parameter of type boolean to control the use of
+      the distinctUntilChanged operator internally. By default, this parameter is set to true. When enabled, it ensures
+      that no API call is initiated if the datagrid state remains the same. For instance, if a user enters "a" in a
+      filter input, then quickly types "aa," and finally reverts to "a," this parameter determines whether an API call
+      should be made based on the exact datagrid state. If set to true (default), no API call is triggered for the same
+      state. However, if set to false, another API call will be made even if the state remains unchanged.
+    </p>
+  </section>
 
-      <clr-dg-placeholder>No data found</clr-dg-placeholder>
+  <section class="space-y-6">
+    <h2>Example Code</h2>
+    <app-code-block [code]="highlightedHtml" lang="html" />
+    <app-code-block [code]="highlightedTypescript" />
+  </section>
 
-      @for (user of vm.usersState?.data; track user.id.value) {
-        <clr-dg-row [clrDgItem]="user">
-          <clr-dg-cell>{{ user.name.first }}</clr-dg-cell>
-          <clr-dg-cell>{{ user.name.last }}</clr-dg-cell>
-          <clr-dg-cell>{{ user.email }}</clr-dg-cell>
-          <clr-dg-cell>{{ user.gender }}</clr-dg-cell>
-        </clr-dg-row>
-      }
+  <section>
+    @if ({usersState: usersState$ | async, total: total$ | async}; as vm) {
+      <div>
+        <button class="btn btn-outline" (click)="userService.refreshList()" [disabled]="vm.usersState?.loading">
+          Refresh
+        </button>
+      </div>
 
-      <clr-dg-footer>
-        @if (!vm.total) {
-          No items
-        } @else {
-          {{ pagination.firstItem + 1 }} - {{ pagination.lastItem + 1 }} of {{ vm.total }} items
+      <clr-datagrid
+        class="min-h-[200px]"
+        (clrDgRefresh)="refresh($event)"
+        [clrDgLoading]="vm.usersState?.loading === true"
+        [(clrDgSingleSelected)]="selectedItem"
+      >
+        <clr-dg-column [clrDgField]="'firstName'">First Name</clr-dg-column>
+        <clr-dg-column [clrDgField]="'lastName'">Last Name</clr-dg-column>
+        <clr-dg-column [clrDgField]="'email'">Email</clr-dg-column>
+        <clr-dg-column [clrDgField]="'gender'">Gender</clr-dg-column>
+
+        <clr-dg-placeholder>No data found</clr-dg-placeholder>
+
+        @for (user of vm.usersState?.data; track user.id.value) {
+          <clr-dg-row [clrDgItem]="user">
+            <clr-dg-cell>{{ user.name.first }}</clr-dg-cell>
+            <clr-dg-cell>{{ user.name.last }}</clr-dg-cell>
+            <clr-dg-cell>{{ user.email }}</clr-dg-cell>
+            <clr-dg-cell>{{ user.gender }}</clr-dg-cell>
+          </clr-dg-row>
         }
-        <clr-dg-pagination #pagination [clrDgPageSize]="10" [clrDgTotalItems]="vm.total || 0" />
-      </clr-dg-footer>
-    </clr-datagrid>
 
-    @if (vm.usersState?.error; as error) {
-      <clx-alert [error]="error" class="mb-4"></clx-alert>
+        <clr-dg-footer>
+          @if (!vm.total) {
+            No items
+          } @else {
+            {{ pagination.firstItem + 1 }} - {{ pagination.lastItem + 1 }} of {{ vm.total }} items
+          }
+          <clr-dg-pagination #pagination [clrDgPageSize]="10" [clrDgTotalItems]="vm.total || 0" />
+        </clr-dg-footer>
+      </clr-datagrid>
+
+      @if (vm.usersState?.error; as error) {
+        <clx-alert [error]="error" class="mb-4"></clx-alert>
+      }
     }
-  }
+  </section>
 </clx-page-container>

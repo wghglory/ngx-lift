@@ -1,25 +1,55 @@
 import {Routes} from '@angular/router';
 
+import {ClrExtensionHomeComponent} from './clr-extension-home/clr-extension-home.component';
 import {FilterUsersComponent} from './filter-users/filter-users.component';
-import {HomeComponent} from './home/home.component';
+import {NgxExtensionHomeComponent} from './ngx-extension-home/ngx-extension-home.component';
 import {UserCardListComponent} from './user-card-list/user-card-list.component';
 import {UserDatagridComponent} from './user-datagrid/user-datagrid.component';
 
 export const routes: Routes = [
   {
-    path: 'createAsyncState',
-    component: UserCardListComponent,
+    path: 'ngx-extension',
+    children: [
+      {
+        path: '',
+        component: NgxExtensionHomeComponent,
+      },
+      {
+        path: 'operators',
+        children: [
+          {
+            path: 'createAsyncState',
+            component: UserCardListComponent,
+          },
+          {
+            path: 'switchMapWithAsyncState',
+            component: FilterUsersComponent,
+          },
+        ],
+      },
+    ],
   },
   {
-    path: 'datagrid',
-    component: UserDatagridComponent,
+    path: 'clr-extension',
+    children: [
+      {
+        path: '',
+        component: ClrExtensionHomeComponent,
+      },
+      {
+        path: 'operators',
+        children: [
+          {
+            path: 'dgState',
+            component: UserDatagridComponent,
+          },
+        ],
+      },
+    ],
   },
-  {
-    path: 'switchMapWithAsyncState',
-    component: FilterUsersComponent,
-  },
+  {path: '', redirectTo: '/ngx-extension', pathMatch: 'full'},
   {
     path: '**',
-    component: HomeComponent,
+    component: NgxExtensionHomeComponent,
   },
 ];
