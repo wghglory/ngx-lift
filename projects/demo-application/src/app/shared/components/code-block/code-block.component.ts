@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-code-block',
@@ -6,6 +6,7 @@ import {Component, Input} from '@angular/core';
   imports: [],
   templateUrl: './code-block.component.html',
   styleUrl: './code-block.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CodeBlockComponent {
   @Input() lang = 'typescript';

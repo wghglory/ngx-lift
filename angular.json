@@ -5,6 +5,12 @@
   "projects": {
     "ngx-extension": {
       "projectType": "library",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss",
+          "changeDetection": "OnPush"
+        }
+      },
       "root": "projects/ngx-extension",
       "sourceRoot": "projects/ngx-extension/src",
       "prefix": "lib",
@@ -37,7 +43,8 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "style": "scss",
+          "changeDetection": "OnPush"
         }
       },
       "root": "projects/demo-application",
@@ -120,6 +127,12 @@
     },
     "clr-extension": {
       "projectType": "library",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss",
+          "changeDetection": "OnPush"
+        }
+      },
       "root": "projects/clr-extension",
       "sourceRoot": "projects/clr-extension/src",
       "prefix": "lib",

@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 
 @Component({
   selector: 'clx-page-container',
@@ -6,6 +6,7 @@ import {Component, Input} from '@angular/core';
   imports: [],
   templateUrl: './page-container.component.html',
   styleUrl: './page-container.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageContainerComponent {
   @Input({required: true}) title = '';

@@ -1,5 +1,5 @@
 import {CommonModule} from '@angular/common';
-import {Component, inject} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {ClarityModule} from '@clr/angular';
 import {AlertComponent, PageContainerComponent, SpinnerComponent} from 'clr-extension';
@@ -26,26 +26,7 @@ import {highlight} from '../shared/utils/highlight.util';
   ],
   templateUrl: './filter-users.component.html',
   styleUrl: './filter-users.component.scss',
-  template: `<clr-radio-container clrInline>
-      <label>Select Gender</label>
-      <clr-radio-wrapper>
-        <input type="radio" clrRadio name="gender" required value="male" [formControl]="genderControl" />
-        <label>Male</label>
-      </clr-radio-wrapper>
-      <clr-radio-wrapper>
-        <input type="radio" clrRadio name="gender" required value="female" [formControl]="genderControl" />
-        <label>Female</label>
-      </clr-radio-wrapper>
-    </clr-radio-container>
-
-    <div class="mt-6" *ngIf="searchState$ | async as vm">
-      <clx-spinner *ngIf="vm.loading" />
-      <clx-alert *ngIf="vm.error as error" [error]="error" />
-
-      <div *ngIf="vm.data as users" class="card-grid">
-        <app-user-card [user]="user" *ngFor="let user of users" />
-      </div>
-    </div>`,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FilterUsersComponent {
   genderControl = new FormControl('');

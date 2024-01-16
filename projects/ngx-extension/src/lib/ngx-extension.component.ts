@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 
 @Component({
   selector: 'lib-ngx-extension',
@@ -6,5 +6,6 @@ import {Component} from '@angular/core';
   imports: [],
   template: ` <p>ngx-extension works!</p> `,
   styles: ``,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NgxExtensionComponent {}
