@@ -1,6 +1,6 @@
 import {CommonModule} from '@angular/common';
 import {HttpErrorResponse} from '@angular/common/http';
-import {Component, Input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {ClarityModule} from '@clr/angular';
 
 @Component({
@@ -9,6 +9,7 @@ import {ClarityModule} from '@clr/angular';
   styleUrl: './alert.component.scss',
   standalone: true,
   imports: [ClarityModule, CommonModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AlertComponent {
   @Input() alertType = 'danger';

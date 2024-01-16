@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 
 @Component({
   selector: 'clx-clr-extension',
@@ -6,5 +6,6 @@ import {Component} from '@angular/core';
   imports: [],
   template: ` <p>clr-extension works!</p> `,
   styles: ``,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ClrExtensionComponent {}
