@@ -1,11 +1,12 @@
 <clx-page-container title="switchMapWithAsyncState" class="space-y-9">
   <p>
-    We frequently find ourselves needing to initiate an API request upon a user's button click. How do we seamlessly
-    transition from one stream to another? <code>switchMapWithAsyncState</code> is ideally suited for this scenario,
-    seamlessly incorporating both the functionality of the switchMap operator and the creation of an
-    <code>AsyncState</code> structure to encapsulate your API response. It effectively acts as a switchMap operator
-    while simultaneously implementing the creation of an <code>AsyncState</code> through its
-    <code>createAsyncState</code> capability.
+    Frequently, we find ourselves in situations where triggering an API request upon a user's button click is essential.
+    But how do we seamlessly transition between streams? Enter the solution: <code>switchMapWithAsyncState</code>. This
+    operator is tailor-made for such scenarios, effortlessly amalgamating the strengths of both the
+    <code>switchMap</code> and <code>createAsyncState</code> operators. By creating an <code>AsyncState</code> structure
+    to encapsulate your API response, this operator becomes a versatile powerhouse, delivering the combined
+    functionalities of <code>switchMap</code> and <code>createAsyncState</code> in one. The result is a seamless and
+    efficient approach to managing asynchronous operations.
   </p>
 
   <section class="space-y-6">
@@ -14,7 +15,7 @@
     <app-code-block [code]="exampleCode" />
 
     <clr-radio-container clrInline>
-      <label>Select Gender</label>
+      <label>Select gender to load users</label>
       <clr-radio-wrapper>
         <input type="radio" clrRadio name="gender" required value="male" [formControl]="genderControl" />
         <label>Male</label>
