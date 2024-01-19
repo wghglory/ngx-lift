@@ -1,4 +1,3 @@
-export * from '../signals/to-signal-with-state';
 export * from './combine-latest-start-with-null.operator';
 export * from './create-async-state.operator';
 export * from './distinct-until-changed-with-callback.operator';

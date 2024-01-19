@@ -10,6 +10,8 @@
     "build-clr:watch": "ng build --project=clr-extension --watch",
     "build-ngx": "ng build --project=ngx-extension",
     "build-ngx:watch": "ng build --project=ngx-extension --watch",
+    "publish-clr": "npm run build-clr && cd ./dist/clr-extension && npm publish",
+    "publish-ngx": "npm run build-ngx && cd ./dist/ngx-extension && npm publish",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
