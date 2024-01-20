@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { NgxExtensionHomeComponent } from './ngx-extension-home.component';
+import {NgxExtensionHomeComponent} from './ngx-extension-home.component';
 
 describe('NgxExtensionHomeComponent', () => {
   let component: NgxExtensionHomeComponent;
@@ -8,10 +8,9 @@ describe('NgxExtensionHomeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NgxExtensionHomeComponent]
-    })
-    .compileComponents();
-    
+      imports: [NgxExtensionHomeComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(NgxExtensionHomeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

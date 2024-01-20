@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { DgStateComponent } from './dg-state.component';
+import {DgStateComponent} from './dg-state.component';
 
 describe('DgStateComponent', () => {
   let component: DgStateComponent;
@@ -8,10 +8,9 @@ describe('DgStateComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DgStateComponent]
-    })
-    .compileComponents();
-    
+      imports: [DgStateComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(DgStateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

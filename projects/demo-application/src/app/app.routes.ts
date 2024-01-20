@@ -1,10 +1,12 @@
 import {Routes} from '@angular/router';
 
-import {ClrExtensionHomeComponent} from './clr-extension-home/clr-extension-home.component';
-import {CreateAsyncStateComponent} from './create-async-state/create-async-state.component';
-import {DgStateComponent} from './dg-state/dg-state.component';
-import {NgxExtensionHomeComponent} from './ngx-extension-home/ngx-extension-home.component';
-import {SwitchMapWithAsyncStateComponent} from './switch-map-with-async-state/switch-map-with-async-state.component';
+// clr-extension
+import {ClrExtensionHomeComponent} from './clr-lib/pages/clr-extension-home/clr-extension-home.component';
+import {DgStateComponent} from './clr-lib/pages/dg-state/dg-state.component';
+// ngx-extension
+import {CreateAsyncStateComponent} from './ngx-lib/pages/create-async-state/create-async-state.component';
+import {NgxExtensionHomeComponent} from './ngx-lib/pages/ngx-extension-home/ngx-extension-home.component';
+import {SwitchMapWithAsyncStateComponent} from './ngx-lib/pages/switch-map-with-async-state/switch-map-with-async-state.component';
 
 export const routes: Routes = [
   {

@@ -3,7 +3,7 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {ClarityModule} from '@clr/angular';
 import {PageContainerComponent} from 'clr-extension';
 
-import {CodeBlockComponent} from '../shared/components/code-block/code-block.component';
+import {CodeBlockComponent} from '../../../shared/components/code-block/code-block.component';
 
 @Component({
   selector: 'app-clr-extension-home',

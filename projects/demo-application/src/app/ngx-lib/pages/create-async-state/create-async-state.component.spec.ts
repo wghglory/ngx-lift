@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CreateAsyncStateComponent } from './create-async-state.component';
+import {CreateAsyncStateComponent} from './create-async-state.component';
 
 describe('CreateAsyncStateComponent', () => {
   let component: CreateAsyncStateComponent;
@@ -8,10 +8,9 @@ describe('CreateAsyncStateComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CreateAsyncStateComponent]
-    })
-    .compileComponents();
-    
+      imports: [CreateAsyncStateComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(CreateAsyncStateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

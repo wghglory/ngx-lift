@@ -3,9 +3,9 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {ClarityModule} from '@clr/angular';
 import {PageContainerComponent} from 'clr-extension';
 
-import {CodeBlockComponent} from '../shared/components/code-block/code-block.component';
-import {UserCardListComponent} from '../shared/components/user-card-list/user-card-list.component';
-import {highlight} from '../shared/utils/highlight.util';
+import {CodeBlockComponent} from '../../../shared/components/code-block/code-block.component';
+import {UserCardListComponent} from '../../../shared/components/user-card-list/user-card-list.component';
+import {highlight} from '../../../shared/utils/highlight.util';
 
 @Component({
   selector: 'app-create-async-state',

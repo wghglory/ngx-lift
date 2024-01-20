@@ -3,9 +3,9 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {ClarityModule} from '@clr/angular';
 import {PageContainerComponent} from 'clr-extension';
 
-import {CodeBlockComponent} from '../shared/components/code-block/code-block.component';
-import {highlight} from '../shared/utils/highlight.util';
-import {UserDatagridComponent} from '../user-datagrid/user-datagrid.component';
+import {CodeBlockComponent} from '../../../shared/components/code-block/code-block.component';
+import {highlight} from '../../../shared/utils/highlight.util';
+import {UserDatagridComponent} from '../../shared/components/user-datagrid/user-datagrid.component';
 
 @Component({
   selector: 'app-dg-state',
