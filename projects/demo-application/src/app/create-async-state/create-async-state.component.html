@@ -26,7 +26,7 @@
       <li><code>data</code>: Holds the successful result of the operation.</li>
     </ul>
 
-    <app-code-block [code]="highlightedAsyncStateCode" />
+    <app-code-block [code]="asyncStateCode" />
 
     <p>
       The <code>createAsyncState</code> operator accepts an optional parameter,
@@ -34,7 +34,7 @@
       as RxJS <code>tap</code>. This allows you to pass callbacks for success and error scenarios if needed.
     </p>
 
-    <app-code-block [code]="highlightedCallbackCode" />
+    <app-code-block [code]="callbackCode" />
 
     <p>
       By using this operator, you can easily manage and respond to these different states in your application. The
@@ -45,32 +45,7 @@
 
   <section class="space-y-6">
     <h2>Example Code</h2>
-    <app-code-block [code]="highlightedExampleCode" />
-
-    @if (usersState$ | async; as usersState) {
-      <div>
-        <button class="btn btn-primary" (click)="loadExample()" [clrLoading]="usersState.loading">
-          Click to see UI behavior
-        </button>
-      </div>
-
-      <div class="min-h-[286px]">
-        @if (usersState.loading) {
-          <clx-spinner />
-        }
-
-        @if (usersState.error; as error) {
-          <clx-alert [error]="error" />
-        }
-
-        @if (usersState.data; as users) {
-          <div class="card-grid">
-            @for (user of users; track user.id.value) {
-              <app-user-card [user]="user" />
-            }
-          </div>
-        }
-      </div>
-    }
+    <app-code-block [code]="exampleCode" />
+    <app-user-card-list />
   </section>
 </clx-page-container>

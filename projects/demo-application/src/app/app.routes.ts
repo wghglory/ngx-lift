@@ -1,9 +1,9 @@
 import {Routes} from '@angular/router';
 
 import {ClrExtensionHomeComponent} from './clr-extension-home/clr-extension-home.component';
+import {CreateAsyncStateComponent} from './create-async-state/create-async-state.component';
 import {FilterUsersComponent} from './filter-users/filter-users.component';
 import {NgxExtensionHomeComponent} from './ngx-extension-home/ngx-extension-home.component';
-import {UserCardListComponent} from './user-card-list/user-card-list.component';
 import {UserDatagridComponent} from './user-datagrid/user-datagrid.component';
 
 export const routes: Routes = [
@@ -19,7 +19,7 @@ export const routes: Routes = [
         children: [
           {
             path: 'createAsyncState',
-            component: UserCardListComponent,
+            component: CreateAsyncStateComponent,
           },
           {
             path: 'switchMapWithAsyncState',
