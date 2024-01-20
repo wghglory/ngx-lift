@@ -3,6 +3,7 @@ import {Routes} from '@angular/router';
 // clr-extension
 import {ClrExtensionHomeComponent} from './clr-lib/pages/clr-extension-home/clr-extension-home.component';
 import {DgStateComponent} from './clr-lib/pages/dg-state/dg-state.component';
+import {CombineLatestEagerComponent} from './ngx-lib/pages/combine-latest-eager/combine-latest-eager.component';
 // ngx-extension
 import {CreateAsyncStateComponent} from './ngx-lib/pages/create-async-state/create-async-state.component';
 import {NgxExtensionHomeComponent} from './ngx-lib/pages/ngx-extension-home/ngx-extension-home.component';
@@ -26,6 +27,10 @@ export const routes: Routes = [
           {
             path: 'switchMapWithAsyncState',
             component: SwitchMapWithAsyncStateComponent,
+          },
+          {
+            path: 'combineLatestEager',
+            component: CombineLatestEagerComponent,
           },
         ],
       },

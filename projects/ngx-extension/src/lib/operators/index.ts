@@ -1,4 +1,4 @@
-export * from './combine-latest-start-with-null.operator';
+export * from './combine-latest-eager.operator';
 export * from './create-async-state.operator';
 export * from './distinct-until-changed-with-callback.operator';
 export * from './logger.operator';
