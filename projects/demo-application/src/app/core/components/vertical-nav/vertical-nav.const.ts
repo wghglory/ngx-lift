@@ -9,6 +9,7 @@ export const ngxExtensionNavConfig: NavConfig[] = [
       {path: '/createAsyncState', value: 'createAsyncState'},
       {path: '/switchMapWithAsyncState', value: 'switchMapWithAsyncState'},
       {path: '/combineLatestEager', value: 'combineLatestEager'},
+      {path: '/distinctOnChange', value: 'distinctOnChange'},
     ],
   },
 ];

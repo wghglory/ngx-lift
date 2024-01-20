@@ -6,6 +6,7 @@ import {DgStateComponent} from './clr-lib/pages/dg-state/dg-state.component';
 import {CombineLatestEagerComponent} from './ngx-lib/pages/combine-latest-eager/combine-latest-eager.component';
 // ngx-extension
 import {CreateAsyncStateComponent} from './ngx-lib/pages/create-async-state/create-async-state.component';
+import {DistinctOnChangeComponent} from './ngx-lib/pages/distinct-on-change/distinct-on-change.component';
 import {NgxExtensionHomeComponent} from './ngx-lib/pages/ngx-extension-home/ngx-extension-home.component';
 import {SwitchMapWithAsyncStateComponent} from './ngx-lib/pages/switch-map-with-async-state/switch-map-with-async-state.component';
 
@@ -31,6 +32,10 @@ export const routes: Routes = [
           {
             path: 'combineLatestEager',
             component: CombineLatestEagerComponent,
+          },
+          {
+            path: 'distinctOnChange',
+            component: DistinctOnChangeComponent,
           },
         ],
       },

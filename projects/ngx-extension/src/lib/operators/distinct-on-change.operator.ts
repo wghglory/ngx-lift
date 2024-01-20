@@ -1,18 +1,18 @@
 import {Observable, OperatorFunction, Subscriber, TeardownLogic} from 'rxjs';
 
 /**
- * Returns an OperatorFunction that filters out consecutive values from the source Observable
- * if they are equal according to the provided compare function.
- * When a value is emitted that is different from the previous value,
- * the onChangeCallback function is called with the new value.
- * The OperatorFunction also emits the new value to the subscriber.
+ * Creates an operator function for RxJS Observables that filters out consecutive
+ * values that are considered equal according to a provided comparator function,
+ * and invokes a callback when a distinct value is encountered.
  *
- * @param {function} onChangeCallback - A callback function that accepts the new value
- *        when it is different from the previous value.
- * @param {function} comparator - A function that compares two values of type T
- *        and returns true if they are equal, false otherwise.
- * @return {OperatorFunction} An OperatorFunction that filters out consecutive equal values
- *         and calls the onChangeCallback function.
+ * @template T - The type of elements emitted by the observable.
+ * @param {(previousValue: T, currentValue: T) => void} onChangeCallback
+ *   A callback function that will be invoked when a distinct value is encountered.
+ *   It receives the previous distinct value and the current value.
+ * @param {(previousValue: T, currentValue: T) => boolean} [comparator]
+ *   A function that determines if two values are considered equal.
+ *   Defaults to a function that performs strict equality (===) comparison.
+ * @returns {OperatorFunction<T, T>} - The RxJS operator function.
  *
  * Example 1:
  * const source$ = new Observable<number>((observer) => {
@@ -26,17 +26,17 @@ import {Observable, OperatorFunction, Subscriber, TeardownLogic} from 'rxjs';
  *   observer.complete();
  * });
  *
- * const distinctUntilChangedWithCallback$ = source$.pipe(
- *   distinctUntilChangedWithCallback(
- *     (value) => console.log(`Value changed to: ${value}`),
+ * const distinctOnChange$ = source$.pipe(
+ *   distinctOnChange(
+ *     (prev, curr) => console.log(`Value changed from ${prev} to: ${curr}`),
  *     (prev, curr) => prev === curr,
  *   ),
  * );
- * distinctUntilChangedWithCallback$.subscribe((res) => console.log(res));
+ * distinctOnChange$.subscribe((res) => console.log(res));
  *
  *
  * Example 2:
- * distinctUntilChangedWithCallback<RDEValue<OseInstance>[]>(
+ * distinctOnChange<RDEValue<OseInstance>[]>(
  *   () => {
  *     this.store.dispatch(
  *       addToast({
@@ -52,8 +52,8 @@ import {Observable, OperatorFunction, Subscriber, TeardownLogic} from 'rxjs';
  *     prev.every((prevInstance, index) => instanceComparator(prevInstance.entity, current[index].entity)),
  * );
  */
-export function distinctUntilChangedWithCallback<T>(
-  onChangeCallback: (currentValue: T) => void,
+export function distinctOnChange<T>(
+  onChangeCallback: (previousValue: T, currentValue: T) => void,
   comparator: (previousValue: T, currentValue: T) => boolean = (prev, curr) => prev === curr,
 ): OperatorFunction<T, T> {
   return (source: Observable<T>) =>
@@ -65,7 +65,7 @@ export function distinctUntilChangedWithCallback<T>(
         next: (currentValue: T) => {
           if (hasFirstValue) {
             if (!comparator(previousValue, currentValue)) {
-              onChangeCallback(currentValue);
+              onChangeCallback(previousValue, currentValue);
               previousValue = currentValue;
               subscriber.next(currentValue);
             }
