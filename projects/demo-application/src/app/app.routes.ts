@@ -2,9 +2,9 @@ import {Routes} from '@angular/router';
 
 import {ClrExtensionHomeComponent} from './clr-extension-home/clr-extension-home.component';
 import {CreateAsyncStateComponent} from './create-async-state/create-async-state.component';
+import {DgStateComponent} from './dg-state/dg-state.component';
 import {NgxExtensionHomeComponent} from './ngx-extension-home/ngx-extension-home.component';
 import {SwitchMapWithAsyncStateComponent} from './switch-map-with-async-state/switch-map-with-async-state.component';
-import {UserDatagridComponent} from './user-datagrid/user-datagrid.component';
 
 export const routes: Routes = [
   {
@@ -41,7 +41,7 @@ export const routes: Routes = [
         children: [
           {
             path: 'dgState',
-            component: UserDatagridComponent,
+            component: DgStateComponent,
           },
         ],
       },
