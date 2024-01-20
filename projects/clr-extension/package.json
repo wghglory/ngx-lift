@@ -1,13 +1,13 @@
 {
   "name": "clr-extension",
-  "version": "0.0.5",
+  "version": "0.0.2",
   "description": "The library is designed to augment the capabilities of the Clarity library by providing a set of reusable components built on top of clarity components.",
   "author": "Guanghui Wang <guanghui-wang@foxmail.com>",
   "peerDependencies": {
-    "@angular/common": "^17.0.0",
-    "@angular/core": "^17.0.0",
-    "@clr/angular": "^9.0.0",
-    "lodash-es": "^4.17.21"
+    "@angular/common": ">=13.0.0",
+    "@angular/core": ">=13.0.0",
+    "@clr/angular": ">=13.0.0",
+    "lodash-es": ">=4.17.21"
   },
   "dependencies": {
     "tslib": "^2.3.0"
