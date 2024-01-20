@@ -3,8 +3,8 @@ import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
 import {ClarityModule} from '@clr/angular';
 
-import {clrExtensionData, ngxExtensionData} from '../../constants/route.const';
-import {RouteData} from '../../models/route-data.model';
+import {NavConfig} from './nav-config.model';
+import {clrExtensionNavConfig, ngxExtensionNavConfig} from './vertical-nav.const';
 
 @Component({
   selector: 'app-vertical-nav',
@@ -15,7 +15,7 @@ import {RouteData} from '../../models/route-data.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VerticalNavComponent implements OnInit {
-  navigationData: WritableSignal<RouteData[]> = signal(ngxExtensionData);
+  navConfig: WritableSignal<NavConfig[]> = signal(ngxExtensionNavConfig);
 
   private router = inject(Router);
   private destroyRef = inject(DestroyRef);
@@ -25,9 +25,9 @@ export class VerticalNavComponent implements OnInit {
       if (event instanceof NavigationEnd) {
         // Route has changed, do something
         if (event.url.includes('/ngx-extension')) {
-          this.navigationData.set(ngxExtensionData);
+          this.navConfig.set(ngxExtensionNavConfig);
         } else if (event.url.includes('/clr-extension')) {
-          this.navigationData.set(clrExtensionData);
+          this.navConfig.set(clrExtensionNavConfig);
         }
       }
     });

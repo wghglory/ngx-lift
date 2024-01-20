@@ -1,4 +1,4 @@
-export interface RouteData {
+export interface NavConfig {
   path: string;
   value: string;
   icon: string;

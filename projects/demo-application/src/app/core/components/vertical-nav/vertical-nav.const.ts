@@ -1,6 +1,6 @@
-import {RouteData} from '../models/route-data.model';
+import {NavConfig} from './nav-config.model';
 
-export const ngxExtensionData: RouteData[] = [
+export const ngxExtensionNavConfig: NavConfig[] = [
   {
     path: '/ngx-extension/operators',
     value: 'Operators',
@@ -8,11 +8,12 @@ export const ngxExtensionData: RouteData[] = [
     children: [
       {path: '/createAsyncState', value: 'createAsyncState'},
       {path: '/switchMapWithAsyncState', value: 'switchMapWithAsyncState'},
+      {path: '/combineLatestEager', value: 'combineLatestEager'},
     ],
   },
 ];
 
-export const clrExtensionData: RouteData[] = [
+export const clrExtensionNavConfig: NavConfig[] = [
   {
     path: '/clr-extension/operators',
     value: 'Operators',

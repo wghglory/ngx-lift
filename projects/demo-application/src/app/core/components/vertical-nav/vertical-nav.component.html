@@ -1,5 +1,5 @@
 <clr-vertical-nav [clrVerticalNavCollapsible]="true" [clr-nav-level]="2">
-  @for (data of navigationData(); track data.value) {
+  @for (data of navConfig(); track data.value) {
     <clr-vertical-nav-group routerLinkActive="active">
       <cds-icon [attr.shape]="data.icon" clrVerticalNavIcon />
       {{ data.value }}

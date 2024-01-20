@@ -8,7 +8,7 @@ import javascript from 'highlight.js/lib/languages/javascript';
 import typescript from 'highlight.js/lib/languages/typescript';
 import xml from 'highlight.js/lib/languages/xml';
 
-import {VerticalNavComponent} from './shared/components/vertical-nav/vertical-nav.component';
+import {VerticalNavComponent} from './core/components/vertical-nav/vertical-nav.component';
 
 // register the languages you need
 hljs.registerLanguage('xml', xml);
