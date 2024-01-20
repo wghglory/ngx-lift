@@ -3,22 +3,17 @@ import {pipe, tap} from 'rxjs';
 // Define a type for different logger functions
 type LoggerType = 'count' | 'debug' | 'dir' | 'log' | 'table';
 
+// Define a more permissive type for console functions
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type ConsoleFunction = (...args: any[]) => void;
+
 // Map each LoggerType to its corresponding console function
-const getLoggerByType = (loggerType: LoggerType): ((value: LoggerType) => void) => {
-  switch (loggerType) {
-    case 'count':
-      return console.count;
-    case 'debug':
-      return console.debug;
-    case 'dir':
-      return console.dir;
-    case 'log':
-      return console.log;
-    case 'table':
-      return console.table;
-    default:
-      return console.log; // Default to console.log for unknown types
-  }
+const loggerFunctions: Record<LoggerType, ConsoleFunction> = {
+  count: console.count.bind(console),
+  debug: console.debug.bind(console),
+  dir: console.dir.bind(console),
+  log: console.log.bind(console),
+  table: console.table.bind(console),
 };
 
 /**
@@ -28,4 +23,10 @@ const getLoggerByType = (loggerType: LoggerType): ((value: LoggerType) => void) 
  *                   Defaults to 'log' if not provided or if an unknown type is specified.
  * @returns An RxJS operator function that logs values using the specified console function.
  */
-export const logger = (loggerType: LoggerType = 'log') => pipe(tap(getLoggerByType(loggerType)));
+export const logger = (loggerType: LoggerType = 'log') =>
+  pipe(
+    tap((value) => {
+      const logFunction = loggerFunctions[loggerType] || console.log.bind(console);
+      logFunction(value);
+    }),
+  );

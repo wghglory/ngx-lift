@@ -7,6 +7,7 @@ import {CombineLatestEagerComponent} from './ngx-lib/pages/combine-latest-eager/
 // ngx-extension
 import {CreateAsyncStateComponent} from './ngx-lib/pages/create-async-state/create-async-state.component';
 import {DistinctOnChangeComponent} from './ngx-lib/pages/distinct-on-change/distinct-on-change.component';
+import {LoggerComponent} from './ngx-lib/pages/logger/logger.component';
 import {NgxExtensionHomeComponent} from './ngx-lib/pages/ngx-extension-home/ngx-extension-home.component';
 import {SwitchMapWithAsyncStateComponent} from './ngx-lib/pages/switch-map-with-async-state/switch-map-with-async-state.component';
 
@@ -36,6 +37,10 @@ export const routes: Routes = [
           {
             path: 'distinctOnChange',
             component: DistinctOnChangeComponent,
+          },
+          {
+            path: 'logger',
+            component: LoggerComponent,
           },
         ],
       },
