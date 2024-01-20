@@ -16,6 +16,15 @@
       challenge posed by <code>combineLatest</code> in scenarios where initial emissions from certain sources are not
       guaranteed.
     </p>
+    <p>
+      In most cases, the aforementioned approach should work seamlessly for you. However, when dealing with numerous
+      observables, it might become challenging to distinguish which ones lack initial emissions. For such scenarios,
+      <strong
+        >you have the flexibility to set the second parameter to true in combineLatestEager, which appends
+        <code>startWith(null)</code> for all source observables</strong
+      >. This option becomes especially valuable when dealing with situations where ensuring initial emissions is
+      crucial.
+    </p>
   </section>
 
   <section class="space-y-6">
