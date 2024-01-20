@@ -1,0 +1,21 @@
+<clr-radio-container clrInline>
+  <label>Select gender to load users</label>
+  <clr-radio-wrapper>
+    <input type="radio" clrRadio name="gender" value="male" [formControl]="genderControl" />
+    <label>Male</label>
+  </clr-radio-wrapper>
+  <clr-radio-wrapper>
+    <input type="radio" clrRadio name="gender" value="female" [formControl]="genderControl" />
+    <label>Female</label>
+  </clr-radio-wrapper>
+</clr-radio-container>
+
+<div class="mt-6 min-h-[286px]" *ngIf="searchState$ | async as vm">
+  <clx-spinner *ngIf="vm.loading" />
+
+  <clx-alert *ngIf="vm.error as error" [error]="error" />
+
+  <div *ngIf="vm.data as users" class="card-grid">
+    <app-user-card *ngFor="let user of users" [user]="user" />
+  </div>
+</div>
