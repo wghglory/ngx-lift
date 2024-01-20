@@ -62,7 +62,7 @@ this.userService.getUsers().pipe(
       <clx-alert *ngIf="usersState.error as error" [error]="error"></clx-alert>
 
       <div class="card-grid" *ngIf="usersState.data as users">
-        <app-user-card *ngFor="let user of users; trackBy: user.id.value" [user]="user"></app-user-card>
+        <app-user-card *ngFor="let user of users" [user]="user"></app-user-card>
       </div>
     </ng-container>
   \`,

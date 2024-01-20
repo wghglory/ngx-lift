@@ -26,8 +26,8 @@ export class UserDatagridComponent {
 
   userService = inject(UserService);
 
-  private dgSource = new BehaviorSubject<ClrDatagridStateInterface | null>(null);
-  private dgState$ = this.dgSource.pipe(dgState(false)); // When dgState parameter sets to false, this signifies that an API call will be executed even if the current state is identical to the previous state.
+  private dgBS = new BehaviorSubject<ClrDatagridStateInterface | null>(null);
+  private dgState$ = this.dgBS.pipe(dgState(false)); // When the dgState parameter is set to false, it signals the execution of an API call even when the current state is identical to the previous state. Conversely, emission is suppressed when dgState is true, thanks to the application of distinctUntilChanged.
 
   usersState$ = combineLatest([this.dgState$, this.userService.refresh$]).pipe(
     switchMap(([state]) => {
@@ -83,7 +83,7 @@ export class UserDatagridComponent {
   </clr-datagrid>
 
   @if (vm.usersState?.error; as error) {
-    <clx-alert [error]="error" class="mb-4"></clx-alert>
+    <clx-alert [error]="error" class="mb-4" />
   }
 }
   `;
@@ -95,9 +95,10 @@ export class UserDatagridComponent {
 
   userService = inject(UserService);
 
-  private dgSource = new BehaviorSubject<ClrDatagridStateInterface | null>(null);
-  // When dgState parameter sets to false, this signifies that an API call will be executed even if the current state is identical to the previous state.
-  private dgState$ = this.dgSource.pipe(dgState(false));
+  private dgBS = new BehaviorSubject<ClrDatagridStateInterface | null>(null);
+  // When the dgState parameter is set to false, it signals the execution of an API call even when the current state is identical to the previous state.
+  // Conversely, emission is suppressed when dgState is true, thanks to the application of distinctUntilChanged.
+  private dgState$ = this.dgBS.pipe(dgState(false));
 
   usersState$ = combineLatest([this.dgState$, this.userService.refresh$]).pipe(
     switchMap(([state]) => {
@@ -119,6 +120,6 @@ export class UserDatagridComponent {
   highlightedTypescript = highlight(this.typescript);
 
   refresh(state: ClrDatagridStateInterface) {
-    this.dgSource.next(state);
+    this.dgBS.next(state);
   }
 }

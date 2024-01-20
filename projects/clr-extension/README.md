@@ -34,8 +34,8 @@ npm install clr-extension
 import {dgState, convertToHttpParams} from 'clr-extension';
 
 export class UserDatagridComponent {
-  private dgSource = new BehaviorSubject<ClrDatagridStateInterface | null>(null);
-  private dgState$ = this.dgSource.pipe(dgState());
+  private dgBS = new BehaviorSubject<ClrDatagridStateInterface | null>(null);
+  private dgState$ = this.dgBS.pipe(dgState());
 
   usersState$ = this.dgState$.pipe(
     switchMap((state) => {

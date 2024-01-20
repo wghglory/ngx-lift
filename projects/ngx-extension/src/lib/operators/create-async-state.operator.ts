@@ -44,7 +44,7 @@ import {AsyncState} from '../models/async-state.model';
  *
  */
 export function createAsyncState<T>(
-  // TODO: change Observer to TapObserver for rxjs
+  // TODO: change Observer to TapObserver for rxjs 7+
   observerOrNextForOrigin?: Partial<Observer<T>> | ((value: T) => void),
 ): UnaryFunction<Observable<T>, Observable<AsyncState<T>>> {
   return pipe(

@@ -1,4 +1,5 @@
-import {ChangeDetectionStrategy, Component, inject, OnInit, signal, WritableSignal} from '@angular/core';
+import {ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit, signal, WritableSignal} from '@angular/core';
+import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
 import {ClarityModule} from '@clr/angular';
 
@@ -14,12 +15,13 @@ import {RouteData} from '../../models/route-data.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VerticalNavComponent implements OnInit {
-  navigationData: WritableSignal<RouteData[]> = signal([]);
+  navigationData: WritableSignal<RouteData[]> = signal(ngxExtensionData);
 
   private router = inject(Router);
+  private destroyRef = inject(DestroyRef);
 
   ngOnInit() {
-    this.router.events.subscribe((event) => {
+    this.router.events.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((event) => {
       if (event instanceof NavigationEnd) {
         // Route has changed, do something
         if (event.url.includes('/ngx-extension')) {

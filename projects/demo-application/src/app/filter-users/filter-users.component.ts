@@ -55,7 +55,7 @@ export class FilterUsersComponent {
       <clx-alert *ngIf="vm.error as error" [error]="error" />
 
       <div *ngIf="vm.data as users" class="card-grid">
-        <app-user-card [user]="user" *ngFor="let user of users" />
+        <app-user-card *ngFor="let user of users" [user]="user" />
       </div>
     </div>\`,
 })
