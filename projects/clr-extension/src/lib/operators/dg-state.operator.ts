@@ -1,6 +1,6 @@
 import {ClrDatagridStateInterface} from '@clr/angular';
 import {isEqual} from 'lodash-es';
-import {debounce, distinctUntilChanged, map, Observable, pairwise, pipe, timer, UnaryFunction} from 'rxjs';
+import {debounce, distinctUntilChanged, map, Observable, pairwise, pipe, startWith, timer, UnaryFunction} from 'rxjs';
 
 /**
  * operator for handling Clarity Datagrid state transformations.
@@ -10,8 +10,9 @@ import {debounce, distinctUntilChanged, map, Observable, pairwise, pipe, timer, 
  */
 export function dgState(
   enableDistinctUntilChanged = true,
-): UnaryFunction<Observable<ClrDatagridStateInterface | null>, Observable<ClrDatagridStateInterface>> {
+): UnaryFunction<Observable<ClrDatagridStateInterface | null>, Observable<ClrDatagridStateInterface | null>> {
   return pipe(
+    startWith(null),
     // Prepare old and new states filters to enable delay.
     pairwise(),
     // Delay emission only when the filter changes.

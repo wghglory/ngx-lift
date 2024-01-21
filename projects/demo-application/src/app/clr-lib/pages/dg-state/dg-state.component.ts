@@ -63,6 +63,50 @@ export class DgStateComponent {
   `,
   );
 
+  secondHtmlCode = highlight(`
+<div>
+  <button class="btn btn-outline" (click)="userService.refreshList()" [disabled]="(usersState$ | async)?.loading">
+    Refresh
+  </button>
+</div>
+
+<clr-datagrid
+  class="min-h-[200px]"
+  (clrDgRefresh)="refresh($event)"
+  [clrDgLoading]="(usersState$ | async)?.loading === true"
+  [(clrDgSingleSelected)]="selectedItem"
+>
+  <clr-dg-column [clrDgField]="'firstName'">First Name</clr-dg-column>
+  <clr-dg-column [clrDgField]="'lastName'">Last Name</clr-dg-column>
+  <clr-dg-column [clrDgField]="'email'">Email</clr-dg-column>
+  <clr-dg-column [clrDgField]="'gender'">Gender</clr-dg-column>
+
+  <clr-dg-placeholder>No data found</clr-dg-placeholder>
+
+  @for (user of (usersState$ | async)?.data; track user.id.value) {
+    <clr-dg-row [clrDgItem]="user">
+      <clr-dg-cell>{{ user.name.first }}</clr-dg-cell>
+      <clr-dg-cell>{{ user.name.last }}</clr-dg-cell>
+      <clr-dg-cell>{{ user.email }}</clr-dg-cell>
+      <clr-dg-cell>{{ user.gender }}</clr-dg-cell>
+    </clr-dg-row>
+  }
+
+  <clr-dg-footer>
+    @if (!(total$ | async)) {
+      No items
+    } @else {
+      {{ pagination.firstItem + 1 }} - {{ pagination.lastItem + 1 }} of {{ total$ | async }} items
+    }
+    <clr-dg-pagination #pagination [clrDgPageSize]="10" [clrDgTotalItems]="(total$ | async) || 0" />
+  </clr-dg-footer>
+</clr-datagrid>
+
+@if ((usersState$ | async)?.error; as error) {
+  <clx-alert [error]="error" class="mb-4" />
+}
+    `);
+
   typescriptCode = highlight(
     `
 // user-datagrid.component.ts
