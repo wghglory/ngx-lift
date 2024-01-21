@@ -26,7 +26,10 @@ export const clrExtensionNavConfig: NavConfig[] = [
     path: '/clr-extension/components',
     value: 'Components',
     icon: 'components',
-    children: [{path: '/spinner', value: 'Spinner'}],
+    children: [
+      {path: '/spinner', value: 'Spinner'},
+      {path: '/alert', value: 'Alert'},
+    ],
   },
   {
     path: '/clr-extension/utilities',

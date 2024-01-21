@@ -1,0 +1,57 @@
+<clx-page-container title="Alert" class="space-y-9">
+  <section>
+    <p>
+      Alerts are banners that draw the user's attention to an important message. Elements of an alert, such as icons and
+      color, indicate the type and urgency of the message's information.
+    </p>
+
+    <h2>Usage</h2>
+    <p>Use alerts to grab the user's attention to provide critical information needed in context.</p>
+
+    <p>
+      The <code>&lt;clx-alert /&gt;</code> component provides optional inputs, including
+      <code>alertType</code> (defaulting to &quot;danger&quot;), <code>isSmall</code> (defaulting to false), and the
+      ability to handle errors via <code>error</code> (type of HttpErrorResponse). Additionally, you can pass content to
+      display within the alert. It&#39;s important to note that you should choose either an error or content to pass,
+      not both. The <code>isAppLevel</code> input defaults to false. If you want to display a app-level alert, set true
+      to it.
+    </p>
+  </section>
+
+  <section>
+    <h2>Types</h2>
+    <p>There are two types of alerts: Standard and App-level.</p>
+
+    <section class="space-y-4">
+      <h3>Standard Alerts</h3>
+      <p>Use standard alerts for messages that reflect the context of where the user is in the application.</p>
+      <clx-alert [error]="error" />
+      <clx-alert alertType="success" content="I'm a successful content" />
+      <clx-alert alertType="info" content="I'm a info content" />
+      <clx-alert alertType="warning" content="I'm a warning content" />
+      <app-code-block [code]="standardAlertsCode" lang="html" />
+
+      <p>Small Alert:</p>
+      <clx-alert alertType="danger" content="I'm a small alert" [isSmall]="true" />
+      <app-code-block [code]="standardSmallAlertCode" lang="html" />
+    </section>
+
+    <section class="space-y-4">
+      <h3>App-Level Alerts</h3>
+      <p>
+        Use app-level alerts in the global context of an application. Place them at the top of all content and
+        navigation.
+      </p>
+
+      <clx-alert [error]="error" [isAppLevel]="true" />
+      <clx-alert
+        alertType="success"
+        content="I'm a successful content <a href='javascript:void(0)' class='btn btn-outline btn-sm'>View</a>"
+        [isAppLevel]="true"
+      />
+      <clx-alert alertType="info" content="I'm a info content" [isAppLevel]="true" />
+      <clx-alert alertType="warning" content="I'm a warning content" [isAppLevel]="true" />
+      <app-code-block [code]="appLevelAlertsCode" lang="html" />
+    </section>
+  </section>
+</clx-page-container>

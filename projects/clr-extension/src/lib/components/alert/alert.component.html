@@ -1,4 +1,4 @@
-<clr-alert [clrAlertType]="alertType" [clrAlertSizeSmall]="isSmall">
+<clr-alert [clrAlertType]="alertType" [clrAlertSizeSmall]="isSmall" [clrAlertAppLevel]="isAppLevel">
   <clr-alert-item>
     <span *ngIf="error" class="alert-text" role="alert">{{ error.error?.message || error.message }}</span>
     <span *ngIf="content" class="alert-text" role="alert" [innerHTML]="content"></span>

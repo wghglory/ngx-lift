@@ -1,6 +1,7 @@
 import {Routes} from '@angular/router';
 
 // clr-extension
+import {AlertDemoComponent} from './clr-lib/pages/alert-demo/alert-demo.component';
 import {ClrExtensionHomeComponent} from './clr-lib/pages/clr-extension-home/clr-extension-home.component';
 import {DgStateComponent} from './clr-lib/pages/dg-state/dg-state.component';
 import {SpinnerDemoComponent} from './clr-lib/pages/spinner-demo/spinner-demo.component';
@@ -69,6 +70,10 @@ export const routes: Routes = [
           {
             path: 'spinner',
             component: SpinnerDemoComponent,
+          },
+          {
+            path: 'alert',
+            component: AlertDemoComponent,
           },
         ],
       },

@@ -12,8 +12,9 @@ import {ClarityModule} from '@clr/angular';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AlertComponent {
-  @Input() alertType = 'danger';
+  @Input() alertType: 'danger' | 'success' | 'info' | 'warning' = 'danger';
   @Input() isSmall = false;
+  @Input() isAppLevel = false;
   @Input() error: HttpErrorResponse | undefined;
   @Input() content = '';
 }
