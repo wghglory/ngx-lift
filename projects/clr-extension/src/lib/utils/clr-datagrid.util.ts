@@ -1,7 +1,7 @@
 import {ClrDatagridStateInterface} from '@clr/angular';
 import {isEmpty, pickBy} from 'lodash-es';
 
-import {PageQuery} from '../models/page-query.model';
+import {PageQuery} from '../models/page-query.type';
 
 const DEFAULT_PAGE_SIZE = 10;
 

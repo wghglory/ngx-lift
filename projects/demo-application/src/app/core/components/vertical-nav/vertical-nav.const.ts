@@ -29,6 +29,7 @@ export const clrExtensionNavConfig: NavConfig[] = [
     children: [
       {path: '/spinner', value: 'Spinner'},
       {path: '/alert', value: 'Alert'},
+      {path: '/alerts', value: 'Multi Alerts'},
     ],
   },
   {

@@ -3,6 +3,8 @@ import {HttpErrorResponse} from '@angular/common/http';
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {ClarityModule} from '@clr/angular';
 
+import {AlertType} from '../../models/alert.model';
+
 @Component({
   selector: 'clx-alert',
   templateUrl: './alert.component.html',
@@ -12,7 +14,7 @@ import {ClarityModule} from '@clr/angular';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AlertComponent {
-  @Input() alertType: 'danger' | 'success' | 'info' | 'warning' = 'danger';
+  @Input() alertType: AlertType = 'danger';
   @Input() isSmall = false;
   @Input() isAppLevel = false;
   @Input() error: HttpErrorResponse | undefined;

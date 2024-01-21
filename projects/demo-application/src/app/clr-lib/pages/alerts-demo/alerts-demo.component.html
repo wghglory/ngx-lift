@@ -1,0 +1,34 @@
+<clx-page-container title="Multi Alerts" class="space-y-9">
+  <section class="space-y-6">
+    <p>
+      Frequently, there is a need to showcase multiple alerts, particularly those at the application level positioned at
+      the top. The clr-extension offers two highly beneficial components for this purpose: AlertsComponent and
+      AlertsService.
+    </p>
+
+    <h2>Usage</h2>
+
+    <ol class="list-decimal">
+      <li>
+        Import <code>AlertsComponent</code> and include <code>&lt;clx-alerts&gt;</code> above the Clarity header tag
+        within the main container.
+      </li>
+      <li>
+        Import <code>AlertsService</code> and utilize its <code>addAlert()</code>, <code>deleteAlert()</code>, or
+        <code>clearAlerts()</code> methods for effective management of alerts.
+      </li>
+    </ol>
+
+    <app-code-block [code]="htmlCode" lang="html" />
+    <app-code-block [code]="tsCode" />
+    <p>You can use the provided Alert model below as a reference to create an instance of an alert.</p>
+    <app-code-block [code]="alertModelCode" />
+  </section>
+
+  <section class="space-y-6">
+    <h3>Interactive UI</h3>
+    <clx-alerts />
+    <button class="btn btn-outline" (click)="addAlert()">Add Alert</button>
+    <button class="btn btn-outline" (click)="clearAlerts()">Clear All Alerts</button>
+  </section>
+</clx-page-container>
