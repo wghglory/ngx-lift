@@ -17,6 +17,8 @@ import {highlight} from '../../../shared/utils/highlight.util';
 })
 export class CreateAsyncStateComponent {
   callbackCode = highlight(`
+import {createAsyncState} from 'ngx-extension';
+
 this.userService.getUsers().pipe(
   createAsyncState({
     next: (res) => console.log(res), // success callback
@@ -34,6 +36,9 @@ export interface AsyncState<T, E = HttpErrorResponse> {
   `);
 
   exampleCode = highlight(`
+import {createAsyncState} from 'ngx-extension';
+// ... other imports
+
 @Component({
   template: \`
     <ng-container *ngIf="usersState$ | async as usersState">

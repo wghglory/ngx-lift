@@ -27,6 +27,9 @@ export class DistinctOnChangeComponent implements OnInit {
   }
 
   tsCode = highlight(`
+import {distinctOnChange} from 'ngx-extension';
+// ... other imports
+
 from([1, 1, 2, 2, 3, 4, 4, 5])
   .pipe(distinctOnChange((prev, curr) => console.log(\`Value changes from $\{prev} to: $\{curr}\`)))
   .subscribe();

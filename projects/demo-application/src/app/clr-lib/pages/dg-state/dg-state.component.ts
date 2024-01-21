@@ -66,6 +66,10 @@ export class DgStateComponent {
   typescriptCode = highlight(
     `
 // user-datagrid.component.ts
+import {AlertComponent, convertToHttpParams, dgState, PageContainerComponent} from 'clr-extension';
+import {AsyncState, createAsyncState} from 'ngx-extension';
+// ... other imports
+
 export class UserDatagridComponent {
   selectedItem: User | undefined;
 

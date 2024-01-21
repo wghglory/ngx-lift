@@ -22,6 +22,9 @@ export class LoggerComponent implements OnInit {
 
   tsCode = highlight(
     `
+import {logger} from 'ngx-extension';
+import {of} from 'rxjs';
+
 of([1, 1, 2, 2, 3, 4, 4, 5]).pipe(logger('table')).subscribe();
 
 // check your console for result

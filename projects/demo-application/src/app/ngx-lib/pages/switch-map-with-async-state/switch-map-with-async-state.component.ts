@@ -17,6 +17,9 @@ import {highlight} from '../../../shared/utils/highlight.util';
 })
 export class SwitchMapWithAsyncStateComponent {
   exampleCode = highlight(`
+import {switchMapWithAsyncState} from 'ngx-extension';
+// ... other imports
+
 @Component({
   template: \`
     <clr-radio-container clrInline>
