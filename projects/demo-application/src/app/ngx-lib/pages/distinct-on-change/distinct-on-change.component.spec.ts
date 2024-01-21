@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { DistinctOnChangeComponent } from './distinct-on-change.component';
+import {DistinctOnChangeComponent} from './distinct-on-change.component';
 
 describe('DistinctOnChangeComponent', () => {
   let component: DistinctOnChangeComponent;
@@ -8,10 +8,9 @@ describe('DistinctOnChangeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DistinctOnChangeComponent]
-    })
-    .compileComponents();
-    
+      imports: [DistinctOnChangeComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(DistinctOnChangeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

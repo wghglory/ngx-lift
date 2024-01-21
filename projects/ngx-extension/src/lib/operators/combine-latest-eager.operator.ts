@@ -11,11 +11,24 @@ export function combineLatestEager<T extends Record<string, Observable<unknown>>
 ): Observable<{[K in keyof T]: T[K] extends Observable<infer U> ? U | null : never}>;
 
 /**
+ * Combines multiple observables into a single observable emitting an array or dictionary
+ * of the latest values from each source observable.
  * Adds startWith(null) for each Subject in combineLatest when the second parameter startWithNullForAll is false.
  * When startWithNullForAll is true, each observable will startWith null.
- * @param sources Observables to be passed in combineLatest
- * @param startWithNullForAll If true, all source observables will startWith null
- * @returns combineLatest operator with Subject pipe(startWith(null))
+ *
+ * @template T - The type of the data in the observables.
+ *
+ * @param {Array<Observable<T>> | Record<string, Observable<T>>} sources -
+ *   An array of observables or a dictionary of observables to be combined.
+ *
+ * @param {boolean} [startWithNullForAll=false] -
+ *   Determines whether to start each observable with a `null` value.
+ *
+ * @returns {Observable<Array<T | null> | Record<string, T | null>>} -
+ *   An observable emitting an array or dictionary of the latest values from each source observable.
+ *
+ * @throws {Error} -
+ *   Throws an error if the provided argument is not an array of observables or a dictionary of observables.
  */
 export function combineLatestEager<T>(
   sources: Array<Observable<T>> | Record<string, Observable<T>>,

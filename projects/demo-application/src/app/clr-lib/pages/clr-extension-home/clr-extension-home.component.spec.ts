@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ClrExtensionHomeComponent } from './clr-extension-home.component';
+import {ClrExtensionHomeComponent} from './clr-extension-home.component';
 
 describe('ClrExtensionHomeComponent', () => {
   let component: ClrExtensionHomeComponent;
@@ -8,10 +8,9 @@ describe('ClrExtensionHomeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ClrExtensionHomeComponent]
-    })
-    .compileComponents();
-    
+      imports: [ClrExtensionHomeComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(ClrExtensionHomeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -7,11 +7,16 @@ import {AsyncState} from '../models/async-state.model';
  * createAsyncState transforms an Observable of type T into an Observable of AsyncState<T>.
  * AsyncState<T> represents the loading, error, and data states for asynchronous operations.
  *
- * @param observerOrNextForOrigin An optional parameter that can be a partial TapObserver<T> or a function
- *                                to handle the next value or error in the original Observable.
- * @returns UnaryFunction<Observable<T>, Observable<AsyncState<T>>> A function that takes an Observable of type T
- *          and returns an Observable of AsyncState<T>.
+ * @template T - The type of the data in the observable.
+ * @template E - The type of the error that can occur.
  *
+ * @param {Partial<Observer<T>> | ((value: T) => void)} [observerOrNextForOrigin] -
+ *   An optional parameter that can be a partial TapObserver<T> or a function to handle the next value or error in the original Observable.
+ *
+ * @returns {UnaryFunction<Observable<T>, Observable<AsyncState<T, E>>>} -
+ *   A function that transforms an observable stream into an asynchronous state.
+ *
+ * @example
  * Usage 1: Simple request
  * data$ = this.shopService.products$.pipe(
  *   createAsyncState({
@@ -43,15 +48,15 @@ import {AsyncState} from '../models/async-state.model';
  * )
  *
  */
-export function createAsyncState<T>(
+export function createAsyncState<T, E = HttpErrorResponse>(
   // TODO: change Observer to TapObserver for rxjs 7+
   observerOrNextForOrigin?: Partial<Observer<T>> | ((value: T) => void),
-): UnaryFunction<Observable<T>, Observable<AsyncState<T>>> {
+): UnaryFunction<Observable<T>, Observable<AsyncState<T, E>>> {
   return pipe(
     tap(observerOrNextForOrigin),
     map((data) => ({loading: false, error: null, data})),
     startWith({loading: true, error: null, data: null}),
     // retry(1), // if you want to add retry
-    catchError((error: HttpErrorResponse) => of({loading: false, error, data: null})),
+    catchError((error: E) => of({loading: false, error, data: null})),
   );
 }

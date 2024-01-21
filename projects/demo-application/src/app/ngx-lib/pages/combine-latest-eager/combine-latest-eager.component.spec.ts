@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CombineLatestEagerComponent } from './combine-latest-eager.component';
+import {CombineLatestEagerComponent} from './combine-latest-eager.component';
 
 describe('CombineLatestEagerComponent', () => {
   let component: CombineLatestEagerComponent;
@@ -8,10 +8,9 @@ describe('CombineLatestEagerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CombineLatestEagerComponent]
-    })
-    .compileComponents();
-    
+      imports: [CombineLatestEagerComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(CombineLatestEagerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
