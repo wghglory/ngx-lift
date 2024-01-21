@@ -14,6 +14,8 @@
     "publish-ngx": "npm run build-ngx && cd ./dist/ngx-extension && npm publish",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    "test-clr": "ng test --project=clr-extension",
+    "test-ngx": "ng test --project=ngx-extension",
     "lint": "ng lint",
     "format": "prettier --write \"**/*.+(ts|json|css|scss|md|html)\""
   },
