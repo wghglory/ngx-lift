@@ -22,4 +22,15 @@ export const clrExtensionNavConfig: NavConfig[] = [
     icon: 'pipe',
     children: [{path: '/dgState', value: 'dgState'}],
   },
+  {
+    path: '/clr-extension/components',
+    value: 'Components',
+    icon: 'components',
+    children: [{path: '/spinner', value: 'Spinner'}],
+  },
+  {
+    path: '/clr-extension/utilities',
+    value: 'Utilities',
+    icon: 'utilities',
+  },
 ];

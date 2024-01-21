@@ -1,0 +1,43 @@
+<clx-page-container [title]="'Spinner'" class="space-y-9">
+  <section class="space-y-6">
+    <p>A spinner is a visual indicator of an ongoing, user-initiated process.</p>
+
+    <p>Clarity has two types of spinners, each with its own use case:</p>
+    <ul>
+      <li>Page Spinners: For tracking the progress of an operation related to an entire page.</li>
+      <li>Inline Spinners: For tracking the progress of an operation related to a specific component.</li>
+    </ul>
+  </section>
+
+  <section class="space-y-6">
+    <h2>Usage</h2>
+    <p>Import SpinnerComponent.</p>
+    <app-code-block [code]="importCode" />
+
+    <h3>Default Spinner</h3>
+    <p>The default spinner is centered, large, and has a block display.</p>
+    <clx-spinner />
+    <app-code-block [code]="defaultCode" lang="html" />
+
+    <h3>Middle Size Spinner</h3>
+    <clx-spinner [size]="'md'" />
+    <app-code-block [code]="middleSizeCode" lang="html" />
+
+    <h3>Small Size Spinner</h3>
+    <clx-spinner [size]="'sm'" />
+    <app-code-block [code]="smallSizeCode" lang="html" />
+
+    <h3>Algn Left Spinner</h3>
+    <clx-spinner [isCenter]="false" />
+    <app-code-block [code]="alignLeftCode" lang="html" />
+
+    <h3>Custom Class Spinner</h3>
+    <clx-spinner [isCenter]="false" class="px-10 inline-block bg-sky-50" />
+    <app-code-block [code]="customClassCode" lang="html" />
+
+    <p>
+      Adjust the spinner based on your specific use case, choosing the appropriate type and configuration to enhance
+      user experience.
+    </p>
+  </section>
+</clx-page-container>

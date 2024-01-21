@@ -11,7 +11,7 @@ import {ClarityModule} from '@clr/angular';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SpinnerComponent {
-  @Input() spinnerSize: 'lg' | 'md' | 'sm' = 'lg';
-  @Input() spinnerCenter = true;
+  @Input() size: 'lg' | 'md' | 'sm' = 'lg';
+  @Input() isCenter = true;
   @HostBinding('class') customClass = '';
 }

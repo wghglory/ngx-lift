@@ -3,6 +3,7 @@ import {Routes} from '@angular/router';
 // clr-extension
 import {ClrExtensionHomeComponent} from './clr-lib/pages/clr-extension-home/clr-extension-home.component';
 import {DgStateComponent} from './clr-lib/pages/dg-state/dg-state.component';
+import {SpinnerDemoComponent} from './clr-lib/pages/spinner-demo/spinner-demo.component';
 import {CombineLatestEagerComponent} from './ngx-lib/pages/combine-latest-eager/combine-latest-eager.component';
 // ngx-extension
 import {CreateAsyncStateComponent} from './ngx-lib/pages/create-async-state/create-async-state.component';
@@ -59,6 +60,15 @@ export const routes: Routes = [
           {
             path: 'dgState',
             component: DgStateComponent,
+          },
+        ],
+      },
+      {
+        path: 'components',
+        children: [
+          {
+            path: 'spinner',
+            component: SpinnerDemoComponent,
           },
         ],
       },
