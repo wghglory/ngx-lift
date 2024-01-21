@@ -14,6 +14,7 @@ import {Observable, OperatorFunction, Subscriber, TeardownLogic} from 'rxjs';
  *   Defaults to a function that performs strict equality (===) comparison.
  * @returns {OperatorFunction<T, T>} - The RxJS operator function.
  *
+ * @example
  * Example 1:
  * const source$ = new Observable<number>((observer) => {
  *   observer.next(1);
