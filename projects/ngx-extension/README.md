@@ -29,6 +29,10 @@ site and dive into the source code on GitHub.
 - **Continuous Improvement:** We are committed to continuous improvement and aim to adapt to the evolving needs of the
   Angular ecosystem. Your feedback and contributions are invaluable in this journey.
 
+## Requirements
+
+To ensure optimal performance and compatibility, ngx-extension requires Angular version 13 or higher.
+
 ## Get Started
 
 Explore its capabilities through our demo site and dive into the source code on GitHub.

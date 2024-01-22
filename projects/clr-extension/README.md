@@ -17,6 +17,10 @@ reusable components built on top of clarity components.
    common tasks and operations related to datagrids, providing developers with a more streamlined and cohesive
    experience when working with Clarity components.
 
+## Requirements
+
+To ensure optimal performance and compatibility, clr-extension requires Angular version 13 or higher.
+
 ## Getting Started
 
 ### Installation
@@ -34,8 +38,8 @@ npm install clr-extension
 import {dgState, convertToHttpParams} from 'clr-extension';
 
 export class UserDatagridComponent {
-  private dgBS = new BehaviorSubject<ClrDatagridStateInterface | null>(null);
-  private dgState$ = this.dgBS.pipe(dgState());
+  private dgSource = new BehaviorSubject<ClrDatagridStateInterface | null>(null);
+  private dgState$ = this.dgSource.pipe(dgState());
 
   usersState$ = this.dgState$.pipe(
     switchMap((state) => {
