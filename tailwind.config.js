@@ -10,6 +10,7 @@ const convert = (value) => {
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: ['class', '[cds-theme="dark"]'],
   content: ['./projects/demo-application/src/**/*.{html,ts}'],
   theme: {
     screens: {

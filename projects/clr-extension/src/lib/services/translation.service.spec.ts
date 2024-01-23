@@ -27,29 +27,50 @@ describe('TranslationService', () => {
     expect(translatedString).toBe('Hello');
   });
 
-  it('should throw an error when the language is not supported', () => {
+  it('should translate a key in a specified language', () => {
     const translations = {
-      'en-US': {greeting: 'Hello'},
+      'en-US': {
+        greeting: 'Hello',
+      },
+      'es-ES': {
+        greeting: 'Hola',
+      },
+    };
+
+    const result = translationService.translate(translations, 'greeting', 'es-ES');
+
+    expect(result).toBe('Hola');
+  });
+
+  it('should handle unsupported language gracefully', () => {
+    spyOn(console, 'warn');
+
+    const translations = {
+      en: {greeting: 'Hello'},
       'es-ES': {greeting: 'Hola'},
     };
 
     spyOnProperty(navigator, 'language', 'get').and.returnValue('fr-FR');
 
-    expect(() => translationService.translate(translations, 'greeting')).toThrowError(
-      'Sorry, fr-FR is not supported yet.',
-    );
+    const result = translationService.translate(translations, 'greeting');
+
+    expect(console.warn).toHaveBeenCalledWith('Sorry, fr-FR is not supported yet.');
+    expect(result).toBe('Hello');
   });
 
   it('should throw an error when the translation for the key does not exist', () => {
+    spyOn(console, 'warn');
+
     const translations = {
-      'en-US': {greeting: 'Hello'},
+      en: {greeting: 'Hello'},
       'es-ES': {greeting: 'Hola'},
     };
 
     spyOnProperty(navigator, 'language', 'get').and.returnValue('en-US');
 
-    expect(() => translationService.translate(translations, 'missingKey')).toThrowError(
-      'Sorry, missingKey is not translated yet.',
-    );
+    const result = translationService.translate(translations, 'missingKey');
+
+    expect(console.warn).toHaveBeenCalledWith('Sorry, missingKey is not translated yet.');
+    expect(result).toBeUndefined();
   });
 });

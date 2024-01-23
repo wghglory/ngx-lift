@@ -1,24 +1,41 @@
+$primary-color: #3490dc;
+$background-light: #ebf4ff;
+$text-color: #1a202c;
+$background-dark: hsl(198, 100%, 59%);
+$border-dark: #ebf4ff;
+$icon-color-dark: rgb(0, 51, 90);
+$callout-padding: 1rem;
+$callout-border-radius: 0 0 2px 2px;
+
 :host {
   display: block;
+}
 
+.callout-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: $background-light;
+  border-left: 4px solid $primary-color;
+  border-radius: $callout-border-radius;
+  color: $text-color;
+  padding: $callout-padding;
+}
+
+.callout-icon {
+  fill: currentColor;
+  height: 1.5rem;
+  width: 1.5rem;
+  color: $primary-color;
+}
+
+:host-context([cds-theme='dark']) {
   .callout-container {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    background-color: #ebf4ff;
-    border-top: 4px solid #3490dc;
-    border-radius: 0 0 0.375rem 0.375rem;
-    color: #1a202c;
-    padding: 1rem;
-    // box-shadow:
-    //   0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    //   0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    background-color: $background-dark;
+    border-left: 4px solid $border-dark;
   }
 
   .callout-icon {
-    fill: currentColor;
-    height: 1.5rem;
-    width: 1.5rem;
-    margin-right: 1rem;
+    color: $icon-color-dark;
   }
 }

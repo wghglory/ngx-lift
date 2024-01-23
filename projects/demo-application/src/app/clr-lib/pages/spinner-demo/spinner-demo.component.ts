@@ -26,5 +26,5 @@ export class YourComponent { }
   middleSizeCode = highlight(`<clx-spinner [size]="'md'" />`);
   smallSizeCode = highlight(`<clx-spinner [size]="'sm'" />`);
   alignLeftCode = highlight(`<clx-spinner [isCenter]="false" />`);
-  customClassCode = highlight(`<clx-spinner [isCenter]="false" class="px-10 inline-block bg-sky-50" />`);
+  customClassCode = highlight(`<clx-spinner [isCenter]="false" class="px-10 inline-block" />`);
 }
