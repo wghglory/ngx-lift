@@ -8,6 +8,8 @@
 
     <h2>Usage</h2>
 
+    <h3>Basic Usage</h3>
+
     <ol class="list-decimal">
       <li>
         Import <code>AlertsComponent</code> and include <code>&lt;clx-alerts&gt;</code> above the Clarity header tag
@@ -19,14 +21,28 @@
       </li>
     </ol>
 
+    <p>
+      Import the <code>Alert</code> class from clr-extension to instantiate an alert. The first parameter is the alert
+      content in string format, while the second parameter is an optional config object enabling you to specify
+      properties such as alertType and whether it is at the application level.
+    </p>
+
     <app-code-block [code]="htmlCode" lang="html" />
     <app-code-block [code]="tsCode" />
-    <p>You can use the provided Alert model below as a reference to create an instance of an alert.</p>
-    <app-code-block [code]="alertModelCode" />
+
+    <h3>Advanced Usage</h3>
+    <p>
+      At times, you might find the need to incorporate a button or link within an alert's content. Managing the
+      onTargetClick for button clicks or navigating to an internal route through link clicks involves specifying the
+      <code>onTargetClick</code> function and <code>targetId</code> in the second options parameter. The
+      <code>targetId</code> corresponds to the ID of the clickable element, while the <code>onTargetClick</code> denotes
+      the function to be executed upon clicking the element.
+    </p>
+    <app-code-block [code]="advancedCode" />
   </section>
 
   <section class="space-y-6">
-    <h3>Interactive UI</h3>
+    <h2>Interactive UI</h2>
     <clx-alerts />
     <button class="btn btn-outline" (click)="addAlert()">Add Alert</button>
     <button class="btn btn-outline" (click)="clearAlerts()">Clear All Alerts</button>
