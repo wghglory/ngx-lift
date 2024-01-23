@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ClrDatagridUtilComponent } from './clr-datagrid-util.component';
+import {ClrDatagridUtilComponent} from './clr-datagrid-util.component';
 
 describe('ClrDatagridUtilComponent', () => {
   let component: ClrDatagridUtilComponent;
@@ -8,10 +8,9 @@ describe('ClrDatagridUtilComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ClrDatagridUtilComponent]
-    })
-    .compileComponents();
-    
+      imports: [ClrDatagridUtilComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(ClrDatagridUtilComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -2,6 +2,9 @@ export const alertsTranslations: Record<string, Record<string, string>> = {
   en: {
     close: 'Close',
   },
+  'en-US': {
+    close: 'Close',
+  },
   de: {
     close: 'Schließen',
   },

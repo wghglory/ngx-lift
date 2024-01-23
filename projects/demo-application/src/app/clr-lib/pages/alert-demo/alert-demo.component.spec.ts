@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AlertDemoComponent } from './alert-demo.component';
+import {AlertDemoComponent} from './alert-demo.component';
 
 describe('AlertDemoComponent', () => {
   let component: AlertDemoComponent;
@@ -8,10 +8,9 @@ describe('AlertDemoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AlertDemoComponent]
-    })
-    .compileComponents();
-    
+      imports: [AlertDemoComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(AlertDemoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
