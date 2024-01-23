@@ -20,19 +20,29 @@ export class AlertsDemoComponent implements OnInit {
       new Alert('This is a danger alert! You can delete this alert by clicking the close button.'),
     );
     this.alertsService.addAlert(
-      new Alert('warning alert! You can delete this alert by clicking the close button.', 'warning'),
+      new Alert('warning alert! You can delete this alert by clicking the close button.', {alertType: 'warning'}),
     );
     this.alertsService.addAlert(
-      new Alert('I am an info alert. You can delete this alert by clicking the close button.', 'info'),
+      new Alert('I am an info alert. You can delete this alert by clicking the close button.', {alertType: 'info'}),
+    );
+    this.alertsService.addAlert(
+      new Alert(
+        'Alert with a button. <button type="button" class="btn btn-sm btn-outline" id="click-target">Click Me</button>',
+        {alertType: 'info', targetId: 'click-target', onTargetClick: this.clickMe},
+      ),
     );
   }
 
   addAlert() {
-    this.alertsService.addAlert(new Alert(`New alert added on ${new Date()}`, 'success'));
+    this.alertsService.addAlert(new Alert(`New alert added on ${new Date()}`, {alertType: 'success'}));
   }
 
   clearAlerts() {
     this.alertsService.clearAlerts();
+  }
+
+  clickMe() {
+    alert('You did it correctly!');
   }
 
   htmlCode = highlight(`
@@ -43,9 +53,13 @@ export class AlertsDemoComponent implements OnInit {
   `);
 
   tsCode = highlight(`
-addAlert() {
-  // You can pass 'danger', 'info', 'success', 'warning' for the 2nd parameter as the alert type.
-  this.alertsService.addAlert(new Alert('New alert added', 'success'));
+addAppLevelAlert() {
+  // You can pass 'danger', 'info', 'success', 'warning' for the alert type.
+  this.alertsService.addAlert(new Alert('New app-level alert added', {alertType: 'success'}));
+}
+
+addStandardAlert() {
+  this.alertsService.addAlert(new Alert('New standard alert added', {alertType: 'success', isAppLevel: false}));
 }
 
 clearAlerts() {
@@ -53,21 +67,16 @@ clearAlerts() {
 }
   `);
 
-  alertModelCode = highlight(`
-export type AlertType = 'success' | 'info' | 'warning' | 'danger';
+  advancedCode = highlight(`
+this.alertsService.addAlert(
+  new Alert(
+    'Alert with a button. <button type="button" class="btn btn-sm btn-outline" id="click-target">Click Me</button>',
+    {alertType: 'info', targetId: 'click-target', onTargetClick: this.clickMe},
+  ),
+);
 
-export class Alert {
-  constructor(content: string, alertType: AlertType = 'danger', isAppLevel = true) {
-    this.content = content;
-    this.alertType = alertType;
-    this.id = Symbol();
-    this.isAppLevel = isAppLevel;
-  }
-
-  id: symbol;
-  content: string;
-  alertType: AlertType;
-  isAppLevel: boolean;
+clickMe() {
+  alert('You did it correctly!');
 }
-    `);
+  `);
 }
