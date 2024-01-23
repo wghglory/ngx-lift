@@ -1,7 +1,8 @@
 import {CommonModule} from '@angular/common';
 import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {RouterLink} from '@angular/router';
 import {ClarityModule} from '@clr/angular';
-import {PageContainerComponent} from 'clr-extension';
+import {AlertComponent, CalloutComponent, PageContainerComponent} from 'clr-extension';
 
 import {CodeBlockComponent} from '../../../shared/components/code-block/code-block.component';
 import {highlight} from '../../../shared/utils/highlight.util';
@@ -10,7 +11,16 @@ import {UserDatagridComponent} from '../../shared/components/user-datagrid/user-
 @Component({
   selector: 'app-dg-state',
   standalone: true,
-  imports: [CommonModule, ClarityModule, PageContainerComponent, CodeBlockComponent, UserDatagridComponent],
+  imports: [
+    CommonModule,
+    ClarityModule,
+    RouterLink,
+    PageContainerComponent,
+    AlertComponent,
+    CodeBlockComponent,
+    CalloutComponent,
+    UserDatagridComponent,
+  ],
   templateUrl: './dg-state.component.html',
   styleUrl: './dg-state.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

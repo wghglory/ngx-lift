@@ -36,5 +36,6 @@ export const clrExtensionNavConfig: NavConfig[] = [
     path: '/clr-extension/utilities',
     value: 'Utilities',
     icon: 'utilities',
+    children: [{path: '/datagrid', value: 'Datagrid'}],
   },
 ];
