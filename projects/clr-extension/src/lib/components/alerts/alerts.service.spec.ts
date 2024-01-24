@@ -22,10 +22,7 @@ describe('AlertsService', () => {
   });
 
   it('should add and sanitize alert', (done) => {
-    const mockAlert: Alert = new Alert('<strong>Test Alert</strong>', {
-      targetId: 'testId',
-      onTargetClick: jasmine.createSpy(),
-    });
+    const mockAlert: Alert = new Alert('<strong>Test Alert</strong>');
 
     service.addAlert(mockAlert);
 
@@ -40,7 +37,7 @@ describe('AlertsService', () => {
 
   it('should delete alert and unregister event', (done) => {
     const mockAlert: Alert = new Alert('Test Alert <button id="testId">Click</button>', {
-      targetId: 'testId',
+      targetSelector: '#testId',
       onTargetClick: jasmine.createSpy(),
     });
 
@@ -54,8 +51,8 @@ describe('AlertsService', () => {
   });
 
   it('should clear alerts', (done) => {
-    const mockAlert: Alert = new Alert('Test Alert <button id="testId">Click</button>', {
-      targetId: 'testId',
+    const mockAlert: Alert = new Alert('Test Alert <button class="test">Click</button>', {
+      targetSelector: '.test',
       onTargetClick: jasmine.createSpy(),
     });
 

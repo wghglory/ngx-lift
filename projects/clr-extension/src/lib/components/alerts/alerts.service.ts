@@ -50,11 +50,11 @@ export class AlertsService {
    */
   private registerEvent(alert: Alert) {
     setTimeout(() => {
-      if (alert.targetId && alert.onTargetClick) {
-        const element = document.getElementById(alert.targetId);
+      if (alert.targetSelector && alert.onTargetClick) {
+        const element = document.querySelector(alert.targetSelector);
         element?.addEventListener('click', alert.onTargetClick, false);
       }
-    }, 0);
+    }, 2000);
   }
 
   /**
@@ -62,8 +62,8 @@ export class AlertsService {
    * @param alert Alert to be unregistered
    */
   private unregisterEvent(alert: Alert) {
-    if (alert.targetId && alert.onTargetClick) {
-      const element = document.getElementById(alert.targetId);
+    if (alert.targetSelector && alert.onTargetClick) {
+      const element = document.getElementById(alert.targetSelector);
       element?.removeEventListener('click', alert.onTargetClick, false);
     }
   }

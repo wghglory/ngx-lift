@@ -16,7 +16,7 @@ export class Alert {
    * @param {AlertType} [options.alertType='danger'] - The type of the alert. Defaults to 'danger'.
    * @param {boolean} [options.isAppLevel=true] - Indicates whether the alert is at the application level. Defaults to true.
    * @param {() => void} [options.onTargetClick] - A onTargetClick function to be executed when the a target inside the alert is clicked.
-   * @param {string} [options.targetId] - The ID of the target element inside the alert, such as button or a link.
+   * @param {string} [options.targetSelector] - The DOM selector of the target element inside the alert, such as button or a link.
    */
   constructor(
     public content: string,
@@ -24,12 +24,12 @@ export class Alert {
       alertType = 'danger',
       isAppLevel = true,
       onTargetClick,
-      targetId,
+      targetSelector,
     }: {
       alertType?: AlertType;
       isAppLevel?: boolean;
       onTargetClick?: () => void;
-      targetId?: string;
+      targetSelector?: string;
     } = {},
   ) {
     /**
@@ -52,10 +52,10 @@ export class Alert {
     this.isAppLevel = isAppLevel;
 
     /**
-     * The ID of the clickable target element such as a button or a link.
+     * The class or ID of the clickable target element such as a button or a link.
      * @member {string | undefined}
      */
-    this.targetId = targetId;
+    this.targetSelector = targetSelector;
 
     /**
      * A onTargetClick function to be executed when the target is clicked.
@@ -84,10 +84,10 @@ export class Alert {
   isAppLevel: boolean;
 
   /**
-   * The ID of the clickable target element such as a button or a link.
+   * The class or ID of the clickable target element such as a button or a link.
    * @member {string | undefined}
    */
-  targetId?: string;
+  targetSelector?: string;
 
   /**
    * A onTargetClick function to be executed when the target is clicked.

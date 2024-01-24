@@ -28,7 +28,7 @@ export class AlertsDemoComponent implements OnInit {
     this.alertsService.addAlert(
       new Alert(
         'Alert with a button. <button type="button" class="btn btn-sm btn-outline" id="click-target">Click Me</button>',
-        {alertType: 'info', targetId: 'click-target', onTargetClick: this.clickMe},
+        {alertType: 'info', targetSelector: '#click-target', onTargetClick: this.clickMe},
       ),
     );
   }
@@ -70,8 +70,8 @@ clearAlerts() {
   advancedCode = highlight(`
 this.alertsService.addAlert(
   new Alert(
-    'Alert with a button. <button type="button" class="btn btn-sm btn-outline" id="click-target">Click Me</button>',
-    {alertType: 'info', targetId: 'click-target', onTargetClick: this.clickMe},
+    'Alert with a button. <button type="button" class="btn btn-sm btn-outline" class="click-target">Click Me</button>',
+    {alertType: 'info', targetSelector: '.click-target', onTargetClick: this.clickMe},
   ),
 );
 
