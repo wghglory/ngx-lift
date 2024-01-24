@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import {BehaviorSubject, map} from 'rxjs';
 
-import {Alert} from '../../models/alert.model';
+import {Alert, RequiredAlert} from '../../models/alert.type';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +10,7 @@ import {Alert} from '../../models/alert.model';
 export class AlertsService {
   constructor(private sanitizer: DomSanitizer) {}
 
-  private alertsBS = new BehaviorSubject<Alert[]>([]);
+  private alertsBS = new BehaviorSubject<RequiredAlert[]>([]);
   alerts$ = this.alertsBS.asObservable().pipe(
     map((alerts) => {
       return alerts.map((alert) => ({
@@ -21,9 +21,13 @@ export class AlertsService {
   );
 
   addAlert(alert: Alert) {
-    this.alertsBS.next([alert, ...this.alertsBS.value]);
+    const newAlert = this.createAlert(alert);
 
-    this.registerEvent(alert);
+    this.alertsBS.next([newAlert, ...this.alertsBS.value]);
+
+    this.registerEvent(newAlert);
+
+    return newAlert;
   }
 
   deleteAlert(id: symbol) {
@@ -48,7 +52,7 @@ export class AlertsService {
    * wait for the alert to be rendered in DOM and then register click event handler.
    * @param alert Alert to be registered
    */
-  private registerEvent(alert: Alert) {
+  private registerEvent(alert: RequiredAlert) {
     setTimeout(() => {
       if (alert.targetSelector && alert.onTargetClick) {
         const element = document.querySelector(alert.targetSelector);
@@ -61,10 +65,21 @@ export class AlertsService {
    * unregister the click event before deleting the alert
    * @param alert Alert to be unregistered
    */
-  private unregisterEvent(alert: Alert) {
+  private unregisterEvent(alert: RequiredAlert) {
     if (alert.targetSelector && alert.onTargetClick) {
       const element = document.getElementById(alert.targetSelector);
       element?.removeEventListener('click', alert.onTargetClick, false);
     }
+  }
+
+  private createAlert(alert: Alert): RequiredAlert {
+    return {
+      id: Symbol(),
+      content: alert.content,
+      alertType: alert.alertType ?? 'danger',
+      isAppLevel: alert.isAppLevel ?? true,
+      targetSelector: alert.targetSelector,
+      onTargetClick: alert.onTargetClick,
+    };
   }
 }

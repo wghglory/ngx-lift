@@ -3,7 +3,7 @@ import {HttpErrorResponse} from '@angular/common/http';
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {ClarityModule} from '@clr/angular';
 
-import {AlertType} from '../../models/alert.model';
+import {AlertType} from '../../models/alert.type';
 
 @Component({
   selector: 'clx-alert',
