@@ -6,7 +6,6 @@ import {By} from '@angular/platform-browser';
 import {ClarityModule} from '@clr/angular';
 import {of} from 'rxjs';
 
-import {Alert} from '../../models';
 import {TranslationService} from '../../services/translation.service';
 import {MockTranslationService} from '../../services/translation.service.mock';
 import {AlertsComponent} from './alerts.component';
@@ -24,7 +23,7 @@ describe('AlertsComponent', () => {
       providers: [
         {
           provide: AlertsService,
-          useValue: {alerts$: of([new Alert('alert 1'), new Alert('alert 2')]), deleteAlert: (id: symbol) => {}},
+          useValue: {alerts$: of([{content: 'alert 1'}, {content: 'alert 2'}]), deleteAlert: (id: symbol) => {}},
         },
         {provide: TranslationService, useClass: MockTranslationService},
       ],
@@ -72,8 +71,8 @@ describe('TestAlertsHostComponent', () => {
   let element: DebugElement;
 
   const mockAlerts = [
-    new Alert('Test Alert 1', {alertType: 'info', isAppLevel: true}),
-    new Alert('Test Alert 2', {alertType: 'warning', isAppLevel: false}),
+    {content: 'Test Alert 1', options: {alertType: 'info', isAppLevel: true}},
+    {content: 'Test Alert 2', options: {alertType: 'warning', isAppLevel: false}},
   ];
 
   beforeEach(() => {
@@ -107,7 +106,7 @@ describe('TestAlertsHostComponent', () => {
   });
 
   it('should call onCloseAlert when alert is closed', () => {
-    const mockAlert = new Alert('Test Alert', {alertType: 'info', isAppLevel: true});
+    const mockAlert = {id: Symbol(), content: 'Test Alert', alertType: 'info' as const, isAppLevel: true};
     alertsService.alerts$ = of([mockAlert]);
     const deleteAlertSpy = spyOn(alertsService, 'deleteAlert');
 

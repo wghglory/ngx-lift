@@ -2,7 +2,7 @@ import {TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
 import {take} from 'rxjs';
 
-import {Alert} from '../../models/alert.model';
+import {Alert} from '../../models/alert.type';
 import {AlertsService} from './alerts.service';
 
 describe('AlertsService', () => {
@@ -22,7 +22,7 @@ describe('AlertsService', () => {
   });
 
   it('should add and sanitize alert', (done) => {
-    const mockAlert: Alert = new Alert('<strong>Test Alert</strong>');
+    const mockAlert: Alert = {content: '<strong>Test Alert</strong>'};
 
     service.addAlert(mockAlert);
 
@@ -36,13 +36,14 @@ describe('AlertsService', () => {
   });
 
   it('should delete alert and unregister event', (done) => {
-    const mockAlert: Alert = new Alert('Test Alert <button id="testId">Click</button>', {
+    const mockAlert: Alert = {
+      content: 'Test Alert <button id="testId">Click</button>',
       targetSelector: '#testId',
       onTargetClick: jasmine.createSpy(),
-    });
+    };
 
-    service.addAlert(mockAlert);
-    service.deleteAlert(mockAlert.id);
+    const addedAlert = service.addAlert(mockAlert);
+    service.deleteAlert(addedAlert.id);
 
     service.alerts$.pipe(take(3)).subscribe((alerts) => {
       expect(alerts.length).toBe(0);
@@ -51,10 +52,11 @@ describe('AlertsService', () => {
   });
 
   it('should clear alerts', (done) => {
-    const mockAlert: Alert = new Alert('Test Alert <button class="test">Click</button>', {
+    const mockAlert: Alert = {
+      content: 'Test Alert <button class="test">Click</button>',
       targetSelector: '.test',
       onTargetClick: jasmine.createSpy(),
-    });
+    };
 
     service.addAlert(mockAlert);
     service.addAlert(mockAlert);

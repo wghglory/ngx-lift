@@ -21,22 +21,23 @@
       </li>
     </ol>
 
-    <p>
-      Import the <code>Alert</code> class from clr-extension to instantiate an alert. The first parameter is the alert
-      content in string format, while the second parameter is an optional config object enabling you to specify
-      properties such as alertType and whether it is at the application level.
-    </p>
-
     <app-code-block [code]="htmlCode" lang="html" />
+
+    <p>
+      To implement an alert, utilize the following code structure. The <code>addAlert</code> function accepts an object
+      where the <code>content</code> field is mandatory, representing the alert content in string format. Optionally,
+      you can include other properties such as <code>alertType</code> to specify the type of alert and specify whether
+      it is an application-level alert by <code>isAppLevel</code>.
+    </p>
     <app-code-block [code]="tsCode" />
 
     <h3>Advanced Usage</h3>
     <p>
-      At times, you might find the need to incorporate a button or link within an alert's content. Managing the
-      onTargetClick for button clicks or navigating to an internal route through link clicks involves specifying the
-      <code>onTargetClick</code> function and <code>targetSelector</code> in the second options parameter. The
-      <code>targetSelector</code> corresponds to the selector of the clickable element (ID, class, etc), while the
-      <code>onTargetClick</code> denotes the function to be executed upon clicking the element.
+      In certain scenarios, you may want to include a button or link within an alert's content. To handle button clicks
+      or navigate to an internal route through link clicks, you can use the <code>onTargetClick</code> and
+      <code>targetSelector</code> properties. The <code>targetSelector</code> represents the selector of the clickable
+      element (ID, class, etc.), and the <code>onTargetClick</code> specifies the function to be executed upon clicking
+      the element.
     </p>
     <app-code-block [code]="advancedCode" />
   </section>
