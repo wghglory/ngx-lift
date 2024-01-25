@@ -2,8 +2,9 @@
   <section class="space-y-6">
     <p>
       Frequently, there is a need to showcase multiple alerts, particularly those at the application level positioned at
-      the top. The clr-extension offers two highly beneficial components for this purpose: AlertsComponent and
-      AlertsService.
+      the top. The clr-extension offers two highly beneficial components for this purpose:
+      <code>AlertContainerComponent</code>
+      and <code>AlertService</code>.
     </p>
 
     <h2>Usage</h2>
@@ -12,11 +13,11 @@
 
     <ol class="list-decimal">
       <li>
-        Import <code>AlertsComponent</code> and include <code>&lt;clx-alerts&gt;</code> above the Clarity header tag
-        within the main container.
+        Import <code>AlertContainerComponent</code> and include <code>&lt;clx-alert-container&gt;</code> above the
+        Clarity header tag within the main container.
       </li>
       <li>
-        Import <code>AlertsService</code> and utilize its <code>addAlert()</code>, <code>deleteAlert()</code>, or
+        Import <code>AlertService</code> and utilize its <code>addAlert()</code>, <code>deleteAlert()</code>, or
         <code>clearAlerts()</code> methods for effective management of alerts.
       </li>
     </ol>
@@ -24,10 +25,12 @@
     <app-code-block [code]="htmlCode" lang="html" />
 
     <p>
-      To implement an alert, utilize the following code structure. The <code>addAlert</code> function accepts an object
-      where the <code>content</code> field is mandatory, representing the alert content in string format. Optionally,
-      you can include other properties such as <code>alertType</code> to specify the type of alert and specify whether
-      it is an application-level alert by <code>isAppLevel</code>.
+      To incorporate alerts into your code, employ the provided code structure. The <code>addAlert</code> function takes
+      an object as its parameter, with the <code>content</code> field being mandatory and representing the alert content
+      in string format. Additionally, you have the option to include other properties, such as <code>alertType</code>,
+      to specify the type of alert, and indicate whether it is an application-level alert through
+      <code>isAppLevel</code>. The default value for <code>isAppLevel</code> is true, as in most cases, you would prefer
+      to display multiple alerts at the application level.
     </p>
     <app-code-block [code]="tsCode" />
 
@@ -44,7 +47,7 @@
 
   <section class="space-y-6">
     <h2>Interactive UI</h2>
-    <clx-alerts />
+    <clx-alert-container />
     <button class="btn btn-outline" (click)="addAlert()">Add Alert</button>
     <button class="btn btn-outline" (click)="clearAlerts()">Clear All Alerts</button>
   </section>

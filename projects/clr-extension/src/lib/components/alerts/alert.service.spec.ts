@@ -2,18 +2,18 @@ import {TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
 import {take} from 'rxjs';
 
-import {Alert} from '../../models/alert.type';
-import {AlertsService} from './alerts.service';
+import {AlertService} from './alert.service';
+import {Alert} from './alert.type';
 
-describe('AlertsService', () => {
-  let service: AlertsService;
+describe('AlertService', () => {
+  let service: AlertService;
   let sanitizer: DomSanitizer;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [{provide: DomSanitizer, useValue: {bypassSecurityTrustHtml: (html: string) => html}}],
     });
-    service = TestBed.inject(AlertsService);
+    service = TestBed.inject(AlertService);
     sanitizer = TestBed.inject(DomSanitizer);
   });
 

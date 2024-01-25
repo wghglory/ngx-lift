@@ -1,33 +1,33 @@
-import {ChangeDetectionStrategy, Component, inject, OnInit} from '@angular/core';
-import {AlertsComponent, AlertsService, PageContainerComponent} from 'clr-extension';
+import {ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit} from '@angular/core';
+import {AlertContainerComponent, AlertService, PageContainerComponent} from 'clr-extension';
 
 import {CodeBlockComponent} from '../../../shared/components/code-block/code-block.component';
 import {highlight} from '../../../shared/utils/highlight.util';
 
 @Component({
-  selector: 'app-alerts-demo',
+  selector: 'app-multi-alerts-demo',
   standalone: true,
-  imports: [AlertsComponent, PageContainerComponent, CodeBlockComponent],
-  templateUrl: './alerts-demo.component.html',
-  styleUrl: './alerts-demo.component.scss',
+  imports: [AlertContainerComponent, PageContainerComponent, CodeBlockComponent],
+  templateUrl: './multi-alerts-demo.component.html',
+  styleUrl: './multi-alerts-demo.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AlertsDemoComponent implements OnInit {
-  alertsService = inject(AlertsService);
+export class MultiAlertsDemoComponent implements OnInit, OnDestroy {
+  alertService = inject(AlertService);
 
   ngOnInit() {
-    this.alertsService.addAlert({
+    this.alertService.addAlert({
       content: 'This is a danger alert! You can delete this alert by clicking the close button.',
     });
-    this.alertsService.addAlert({
+    this.alertService.addAlert({
       content: 'warning alert! You can delete this alert by clicking the close button.',
       alertType: 'warning',
     });
-    this.alertsService.addAlert({
+    this.alertService.addAlert({
       content: 'I am an info alert. You can delete this alert by clicking the close button.',
       alertType: 'info',
     });
-    this.alertsService.addAlert({
+    this.alertService.addAlert({
       content:
         'Alert with a button. <button type="button" class="btn btn-sm btn-outline" id="click-target">Click Me</button>',
       alertType: 'info',
@@ -36,12 +36,16 @@ export class AlertsDemoComponent implements OnInit {
     });
   }
 
+  ngOnDestroy() {
+    this.alertService.clearAlerts();
+  }
+
   addAlert() {
-    this.alertsService.addAlert({content: `New alert added on ${new Date()}`, alertType: 'success'});
+    this.alertService.addAlert({content: `New alert added on ${new Date()}`, alertType: 'success'});
   }
 
   clearAlerts() {
-    this.alertsService.clearAlerts();
+    this.alertService.clearAlerts();
   }
 
   clickMe() {
@@ -50,7 +54,7 @@ export class AlertsDemoComponent implements OnInit {
 
   htmlCode = highlight(`
 <clr-main-container>
-  <clx-alerts />
+  <clx-alert-container />
   <clr-header></clr-header>
 </clr-main-container>
   `);
@@ -58,14 +62,14 @@ export class AlertsDemoComponent implements OnInit {
   tsCode = highlight(`
 addAppLevelAlert() {
   // You can pass 'danger', 'info', 'success', 'warning' for the alertType.
-  this.alertsService.addAlert({
+  this.alertService.addAlert({
     content: 'New app-level alert added.',
     alertType: 'success',
   });
 }
 
 addStandardAlert() {
-  this.alertsService.addAlert({
+  this.alertService.addAlert({
     content: 'New standard alert added.',
     alertType: 'success',
     isAppLevel: false,
@@ -73,12 +77,12 @@ addStandardAlert() {
 }
 
 clearAlerts() {
-  this.alertsService.clearAlerts();
+  this.alertService.clearAlerts();
 }
   `);
 
   advancedCode = highlight(`
-this.alertsService.addAlert({
+this.alertService.addAlert({
   content: 'Alert with a button. <button type="button" class="btn btn-sm btn-outline" id="click-target">Click Me</button>',
   alertType: 'info',
   targetSelector: '#click-target',

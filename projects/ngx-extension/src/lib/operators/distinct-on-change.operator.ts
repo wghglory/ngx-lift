@@ -42,7 +42,7 @@ import {Observable, OperatorFunction, Subscriber, TeardownLogic} from 'rxjs';
  *     this.store.dispatch(
  *       addToast({
  *         toast: {
- *           type: VmwToastType.SUCCESS,
+ *           type: ToastType.SUCCESS,
  *           title: this.l10nService.getMessage('STATUS_CHANGE'),
  *           description: this.l10nService.getMessage('STATUS_CHANGE_DESC'),
  *         },

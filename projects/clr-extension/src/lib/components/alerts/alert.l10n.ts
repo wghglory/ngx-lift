@@ -1,4 +1,4 @@
-export const alertsTranslations: Record<string, Record<string, string>> = {
+export const alertTranslations: Record<string, Record<string, string>> = {
   en: {
     close: 'Close',
   },
