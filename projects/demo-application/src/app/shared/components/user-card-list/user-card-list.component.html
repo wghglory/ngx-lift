@@ -14,7 +14,7 @@
       <clx-alert [error]="error" />
     }
 
-    @if (usersState.data; as users) {
+    @if (usersState.data?.results; as users) {
       <div class="card-grid">
         @for (user of users; track user.id.value) {
           <app-user-card [user]="user" />

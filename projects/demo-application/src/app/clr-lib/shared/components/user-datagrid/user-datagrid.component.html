@@ -17,7 +17,7 @@
 
   <clr-dg-placeholder>No data found</clr-dg-placeholder>
 
-  @for (user of (usersState$ | async)?.data; track user.id.value) {
+  @for (user of (usersState$ | async)?.data?.results; track user.id.value) {
     <clr-dg-row [clrDgItem]="user">
       <clr-dg-cell>{{ user.name.first }}</clr-dg-cell>
       <clr-dg-cell>{{ user.name.last }}</clr-dg-cell>
@@ -63,7 +63,7 @@ Another approach:
 
     <clr-dg-placeholder>No data found</clr-dg-placeholder>
 
-    @for (user of vm.usersState?.data; track user.id.value) {
+    @for (user of vm.usersState?.data?.results; track user.id.value) {
       <clr-dg-row [clrDgItem]="user">
         <clr-dg-cell>{{ user.name.first }}</clr-dg-cell>
         <clr-dg-cell>{{ user.name.last }}</clr-dg-cell>

@@ -20,9 +20,13 @@
 
   <section class="space-y-6">
     <h2>Example Code</h2>
-    <app-code-block [code]="htmlCode" lang="html" />
-    <p>Another approach to use async pipe without *ngIf:</p>
+
+    <p>Assume we have a API returning the below shape of data and we'd like to implement a server-driven datagrid.</p>
+    <app-code-block [code]="dataCode" lang="json" />
+
     <app-code-block [code]="secondHtmlCode" lang="html" />
+    <p>Another approach to use async pipe with *ngIf:</p>
+    <app-code-block [code]="htmlCode" lang="html" />
     <app-code-block [code]="typescriptCode" />
 
     <clx-callout>

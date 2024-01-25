@@ -2,7 +2,8 @@ import {HttpClient} from '@angular/common/http';
 import {inject, Injectable} from '@angular/core';
 import {BehaviorSubject, map} from 'rxjs';
 
-import {UserList} from '../models/user.model';
+import {PaginationResponse} from '../models/pagination.model';
+import {User} from '../models/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -18,6 +19,8 @@ export class UserService {
   }
 
   getUsers(params?: Record<string, string | number | boolean | readonly (string | number | boolean)[]>) {
-    return this.http.get<UserList>(`https://randomuser.me/api`, {params}).pipe(map((list) => list.results));
+    return this.http
+      .get<PaginationResponse<User>>(`https://randomuser.me/api`, {params})
+      .pipe(map((res) => ({...res, info: {...res.info, total: 100}}) as PaginationResponse<User>)); // fake resultTotal 100
   }
 }
