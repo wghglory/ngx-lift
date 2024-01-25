@@ -7,6 +7,7 @@ import {isEqual} from 'lodash-es';
 import {AsyncState, createAsyncState} from 'ngx-extension';
 import {BehaviorSubject, combineLatest, distinctUntilChanged, filter, map, share, switchMap} from 'rxjs';
 
+import {PaginationResponse} from '../../../../shared/models/pagination.model';
 import {User} from '../../../../shared/models/user.model';
 import {UserService} from '../../../../shared/services/user.service';
 
@@ -29,15 +30,15 @@ export class UserDatagridComponent {
   usersState$ = combineLatest([this.dgState$, this.userService.refresh$]).pipe(
     switchMap(([state]) => {
       const params = convertToHttpParams(state);
-      return this.userService.getUsers({...params, results: 10}).pipe(createAsyncState());
+      return this.userService.getUsers({...params, results: 10, seed: 'abc'}).pipe(createAsyncState());
     }),
     share(),
   );
 
   total$ = this.usersState$.pipe(
     filter((state) => Boolean(state.data)),
-    distinctUntilChanged<AsyncState<User[], HttpErrorResponse>>(isEqual),
-    map((res) => res.data?.length),
+    distinctUntilChanged<AsyncState<PaginationResponse<User>, HttpErrorResponse>>(isEqual),
+    map((res) => res.data?.info?.total),
   );
 
   refresh(state: ClrDatagridStateInterface) {

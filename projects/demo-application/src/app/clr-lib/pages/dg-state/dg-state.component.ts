@@ -26,6 +26,27 @@ import {UserDatagridComponent} from '../../shared/components/user-datagrid/user-
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DgStateComponent {
+  dataCode = highlight(`
+{
+  "results": [
+    {
+      "gender": "male",
+      "name": {
+        "first": "Johan",
+        "last": "Lemoine"
+      },
+      "email": "john@gmail.com"
+    }
+    // ... more users
+  ],
+  "info": {
+    "pageSize": 10, // display 10 items per page
+    "page": 2, // current page is 2
+    "total": 100
+  }
+}
+  `);
+
   htmlCode = highlight(
     `
 <!-- angular v17+ user-datagrid.component.html -->
@@ -47,7 +68,7 @@ export class DgStateComponent {
 
     <clr-dg-placeholder>No data found</clr-dg-placeholder>
 
-    @for (user of vm.usersState?.data; track user.id.value) {
+    @for (user of vm.usersState?.data?.results; track user.id.value) {
       <clr-dg-row [clrDgItem]="user">
         <clr-dg-cell>{{ user.name.first }}</clr-dg-cell>
         <clr-dg-cell>{{ user.name.last }}</clr-dg-cell>
@@ -74,7 +95,7 @@ export class DgStateComponent {
   );
 
   secondHtmlCode = highlight(`
-<div>
+  <div>
   <button class="btn btn-outline" (click)="userService.refreshList()" [disabled]="(usersState$ | async)?.loading">
     Refresh
   </button>
@@ -93,7 +114,7 @@ export class DgStateComponent {
 
   <clr-dg-placeholder>No data found</clr-dg-placeholder>
 
-  @for (user of (usersState$ | async)?.data; track user.id.value) {
+  @for (user of (usersState$ | async)?.data?.results; track user.id.value) {
     <clr-dg-row [clrDgItem]="user">
       <clr-dg-cell>{{ user.name.first }}</clr-dg-cell>
       <clr-dg-cell>{{ user.name.last }}</clr-dg-cell>
@@ -136,17 +157,21 @@ export class UserDatagridComponent {
 
   usersState$ = combineLatest([this.dgState$, this.userService.refresh$]).pipe(
     switchMap(([state]) => {
-      const params = convertToHttpParams(state);
-      return this.userService.getUsers({...params, results: 10}).pipe(createAsyncState());
+      const params = convertToHttpParams(state); // if convertToHttpParams doesn't fit your need, use your own utils to convert state
+      return this.userService.getUsers(params).pipe(createAsyncState());
     }),
     share(),
   );
 
   total$ = this.usersState$.pipe(
     filter((state) => Boolean(state.data)),
-    distinctUntilChanged<AsyncState<User[], HttpErrorResponse>>(isEqual),
-    map((res) => res.data?.length),
+    distinctUntilChanged<AsyncState<PaginationResponse<User>, HttpErrorResponse>>(isEqual),
+    map((res) => res.data?.info?.total),
   );
+
+  refresh(state: ClrDatagridStateInterface) {
+    this.dgBS.next(state);
+  }
 }
 `,
   );

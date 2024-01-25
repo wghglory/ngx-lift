@@ -16,6 +16,6 @@
   <clx-alert *ngIf="vm.error as error" [error]="error" />
 
   <div *ngIf="vm.data as users" class="card-grid">
-    <app-user-card *ngFor="let user of users" [user]="user" />
+    <app-user-card *ngFor="let user of users.results" [user]="user" />
   </div>
 </div>
