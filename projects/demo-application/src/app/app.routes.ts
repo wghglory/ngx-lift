@@ -2,10 +2,10 @@ import {Routes} from '@angular/router';
 
 // clr-extension
 import {AlertDemoComponent} from './clr-lib/pages/alert-demo/alert-demo.component';
-import {AlertsDemoComponent} from './clr-lib/pages/alerts-demo/alerts-demo.component';
 import {ClrDatagridUtilComponent} from './clr-lib/pages/clr-datagrid-util/clr-datagrid-util.component';
 import {ClrExtensionHomeComponent} from './clr-lib/pages/clr-extension-home/clr-extension-home.component';
 import {DgStateComponent} from './clr-lib/pages/dg-state/dg-state.component';
+import {MultiAlertsDemoComponent} from './clr-lib/pages/multi-alerts-demo/multi-alerts-demo.component';
 import {SpinnerDemoComponent} from './clr-lib/pages/spinner-demo/spinner-demo.component';
 import {CombineLatestEagerComponent} from './ngx-lib/pages/combine-latest-eager/combine-latest-eager.component';
 // ngx-extension
@@ -78,8 +78,8 @@ export const routes: Routes = [
             component: AlertDemoComponent,
           },
           {
-            path: 'alerts',
-            component: AlertsDemoComponent,
+            path: 'multi-alerts',
+            component: MultiAlertsDemoComponent,
           },
         ],
       },

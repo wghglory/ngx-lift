@@ -4,7 +4,7 @@
 export type AlertType = 'success' | 'info' | 'warning' | 'danger';
 
 /**
- * Represents an alert that developers can configure when calling alertsService.addAlert()
+ * Represents an alert that developers can configure when calling alertService.addAlert()
  */
 export type Alert = {
   /**

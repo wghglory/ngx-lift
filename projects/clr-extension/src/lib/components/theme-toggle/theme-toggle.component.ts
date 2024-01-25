@@ -1,14 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  EventEmitter,
-  inject,
-  Input,
-  OnInit,
-  Output,
-  signal,
-} from '@angular/core';
+import {ChangeDetectionStrategy, Component, computed, EventEmitter, Input, OnInit, Output, signal} from '@angular/core';
 import {ClarityIcons, moonIcon, sunIcon} from '@cds/core/icon';
 import {ClarityModule} from '@clr/angular';
 
@@ -29,8 +19,6 @@ ClarityIcons.addIcons(sunIcon);
 export class ThemeToggleComponent implements OnInit {
   @Input() lang = '';
   @Output() changeTheme = new EventEmitter<string>();
-
-  private translationService = inject(TranslationService);
 
   hovering = signal(false);
   theme = signal(localStorage['cds-theme'] || 'light');
@@ -54,6 +42,8 @@ export class ThemeToggleComponent implements OnInit {
   iconShape = computed(() => {
     return this.theme() === 'light' ? 'moon' : 'sun';
   });
+
+  constructor(private translationService: TranslationService) {}
 
   toggleTheme() {
     const newTheme = this.theme() === 'light' ? 'dark' : 'light';

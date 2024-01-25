@@ -8,30 +8,30 @@ import {of} from 'rxjs';
 
 import {TranslationService} from '../../services/translation.service';
 import {MockTranslationService} from '../../services/translation.service.mock';
-import {AlertsComponent} from './alerts.component';
-import {AlertsService} from './alerts.service';
+import {AlertService} from './alert.service';
+import {AlertContainerComponent} from './alert-container.component';
 
-describe('AlertsComponent', () => {
-  let component: AlertsComponent;
-  let fixture: ComponentFixture<AlertsComponent>;
-  let alertsService: AlertsService;
+describe('AlertContainerComponent', () => {
+  let component: AlertContainerComponent;
+  let fixture: ComponentFixture<AlertContainerComponent>;
+  let alertService: AlertService;
   let translationService: MockTranslationService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [CommonModule, ClarityModule, AlertsComponent],
+      imports: [CommonModule, ClarityModule, AlertContainerComponent],
       providers: [
         {
-          provide: AlertsService,
+          provide: AlertService,
           useValue: {alerts$: of([{content: 'alert 1'}, {content: 'alert 2'}]), deleteAlert: (id: symbol) => {}},
         },
         {provide: TranslationService, useClass: MockTranslationService},
       ],
     });
 
-    fixture = TestBed.createComponent(AlertsComponent);
+    fixture = TestBed.createComponent(AlertContainerComponent);
     component = fixture.componentInstance;
-    alertsService = TestBed.inject(AlertsService);
+    alertService = TestBed.inject(AlertService);
     translationService = TestBed.inject(TranslationService) as MockTranslationService;
   });
 
@@ -41,7 +41,7 @@ describe('AlertsComponent', () => {
 
   it('should close alert when onCloseAlert is called', () => {
     const alertId = Symbol('testId');
-    const deleteAlertSpy = spyOn(alertsService, 'deleteAlert');
+    const deleteAlertSpy = spyOn(alertService, 'deleteAlert');
 
     component.onCloseAlert(alertId);
 
@@ -59,15 +59,15 @@ describe('AlertsComponent', () => {
 });
 
 @Component({
-  template: ` <clx-alerts></clx-alerts> `,
+  template: ` <clx-alert-container></clx-alert-container> `,
   standalone: true,
-  imports: [AlertsComponent],
+  imports: [AlertContainerComponent],
 })
 class TestAlertsHostComponent {}
 
 describe('TestAlertsHostComponent', () => {
   let fixture: ComponentFixture<TestAlertsHostComponent>;
-  let alertsService: AlertsService;
+  let alertService: AlertService;
   let element: DebugElement;
 
   const mockAlerts = [
@@ -77,10 +77,10 @@ describe('TestAlertsHostComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [CommonModule, ClarityModule, AlertsComponent, TestAlertsHostComponent],
+      imports: [CommonModule, ClarityModule, AlertContainerComponent, TestAlertsHostComponent],
       providers: [
         {
-          provide: AlertsService,
+          provide: AlertService,
           useValue: {alerts$: of(mockAlerts), deleteAlert: (id: symbol) => {}},
         },
         {provide: TranslationService, useClass: MockTranslationService},
@@ -88,9 +88,9 @@ describe('TestAlertsHostComponent', () => {
     });
 
     fixture = TestBed.createComponent(TestAlertsHostComponent);
-    alertsService = TestBed.inject(AlertsService);
+    alertService = TestBed.inject(AlertService);
 
-    element = fixture.debugElement.query(By.directive(AlertsComponent));
+    element = fixture.debugElement.query(By.directive(AlertContainerComponent));
   });
 
   it('should display alerts', () => {
@@ -107,8 +107,8 @@ describe('TestAlertsHostComponent', () => {
 
   it('should call onCloseAlert when alert is closed', () => {
     const mockAlert = {id: Symbol(), content: 'Test Alert', alertType: 'info' as const, isAppLevel: true};
-    alertsService.alerts$ = of([mockAlert]);
-    const deleteAlertSpy = spyOn(alertsService, 'deleteAlert');
+    alertService.alerts$ = of([mockAlert]);
+    const deleteAlertSpy = spyOn(alertService, 'deleteAlert');
 
     fixture.detectChanges();
 

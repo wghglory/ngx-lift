@@ -2,12 +2,12 @@ import {Injectable} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import {BehaviorSubject, map} from 'rxjs';
 
-import {Alert, RequiredAlert} from '../../models/alert.type';
+import {Alert, RequiredAlert} from './alert.type';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AlertsService {
+export class AlertService {
   constructor(private sanitizer: DomSanitizer) {}
 
   private alertsBS = new BehaviorSubject<RequiredAlert[]>([]);
