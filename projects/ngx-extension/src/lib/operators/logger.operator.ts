@@ -1,4 +1,4 @@
-import {pipe, tap} from 'rxjs';
+import {OperatorFunction, pipe, tap} from 'rxjs';
 
 // Define a type for different logger functions
 type LoggerType = 'count' | 'debug' | 'dir' | 'log' | 'table';
@@ -23,9 +23,9 @@ const loggerFunctions: Record<LoggerType, ConsoleFunction> = {
  *                   Defaults to 'log' if not provided or if an unknown type is specified.
  * @returns An RxJS operator function that logs values using the specified console function.
  */
-export const logger = (loggerType: LoggerType = 'log') =>
+export const logger = <T>(loggerType: LoggerType = 'log'): OperatorFunction<T, T> =>
   pipe(
-    tap((value) => {
+    tap((value: T) => {
       const logFunction = loggerFunctions[loggerType] || console.log.bind(console);
       logFunction(value);
     }),
