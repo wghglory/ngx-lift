@@ -7,7 +7,7 @@
 }
 
 pre {
-  @apply p-6 bg-gray-50;
+  @apply p-6 bg-gray-50 overflow-x-auto;
 }
 
 code:not([class^='language-']) {
