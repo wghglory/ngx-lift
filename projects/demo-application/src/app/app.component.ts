@@ -3,7 +3,7 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
 import {ClarityIcons} from '@cds/core/icon';
 import {ClarityModule} from '@clr/angular';
-import {ThemeToggleComponent} from 'clr-extension';
+import {ThemeToggleComponent, ToastContainerComponent} from 'clr-extension';
 import hljs from 'highlight.js/lib/core';
 import javascript from 'highlight.js/lib/languages/javascript';
 import typescript from 'highlight.js/lib/languages/typescript';
@@ -57,6 +57,7 @@ ClarityIcons.addIcons([
     RouterLinkActive,
     VerticalNavComponent,
     ThemeToggleComponent,
+    ToastContainerComponent,
     ClarityModule,
   ],
   templateUrl: './app.component.html',
