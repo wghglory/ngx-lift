@@ -7,6 +7,7 @@ import {ClrExtensionHomeComponent} from './clr-lib/pages/clr-extension-home/clr-
 import {DgStateComponent} from './clr-lib/pages/dg-state/dg-state.component';
 import {MultiAlertsDemoComponent} from './clr-lib/pages/multi-alerts-demo/multi-alerts-demo.component';
 import {SpinnerDemoComponent} from './clr-lib/pages/spinner-demo/spinner-demo.component';
+import {ToastDemoComponent} from './clr-lib/pages/toast-demo/toast-demo.component';
 import {CombineLatestEagerComponent} from './ngx-lib/pages/combine-latest-eager/combine-latest-eager.component';
 // ngx-extension
 import {CreateAsyncStateComponent} from './ngx-lib/pages/create-async-state/create-async-state.component';
@@ -80,6 +81,10 @@ export const routes: Routes = [
           {
             path: 'multi-alerts',
             component: MultiAlertsDemoComponent,
+          },
+          {
+            path: 'toast',
+            component: ToastDemoComponent,
           },
         ],
       },

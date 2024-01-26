@@ -30,6 +30,7 @@ export const clrExtensionNavConfig: NavConfig[] = [
       {path: '/alert', value: 'Alert'},
       {path: '/multi-alerts', value: 'Multi Alerts'},
       {path: '/spinner', value: 'Spinner'},
+      {path: '/toast', value: 'Toast'},
     ],
   },
   {
