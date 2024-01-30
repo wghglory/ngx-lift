@@ -50,6 +50,7 @@
     "@angular/compiler-cli": "^17.0.0",
     "@commitlint/cli": "^18.4.4",
     "@commitlint/config-angular": "^18.4.4",
+    "@tailwindcss/container-queries": "^0.1.1",
     "@types/jasmine": "~5.1.0",
     "@types/lodash-es": "^4.17.12",
     "@typescript-eslint/eslint-plugin": "^6.18.0",
