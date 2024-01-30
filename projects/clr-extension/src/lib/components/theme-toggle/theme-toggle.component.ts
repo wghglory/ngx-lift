@@ -25,16 +25,14 @@ export class ThemeToggleComponent implements OnInit {
 
   themeDisplayName = computed(() => {
     return this.translationService.translate(
-      themeToggleTranslations,
-      this.theme() === 'light' ? 'dark' : 'light',
+      this.theme() === 'light' ? 'theme-toggle.dark' : 'theme-toggle.light',
       this.lang,
     );
   });
 
   ariaLabel = computed(() => {
     return this.translationService.translate(
-      themeToggleTranslations,
-      this.theme() === 'light' ? 'toggleDark' : 'toggleLight',
+      this.theme() === 'light' ? 'theme-toggle.toggleDark' : 'theme-toggle.toggleLight',
       this.lang,
     );
   });
@@ -43,7 +41,9 @@ export class ThemeToggleComponent implements OnInit {
     return this.theme() === 'light' ? 'moon' : 'sun';
   });
 
-  constructor(private translationService: TranslationService) {}
+  constructor(private translationService: TranslationService) {
+    translationService.loadTranslationsForComponent('theme-toggle', themeToggleTranslations);
+  }
 
   toggleTheme() {
     const newTheme = this.theme() === 'light' ? 'dark' : 'light';
