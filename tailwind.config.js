@@ -147,6 +147,7 @@ module.exports = {
     },
   },
   plugins: [
+    require('@tailwindcss/container-queries'),
     // https://tailwindcss.com/docs/adding-custom-styles#using-css-and-layer
     plugin(function ({addBase, addComponents, addUtilities, theme}) {
       addComponents({
