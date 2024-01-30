@@ -5,7 +5,7 @@
     [clrAlertClosable]="true"
     [clrAlertType]="alert.alertType"
     [clrAlertAppLevel]="alert.isAppLevel"
-    [clrCloseButtonAriaLabel]="closeButtonAriaLabel"
+    [clrCloseButtonAriaLabel]="'alert.close' | translate"
     (clrAlertClosedChange)="onCloseAlert(alert.id)"
   >
     <clr-alert-item>

@@ -15,7 +15,7 @@
           height="24"
           viewBox="0 0 24 24"
           fill="none"
-          [attr.aria-label]="errorIconAriaLabel"
+          [attr.aria-label]="'toast.error-icon' | translate"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
@@ -44,7 +44,7 @@
       </ng-container>
 
       <ng-container *ngSwitchCase="'info'">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" [attr.aria-label]="infoIconAriaLabel">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" [attr.aria-label]="'toast.info-icon' | translate">
           <path
             id="info-icon-outline"
             d="M12 1C14.1756 1 16.3023 1.64514 18.1113 2.85383C19.9202 4.06253 21.3301 5.7805 22.1627 7.79048C22.9952 9.80047 23.2131 12.0122 22.7886 14.146C22.3642 16.2798 21.3166 18.2398 19.7782 19.7782C18.2398 21.3166 16.2798 22.3642 14.146 22.7886C12.0122 23.2131 9.80047 22.9952 7.79048 22.1627C5.7805 21.3301 4.06253 19.9202 2.85383 18.1113C1.64514 16.3023 1 14.1756 1 12C1 9.08262 2.15893 6.28473 4.22183 4.22183C6.28473 2.15893 9.08262 1 12 1Z"
@@ -74,7 +74,13 @@
       </ng-container>
 
       <ng-container *ngSwitchCase="'warning'">
-        <svg width="24" height="24" viewBox="0 0 24 24" [attr.aria-label]="warningIconAriaLabel" fill="none">
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          [attr.aria-label]="'toast.warning-icon' | translate"
+          fill="none"
+        >
           <path
             [@warnLine]
             id="warn-icon-line"
@@ -96,7 +102,7 @@
       </ng-container>
 
       <ng-container *ngSwitchCase="'success'">
-        <svg width="24" height="24" viewBox="0 0 24 24" [attr.aria-label]="successIconAriaLabel">
+        <svg width="24" height="24" viewBox="0 0 24 24" [attr.aria-label]="'toast.success-info' | translate">
           <circle class="success-bg" fill="#60B515" cx="12" cy="12" r="10.67" />
           <path
             id="check-mark"
@@ -124,7 +130,7 @@
         <button
           *ngIf="manualClosable"
           class="close-button"
-          [attr.aria-label]="closeNotification"
+          [attr.aria-label]="'toast.close-notification' | translate"
           (click)="close(true)"
           (focus)="focus(true)"
           (blur)="focus(false)"

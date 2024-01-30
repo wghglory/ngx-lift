@@ -47,15 +47,6 @@ describe('AlertContainerComponent', () => {
 
     expect(deleteAlertSpy).toHaveBeenCalledWith(alertId);
   });
-
-  it('should set closeButtonAriaLabel based on translation', () => {
-    spyOn(translationService, 'translate').and.returnValue('TranslatedCloseText');
-
-    const closeButtonAriaLabel = component.closeButtonAriaLabel;
-
-    expect(translationService.translate).toHaveBeenCalledWith(jasmine.any(Object), 'close');
-    expect(closeButtonAriaLabel).toBe('TranslatedCloseText');
-  });
 });
 
 @Component({

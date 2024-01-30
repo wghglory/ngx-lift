@@ -6,6 +6,7 @@ import {ClarityModule} from '@clr/angular';
 import {timer} from 'rxjs';
 import {take} from 'rxjs/operators';
 
+import {TranslatePipe} from '../../pipes/translate.pipe';
 import {TranslationService} from '../../services/translation.service';
 import {
   CLOSE_ICON_CURVE,
@@ -35,7 +36,7 @@ ClarityIcons.addIcons(timesIcon);
   selector: 'clx-toast',
   templateUrl: './toast.component.html',
   styleUrls: ['./toast.component.scss'],
-  imports: [CommonModule, ClarityModule],
+  imports: [CommonModule, ClarityModule, TranslatePipe],
   standalone: true,
   animations: [
     trigger('launchToast', [
@@ -253,7 +254,9 @@ export class ToastComponent implements OnInit {
     private element: ElementRef,
     private ngZone: NgZone,
     private translationService: TranslationService,
-  ) {}
+  ) {
+    translationService.loadTranslationsForComponent('toast', toastTranslations);
+  }
 
   get loaded() {
     return {
@@ -262,22 +265,6 @@ export class ToastComponent implements OnInit {
         height: this.element.nativeElement.clientHeight,
       },
     };
-  }
-
-  get successIconAriaLabel() {
-    return this.translationService.translate(toastTranslations, 'success-icon');
-  }
-  get warningIconAriaLabel() {
-    return this.translationService.translate(toastTranslations, 'warning-icon');
-  }
-  get errorIconAriaLabel() {
-    return this.translationService.translate(toastTranslations, 'error-icon');
-  }
-  get infoIconAriaLabel() {
-    return this.translationService.translate(toastTranslations, 'info-icon');
-  }
-  get closeNotification() {
-    return this.translationService.translate(toastTranslations, 'close-notification');
   }
 
   ngOnInit() {
