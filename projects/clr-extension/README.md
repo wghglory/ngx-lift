@@ -19,7 +19,7 @@ reusable components built on top of clarity components.
 
 ## Requirements
 
-To ensure optimal performance and compatibility, clr-extension requires Angular version 13 or higher.
+To ensure optimal performance and compatibility, clr-extension requires Angular version 14 or higher.
 
 ## Getting Started
 
