@@ -1,5 +1,5 @@
 import {CommonModule} from '@angular/common';
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {Component} from '@angular/core';
 import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
 import {ClarityIcons} from '@cds/core/icon';
 import {ClarityModule} from '@clr/angular';
@@ -62,7 +62,6 @@ ClarityIcons.addIcons([
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   onThemeChange(theme: string) {

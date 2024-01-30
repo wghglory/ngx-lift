@@ -31,7 +31,7 @@ site and dive into the source code on GitHub.
 
 ## Requirements
 
-To ensure optimal performance and compatibility, ngx-extension requires Angular version 13 or higher.
+To ensure optimal performance and compatibility, ngx-extension requires Angular version 14 or higher.
 
 ## Get Started
 
