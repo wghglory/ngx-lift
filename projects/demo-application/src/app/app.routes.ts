@@ -5,6 +5,7 @@ import {AlertDemoComponent} from './clr-lib/pages/alert-demo/alert-demo.componen
 import {ClrDatagridUtilComponent} from './clr-lib/pages/clr-datagrid-util/clr-datagrid-util.component';
 import {ClrExtensionHomeComponent} from './clr-lib/pages/clr-extension-home/clr-extension-home.component';
 import {DgStateComponent} from './clr-lib/pages/dg-state/dg-state.component';
+import {KeyValueInputsDemoComponent} from './clr-lib/pages/key-value-inputs-demo/key-value-inputs-demo.component';
 import {MultiAlertsDemoComponent} from './clr-lib/pages/multi-alerts-demo/multi-alerts-demo.component';
 import {SpinnerDemoComponent} from './clr-lib/pages/spinner-demo/spinner-demo.component';
 import {ToastDemoComponent} from './clr-lib/pages/toast-demo/toast-demo.component';
@@ -15,6 +16,7 @@ import {DistinctOnChangeComponent} from './ngx-lib/pages/distinct-on-change/dist
 import {LoggerComponent} from './ngx-lib/pages/logger/logger.component';
 import {NgxExtensionHomeComponent} from './ngx-lib/pages/ngx-extension-home/ngx-extension-home.component';
 import {SwitchMapWithAsyncStateComponent} from './ngx-lib/pages/switch-map-with-async-state/switch-map-with-async-state.component';
+import {UniqueValidatorComponent} from './ngx-lib/pages/unique-validator/unique-validator.component';
 
 export const routes: Routes = [
   {
@@ -46,6 +48,15 @@ export const routes: Routes = [
           {
             path: 'logger',
             component: LoggerComponent,
+          },
+        ],
+      },
+      {
+        path: 'validators',
+        children: [
+          {
+            path: 'unique',
+            component: UniqueValidatorComponent,
           },
         ],
       },
@@ -81,6 +92,10 @@ export const routes: Routes = [
           {
             path: 'multi-alerts',
             component: MultiAlertsDemoComponent,
+          },
+          {
+            path: 'key-value-inputs',
+            component: KeyValueInputsDemoComponent,
           },
           {
             path: 'toast',

@@ -4,7 +4,7 @@ export const ngxExtensionNavConfig: NavConfig[] = [
   {
     path: '/ngx-extension/operators',
     value: 'Operators',
-    icon: 'pipe',
+    icon: 'pipes',
     children: [
       {path: '/createAsyncState', value: 'createAsyncState'},
       {path: '/switchMapWithAsyncState', value: 'switchMapWithAsyncState'},
@@ -13,13 +13,19 @@ export const ngxExtensionNavConfig: NavConfig[] = [
       {path: '/logger', value: 'logger'},
     ],
   },
+  {
+    path: '/ngx-extension/validators',
+    value: 'Validators',
+    icon: 'validators',
+    children: [{path: '/unique', value: 'UniqueValidator'}],
+  },
 ];
 
 export const clrExtensionNavConfig: NavConfig[] = [
   {
     path: '/clr-extension/operators',
     value: 'Operators',
-    icon: 'pipe',
+    icon: 'pipes',
     children: [{path: '/dgState', value: 'dgState'}],
   },
   {
@@ -29,6 +35,7 @@ export const clrExtensionNavConfig: NavConfig[] = [
     children: [
       {path: '/alert', value: 'Alert'},
       {path: '/multi-alerts', value: 'Multi Alerts'},
+      {path: '/key-value-inputs', value: 'Key Value Inputs'},
       {path: '/spinner', value: 'Spinner'},
       {path: '/toast', value: 'Toast'},
     ],
