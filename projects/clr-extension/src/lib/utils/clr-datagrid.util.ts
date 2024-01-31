@@ -1,5 +1,5 @@
 import {ClrDatagridStateInterface} from '@clr/angular';
-import {isEmpty, pickBy} from 'lodash-es';
+import {isEmpty, pickBy} from 'ngx-extension';
 
 import {PageQuery} from '../models/page-query.type';
 

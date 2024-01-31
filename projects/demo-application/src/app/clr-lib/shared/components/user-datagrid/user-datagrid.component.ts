@@ -3,8 +3,7 @@ import {HttpErrorResponse} from '@angular/common/http';
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {ClarityModule, ClrDatagridStateInterface} from '@clr/angular';
 import {AlertComponent, convertToHttpParams, dgState, PageContainerComponent} from 'clr-extension';
-import {isEqual} from 'lodash-es';
-import {AsyncState, createAsyncState} from 'ngx-extension';
+import {AsyncState, createAsyncState, isEqual} from 'ngx-extension';
 import {BehaviorSubject, combineLatest, distinctUntilChanged, filter, map, share, switchMap} from 'rxjs';
 
 import {PaginationResponse} from '../../../../shared/models/pagination.model';

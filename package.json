@@ -34,7 +34,6 @@
     "@clr/angular": "^16.3.0",
     "@clr/ui": "^16.3.0",
     "highlight.js": "^11.9.0",
-    "lodash-es": "^4.17.21",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.2"
@@ -52,7 +51,6 @@
     "@commitlint/config-angular": "^18.4.4",
     "@tailwindcss/container-queries": "^0.1.1",
     "@types/jasmine": "~5.1.0",
-    "@types/lodash-es": "^4.17.12",
     "@typescript-eslint/eslint-plugin": "^6.18.0",
     "@typescript-eslint/parser": "^6.18.0",
     "eslint": "^8.56.0",
