@@ -57,15 +57,15 @@ describe('createAsyncState', () => {
   });
 
   it('should transform Observable data to AsyncState with custom loading state and catchError', (done) => {
-    const error$ = throwError(() => new Error('Error!'));
+    const error$ = throwError(() => 'Error!');
     const data$ = error$.pipe(
-      createAsyncState<unknown, Error>({
+      createAsyncState<unknown, string>({
         error: (err) => console.error(err),
       }),
     );
 
     data$.pipe(last()).subscribe((result) => {
-      expect(result).toEqual({loading: false, error: new Error('Error!'), data: null});
+      expect(result).toEqual({loading: false, error: 'Error!', data: null});
       done();
     });
   });
