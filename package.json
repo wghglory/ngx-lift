@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "prebuild": "npm run build-clr && npm run build-ngx",
+    "prebuild": "npm run build-ngx && npm run build-clr",
     "build": "ng build --project=demo-application",
     "build-clr": "ng build --project=clr-extension",
     "build-clr:watch": "ng build --project=clr-extension --watch",
