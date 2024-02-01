@@ -1,5 +1,5 @@
 import {HttpErrorResponse} from '@angular/common/http';
-import {catchError, map, Observable, Observer, of, pipe, startWith, tap, UnaryFunction} from 'rxjs';
+import {catchError, map, Observable, of, pipe, startWith, tap, TapObserver, UnaryFunction} from 'rxjs';
 
 import {AsyncState} from '../models/async-state.model';
 
@@ -49,8 +49,7 @@ import {AsyncState} from '../models/async-state.model';
  *
  */
 export function createAsyncState<T, E = HttpErrorResponse>(
-  // TODO: change Observer to TapObserver for rxjs 7+
-  observerOrNextForOrigin?: Partial<Observer<T>> | ((value: T) => void),
+  observerOrNextForOrigin?: Partial<TapObserver<T>> | ((value: T) => void),
 ): UnaryFunction<Observable<T>, Observable<AsyncState<T, E>>> {
   return pipe(
     tap(observerOrNextForOrigin),

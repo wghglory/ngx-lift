@@ -30,17 +30,28 @@
 
   <section>
     <h2>Requirements</h2>
-    <p>To ensure optimal performance and compatibility, clr-extension requires Angular version 14 or higher.</p>
+    <p>
+      To ensure optimal performance and compatibility, clr-extension requires
+      <strong>Angular version 15 or higher</strong>.
+    </p>
   </section>
 
   <section class="space-y-6">
     <h2>Getting Started</h2>
     <h3>Installation</h3>
     <p>
-      To use <strong>clr-extension</strong> in your project, you can install it using your preferred package manager.
-      For example, with npm:
+      <strong>clr-extension</strong> has specified peer dependencies on ngx-extension and &#64;clr/angular, To integrate
+      <strong>clr-extension</strong> in your project, you can install it using your preferred package manager. For
+      example, with npm:
     </p>
-    <app-code-block [code]="'npm install clr-extension'" lang="shell" />
+    <app-code-block [code]="'npm install clr-extension ngx-extension &#64;clr/angular &#64;clr/ui'" lang="shell" />
+    <clx-callout>
+      In some cases, a force install may be necessary, particularly if &#64;clr/angular's peerDependency mandates a
+      distinct Angular version. If you're not utilizing the latest Angular version, consider setting
+      <code>skipLibCheck: true</code> in tsconfig.json to circumvent potential build errors. For guidance on setting up
+      Clarity for your project, you can refer to the
+      <a href="https://clarity.design/pages/developing" target="_blank">Clarity Design</a> documentation.
+    </clx-callout>
   </section>
 
   <section>
