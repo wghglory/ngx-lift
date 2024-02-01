@@ -1,7 +1,7 @@
 $primary-color: #3490dc;
 $background-light: #ebf4ff;
 $text-color: #1a202c;
-$background-dark: hsl(198, 100%, 59%);
+$background-dark: #0086bf;
 $border-dark: #ebf4ff;
 $icon-color-dark: rgb(0, 51, 90);
 $callout-padding: 1rem;
@@ -33,6 +33,14 @@ $callout-border-radius: 0 0 2px 2px;
   .callout-container {
     background-color: $background-dark;
     border-left: 4px solid $border-dark;
+
+    ::ng-deep a {
+      text-decoration: underline;
+
+      &:visited {
+        color: hsl(238deg 100% 91.59%);
+      }
+    }
   }
 
   .callout-icon {
