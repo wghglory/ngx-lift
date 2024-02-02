@@ -8,6 +8,7 @@ import {DgStateComponent} from './clr-lib/pages/dg-state/dg-state.component';
 import {KeyValueInputsDemoComponent} from './clr-lib/pages/key-value-inputs-demo/key-value-inputs-demo.component';
 import {MultiAlertsDemoComponent} from './clr-lib/pages/multi-alerts-demo/multi-alerts-demo.component';
 import {SpinnerDemoComponent} from './clr-lib/pages/spinner-demo/spinner-demo.component';
+import {TimelineWizardDemoComponent} from './clr-lib/pages/timeline-wizard-demo/timeline-wizard-demo.component';
 import {ToastDemoComponent} from './clr-lib/pages/toast-demo/toast-demo.component';
 import {CombineLatestEagerComponent} from './ngx-lib/pages/combine-latest-eager/combine-latest-eager.component';
 // ngx-extension
@@ -96,6 +97,10 @@ export const routes: Routes = [
           {
             path: 'key-value-inputs',
             component: KeyValueInputsDemoComponent,
+          },
+          {
+            path: 'timeline-wizard',
+            component: TimelineWizardDemoComponent,
           },
           {
             path: 'toast',

@@ -37,6 +37,7 @@ export const clrExtensionNavConfig: NavConfig[] = [
       {path: '/multi-alerts', value: 'Multi Alerts'},
       {path: '/key-value-inputs', value: 'Key Value Inputs'},
       {path: '/spinner', value: 'Spinner'},
+      {path: '/timeline-wizard', value: 'Timeline Wizard'},
       {path: '/toast', value: 'Toast'},
     ],
   },

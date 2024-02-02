@@ -5,4 +5,5 @@ export * from './key-value-inputs';
 export * from './page-container/page-container.component';
 export * from './spinner/spinner.component';
 export * from './theme-toggle/theme-toggle.component';
+export * from './timeline-wizard';
 export * from './toast';
