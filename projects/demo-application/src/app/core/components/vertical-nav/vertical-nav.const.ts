@@ -4,7 +4,7 @@ export const ngxExtensionNavConfig: NavConfig[] = [
   {
     path: '/ngx-extension/operators',
     value: 'Operators',
-    icon: 'pipes',
+    icon: 'objects',
     children: [
       {path: '/createAsyncState', value: 'createAsyncState'},
       {path: '/switchMapWithAsyncState', value: 'switchMapWithAsyncState'},
@@ -14,9 +14,18 @@ export const ngxExtensionNavConfig: NavConfig[] = [
     ],
   },
   {
+    path: '/ngx-extension/pipes',
+    value: 'Pipes',
+    icon: 'pipes',
+    children: [
+      {path: '/array-join', value: 'Array Join'},
+      {path: '/byte-converter', value: 'Byte Converter'},
+    ],
+  },
+  {
     path: '/ngx-extension/validators',
     value: 'Validators',
-    icon: 'validators',
+    icon: 'certificate',
     children: [{path: '/unique', value: 'UniqueValidator'}],
   },
 ];
@@ -25,13 +34,13 @@ export const clrExtensionNavConfig: NavConfig[] = [
   {
     path: '/clr-extension/operators',
     value: 'Operators',
-    icon: 'pipes',
+    icon: 'objects',
     children: [{path: '/dgState', value: 'dgState'}],
   },
   {
     path: '/clr-extension/components',
     value: 'Components',
-    icon: 'components',
+    icon: 'heat-map',
     children: [
       {path: '/alert', value: 'Alert'},
       {path: '/multi-alerts', value: 'Multi Alerts'},
@@ -44,7 +53,7 @@ export const clrExtensionNavConfig: NavConfig[] = [
   {
     path: '/clr-extension/utilities',
     value: 'Utilities',
-    icon: 'utilities',
+    icon: 'wrench',
     children: [{path: '/datagrid', value: 'Datagrid'}],
   },
 ];

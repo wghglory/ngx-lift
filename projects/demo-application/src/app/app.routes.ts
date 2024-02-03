@@ -1,6 +1,5 @@
 import {Routes} from '@angular/router';
 
-// clr-extension
 import {AlertDemoComponent} from './clr-lib/pages/alert-demo/alert-demo.component';
 import {ClrDatagridUtilComponent} from './clr-lib/pages/clr-datagrid-util/clr-datagrid-util.component';
 import {ClrExtensionHomeComponent} from './clr-lib/pages/clr-extension-home/clr-extension-home.component';
@@ -10,8 +9,9 @@ import {MultiAlertsDemoComponent} from './clr-lib/pages/multi-alerts-demo/multi-
 import {SpinnerDemoComponent} from './clr-lib/pages/spinner-demo/spinner-demo.component';
 import {TimelineWizardDemoComponent} from './clr-lib/pages/timeline-wizard-demo/timeline-wizard-demo.component';
 import {ToastDemoComponent} from './clr-lib/pages/toast-demo/toast-demo.component';
+import {ArrayJoinPipeComponent} from './ngx-lib/pages/array-join-pipe/array-join-pipe.component';
+import {ByteConverterPipeComponent} from './ngx-lib/pages/byte-converter-pipe/byte-converter-pipe.component';
 import {CombineLatestEagerComponent} from './ngx-lib/pages/combine-latest-eager/combine-latest-eager.component';
-// ngx-extension
 import {CreateAsyncStateComponent} from './ngx-lib/pages/create-async-state/create-async-state.component';
 import {DistinctOnChangeComponent} from './ngx-lib/pages/distinct-on-change/distinct-on-change.component';
 import {LoggerComponent} from './ngx-lib/pages/logger/logger.component';
@@ -49,6 +49,19 @@ export const routes: Routes = [
           {
             path: 'logger',
             component: LoggerComponent,
+          },
+        ],
+      },
+      {
+        path: 'pipes',
+        children: [
+          {
+            path: 'array-join',
+            component: ArrayJoinPipeComponent,
+          },
+          {
+            path: 'byte-converter',
+            component: ByteConverterPipeComponent,
           },
         ],
       },
