@@ -56,4 +56,10 @@ export const clrExtensionNavConfig: NavConfig[] = [
     icon: 'wrench',
     children: [{path: '/datagrid', value: 'Datagrid'}],
   },
+  {
+    path: '/clr-extension/pipes',
+    value: 'Pipes',
+    icon: 'pipes',
+    children: [{path: '/no-info', value: 'No Info'}],
+  },
 ];

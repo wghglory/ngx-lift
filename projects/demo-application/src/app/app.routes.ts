@@ -6,6 +6,7 @@ import {ClrExtensionHomeComponent} from './clr-lib/pages/clr-extension-home/clr-
 import {DgStateComponent} from './clr-lib/pages/dg-state/dg-state.component';
 import {KeyValueInputsDemoComponent} from './clr-lib/pages/key-value-inputs-demo/key-value-inputs-demo.component';
 import {MultiAlertsDemoComponent} from './clr-lib/pages/multi-alerts-demo/multi-alerts-demo.component';
+import {NoInfoPipeComponent} from './clr-lib/pages/no-info-pipe/no-info-pipe.component';
 import {SpinnerDemoComponent} from './clr-lib/pages/spinner-demo/spinner-demo.component';
 import {TimelineWizardDemoComponent} from './clr-lib/pages/timeline-wizard-demo/timeline-wizard-demo.component';
 import {ToastDemoComponent} from './clr-lib/pages/toast-demo/toast-demo.component';
@@ -127,6 +128,15 @@ export const routes: Routes = [
           {
             path: 'datagrid',
             component: ClrDatagridUtilComponent,
+          },
+        ],
+      },
+      {
+        path: 'pipes',
+        children: [
+          {
+            path: 'no-info',
+            component: NoInfoPipeComponent,
           },
         ],
       },
