@@ -1,4 +1,4 @@
-import {last, Observable, of} from 'rxjs';
+import {interval, last, Observable, of, take} from 'rxjs';
 
 import {startWithTap} from './start-with-tap.operator';
 
@@ -17,13 +17,24 @@ describe('startWithTap', () => {
   });
 
   it('works with an observable that emits multiple values', (done) => {
-    const callbackSpy = jasmine.createSpy('callback');
-    const source$ = of(1, 2, 3);
+    let callbackTime: number;
+
+    const callbackSpy = jasmine.createSpy('callback').and.callFake(() => (callbackTime = Date.now() - startTime));
+
+    const count = 4;
+    const period = 100;
+    const source$ = interval(period).pipe(take(count));
+    const startTime = Date.now();
 
     source$.pipe(last(), startWithTap(callbackSpy)).subscribe({
       next: (value) => {
+        const nextTime = Date.now() - startTime;
+
+        expect(callbackTime).toBeLessThan(period);
+        expect(nextTime).toBeGreaterThanOrEqual(period * count);
+
         expect(callbackSpy).toHaveBeenCalled();
-        expect(value).toBe(3);
+        expect(value).toBe(count - 1);
         done();
       },
     });

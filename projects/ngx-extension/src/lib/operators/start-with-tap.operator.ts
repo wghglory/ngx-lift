@@ -1,4 +1,4 @@
-import {Observable, of, switchMap, tap} from 'rxjs';
+import {Observable} from 'rxjs';
 
 /**
  * Operator that taps into a callback before the source Observable starts emitting values.
@@ -9,9 +9,8 @@ import {Observable, of, switchMap, tap} from 'rxjs';
  * @returns An RxJS operator function that taps into the callback and then switchMaps to the source Observable.
  */
 export function startWithTap<T>(callback: () => void) {
-  return (source: Observable<T>) =>
-    of({}).pipe(
-      tap(callback), // Tap into the callback function
-      switchMap(() => source), // Switch to the source Observable after tapping
-    );
+  return (source: Observable<T>) => {
+    callback();
+    return source;
+  };
 }
