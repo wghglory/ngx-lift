@@ -6,18 +6,59 @@ import {UniqueValidator} from './unique.validator';
 describe('UniqueValidator', () => {
   it('should validate uniqueness for FormControl in FormArray', () => {
     const fb: FormBuilder = TestBed.inject(FormBuilder);
-    const formArray = fb.array([fb.control(1), fb.control(2)], [UniqueValidator.unique()]);
+    const formArray = fb.array(
+      [fb.control(1), fb.control(2), fb.control(3), fb.control(''), fb.control('')],
+      [UniqueValidator.unique()],
+    );
 
     expect(formArray.valid).toBeTruthy();
+    for (const control of formArray.controls) {
+      expect(control.errors).toBeNull();
+    }
 
     // Duplicate value
     formArray.push(fb.control(2));
-    expect(formArray.valid).toBeFalsy();
+    expect(formArray.valid).toBeFalse();
     expect(formArray.errors).toEqual({notUnique: true});
 
-    // Unique value
-    formArray.at(1).setValue(3);
-    expect(formArray.valid).toBeTruthy();
+    // One pair of duplicate values
+    formArray.updateValueAndValidity();
+    const duplicatedControlIndex = [1, 5];
+    for (let i = 0; i < formArray.length; i++) {
+      if (duplicatedControlIndex.includes(i)) {
+        expect(formArray.at(i).errors).toEqual({notUnique: true});
+      } else {
+        expect(formArray.at(i).errors).toBeNull();
+      }
+    }
+
+    const setChildValue = (i: number, value = i + 1) => {
+      formArray.at(i).setValue(value);
+    };
+
+    // More than one pair of duplicate values
+    setChildValue(0, 1);
+    setChildValue(1, 1);
+
+    setChildValue(2, 2);
+    setChildValue(3, 2);
+
+    setChildValue(4, 3);
+    setChildValue(5, 3);
+
+    expect(formArray.valid).toBeFalse();
+    for (const control of formArray.controls) {
+      expect(control.errors).toEqual({notUnique: true});
+    }
+
+    // No duplicate value by changing one of the duplicate values
+    for (let i = 0; i < formArray.length; i++) {
+      setChildValue(i);
+    }
+    expect(formArray.valid).toBeTrue();
+    for (const control of formArray.controls) {
+      expect(control.errors).toBeNull();
+    }
   });
 
   it('should validate uniqueness for FormGroup in FormArray', () => {
