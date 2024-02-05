@@ -28,10 +28,10 @@ describe('ThemeToggleComponent', () => {
   });
 
   it('should toggle theme on button click', () => {
-    const initialTheme = component.theme();
+    const initialTheme = component.theme;
     const button = fixture.nativeElement.querySelector('button');
     button.click();
-    const updatedTheme = component.theme();
+    const updatedTheme = component.theme;
     expect(updatedTheme).not.toEqual(initialTheme);
   });
 
@@ -46,7 +46,7 @@ describe('ThemeToggleComponent', () => {
     const storedTheme = 'dark';
     localStorage.setItem('cds-theme', storedTheme);
     component.ngOnInit();
-    expect(component.theme()).toEqual(storedTheme);
+    expect(component.theme).toEqual(storedTheme);
   });
 
   // Cleanup

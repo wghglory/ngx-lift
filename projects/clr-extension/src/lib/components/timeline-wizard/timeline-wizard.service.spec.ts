@@ -150,6 +150,6 @@ describe('TimelineWizardService', () => {
   });
 
   it('should throw an error when trying to retrieve step data with an invalid title', () => {
-    expect(() => service.getStepData('Invalid Step')).toThrowError('Step with title Invalid Step not found');
+    expect(() => service.getStepData('Invalid Step')).toThrowError('Step with identifier Invalid Step not found');
   });
 });
