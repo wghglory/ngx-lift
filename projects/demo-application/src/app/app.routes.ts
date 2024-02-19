@@ -18,6 +18,7 @@ import {SwitchMapWithAsyncStateComponent} from './ngx-lib/pages/operators/switch
 import {ArrayJoinPipeComponent} from './ngx-lib/pages/pipes/array-join-pipe/array-join-pipe.component';
 import {ByteConverterPipeComponent} from './ngx-lib/pages/pipes/byte-converter-pipe/byte-converter-pipe.component';
 import {IsHttpsPipeComponent} from './ngx-lib/pages/pipes/is-https-pipe/is-https-pipe.component';
+import {MaskPipeComponent} from './ngx-lib/pages/pipes/mask-pipe/mask-pipe.component';
 import {UniqueValidatorComponent} from './ngx-lib/pages/validators/unique-validator/unique-validator.component';
 import {UrlValidatorComponent} from './ngx-lib/pages/validators/url-validator/url-validator.component';
 
@@ -68,6 +69,10 @@ export const routes: Routes = [
           {
             path: 'is-https',
             component: IsHttpsPipeComponent,
+          },
+          {
+            path: 'mask',
+            component: MaskPipeComponent,
           },
         ],
       },
