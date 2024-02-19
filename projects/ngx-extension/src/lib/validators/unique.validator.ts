@@ -8,66 +8,66 @@ import {AbstractControl, FormArray, ValidationErrors, ValidatorFn} from '@angula
  */
 export class UniqueValidator {
   /**
-   * Validator function to be attached to each individual form control within a FormArray.
-   *
-   * This validator checks for uniqueness among the child controls of the FormArray.
-   */
-  static uniqueChild(control: AbstractControl): ValidationErrors | null {
-    // Check if the parent FormArray has the 'notUnique' error
-    return control.parent?.hasError('notUnique') || control.parent?.parent?.hasError('notUnique')
-      ? {notUnique: true}
-      : null;
-  }
-
-  /**
    * Validator function to be attached to a FormArray or FormGroup.
    *
    * This validator checks for uniqueness of each control's value within the array or group.
    *
    * @param keySelector A function to select the key control for comparison (default is the control itself).
+   * @typeparam T The type of the control value.
    */
-  static unique(keySelector = (control: AbstractControl) => control): ValidatorFn {
+  static unique<T>(
+    keySelector: (control: AbstractControl) => AbstractControl<T> = (control: AbstractControl<T>) => control,
+  ): ValidatorFn {
     return (formArray: AbstractControl): ValidationErrors | null => {
       if (!(formArray instanceof FormArray)) {
         return null;
       }
 
-      const invalidControls: AbstractControl[] = [];
-      const validControls: AbstractControl[] = [];
-      // IMPORTANT to keep the same reference
-      const uniqueChildValidator = UniqueValidator.uniqueChild;
+      const targetControls = formArray.controls.map(keySelector);
+      const valueControlMap = new Map<T, AbstractControl<T>>();
+      const invalidControls: AbstractControl<T>[] = [];
 
-      formArray.controls.forEach((child, index) => {
-        const currentControl = keySelector(child);
-        const otherChildControls = formArray.controls.filter((c, i2) => i2 !== index).map(keySelector);
+      for (const control of targetControls) {
+        const value = control.value;
 
-        const foundDuplicatedValue = otherChildControls.some((target) => {
-          return target.value !== '' && target.value === currentControl.value;
-        });
+        if (value == null || String(value) === '' || String(value) === 'NaN') {
+          continue;
+        }
 
-        if (foundDuplicatedValue) {
-          invalidControls.push(currentControl);
+        const controlInMap = valueControlMap.get(value);
+
+        if (controlInMap) {
+          if (!invalidControls.includes(controlInMap)) {
+            invalidControls.push(controlInMap);
+          }
+
+          invalidControls.push(control);
         } else {
-          validControls.push(currentControl);
+          valueControlMap.set(value, control);
         }
-      });
+      }
 
-      // Update each child control's validity
-      invalidControls.forEach((c) => {
-        if (!c.hasValidator(uniqueChildValidator)) {
-          c.addValidators([uniqueChildValidator]);
+      const notUniqueError = {notUnique: true};
+
+      // set errors manually for target controls
+      for (const control of targetControls) {
+        const errors = control.errors;
+
+        if (invalidControls.includes(control)) {
+          // set not unique error for invalid controls
+          control.setErrors(errors === null ? notUniqueError : {...errors, ...notUniqueError});
+        } else {
+          // remove not unique errors for valid controls
+          if (errors === null) {
+            control.setErrors(null);
+          } else {
+            delete errors['notUnique'];
+            control.setErrors(Object.keys(errors).length > 0 ? errors : null);
+          }
         }
-        c.updateValueAndValidity({onlySelf: true, emitEvent: true}); // onlySelf true, otherwise this validator will never stops execution
-      });
+      }
 
-      validControls.forEach((c) => {
-        if (c.hasValidator(uniqueChildValidator)) {
-          c.removeValidators(uniqueChildValidator);
-        }
-        c.updateValueAndValidity({onlySelf: true, emitEvent: true});
-      });
-
-      return invalidControls.length > 0 ? {notUnique: true} : null;
+      return invalidControls.length > 0 ? notUniqueError : null;
     };
   }
 }

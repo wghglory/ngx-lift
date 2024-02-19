@@ -25,7 +25,7 @@ import {highlight} from '../../../../shared/utils/highlight.util';
 export class UniqueValidatorComponent {
   private fb = inject(FormBuilder);
   form1 = this.fb.group({
-    demo1: this.fb.array([this.fb.control(''), this.fb.control('')], UniqueValidator.unique()),
+    demo1: this.fb.array([this.fb.control(null), this.fb.control('')], UniqueValidator.unique()),
   });
 
   validateControlByIndex(index: number) {
