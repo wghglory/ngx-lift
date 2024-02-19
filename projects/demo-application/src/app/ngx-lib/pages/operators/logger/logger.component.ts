@@ -4,8 +4,8 @@ import {PageContainerComponent} from 'clr-extension';
 import {logger} from 'ngx-extension';
 import {of} from 'rxjs';
 
-import {CodeBlockComponent} from '../../../shared/components/code-block/code-block.component';
-import {highlight} from '../../../shared/utils/highlight.util';
+import {CodeBlockComponent} from '../../../../shared/components/code-block/code-block.component';
+import {highlight} from '../../../../shared/utils/highlight.util';
 
 @Component({
   selector: 'app-logger',

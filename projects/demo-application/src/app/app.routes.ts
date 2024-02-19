@@ -9,15 +9,15 @@ import {MultiAlertsDemoComponent} from './clr-lib/pages/multi-alerts-demo/multi-
 import {SpinnerDemoComponent} from './clr-lib/pages/spinner-demo/spinner-demo.component';
 import {TimelineWizardDemoComponent} from './clr-lib/pages/timeline-wizard-demo/timeline-wizard-demo.component';
 import {ToastDemoComponent} from './clr-lib/pages/toast-demo/toast-demo.component';
-import {ArrayJoinPipeComponent} from './ngx-lib/pages/array-join-pipe/array-join-pipe.component';
-import {ByteConverterPipeComponent} from './ngx-lib/pages/byte-converter-pipe/byte-converter-pipe.component';
-import {CombineLatestEagerComponent} from './ngx-lib/pages/combine-latest-eager/combine-latest-eager.component';
-import {CreateAsyncStateComponent} from './ngx-lib/pages/create-async-state/create-async-state.component';
-import {DistinctOnChangeComponent} from './ngx-lib/pages/distinct-on-change/distinct-on-change.component';
-import {LoggerComponent} from './ngx-lib/pages/logger/logger.component';
 import {NgxExtensionHomeComponent} from './ngx-lib/pages/ngx-extension-home/ngx-extension-home.component';
-import {SwitchMapWithAsyncStateComponent} from './ngx-lib/pages/switch-map-with-async-state/switch-map-with-async-state.component';
-import {UniqueValidatorComponent} from './ngx-lib/pages/unique-validator/unique-validator.component';
+import {CombineLatestEagerComponent} from './ngx-lib/pages/operators/combine-latest-eager/combine-latest-eager.component';
+import {CreateAsyncStateComponent} from './ngx-lib/pages/operators/create-async-state/create-async-state.component';
+import {DistinctOnChangeComponent} from './ngx-lib/pages/operators/distinct-on-change/distinct-on-change.component';
+import {LoggerComponent} from './ngx-lib/pages/operators/logger/logger.component';
+import {SwitchMapWithAsyncStateComponent} from './ngx-lib/pages/operators/switch-map-with-async-state/switch-map-with-async-state.component';
+import {ArrayJoinPipeComponent} from './ngx-lib/pages/pipes/array-join-pipe/array-join-pipe.component';
+import {ByteConverterPipeComponent} from './ngx-lib/pages/pipes/byte-converter-pipe/byte-converter-pipe.component';
+import {UniqueValidatorComponent} from './ngx-lib/pages/validators/unique-validator/unique-validator.component';
 
 export const routes: Routes = [
   {

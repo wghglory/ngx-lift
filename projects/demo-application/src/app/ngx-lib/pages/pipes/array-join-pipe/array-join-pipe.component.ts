@@ -1,8 +1,8 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {PageContainerComponent} from 'clr-extension';
 
-import {CodeBlockComponent} from '../../../shared/components/code-block/code-block.component';
-import {highlight} from '../../../shared/utils/highlight.util';
+import {CodeBlockComponent} from '../../../../shared/components/code-block/code-block.component';
+import {highlight} from '../../../../shared/utils/highlight.util';
 
 @Component({
   selector: 'app-array-join-pipe',

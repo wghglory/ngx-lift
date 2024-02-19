@@ -5,9 +5,9 @@ import {PageContainerComponent} from 'clr-extension';
 import {distinctOnChange} from 'ngx-extension';
 import {from} from 'rxjs';
 
-import {CodeBlockComponent} from '../../../shared/components/code-block/code-block.component';
-import {UserCardListComponent} from '../../../shared/components/user-card-list/user-card-list.component';
-import {highlight} from '../../../shared/utils/highlight.util';
+import {CodeBlockComponent} from '../../../../shared/components/code-block/code-block.component';
+import {UserCardListComponent} from '../../../../shared/components/user-card-list/user-card-list.component';
+import {highlight} from '../../../../shared/utils/highlight.util';
 
 @Component({
   selector: 'app-distinct-on-change',

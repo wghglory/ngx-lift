@@ -5,8 +5,8 @@ import {ClarityModule} from '@clr/angular';
 import {CalloutComponent, PageContainerComponent} from 'clr-extension';
 import {UniqueValidator} from 'ngx-extension';
 
-import {CodeBlockComponent} from '../../../shared/components/code-block/code-block.component';
-import {highlight} from '../../../shared/utils/highlight.util';
+import {CodeBlockComponent} from '../../../../shared/components/code-block/code-block.component';
+import {highlight} from '../../../../shared/utils/highlight.util';
 
 @Component({
   selector: 'app-unique-validator',

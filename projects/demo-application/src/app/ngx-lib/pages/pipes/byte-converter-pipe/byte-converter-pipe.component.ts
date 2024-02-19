@@ -2,8 +2,8 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {CalloutComponent, PageContainerComponent} from 'clr-extension';
 import {ByteConverterPipe} from 'ngx-extension';
 
-import {CodeBlockComponent} from '../../../shared/components/code-block/code-block.component';
-import {highlight} from '../../../shared/utils/highlight.util';
+import {CodeBlockComponent} from '../../../../shared/components/code-block/code-block.component';
+import {highlight} from '../../../../shared/utils/highlight.util';
 
 @Component({
   selector: 'app-byte-converter-pipe',
