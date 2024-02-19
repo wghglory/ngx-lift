@@ -17,7 +17,9 @@ import {LoggerComponent} from './ngx-lib/pages/operators/logger/logger.component
 import {SwitchMapWithAsyncStateComponent} from './ngx-lib/pages/operators/switch-map-with-async-state/switch-map-with-async-state.component';
 import {ArrayJoinPipeComponent} from './ngx-lib/pages/pipes/array-join-pipe/array-join-pipe.component';
 import {ByteConverterPipeComponent} from './ngx-lib/pages/pipes/byte-converter-pipe/byte-converter-pipe.component';
+import {IsHttpsPipeComponent} from './ngx-lib/pages/pipes/is-https-pipe/is-https-pipe.component';
 import {UniqueValidatorComponent} from './ngx-lib/pages/validators/unique-validator/unique-validator.component';
+import {UrlValidatorComponent} from './ngx-lib/pages/validators/url-validator/url-validator.component';
 
 export const routes: Routes = [
   {
@@ -63,6 +65,10 @@ export const routes: Routes = [
             path: 'byte-converter',
             component: ByteConverterPipeComponent,
           },
+          {
+            path: 'is-https',
+            component: IsHttpsPipeComponent,
+          },
         ],
       },
       {
@@ -71,6 +77,10 @@ export const routes: Routes = [
           {
             path: 'unique',
             component: UniqueValidatorComponent,
+          },
+          {
+            path: 'url',
+            component: UrlValidatorComponent,
           },
         ],
       },

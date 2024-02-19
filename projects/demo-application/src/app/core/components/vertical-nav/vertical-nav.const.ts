@@ -20,13 +20,17 @@ export const ngxExtensionNavConfig: NavConfig[] = [
     children: [
       {path: '/array-join', value: 'Array Join'},
       {path: '/byte-converter', value: 'Byte Converter'},
+      {path: '/is-https', value: 'Is Https'},
     ],
   },
   {
     path: '/ngx-extension/validators',
     value: 'Validators',
     icon: 'certificate',
-    children: [{path: '/unique', value: 'UniqueValidator'}],
+    children: [
+      {path: '/unique', value: 'UniqueValidator'},
+      {path: '/url', value: 'UrlValidator'},
+    ],
   },
 ];
 
