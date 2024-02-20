@@ -21,6 +21,7 @@ export const ngxExtensionNavConfig: NavConfig[] = [
       {path: '/array-join', value: 'Array Join'},
       {path: '/byte-converter', value: 'Byte Converter'},
       {path: '/is-https', value: 'Is Https'},
+      {path: '/mask', value: 'Mask'},
     ],
   },
   {
