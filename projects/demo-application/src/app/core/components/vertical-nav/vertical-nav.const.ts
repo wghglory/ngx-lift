@@ -29,6 +29,7 @@ export const ngxExtensionNavConfig: NavConfig[] = [
     value: 'Validators',
     icon: 'certificate',
     children: [
+      {path: '/if-validator', value: 'ifValidator / ifAsyncValidator'},
       {path: '/unique', value: 'UniqueValidator'},
       {path: '/url', value: 'UrlValidator'},
     ],
