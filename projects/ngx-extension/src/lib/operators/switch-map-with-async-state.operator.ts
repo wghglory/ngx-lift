@@ -34,5 +34,6 @@ import {createAsyncState} from './create-async-state.operator';
 export function switchMapWithAsyncState<T, K, E = HttpErrorResponse>(
   project: (value: K, index: number) => Observable<T>,
 ): OperatorFunction<K, AsyncState<T, E>> {
-  return (source: Observable<K>) => source.pipe(switchMap(project), createAsyncState<T, E>());
+  return (source: Observable<K>) =>
+    source.pipe(switchMap((value, index) => project(value, index).pipe(createAsyncState<T, E>())));
 }
