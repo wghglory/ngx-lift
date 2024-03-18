@@ -95,7 +95,7 @@ export class DgStateComponent {
   );
 
   secondHtmlCode = highlight(`
-  <div>
+<div>
   <button class="btn btn-outline" (click)="userService.refreshList()" [disabled]="(usersState$ | async)?.loading">
     Refresh
   </button>

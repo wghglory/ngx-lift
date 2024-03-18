@@ -1,0 +1,169 @@
+<clx-page-container title="poll" class="space-y-9">
+  <section class="space-y-6">
+    <p>
+      In modern web applications, it's common to interact with APIs to fetch data, and sometimes, we need to
+      continuously <code>poll</code> these APIs to keep our data up-to-date. While there are various ways to implement
+      polling mechanisms, leveraging the power of Reactive Programming can offer an elegant and efficient solution.
+      Hence, the <code>poll</code> operator, a handy tool in RxJS for simplifying the process of polling APIs comes to
+      play.
+    </p>
+
+    <p>
+      The <code>poll</code> operator is a custom operator built on top of RxJS, a powerful library for reactive
+      programming in JavaScript. It allows developers to create observables that periodically emit data by making
+      requests to an API at specified intervals.
+    </p>
+
+    <h2>Why</h2>
+
+    <ul class="list-disc">
+      <li>
+        <strong>Simplicity</strong>: It abstracts away the complexity of managing polling intervals and API requests.
+      </li>
+      <li>
+        <strong>Efficiency</strong>: It ensures efficient resource utilization by controlling the frequency of API
+        requests.
+      </li>
+      <li>
+        <strong>Flexibility</strong>: Developers can customize parameters, such as polling intervals and request
+        payloads, to suit their application's needs.
+      </li>
+      <li>
+        <strong>Reactivity</strong>: It seamlessly integrates with other RxJS operators, enabling developers to build
+        reactive pipelines for handling data streams.
+      </li>
+    </ul>
+
+    <h2>Usage</h2>
+    <p>The <code>poll</code> operator takes an options object containing essential parameters:</p>
+
+    <ul class="list-disc">
+      <li><code>interval</code>: The time interval between consecutive API requests.</li>
+      <li><code>apiCall</code>: A function that makes the API request and returns an Observable.</li>
+      <li>
+        <code>paramsBuilder</code>: (Optional) A function to build parameters for the API request based on input data.
+      </li>
+      <li><code>trigger</code>$: (Optional) An Observable that triggers API requests.</li>
+    </ul>
+  </section>
+
+  <section class="space-y-6">
+    <h2>Example</h2>
+
+    <app-code-block [code]="simpleCode" />
+
+    <h3>Advanced Usage</h3>
+
+    <ul class="list-disc">
+      <li>Custom Parameters: You can customize API parameters by providing a paramsBuilder function.</li>
+      <li>
+        Additional API trigger: Use the trigger observable to force fetch API when needed, such as in response to user
+        actions.
+      </li>
+    </ul>
+
+    <p>
+      The data grid below will automatically refresh every 10 seconds. Additionally, whenever there's a change in the
+      input, triggering filtering, sorting, or pagination, the API will be promptly called, accompanied by a spinner
+      indicating loading.
+    </p>
+
+    <clx-callout>
+      Please be aware that any search input or adjustments made to the datagrid's filter, sorting, or pagination
+      settings will not impact the results displayed in the datagrid. If you wish to observe the polling requests being
+      made, you can open the browser's developer tools and monitor the network activity.
+    </clx-callout>
+
+    <form clrForm>
+      <clr-input-container>
+        <label>Search by First Name</label>
+        <input type="text" clrInput name="firstName" (input)="searchByFirstName($any($event.target).value)" />
+      </clr-input-container>
+    </form>
+
+    <clr-datagrid
+      class="min-h-[200px]"
+      (clrDgRefresh)="refresh($event)"
+      [clrDgLoading]="(usersState$ | async)?.loading === true"
+      [(clrDgSingleSelected)]="selectedItem"
+    >
+      <clr-dg-column [clrDgField]="'firstName'">First Name</clr-dg-column>
+      <clr-dg-column [clrDgField]="'lastName'">Last Name</clr-dg-column>
+      <clr-dg-column [clrDgField]="'email'">Email</clr-dg-column>
+      <clr-dg-column [clrDgField]="'gender'">Gender</clr-dg-column>
+
+      <clr-dg-placeholder>No data found</clr-dg-placeholder>
+
+      @for (user of (usersState$ | async)?.data?.results; track user.id.value) {
+        <clr-dg-row [clrDgItem]="user">
+          <clr-dg-cell>{{ user.name.first }}</clr-dg-cell>
+          <clr-dg-cell>{{ user.name.last }}</clr-dg-cell>
+          <clr-dg-cell>{{ user.email }}</clr-dg-cell>
+          <clr-dg-cell>{{ user.gender }}</clr-dg-cell>
+        </clr-dg-row>
+      }
+
+      <clr-dg-footer>
+        @if (!(total$ | async)) {
+          No items
+        } @else {
+          {{ pagination.firstItem + 1 }} - {{ pagination.lastItem + 1 }} of {{ total$ | async }} items
+        }
+        <clr-dg-pagination #pagination [clrDgPageSize]="10" [clrDgTotalItems]="(total$ | async) || 0" />
+      </clr-dg-footer>
+    </clr-datagrid>
+
+    @if ((usersState$ | async)?.error; as error) {
+      <clx-alert [error]="error" class="mb-4" />
+    }
+
+    <app-code-block [code]="advancedCode" />
+
+    <!--
+Another approach:
+
+@if ({usersState: usersState$ | async, total: total$ | async}; as vm) {
+  <div>
+    <button class="btn btn-outline" (click)="userService.refreshList()" [disabled]="vm.usersState?.loading">
+      Refresh
+    </button>
+  </div>
+
+  <clr-datagrid
+    class="min-h-[200px]"
+    (clrDgRefresh)="refresh($event)"
+    [clrDgLoading]="vm.usersState?.loading === true"
+    [(clrDgSingleSelected)]="selectedItem"
+  >
+    <clr-dg-column [clrDgField]="'firstName'">First Name</clr-dg-column>
+    <clr-dg-column [clrDgField]="'lastName'">Last Name</clr-dg-column>
+    <clr-dg-column [clrDgField]="'email'">Email</clr-dg-column>
+    <clr-dg-column [clrDgField]="'gender'">Gender</clr-dg-column>
+
+    <clr-dg-placeholder>No data found</clr-dg-placeholder>
+
+    @for (user of vm.usersState?.data?.results; track user.id.value) {
+      <clr-dg-row [clrDgItem]="user">
+        <clr-dg-cell>{{ user.name.first }}</clr-dg-cell>
+        <clr-dg-cell>{{ user.name.last }}</clr-dg-cell>
+        <clr-dg-cell>{{ user.email }}</clr-dg-cell>
+        <clr-dg-cell>{{ user.gender }}</clr-dg-cell>
+      </clr-dg-row>
+    }
+
+    <clr-dg-footer>
+      @if (!vm.total) {
+        No items
+      } @else {
+        {{ pagination.firstItem + 1 }} - {{ pagination.lastItem + 1 }} of {{ vm.total }} items
+      }
+      <clr-dg-pagination #pagination [clrDgPageSize]="10" [clrDgTotalItems]="vm.total || 0" />
+    </clr-dg-footer>
+  </clr-datagrid>
+
+  @if (vm.usersState?.error; as error) {
+    <clx-alert [error]="error" class="mb-4" />
+  }
+} -->
+  </section>
+</clx-page-container>

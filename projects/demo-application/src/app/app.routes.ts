@@ -14,6 +14,7 @@ import {CombineLatestEagerComponent} from './ngx-lib/pages/operators/combine-lat
 import {CreateAsyncStateComponent} from './ngx-lib/pages/operators/create-async-state/create-async-state.component';
 import {DistinctOnChangeComponent} from './ngx-lib/pages/operators/distinct-on-change/distinct-on-change.component';
 import {LoggerComponent} from './ngx-lib/pages/operators/logger/logger.component';
+import {PollComponent} from './ngx-lib/pages/operators/poll/poll.component';
 import {SwitchMapWithAsyncStateComponent} from './ngx-lib/pages/operators/switch-map-with-async-state/switch-map-with-async-state.component';
 import {ArrayJoinPipeComponent} from './ngx-lib/pages/pipes/array-join-pipe/array-join-pipe.component';
 import {ByteConverterPipeComponent} from './ngx-lib/pages/pipes/byte-converter-pipe/byte-converter-pipe.component';
@@ -53,6 +54,10 @@ export const routes: Routes = [
           {
             path: 'logger',
             component: LoggerComponent,
+          },
+          {
+            path: 'poll',
+            component: PollComponent,
           },
         ],
       },
