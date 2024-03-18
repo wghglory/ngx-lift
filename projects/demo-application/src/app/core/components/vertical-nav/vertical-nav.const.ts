@@ -11,6 +11,7 @@ export const ngxExtensionNavConfig: NavConfig[] = [
       {path: '/combineLatestEager', value: 'combineLatestEager'},
       {path: '/distinctOnChange', value: 'distinctOnChange'},
       {path: '/logger', value: 'logger'},
+      {path: '/poll', value: 'poll'},
     ],
   },
   {
