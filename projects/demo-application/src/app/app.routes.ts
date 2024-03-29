@@ -9,6 +9,7 @@ import {MultiAlertsDemoComponent} from './clr-lib/pages/multi-alerts-demo/multi-
 import {SpinnerDemoComponent} from './clr-lib/pages/spinner-demo/spinner-demo.component';
 import {TimelineWizardDemoComponent} from './clr-lib/pages/timeline-wizard-demo/timeline-wizard-demo.component';
 import {ToastDemoComponent} from './clr-lib/pages/toast-demo/toast-demo.component';
+import {TooltipDemoComponent} from './clr-lib/pages/tooltip-demo/tooltip-demo.component';
 import {NgxExtensionHomeComponent} from './ngx-lib/pages/ngx-extension-home/ngx-extension-home.component';
 import {CombineLatestEagerComponent} from './ngx-lib/pages/operators/combine-latest-eager/combine-latest-eager.component';
 import {CreateAsyncStateComponent} from './ngx-lib/pages/operators/create-async-state/create-async-state.component';
@@ -143,6 +144,10 @@ export const routes: Routes = [
           {
             path: 'toast',
             component: ToastDemoComponent,
+          },
+          {
+            path: 'tooltip',
+            component: TooltipDemoComponent,
           },
         ],
       },
