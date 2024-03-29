@@ -55,6 +55,7 @@ export const clrExtensionNavConfig: NavConfig[] = [
       {path: '/spinner', value: 'Spinner'},
       {path: '/timeline-wizard', value: 'Timeline Wizard'},
       {path: '/toast', value: 'Toast'},
+      {path: '/tooltip', value: 'Tooltip'},
     ],
   },
   {

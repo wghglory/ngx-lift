@@ -7,3 +7,4 @@ export * from './spinner/spinner.component';
 export * from './theme-toggle/theme-toggle.component';
 export * from './timeline-wizard';
 export * from './toast';
+export * from './tooltip';
