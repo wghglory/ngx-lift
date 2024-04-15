@@ -1,4 +1,4 @@
-<clx-page-container [title]="'dgState'" class="space-y-9">
+<cll-page-container [title]="'dgState'" class="space-y-9">
   <section class="space-y-6">
     <p>
       When utilizing Clarity Datagrid filtering, we employ the <code>dgState</code> operator to manage the timing of API
@@ -29,13 +29,13 @@
     <app-code-block [code]="htmlCode" lang="html" />
     <app-code-block [code]="typescriptCode" />
 
-    <clx-callout>
-      You can click <a class="underline" [routerLink]="['/clr-extension/utilities/datagrid']">convertToHttpParams</a> to
-      see the detail of this utility function.
-    </clx-callout>
+    <cll-callout>
+      You can click <a class="underline" [routerLink]="['/clr-lift/utilities/datagrid']">convertToHttpParams</a> to see
+      the detail of this utility function.
+    </cll-callout>
   </section>
 
   <section>
     <app-user-datagrid />
   </section>
-</clx-page-container>
+</cll-page-container>

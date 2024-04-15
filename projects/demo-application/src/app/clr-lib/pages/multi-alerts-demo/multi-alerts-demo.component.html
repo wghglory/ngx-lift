@@ -1,8 +1,8 @@
-<clx-page-container title="Multi Alerts" class="space-y-9">
+<cll-page-container title="Multi Alerts" class="space-y-9">
   <section class="space-y-6">
     <p>
       Frequently, there is a need to showcase multiple alerts, particularly those at the application level positioned at
-      the top. The clr-extension offers two highly beneficial components for this purpose:
+      the top. The clr-lift offers two highly beneficial components for this purpose:
       <code>AlertContainerComponent</code>
       and <code>AlertService</code>.
     </p>
@@ -13,7 +13,7 @@
 
     <ol class="list-decimal">
       <li>
-        Import <code>AlertContainerComponent</code> and include <code>&lt;clx-alert-container&gt;</code> above the
+        Import <code>AlertContainerComponent</code> and include <code>&lt;cll-alert-container&gt;</code> above the
         Clarity header tag within the main container.
       </li>
       <li>
@@ -47,8 +47,8 @@
 
   <section class="space-y-6">
     <h2>Interactive UI</h2>
-    <clx-alert-container />
+    <cll-alert-container />
     <button class="btn btn-outline" (click)="addAlert()">Add Alert</button>
     <button class="btn btn-outline" (click)="clearAlerts()">Clear All Alerts</button>
   </section>
-</clx-page-container>
+</cll-page-container>

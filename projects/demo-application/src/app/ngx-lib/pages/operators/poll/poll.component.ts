@@ -2,8 +2,8 @@ import {CommonModule} from '@angular/common';
 import {HttpErrorResponse} from '@angular/common/http';
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {ClarityModule, ClrDatagridStateInterface} from '@clr/angular';
-import {AlertComponent, CalloutComponent, convertToHttpParams, dgState, PageContainerComponent} from 'clr-extension';
-import {AsyncState, isEqual, poll} from 'ngx-extension';
+import {AlertComponent, CalloutComponent, convertToHttpParams, dgState, PageContainerComponent} from 'clr-lift';
+import {AsyncState, isEqual, poll} from 'ngx-lift';
 import {BehaviorSubject, distinctUntilChanged, filter, map} from 'rxjs';
 
 import {CodeBlockComponent} from '../../../../shared/components/code-block/code-block.component';
@@ -65,7 +65,7 @@ export class PollComponent {
   }
 
   simpleCode = highlight(`
-import { poll } from 'ngx-extension';
+import { poll } from 'ngx-lift';
 
 // Define API call function
 const fetchData = () => ajax.getJSON('https://api.example.com/data');
@@ -85,8 +85,8 @@ polling$.subscribe(data => console.log('Received data:', data));
 
   advancedCode = highlight(`
 import {ClarityModule, ClrDatagridStateInterface} from '@clr/angular';
-import {AlertComponent, convertToHttpParams, dgState, PageContainerComponent} from 'clr-extension';
-import {AsyncState, isEqual, poll} from 'ngx-extension';
+import {AlertComponent, convertToHttpParams, dgState, PageContainerComponent} from 'clr-lift';
+import {AsyncState, isEqual, poll} from 'ngx-lift';
 
 export class PollComponent {
   userService = inject(UserService);

@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {ClrTimelineStepState} from '@clr/angular';
-import {CalloutComponent, PageContainerComponent, TimelineStep, TimelineWizardComponent} from 'clr-extension';
+import {CalloutComponent, PageContainerComponent, TimelineStep, TimelineWizardComponent} from 'clr-lift';
 
 import {CodeBlockComponent} from '../../../shared/components/code-block/code-block.component';
 import {highlight} from '../../../shared/utils/highlight.util';
@@ -78,20 +78,20 @@ export class TimelineWizardDemoComponent {
 
   wizardCode = highlight(`
 import {ClrTimelineStepState} from '@clr/angular';
-import {TimelineStep, TimelineWizardComponent} from 'clr-extension';
+import {TimelineStep, TimelineWizardComponent} from 'clr-lift';
 import {Deployment} from './deployment.type';
 
 @Component({
   standalone: true,
   imports: [TimelineWizardComponent],
   template: \`
-    <clx-timeline-wizard
+    <cll-timeline-wizard
       [timelineSteps]="timelineSteps"
       [confirmButtonText]="'Finish'"
       (canceled)="onCanceled()"
       (confirmed)="onConfirmed($event)"
       (finished)="onFinished()"
-    ></clx-timeline-wizard>
+    ></cll-timeline-wizard>
   \`
 })
 export class TimelineWizardDemoComponent {
@@ -170,7 +170,7 @@ export type Deployment = {
     `);
 
   operatorCode = highlight(`
-import {TimelineBaseComponent, TimelineWizardService} from 'clr-extension';
+import {TimelineBaseComponent, TimelineWizardService} from 'clr-lift';
 import {Deployment} from '../deployment.type';
 
 @Component({
@@ -237,7 +237,7 @@ export class ConfigureServiceComponent extends TimelineBaseComponent<Deployment[
   `);
 
   runtimePropsCode = highlight(`
-import {KeyValueInputsComponent, TimelineBaseComponent} from 'clr-extension';
+import {KeyValueInputsComponent, TimelineBaseComponent} from 'clr-lift';
 
 type RuntimePropStepData = {appProperties: Array<{key: string; value: string}>};
 
@@ -249,7 +249,7 @@ type RuntimePropStepData = {appProperties: Array<{key: string; value: string}>};
   ],
   template: \`
     <form clrForm [formGroup]="form">
-      <clx-key-value-inputs
+      <cll-key-value-inputs
         [formArray]="form.controls.appProperties"
         [inputSize]="50"
         [data]="currentStepData?.appProperties!"
@@ -291,7 +291,7 @@ export class ConfigureRuntimePropComponent extends TimelineBaseComponent<Runtime
   `);
 
   reviewCode = highlight(`
-import {TimelineBaseComponent, TimelineWizardService} from 'clr-extension';
+import {TimelineBaseComponent, TimelineWizardService} from 'clr-lift';
 import {Deployment} from '../deployment.type';
 
 export class ConfigureReviewComponent extends TimelineBaseComponent {

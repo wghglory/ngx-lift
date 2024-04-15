@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit} from '@angular/core';
-import {AlertContainerComponent, AlertService, PageContainerComponent} from 'clr-extension';
+import {AlertContainerComponent, AlertService, PageContainerComponent} from 'clr-lift';
 
 import {CodeBlockComponent} from '../../../shared/components/code-block/code-block.component';
 import {highlight} from '../../../shared/utils/highlight.util';
@@ -54,7 +54,7 @@ export class MultiAlertsDemoComponent implements OnInit, OnDestroy {
 
   htmlCode = highlight(`
 <clr-main-container>
-  <clx-alert-container />
+  <cll-alert-container />
   <clr-header></clr-header>
 </clr-main-container>
   `);

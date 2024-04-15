@@ -2,7 +2,7 @@ import {CommonModule} from '@angular/common';
 import {Component, inject, OnInit} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ClarityModule} from '@clr/angular';
-import {TimelineBaseComponent, TimelineWizardService} from 'clr-extension';
+import {TimelineBaseComponent, TimelineWizardService} from 'clr-lift';
 
 import {Deployment} from '../deployment.type';
 

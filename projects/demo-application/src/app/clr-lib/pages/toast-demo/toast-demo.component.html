@@ -1,4 +1,4 @@
-<clx-page-container title="Toast" class="space-y-9">
+<cll-page-container title="Toast" class="space-y-9">
   <section class="space-y-6">
     <p>
       Toast messages serve as a user-friendly means to communicate medium-priority events that users may wish to
@@ -44,9 +44,9 @@
     <h2>Implementation</h2>
     <p>To implement toast messages, follow these steps:</p>
     <ol class="list-decimal">
-      <li>Import <code>ToastComponent</code> from the <code>clr-extension</code> library into your app component.</li>
+      <li>Import <code>ToastComponent</code> from the <code>clr-lift</code> library into your app component.</li>
       <li>
-        Include <code>&lt;clx-toast-container [timeoutSeconds]=&quot;8&quot; /&gt;</code> in
+        Include <code>&lt;cll-toast-container [timeoutSeconds]=&quot;8&quot; /&gt;</code> in
         <code>app.component.html</code>. This container will hold all toasts. The container markup should appear only
         once in your application.
       </li>
@@ -82,4 +82,4 @@
     <button (click)="showErrorToast()" class="btn btn-danger">Error Toast</button>
     <button (click)="showWarningToast()" class="btn btn-warning">Warning Toast</button>
   </section>
-</clx-page-container>
+</cll-page-container>

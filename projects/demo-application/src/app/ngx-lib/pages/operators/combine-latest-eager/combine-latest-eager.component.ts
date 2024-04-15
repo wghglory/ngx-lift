@@ -1,7 +1,7 @@
 import {CommonModule} from '@angular/common';
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {ClarityModule} from '@clr/angular';
-import {PageContainerComponent} from 'clr-extension';
+import {PageContainerComponent} from 'clr-lift';
 
 import {CodeBlockComponent} from '../../../../shared/components/code-block/code-block.component';
 import {RockStarComponent} from '../../../../shared/components/rock-star/rock-star.component';
@@ -25,10 +25,10 @@ export class CombineLatestEagerComponent {
   </p>
 
   @if (vm.rockStarState?.error; as error) {
-    <clx-alert [error]="error" />
+    <cll-alert [error]="error" />
   }
   @if (vm.rockStarState?.loading) {
-    <clx-spinner />
+    <cll-spinner />
   }
   @if (vm.rockStarState?.data; as rockStar) {
     <p class="!text-xl">{{ rockStar.name }}</p>
@@ -39,8 +39,8 @@ export class CombineLatestEagerComponent {
 
   tsCode = highlight(
     `
-import {AlertComponent, SpinnerComponent} from 'clr-extension';
-import {combineLatestEager, switchMapWithAsyncState} from 'ngx-extension';
+import {AlertComponent, SpinnerComponent} from 'clr-lift';
+import {combineLatestEager, switchMapWithAsyncState} from 'ngx-lift';
 import {of, Subject} from 'rxjs';
 
 export class RockStarComponent {

@@ -2,8 +2,8 @@ import {CommonModule} from '@angular/common';
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {ClarityModule} from '@clr/angular';
-import {AlertComponent, PageContainerComponent, SpinnerComponent} from 'clr-extension';
-import {switchMapWithAsyncState} from 'ngx-extension';
+import {AlertComponent, PageContainerComponent, SpinnerComponent} from 'clr-lift';
+import {switchMapWithAsyncState} from 'ngx-lift';
 import {filter} from 'rxjs';
 
 import {UserService} from '../../services/user.service';

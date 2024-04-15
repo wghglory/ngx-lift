@@ -1,7 +1,7 @@
 import {CommonModule} from '@angular/common';
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {ClarityModule} from '@clr/angular';
-import {PageContainerComponent} from 'clr-extension';
+import {PageContainerComponent} from 'clr-lift';
 
 import {CodeBlockComponent} from '../../../../shared/components/code-block/code-block.component';
 import {FilterUsersComponent} from '../../../../shared/components/filter-users/filter-users.component';
@@ -17,7 +17,7 @@ import {highlight} from '../../../../shared/utils/highlight.util';
 })
 export class SwitchMapWithAsyncStateComponent {
   exampleCode = highlight(`
-import {switchMapWithAsyncState} from 'ngx-extension';
+import {switchMapWithAsyncState} from 'ngx-lift';
 // ... other imports
 
 @Component({
@@ -35,9 +35,9 @@ import {switchMapWithAsyncState} from 'ngx-extension';
     </clr-radio-container>
 
     <div class="mt-6" *ngIf="searchState$ | async as vm">
-      <clx-spinner *ngIf="vm.loading" />
+      <cll-spinner *ngIf="vm.loading" />
 
-      <clx-alert *ngIf="vm.error as error" [error]="error" />
+      <cll-alert *ngIf="vm.error as error" [error]="error" />
 
       <div *ngIf="vm.data as users" class="card-grid">
         <app-user-card *ngFor="let user of users" [user]="user" />

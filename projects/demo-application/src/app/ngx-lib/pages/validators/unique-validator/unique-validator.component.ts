@@ -2,8 +2,8 @@ import {CommonModule} from '@angular/common';
 import {Component, inject} from '@angular/core';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {ClarityModule} from '@clr/angular';
-import {CalloutComponent, PageContainerComponent} from 'clr-extension';
-import {UniqueValidator} from 'ngx-extension';
+import {CalloutComponent, PageContainerComponent} from 'clr-lift';
+import {UniqueValidator} from 'ngx-lift';
 
 import {CodeBlockComponent} from '../../../../shared/components/code-block/code-block.component';
 import {highlight} from '../../../../shared/utils/highlight.util';

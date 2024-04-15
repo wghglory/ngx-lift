@@ -37,7 +37,7 @@
 </clr-datagrid>
 
 @if ((usersState$ | async)?.error; as error) {
-  <clx-alert [error]="error" class="mb-4" />
+  <cll-alert [error]="error" class="mb-4" />
 }
 
 <!--
@@ -83,6 +83,6 @@ Another approach:
   </clr-datagrid>
 
   @if (vm.usersState?.error; as error) {
-    <clx-alert [error]="error" class="mb-4" />
+    <cll-alert [error]="error" class="mb-4" />
   }
 } -->

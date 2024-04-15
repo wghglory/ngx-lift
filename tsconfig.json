@@ -12,8 +12,8 @@
     "esModuleInterop": true,
     "sourceMap": true,
     "paths": {
-      "clr-extension": ["./dist/clr-extension"],
-      "ngx-extension": ["./dist/ngx-extension"]
+      "clr-lift": ["./dist/clr-lift"],
+      "ngx-lift": ["./dist/ngx-lift"]
     },
     "declaration": false,
     "downlevelIteration": true,

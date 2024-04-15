@@ -1,8 +1,8 @@
 import {NavConfig} from './nav-config.model';
 
-export const ngxExtensionNavConfig: NavConfig[] = [
+export const ngxLiftNavConfig: NavConfig[] = [
   {
-    path: '/ngx-extension/operators',
+    path: '/ngx-lift/operators',
     value: 'Operators',
     icon: 'objects',
     children: [
@@ -15,7 +15,7 @@ export const ngxExtensionNavConfig: NavConfig[] = [
     ],
   },
   {
-    path: '/ngx-extension/pipes',
+    path: '/ngx-lift/pipes',
     value: 'Pipes',
     icon: 'pipes',
     children: [
@@ -26,7 +26,7 @@ export const ngxExtensionNavConfig: NavConfig[] = [
     ],
   },
   {
-    path: '/ngx-extension/validators',
+    path: '/ngx-lift/validators',
     value: 'Validators',
     icon: 'certificate',
     children: [
@@ -37,15 +37,15 @@ export const ngxExtensionNavConfig: NavConfig[] = [
   },
 ];
 
-export const clrExtensionNavConfig: NavConfig[] = [
+export const clrLiftNavConfig: NavConfig[] = [
   {
-    path: '/clr-extension/operators',
+    path: '/clr-lift/operators',
     value: 'Operators',
     icon: 'objects',
     children: [{path: '/dgState', value: 'dgState'}],
   },
   {
-    path: '/clr-extension/components',
+    path: '/clr-lift/components',
     value: 'Components',
     icon: 'heat-map',
     children: [
@@ -59,7 +59,7 @@ export const clrExtensionNavConfig: NavConfig[] = [
     ],
   },
   {
-    path: '/clr-extension/utilities',
+    path: '/clr-lift/utilities',
     value: 'Utilities',
     icon: 'wrench',
     children: [{path: '/datagrid', value: 'Datagrid'}],

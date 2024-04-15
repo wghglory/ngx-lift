@@ -1,18 +1,18 @@
 <clr-main-container>
   <clr-header>
     <div class="branding">
-      <a class="nav-link" routerLink="/"><span class="title">Angular Extension</span></a>
+      <a class="nav-link" routerLink="/"><span class="title">Angular Lift</span></a>
     </div>
     <div class="header-nav" [clr-nav-level]="1">
-      <a class="nav-link" routerLink="/ngx-extension" routerLinkActive="active">
-        <span class="nav-text">ngx-extension</span>
+      <a class="nav-link" routerLink="/ngx-lift" routerLinkActive="active">
+        <span class="nav-text">ngx-lift</span>
       </a>
-      <a class="nav-link" routerLink="/clr-extension" routerLinkActive="active">
-        <span class="nav-text">clr-extension</span>
+      <a class="nav-link" routerLink="/clr-lift" routerLinkActive="active">
+        <span class="nav-text">clr-lift</span>
       </a>
     </div>
     <div class="header-actions">
-      <clx-theme-toggle (changeTheme)="onThemeChange($event)" lang="en" />
+      <cll-theme-toggle (changeTheme)="onThemeChange($event)" lang="en" />
     </div>
   </clr-header>
 
@@ -25,4 +25,4 @@
   </div>
 </clr-main-container>
 
-<clx-toast-container [timeoutSeconds]="8" />
+<cll-toast-container [timeoutSeconds]="8" />

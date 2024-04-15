@@ -1,8 +1,8 @@
 import {CommonModule} from '@angular/common';
 import {HttpClient} from '@angular/common/http';
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
-import {AlertComponent, SpinnerComponent} from 'clr-extension';
-import {combineLatestEager, switchMapWithAsyncState} from 'ngx-extension';
+import {AlertComponent, SpinnerComponent} from 'clr-lift';
+import {combineLatestEager, switchMapWithAsyncState} from 'ngx-lift';
 import {of, Subject} from 'rxjs';
 
 @Component({

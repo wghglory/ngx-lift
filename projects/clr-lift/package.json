@@ -1,0 +1,16 @@
+{
+  "name": "clr-lift",
+  "version": "0.4.0",
+  "description": "The library is designed to augment the capabilities of the Clarity library by providing a set of reusable components built on top of clarity components.",
+  "author": "Guanghui Wang <guanghui-wang@foxmail.com>",
+  "peerDependencies": {
+    "@angular/common": ">=15.0.0",
+    "@angular/core": ">=15.0.0",
+    "@clr/angular": ">=15.0.0",
+    "ngx-lift": ">=0.1.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}

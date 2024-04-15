@@ -1,4 +1,4 @@
-<clx-page-container title="poll" class="space-y-9">
+<cll-page-container title="poll" class="space-y-9">
   <section class="space-y-6">
     <p>
       In modern web applications, it's common to interact with APIs to fetch data, and sometimes, we need to
@@ -68,11 +68,11 @@
       indicating loading.
     </p>
 
-    <clx-callout>
+    <cll-callout>
       Please be aware that any search input or adjustments made to the datagrid's filter, sorting, or pagination
       settings will not impact the results displayed in the datagrid. If you wish to observe the polling requests being
       made, you can open the browser's developer tools and monitor the network activity.
-    </clx-callout>
+    </cll-callout>
 
     <form clrForm>
       <clr-input-container>
@@ -114,7 +114,7 @@
     </clr-datagrid>
 
     @if ((usersState$ | async)?.error; as error) {
-      <clx-alert [error]="error" class="mb-4" />
+      <cll-alert [error]="error" class="mb-4" />
     }
 
     <app-code-block [code]="advancedCode" />
@@ -162,8 +162,8 @@ Another approach:
   </clr-datagrid>
 
   @if (vm.usersState?.error; as error) {
-    <clx-alert [error]="error" class="mb-4" />
+    <cll-alert [error]="error" class="mb-4" />
   }
 } -->
   </section>
-</clx-page-container>
+</cll-page-container>

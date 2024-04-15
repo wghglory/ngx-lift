@@ -1,4 +1,4 @@
-<clx-page-container [title]="'UniqueValidator'" class="space-y-9">
+<cll-page-container [title]="'UniqueValidator'" class="space-y-9">
   <section class="space-y-6">
     <h2>Overview</h2>
     <p>
@@ -17,7 +17,7 @@
     </ol>
 
     <form clrForm [formGroup]="form1">
-      <clx-callout>Type the same value in below controls and see the effect when blur.</clx-callout>
+      <cll-callout>Type the same value in below controls and see the effect when blur.</cll-callout>
 
       <ng-container formArrayName="demo1">
         <clr-input-container *ngFor="let control of form1.controls.demo1.controls; let i = index">
@@ -41,7 +41,7 @@
     </p>
 
     <form clrForm [formGroup]="form2">
-      <clx-callout>Type the same value in below key controls and see the effect when blur.</clx-callout>
+      <cll-callout>Type the same value in below key controls and see the effect when blur.</cll-callout>
 
       <ng-container formArrayName="demo2">
         <div
@@ -72,4 +72,4 @@
 
     <app-code-block [code]="example2" />
   </section>
-</clx-page-container>
+</cll-page-container>

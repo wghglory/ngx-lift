@@ -1,6 +1,6 @@
 import {CommonModule} from '@angular/common';
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {PageContainerComponent, TooltipModule} from 'clr-extension';
+import {PageContainerComponent, TooltipModule} from 'clr-lift';
 
 import {CodeBlockComponent} from '../../../shared/components/code-block/code-block.component';
 import {highlight} from '../../../shared/utils/highlight.util';
@@ -14,7 +14,7 @@ import {highlight} from '../../../shared/utils/highlight.util';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TooltipDemoComponent {
-  importCode = highlight(`import {TooltipModule, TooltipComponent, TooltipDirective} from 'clr-extension'`);
+  importCode = highlight(`import {TooltipModule, TooltipComponent, TooltipDirective} from 'clr-lift'`);
 
   basicTooltipCode = highlight(`
 <span clxTooltip="This is our clxTooltip text">Hover 1</span>

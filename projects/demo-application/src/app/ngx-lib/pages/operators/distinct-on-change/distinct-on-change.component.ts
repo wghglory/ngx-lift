@@ -1,8 +1,8 @@
 import {CommonModule} from '@angular/common';
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {ClarityModule} from '@clr/angular';
-import {PageContainerComponent} from 'clr-extension';
-import {distinctOnChange} from 'ngx-extension';
+import {PageContainerComponent} from 'clr-lift';
+import {distinctOnChange} from 'ngx-lift';
 import {from} from 'rxjs';
 
 import {CodeBlockComponent} from '../../../../shared/components/code-block/code-block.component';
@@ -27,7 +27,7 @@ export class DistinctOnChangeComponent implements OnInit {
   }
 
   tsCode = highlight(`
-import {distinctOnChange} from 'ngx-extension';
+import {distinctOnChange} from 'ngx-lift';
 // ... other imports
 
 from([1, 1, 2, 2, 3, 4, 4, 5])

@@ -1,4 +1,4 @@
-<clx-page-container title="Timeline Wizard" class="space-y-9">
+<cll-page-container title="Timeline Wizard" class="space-y-9">
   <p>
     The TimelineWizard component is designed to facilitate the creation of a timeline-based wizard in Angular
     applications. This component allows you to create a series of steps, each represented by a component, and navigate
@@ -173,9 +173,9 @@
     </p>
     <app-code-block [code]="runtimePropsCode"></app-code-block>
 
-    <clx-callout
+    <cll-callout
       >To understand more about KeyValueInputsComponent, please visit
-      <a [routerLink]="['/clr-extension/components/key-value-inputs']">Key Value Inputs</a>.</clx-callout
+      <a [routerLink]="['/clr-lift/components/key-value-inputs']">Key Value Inputs</a>.</cll-callout
     >
 
     <p>
@@ -198,10 +198,10 @@
 
     <app-code-block [code]="reviewCode"></app-code-block>
 
-    <clx-callout>
+    <cll-callout>
       You can customize the <code>next$</code> observable in any step, enabling the inclusion of both asynchronous and
       synchronous operations, such as an API call.
-    </clx-callout>
+    </cll-callout>
   </section>
 
   <section class="space-y-6">
@@ -218,7 +218,7 @@
 
   <section class="space-y-6">
     <h2>Interactive UI</h2>
-    <clx-timeline-wizard
+    <cll-timeline-wizard
       [timelineSteps]="timelineSteps"
       [confirmButtonText]="'Finish'"
       (canceled)="onCanceled()"
@@ -226,4 +226,4 @@
       (finished)="onFinished()"
     />
   </section>
-</clx-page-container>
+</cll-page-container>

@@ -2,8 +2,8 @@ import {CommonModule} from '@angular/common';
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ClarityModule} from '@clr/angular';
-import {CalloutComponent, PageContainerComponent} from 'clr-extension';
-import {ifValidator} from 'ngx-extension';
+import {CalloutComponent, PageContainerComponent} from 'clr-lift';
+import {ifValidator} from 'ngx-lift';
 
 import {CodeBlockComponent} from '../../../../shared/components/code-block/code-block.component';
 import {highlight} from '../../../../shared/utils/highlight.util';
@@ -43,7 +43,7 @@ export class IfValidatorComponent {
   }
 
   ifValidatorCode = highlight(`
-import {ifValidator} from 'ngx-extension';
+import {ifValidator} from 'ngx-lift';
 
 @Component({
   standalone: true,

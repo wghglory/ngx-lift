@@ -1,10 +1,10 @@
-<clx-page-container [title]="'ifValidator & ifAsyncValidator'" class="space-y-9">
+<cll-page-container [title]="'ifValidator & ifAsyncValidator'" class="space-y-9">
   <section class="space-y-6">
     <h2>Overview</h2>
     <p>
-      ngx-extension provides utility functions for creating conditional validators in Angular Reactive Forms.
-      Conditional validators allow you to apply specified validator functions based on a given condition. There are two
-      main functions exported: <code>ifValidator</code> for synchronous validators and <code>ifAsyncValidator</code> for
+      ngx-lift provides utility functions for creating conditional validators in Angular Reactive Forms. Conditional
+      validators allow you to apply specified validator functions based on a given condition. There are two main
+      functions exported: <code>ifValidator</code> for synchronous validators and <code>ifAsyncValidator</code> for
       asynchronous validators.
     </p>
 
@@ -25,10 +25,10 @@
       allows you to conditionally apply the validator based on the selected option.
     </p>
 
-    <clx-callout>
+    <cll-callout>
       Invoke the <code>updateValueAndValidity()</code> method on the associated control whenever there is a change in
       the specified condition for either <code>ifValidator</code> or <code>ifAsyncValidator</code>.
-    </clx-callout>
+    </cll-callout>
 
     <form clrForm [formGroup]="form">
       <clr-radio-container>
@@ -84,4 +84,4 @@
       operations.
     </p>
   </section>
-</clx-page-container>
+</cll-page-container>

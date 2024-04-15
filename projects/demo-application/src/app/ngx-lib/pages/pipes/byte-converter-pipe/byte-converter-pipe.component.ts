@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {CalloutComponent, PageContainerComponent} from 'clr-extension';
-import {ByteConverterPipe} from 'ngx-extension';
+import {CalloutComponent, PageContainerComponent} from 'clr-lift';
+import {ByteConverterPipe} from 'ngx-lift';
 
 import {CodeBlockComponent} from '../../../../shared/components/code-block/code-block.component';
 import {highlight} from '../../../../shared/utils/highlight.util';
@@ -15,7 +15,7 @@ import {highlight} from '../../../../shared/utils/highlight.util';
 })
 export class ByteConverterPipeComponent {
   exampleCode = highlight(`
-import {ByteConverterPipe} from 'ngx-extension';
+import {ByteConverterPipe} from 'ngx-lift';
 
 @Component({
   standalone: true,

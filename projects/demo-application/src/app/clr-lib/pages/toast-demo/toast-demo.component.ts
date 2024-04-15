@@ -1,6 +1,6 @@
 import {CommonModule} from '@angular/common';
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
-import {PageContainerComponent, ToastService} from 'clr-extension';
+import {PageContainerComponent, ToastService} from 'clr-lift';
 
 import {CodeBlockComponent} from '../../../shared/components/code-block/code-block.component';
 import {highlight} from '../../../shared/utils/highlight.util';
@@ -30,7 +30,7 @@ export class ToastDemoComponent {
     </clr-main-container>
 
     <!-- toast container should appear only once -->
-    <clx-toast-container [timeoutSeconds]="8" />
+    <cll-toast-container [timeoutSeconds]="8" />
   \`
 })
 export class AppComponent { }

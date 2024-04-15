@@ -7,11 +7,11 @@
 
   <div class="min-h-[286px] mt-6">
     @if (usersState.loading) {
-      <clx-spinner />
+      <cll-spinner />
     }
 
     @if (usersState.error; as error) {
-      <clx-alert [error]="error" />
+      <cll-alert [error]="error" />
     }
 
     @if (usersState.data?.results; as users) {
