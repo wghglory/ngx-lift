@@ -25,10 +25,10 @@ export class CombineLatestEagerComponent {
   </p>
 
   @if (vm.rockStarState?.error; as error) {
-    <clx-alert [error]="error" />
+    <cll-alert [error]="error" />
   }
   @if (vm.rockStarState?.loading) {
-    <clx-spinner />
+    <cll-spinner />
   }
   @if (vm.rockStarState?.data; as rockStar) {
     <p class="!text-xl">{{ rockStar.name }}</p>

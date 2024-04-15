@@ -35,9 +35,9 @@ import {switchMapWithAsyncState} from 'ngx-lift';
     </clr-radio-container>
 
     <div class="mt-6" *ngIf="searchState$ | async as vm">
-      <clx-spinner *ngIf="vm.loading" />
+      <cll-spinner *ngIf="vm.loading" />
 
-      <clx-alert *ngIf="vm.error as error" [error]="error" />
+      <cll-alert *ngIf="vm.error as error" [error]="error" />
 
       <div *ngIf="vm.data as users" class="card-grid">
         <app-user-card *ngFor="let user of users" [user]="user" />

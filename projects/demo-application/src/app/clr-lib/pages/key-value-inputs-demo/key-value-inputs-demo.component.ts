@@ -40,7 +40,7 @@ import {KeyValueFormGroup, KeyValueInputsComponent} from 'clr-lift';
   standalone: true,
   imports: [KeyValueInputsComponent],
   template: \`
-    <clx-key-value-inputs
+    <cll-key-value-inputs
       [formArray]="form.controls.appProperties"
       [data]="data"
       [uniqueKey]="true"
@@ -49,7 +49,7 @@ import {KeyValueFormGroup, KeyValueInputsComponent} from 'clr-lift';
       [addText]="'Add Key-Value Pair'"
       [inputSize]="40"
       [isSmallButton]="true"
-    ></clx-key-value-inputs>
+    ></cll-key-value-inputs>
   \`
 })
 export class KeyValueInputsDemoComponent {

@@ -30,7 +30,7 @@ export class ToastDemoComponent {
     </clr-main-container>
 
     <!-- toast container should appear only once -->
-    <clx-toast-container [timeoutSeconds]="8" />
+    <cll-toast-container [timeoutSeconds]="8" />
   \`
 })
 export class AppComponent { }

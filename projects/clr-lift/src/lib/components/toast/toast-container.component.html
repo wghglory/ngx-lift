@@ -1,0 +1,17 @@
+<div class="toast-container" [@toastContainer]>
+  <cll-toast
+    *ngFor="let toast of toasts$ | async; trackBy: trackById"
+    [toastType]="toast.toastType"
+    [manualClosable]="toast.manualClosable ?? manualClosable"
+    [timeoutSeconds]="toast.timeoutSeconds ?? timeoutSeconds"
+    [primaryButtonText]="$any(toast.primaryButtonText)"
+    (primaryButtonClick)="toast.primaryButtonClick?.()"
+    [secondaryButtonText]="$any(toast.secondaryButtonText)"
+    (secondaryButtonClick)="toast.secondaryButtonClick?.()"
+    (closed)="deleteToast(toast.id)"
+  >
+    <p class="toast-title" [innerHTML]="toast.title"></p>
+    <span class="toast-date">{{ toast.date }}</span>
+    <p class="toast-description" [innerHTML]="toast.description"></p>
+  </cll-toast>
+</div>

@@ -42,9 +42,9 @@ import {createAsyncState} from 'ngx-lift';
 @Component({
   template: \`
     <ng-container *ngIf="usersState$ | async as usersState">
-      <clx-spinner *ngIf="usersState.loading"></clx-spinner>
+      <cll-spinner *ngIf="usersState.loading"></cll-spinner>
 
-      <clx-alert *ngIf="usersState.error as error" [error]="error"></clx-alert>
+      <cll-alert *ngIf="usersState.error as error" [error]="error"></cll-alert>
 
       <div class="card-grid" *ngIf="usersState.data as users">
         <app-user-card *ngFor="let user of users" [user]="user"></app-user-card>

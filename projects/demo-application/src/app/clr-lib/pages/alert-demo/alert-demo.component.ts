@@ -21,25 +21,25 @@ export class AlertDemoComponent {
 
   standardAlertsCode = highlight(`
 <!-- error is instance of HttpErrorResponse -->
-<clx-alert [error]="error" />
+<cll-alert [error]="error" />
 
-<clx-alert alertType="success" content="I'm a successful content" />
-<clx-alert alertType="info" content="I'm a info content" />
-<clx-alert alertType="warning" content="I'm a warning content" />
+<cll-alert alertType="success" content="I'm a successful content" />
+<cll-alert alertType="info" content="I'm a info content" />
+<cll-alert alertType="warning" content="I'm a warning content" />
   `);
 
   standardSmallAlertCode = highlight(`
-<clx-alert alertType="danger" content="I'm a small alert" [isSmall]="true" />
+<cll-alert alertType="danger" content="I'm a small alert" [isSmall]="true" />
   `);
 
   appLevelAlertsCode = highlight(`
-<clx-alert [error]="error" [isAppLevel]="true" />
-<clx-alert
+<cll-alert [error]="error" [isAppLevel]="true" />
+<cll-alert
   alertType="success"
   content="I'm a successful content <a href='javascript:void(0)' class='btn btn-outline btn-sm'>View</a>"
   [isAppLevel]="true"
 />
-<clx-alert alertType="info" content="I'm a info content" [isAppLevel]="true" />
-<clx-alert alertType="warning" content="I'm a warning content" [isAppLevel]="true" />
+<cll-alert alertType="info" content="I'm a info content" [isAppLevel]="true" />
+<cll-alert alertType="warning" content="I'm a warning content" [isAppLevel]="true" />
     `);
 }

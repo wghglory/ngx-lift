@@ -85,13 +85,13 @@ import {Deployment} from './deployment.type';
   standalone: true,
   imports: [TimelineWizardComponent],
   template: \`
-    <clx-timeline-wizard
+    <cll-timeline-wizard
       [timelineSteps]="timelineSteps"
       [confirmButtonText]="'Finish'"
       (canceled)="onCanceled()"
       (confirmed)="onConfirmed($event)"
       (finished)="onFinished()"
-    ></clx-timeline-wizard>
+    ></cll-timeline-wizard>
   \`
 })
 export class TimelineWizardDemoComponent {
@@ -249,7 +249,7 @@ type RuntimePropStepData = {appProperties: Array<{key: string; value: string}>};
   ],
   template: \`
     <form clrForm [formGroup]="form">
-      <clx-key-value-inputs
+      <cll-key-value-inputs
         [formArray]="form.controls.appProperties"
         [inputSize]="50"
         [data]="currentStepData?.appProperties!"

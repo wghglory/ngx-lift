@@ -54,7 +54,7 @@ export class MultiAlertsDemoComponent implements OnInit, OnDestroy {
 
   htmlCode = highlight(`
 <clr-main-container>
-  <clx-alert-container />
+  <cll-alert-container />
   <clr-header></clr-header>
 </clr-main-container>
   `);

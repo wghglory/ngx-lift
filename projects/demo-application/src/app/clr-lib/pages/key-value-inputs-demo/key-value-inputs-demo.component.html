@@ -1,4 +1,4 @@
-<clx-page-container [title]="'Key Value Inputs'" class="space-y-9">
+<cll-page-container [title]="'Key Value Inputs'" class="space-y-9">
   <section class="space-y-6">
     <p>
       The <code>KeyValueInputsComponent</code> is an Angular component designed to facilitate the input of key-value
@@ -23,14 +23,14 @@
       </li>
     </ul>
 
-    <clx-callout>
+    <cll-callout>
       Explore how the <code>KeyValueInputsComponent</code> leverages the <code>UniqueValidator</code> to perform
       validation against key controls.
       <a [routerLink]="['/ngx-lift/validators/unique']">
         Click here to gain insights into the implementation and utilization of the <code>UniqueValidator</code> for
         ensuring uniqueness in the key input fields within the component.
       </a>
-    </clx-callout>
+    </cll-callout>
   </section>
 
   <section class="space-y-6">
@@ -63,7 +63,7 @@
   </section>
 
   <form clrForm [formGroup]="form">
-    <clx-key-value-inputs
+    <cll-key-value-inputs
       [formArray]="form.controls.appProperties"
       [inputSize]="30"
       [data]="data"
@@ -76,4 +76,4 @@
 
   <p>Your form value output:</p>
   <app-code-block [code]="form.value | json" lang="json" />
-</clx-page-container>
+</cll-page-container>

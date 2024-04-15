@@ -22,9 +22,9 @@ import {SpinnerComponent} from 'clr-lift';
 export class YourComponent { }
   `);
 
-  defaultCode = highlight(`<clx-spinner />`);
-  middleSizeCode = highlight(`<clx-spinner [size]="'md'" />`);
-  smallSizeCode = highlight(`<clx-spinner [size]="'sm'" />`);
-  alignLeftCode = highlight(`<clx-spinner [isCenter]="false" />`);
-  customClassCode = highlight(`<clx-spinner [isCenter]="false" class="px-10 inline-block" />`);
+  defaultCode = highlight(`<cll-spinner />`);
+  middleSizeCode = highlight(`<cll-spinner [size]="'md'" />`);
+  smallSizeCode = highlight(`<cll-spinner [size]="'sm'" />`);
+  alignLeftCode = highlight(`<cll-spinner [isCenter]="false" />`);
+  customClassCode = highlight(`<cll-spinner [isCenter]="false" class="px-10 inline-block" />`);
 }

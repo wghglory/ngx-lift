@@ -88,7 +88,7 @@ export class DgStateComponent {
   </clr-datagrid>
 
   @if (vm.usersState?.error; as error) {
-    <clx-alert [error]="error" class="mb-4" />
+    <cll-alert [error]="error" class="mb-4" />
   }
 }
   `,
@@ -134,7 +134,7 @@ export class DgStateComponent {
 </clr-datagrid>
 
 @if ((usersState$ | async)?.error; as error) {
-  <clx-alert [error]="error" class="mb-4" />
+  <cll-alert [error]="error" class="mb-4" />
 }
     `);
 

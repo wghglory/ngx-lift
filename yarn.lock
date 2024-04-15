@@ -3463,10 +3463,10 @@ clone@^1.0.2:
   resolved "https://registry.yarnpkg.com/clone/-/clone-1.0.4.tgz#da309cc263df15994c688ca902179ca3c7cd7c7e"
   integrity sha512-JQHZ2QMW6l3aH/j6xCqQThY/9OH4D/9ls34cgkUBiEeocRTU04tHfKPBsUK1PqZCUQM7GiA0IIXJSuXHI64Kbg==
 
-clr-extension@latest:
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/clr-extension/-/clr-extension-0.2.2.tgz#3b3ab71e04ec97c385fed74850574a2d9b8e33c4"
-  integrity sha512-q0MBFQhJrDsqY8g++y+azQkEh77mValFdiIwZd15W4u1qHobIQjUFGmHHeKtry6BmbFrDvZCwG+PjtLyXlYdKg==
+clr-lift@latest:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/clr-lift/-/clr-lift-0.4.0.tgz#2cbebdc39b4fb18b42cbf2a970f60ec93a31883d"
+  integrity sha512-MhI18IFJE/ZxDse0cN7e4zGQar+zOLK29p1Km/u+s8/loiquvYchcHmJ3XPWK0TSvFoFouGcGeThOo8WiaLGmg==
   dependencies:
     tslib "^2.3.0"
 
@@ -6486,10 +6486,10 @@ ng-packagr@^17.0.0:
     esbuild "^0.19.0"
     rollup "^4.5.0"
 
-ngx-extension@latest:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/ngx-extension/-/ngx-extension-0.1.1.tgz#4e984dce460fc2b5e9810c33a9eeeb7cdce1c8b2"
-  integrity sha512-UyJVe9uNrUQEerJ5x4wJSiYDgwQJdg4XwSKsjpGOK9nxfwdywHQC38+Xmfv0tDAdCqwswBV42vLoTzjcBvQQxA==
+ngx-lift@latest:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/ngx-lift/-/ngx-lift-0.4.0.tgz#df42c35973acf6bc67a9d17d16006a7fdc16b3de"
+  integrity sha512-RRp6Fs0rqCSas99WNsD9zQEDIAy0hvFUkyqmIPQIYwyQASGXkMBkPrjbsGNpL2ta4UHRgUhDRXF3vtsEOPXYaA==
   dependencies:
     tslib "^2.3.0"
 
