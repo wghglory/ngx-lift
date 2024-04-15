@@ -1,8 +1,8 @@
 import {CommonModule} from '@angular/common';
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {ClarityModule} from '@clr/angular';
-import {AlertComponent, SpinnerComponent} from 'clr-extension';
-import {createAsyncState} from 'ngx-extension';
+import {AlertComponent, SpinnerComponent} from 'clr-lift';
+import {createAsyncState} from 'ngx-lift';
 import {startWith, Subject, switchMap} from 'rxjs';
 
 import {UserService} from '../../services/user.service';

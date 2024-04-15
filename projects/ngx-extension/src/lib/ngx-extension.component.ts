@@ -1,10 +1,10 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 
 @Component({
-  selector: 'lib-ngx-extension',
+  selector: 'lib-ngx-lift',
   standalone: true,
   imports: [],
-  template: ` <p>ngx-extension works!</p> `,
+  template: ` <p>ngx-lift works!</p> `,
   styles: ``,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

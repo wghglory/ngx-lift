@@ -1,5 +1,5 @@
 /*
- * Public API Surface of clr-extension
+ * Public API Surface of clr-lift
  */
 
 export * from './lib/components';

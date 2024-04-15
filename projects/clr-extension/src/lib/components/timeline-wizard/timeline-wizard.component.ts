@@ -13,7 +13,7 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import {ClarityModule, ClrTimelineStepState} from '@clr/angular';
-import {createAsyncState, isEqual} from 'ngx-extension';
+import {createAsyncState, isEqual} from 'ngx-lift';
 import {debounceTime, distinctUntilChanged, Subject, Subscription, switchMap, tap} from 'rxjs';
 
 import {TranslatePipe} from '../../pipes/translate.pipe';

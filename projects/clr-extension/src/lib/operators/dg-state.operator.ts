@@ -1,5 +1,5 @@
 import {ClrDatagridStateInterface} from '@clr/angular';
-import {isEqual} from 'ngx-extension';
+import {isEqual} from 'ngx-lift';
 import {debounce, distinctUntilChanged, map, Observable, pairwise, pipe, startWith, timer, UnaryFunction} from 'rxjs';
 
 /**

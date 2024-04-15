@@ -1,7 +1,7 @@
 import {CommonModule} from '@angular/common';
 import {HttpClient} from '@angular/common/http';
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
-import {TimelineBaseComponent, TimelineWizardService} from 'clr-extension';
+import {TimelineBaseComponent, TimelineWizardService} from 'clr-lift';
 
 import {Deployment} from '../deployment.type';
 

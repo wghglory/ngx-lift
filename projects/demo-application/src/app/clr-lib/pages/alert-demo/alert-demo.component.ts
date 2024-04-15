@@ -1,7 +1,7 @@
 import {HttpErrorResponse} from '@angular/common/http';
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {ClarityModule} from '@clr/angular';
-import {AlertComponent, PageContainerComponent} from 'clr-extension';
+import {AlertComponent, PageContainerComponent} from 'clr-lift';
 
 import {highlight} from '../../../shared/utils/highlight.util';
 import {CodeBlockComponent} from './../../../shared/components/code-block/code-block.component';

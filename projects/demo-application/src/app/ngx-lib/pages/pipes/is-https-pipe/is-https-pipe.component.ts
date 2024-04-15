@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {PageContainerComponent} from 'clr-extension';
+import {PageContainerComponent} from 'clr-lift';
 
 import {CodeBlockComponent} from '../../../../shared/components/code-block/code-block.component';
 import {highlight} from '../../../../shared/utils/highlight.util';
@@ -14,7 +14,7 @@ import {highlight} from '../../../../shared/utils/highlight.util';
 })
 export class IsHttpsPipeComponent {
   exampleCode = highlight(`
-import {IsHttpsPipe} from 'ngx-extension';
+import {IsHttpsPipe} from 'ngx-lift';
 
 @Component({
   standalone: true,

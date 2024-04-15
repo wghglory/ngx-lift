@@ -1,6 +1,6 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {NgxExtensionHomeComponent} from './ngx-extension-home.component';
+import {NgxExtensionHomeComponent} from './ngx-lift-home.component';
 
 describe('NgxExtensionHomeComponent', () => {
   let component: NgxExtensionHomeComponent;

@@ -2,7 +2,7 @@ import {Routes} from '@angular/router';
 
 import {AlertDemoComponent} from './clr-lib/pages/alert-demo/alert-demo.component';
 import {ClrDatagridUtilComponent} from './clr-lib/pages/clr-datagrid-util/clr-datagrid-util.component';
-import {ClrExtensionHomeComponent} from './clr-lib/pages/clr-extension-home/clr-extension-home.component';
+import {ClrExtensionHomeComponent} from './clr-lib/pages/clr-lift-home/clr-lift-home.component';
 import {DgStateComponent} from './clr-lib/pages/dg-state/dg-state.component';
 import {KeyValueInputsDemoComponent} from './clr-lib/pages/key-value-inputs-demo/key-value-inputs-demo.component';
 import {MultiAlertsDemoComponent} from './clr-lib/pages/multi-alerts-demo/multi-alerts-demo.component';
@@ -10,7 +10,7 @@ import {SpinnerDemoComponent} from './clr-lib/pages/spinner-demo/spinner-demo.co
 import {TimelineWizardDemoComponent} from './clr-lib/pages/timeline-wizard-demo/timeline-wizard-demo.component';
 import {ToastDemoComponent} from './clr-lib/pages/toast-demo/toast-demo.component';
 import {TooltipDemoComponent} from './clr-lib/pages/tooltip-demo/tooltip-demo.component';
-import {NgxExtensionHomeComponent} from './ngx-lib/pages/ngx-extension-home/ngx-extension-home.component';
+import {NgxExtensionHomeComponent} from './ngx-lib/pages/ngx-lift-home/ngx-lift-home.component';
 import {CombineLatestEagerComponent} from './ngx-lib/pages/operators/combine-latest-eager/combine-latest-eager.component';
 import {CreateAsyncStateComponent} from './ngx-lib/pages/operators/create-async-state/create-async-state.component';
 import {DistinctOnChangeComponent} from './ngx-lib/pages/operators/distinct-on-change/distinct-on-change.component';
@@ -27,7 +27,7 @@ import {UrlValidatorComponent} from './ngx-lib/pages/validators/url-validator/ur
 
 export const routes: Routes = [
   {
-    path: 'ngx-extension',
+    path: 'ngx-lift',
     children: [
       {
         path: '',
@@ -103,7 +103,7 @@ export const routes: Routes = [
     ],
   },
   {
-    path: 'clr-extension',
+    path: 'clr-lift',
     children: [
       {
         path: '',
@@ -162,7 +162,7 @@ export const routes: Routes = [
       },
     ],
   },
-  {path: '', redirectTo: '/ngx-extension', pathMatch: 'full'},
+  {path: '', redirectTo: '/ngx-lift', pathMatch: 'full'},
   {
     path: '**',
     component: NgxExtensionHomeComponent,

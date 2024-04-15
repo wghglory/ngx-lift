@@ -1,6 +1,6 @@
 import {TestBed} from '@angular/core/testing';
 
-import {ClrExtensionService} from './clr-extension.service';
+import {ClrExtensionService} from './clr-lift.service';
 
 describe('ClrExtensionService', () => {
   let service: ClrExtensionService;

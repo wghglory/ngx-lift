@@ -1,7 +1,7 @@
 import {CommonModule} from '@angular/common';
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {PageContainerComponent} from 'clr-extension';
-import {MaskOptions, MaskPipe} from 'ngx-extension';
+import {PageContainerComponent} from 'clr-lift';
+import {MaskOptions, MaskPipe} from 'ngx-lift';
 
 import {CodeBlockComponent} from '../../../../shared/components/code-block/code-block.component';
 import {highlight} from '../../../../shared/utils/highlight.util';

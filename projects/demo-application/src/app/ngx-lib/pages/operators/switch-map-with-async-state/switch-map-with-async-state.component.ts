@@ -1,7 +1,7 @@
 import {CommonModule} from '@angular/common';
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {ClarityModule} from '@clr/angular';
-import {PageContainerComponent} from 'clr-extension';
+import {PageContainerComponent} from 'clr-lift';
 
 import {CodeBlockComponent} from '../../../../shared/components/code-block/code-block.component';
 import {FilterUsersComponent} from '../../../../shared/components/filter-users/filter-users.component';
@@ -17,7 +17,7 @@ import {highlight} from '../../../../shared/utils/highlight.util';
 })
 export class SwitchMapWithAsyncStateComponent {
   exampleCode = highlight(`
-import {switchMapWithAsyncState} from 'ngx-extension';
+import {switchMapWithAsyncState} from 'ngx-lift';
 // ... other imports
 
 @Component({

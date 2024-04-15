@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {PageContainerComponent} from 'clr-extension';
+import {PageContainerComponent} from 'clr-lift';
 
 import {CodeBlockComponent} from '../../../../shared/components/code-block/code-block.component';
 import {highlight} from '../../../../shared/utils/highlight.util';
@@ -14,7 +14,7 @@ import {highlight} from '../../../../shared/utils/highlight.util';
 })
 export class ArrayJoinPipeComponent {
   exampleCode = highlight(`
-import {ArrayJoinPipe} from 'ngx-extension';
+import {ArrayJoinPipe} from 'ngx-lift';
 
 @Component({
   standalone: true,

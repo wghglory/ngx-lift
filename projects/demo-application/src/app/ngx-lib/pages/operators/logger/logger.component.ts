@@ -1,7 +1,7 @@
 import {CommonModule} from '@angular/common';
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import {PageContainerComponent} from 'clr-extension';
-import {logger} from 'ngx-extension';
+import {PageContainerComponent} from 'clr-lift';
+import {logger} from 'ngx-lift';
 import {of} from 'rxjs';
 
 import {CodeBlockComponent} from '../../../../shared/components/code-block/code-block.component';
@@ -22,7 +22,7 @@ export class LoggerComponent implements OnInit {
 
   tsCode = highlight(
     `
-import {logger} from 'ngx-extension';
+import {logger} from 'ngx-lift';
 import {of} from 'rxjs';
 
 of([1, 1, 2, 2, 3, 4, 4, 5]).pipe(logger('table')).subscribe();

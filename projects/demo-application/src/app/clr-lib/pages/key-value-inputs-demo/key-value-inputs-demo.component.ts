@@ -2,7 +2,7 @@ import {CommonModule} from '@angular/common';
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormArray, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {RouterLink} from '@angular/router';
-import {CalloutComponent, KeyValueFormGroup, KeyValueInputsComponent, PageContainerComponent} from 'clr-extension';
+import {CalloutComponent, KeyValueFormGroup, KeyValueInputsComponent, PageContainerComponent} from 'clr-lift';
 
 import {CodeBlockComponent} from '../../../shared/components/code-block/code-block.component';
 import {highlight} from '../../../shared/utils/highlight.util';
@@ -34,7 +34,7 @@ export class KeyValueInputsDemoComponent {
   ];
 
   exampleCode = highlight(`
-import {KeyValueFormGroup, KeyValueInputsComponent} from 'clr-extension';
+import {KeyValueFormGroup, KeyValueInputsComponent} from 'clr-lift';
 
 @Component({
   standalone: true,

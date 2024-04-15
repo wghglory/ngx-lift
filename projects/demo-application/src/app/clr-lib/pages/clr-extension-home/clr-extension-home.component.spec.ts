@@ -1,6 +1,6 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {ClrExtensionHomeComponent} from './clr-extension-home.component';
+import {ClrExtensionHomeComponent} from './clr-lift-home.component';
 
 describe('ClrExtensionHomeComponent', () => {
   let component: ClrExtensionHomeComponent;

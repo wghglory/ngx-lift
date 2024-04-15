@@ -24,9 +24,9 @@ export class VerticalNavComponent implements OnInit {
     this.router.events.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((event) => {
       if (event instanceof NavigationEnd) {
         // Route has changed, do something
-        if (event.url.includes('/ngx-extension')) {
+        if (event.url.includes('/ngx-lift')) {
           this.navConfig.set(ngxExtensionNavConfig);
-        } else if (event.url.includes('/clr-extension')) {
+        } else if (event.url.includes('/clr-lift')) {
           this.navConfig.set(clrExtensionNavConfig);
         }
       }

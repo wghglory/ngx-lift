@@ -10,7 +10,7 @@ import {
   Validators,
 } from '@angular/forms';
 import {ClarityModule} from '@clr/angular';
-import {UniqueValidator} from 'ngx-extension';
+import {UniqueValidator} from 'ngx-lift';
 
 import {TranslatePipe} from '../../pipes/translate.pipe';
 import {TranslationService} from './../../services/translation.service';

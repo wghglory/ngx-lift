@@ -1,7 +1,7 @@
 import {CommonModule} from '@angular/common';
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {ClarityModule} from '@clr/angular';
-import {PageContainerComponent} from 'clr-extension';
+import {PageContainerComponent} from 'clr-lift';
 
 import {CodeBlockComponent} from '../../../../shared/components/code-block/code-block.component';
 import {UserCardListComponent} from '../../../../shared/components/user-card-list/user-card-list.component';
@@ -17,7 +17,7 @@ import {highlight} from '../../../../shared/utils/highlight.util';
 })
 export class CreateAsyncStateComponent {
   callbackCode = highlight(`
-import {createAsyncState} from 'ngx-extension';
+import {createAsyncState} from 'ngx-lift';
 
 this.userService.getUsers().pipe(
   createAsyncState({
@@ -36,7 +36,7 @@ export interface AsyncState<T, E = HttpErrorResponse> {
   `);
 
   exampleCode = highlight(`
-import {createAsyncState} from 'ngx-extension';
+import {createAsyncState} from 'ngx-lift';
 // ... other imports
 
 @Component({

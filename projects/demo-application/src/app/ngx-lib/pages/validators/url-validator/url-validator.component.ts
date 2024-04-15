@@ -2,8 +2,8 @@ import {CommonModule} from '@angular/common';
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ClarityModule} from '@clr/angular';
-import {PageContainerComponent} from 'clr-extension';
-import {httpsValidator, urlValidator} from 'ngx-extension';
+import {PageContainerComponent} from 'clr-lift';
+import {httpsValidator, urlValidator} from 'ngx-lift';
 
 import {CodeBlockComponent} from '../../../../shared/components/code-block/code-block.component';
 import {highlight} from '../../../../shared/utils/highlight.util';
@@ -23,7 +23,7 @@ export class UrlValidatorComponent {
   });
 
   exampleCode = highlight(`
-import {httpsValidator, urlValidator} from 'ngx-extension';
+import {httpsValidator, urlValidator} from 'ngx-lift';
 
 @Component({
   standalone: true,

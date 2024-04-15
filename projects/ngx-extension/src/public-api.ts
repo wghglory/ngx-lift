@@ -1,5 +1,5 @@
 /*
- * Public API Surface of ngx-extension
+ * Public API Surface of ngx-lift
  */
 
 export * from './lib/models';

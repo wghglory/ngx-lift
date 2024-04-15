@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ClarityModule} from '@clr/angular';
-import {TimelineBaseComponent} from 'clr-extension';
+import {TimelineBaseComponent} from 'clr-lift';
 
 import {Deployment} from '../deployment.type';
 

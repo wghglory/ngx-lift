@@ -2,7 +2,7 @@ import {CommonModule} from '@angular/common';
 import {Component, inject} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {ClarityModule} from '@clr/angular';
-import {KeyValueInputsComponent, TimelineBaseComponent} from 'clr-extension';
+import {KeyValueInputsComponent, TimelineBaseComponent} from 'clr-lift';
 
 type RuntimePropStepData = {appProperties: Array<{key: string; value: string}>};
 

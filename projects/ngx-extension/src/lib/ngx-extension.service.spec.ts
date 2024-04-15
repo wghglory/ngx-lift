@@ -1,6 +1,6 @@
 import {TestBed} from '@angular/core/testing';
 
-import {NgxExtensionService} from './ngx-extension.service';
+import {NgxExtensionService} from './ngx-lift.service';
 
 describe('NgxExtensionService', () => {
   let service: NgxExtensionService;

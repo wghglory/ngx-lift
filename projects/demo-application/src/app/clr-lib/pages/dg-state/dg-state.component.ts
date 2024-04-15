@@ -2,7 +2,7 @@ import {CommonModule} from '@angular/common';
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {ClarityModule} from '@clr/angular';
-import {AlertComponent, CalloutComponent, PageContainerComponent} from 'clr-extension';
+import {AlertComponent, CalloutComponent, PageContainerComponent} from 'clr-lift';
 
 import {CodeBlockComponent} from '../../../shared/components/code-block/code-block.component';
 import {highlight} from '../../../shared/utils/highlight.util';
@@ -141,8 +141,8 @@ export class DgStateComponent {
   typescriptCode = highlight(
     `
 // user-datagrid.component.ts
-import {AlertComponent, convertToHttpParams, dgState, PageContainerComponent} from 'clr-extension';
-import {AsyncState, createAsyncState} from 'ngx-extension';
+import {AlertComponent, convertToHttpParams, dgState, PageContainerComponent} from 'clr-lift';
+import {AsyncState, createAsyncState} from 'ngx-lift';
 // ... other imports
 
 export class UserDatagridComponent {

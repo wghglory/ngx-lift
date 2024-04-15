@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {ClrTimelineStepState} from '@clr/angular';
-import {CalloutComponent, PageContainerComponent, TimelineStep, TimelineWizardComponent} from 'clr-extension';
+import {CalloutComponent, PageContainerComponent, TimelineStep, TimelineWizardComponent} from 'clr-lift';
 
 import {CodeBlockComponent} from '../../../shared/components/code-block/code-block.component';
 import {highlight} from '../../../shared/utils/highlight.util';
@@ -78,7 +78,7 @@ export class TimelineWizardDemoComponent {
 
   wizardCode = highlight(`
 import {ClrTimelineStepState} from '@clr/angular';
-import {TimelineStep, TimelineWizardComponent} from 'clr-extension';
+import {TimelineStep, TimelineWizardComponent} from 'clr-lift';
 import {Deployment} from './deployment.type';
 
 @Component({
@@ -170,7 +170,7 @@ export type Deployment = {
     `);
 
   operatorCode = highlight(`
-import {TimelineBaseComponent, TimelineWizardService} from 'clr-extension';
+import {TimelineBaseComponent, TimelineWizardService} from 'clr-lift';
 import {Deployment} from '../deployment.type';
 
 @Component({
@@ -237,7 +237,7 @@ export class ConfigureServiceComponent extends TimelineBaseComponent<Deployment[
   `);
 
   runtimePropsCode = highlight(`
-import {KeyValueInputsComponent, TimelineBaseComponent} from 'clr-extension';
+import {KeyValueInputsComponent, TimelineBaseComponent} from 'clr-lift';
 
 type RuntimePropStepData = {appProperties: Array<{key: string; value: string}>};
 
@@ -291,7 +291,7 @@ export class ConfigureRuntimePropComponent extends TimelineBaseComponent<Runtime
   `);
 
   reviewCode = highlight(`
-import {TimelineBaseComponent, TimelineWizardService} from 'clr-extension';
+import {TimelineBaseComponent, TimelineWizardService} from 'clr-lift';
 import {Deployment} from '../deployment.type';
 
 export class ConfigureReviewComponent extends TimelineBaseComponent {
