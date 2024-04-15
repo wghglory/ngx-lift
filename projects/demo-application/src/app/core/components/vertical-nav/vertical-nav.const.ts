@@ -1,6 +1,6 @@
 import {NavConfig} from './nav-config.model';
 
-export const ngxExtensionNavConfig: NavConfig[] = [
+export const ngxLiftNavConfig: NavConfig[] = [
   {
     path: '/ngx-lift/operators',
     value: 'Operators',
@@ -37,7 +37,7 @@ export const ngxExtensionNavConfig: NavConfig[] = [
   },
 ];
 
-export const clrExtensionNavConfig: NavConfig[] = [
+export const clrLiftNavConfig: NavConfig[] = [
   {
     path: '/clr-lift/operators',
     value: 'Operators',

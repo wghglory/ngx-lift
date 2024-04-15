@@ -4,7 +4,7 @@ import {NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet} from 
 import {ClarityModule} from '@clr/angular';
 
 import {NavConfig} from './nav-config.model';
-import {clrExtensionNavConfig, ngxExtensionNavConfig} from './vertical-nav.const';
+import {clrLiftNavConfig, ngxLiftNavConfig} from './vertical-nav.const';
 
 @Component({
   selector: 'app-vertical-nav',
@@ -15,7 +15,7 @@ import {clrExtensionNavConfig, ngxExtensionNavConfig} from './vertical-nav.const
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VerticalNavComponent implements OnInit {
-  navConfig: WritableSignal<NavConfig[]> = signal(ngxExtensionNavConfig);
+  navConfig: WritableSignal<NavConfig[]> = signal(ngxLiftNavConfig);
 
   private router = inject(Router);
   private destroyRef = inject(DestroyRef);
@@ -25,9 +25,9 @@ export class VerticalNavComponent implements OnInit {
       if (event instanceof NavigationEnd) {
         // Route has changed, do something
         if (event.url.includes('/ngx-lift')) {
-          this.navConfig.set(ngxExtensionNavConfig);
+          this.navConfig.set(ngxLiftNavConfig);
         } else if (event.url.includes('/clr-lift')) {
-          this.navConfig.set(clrExtensionNavConfig);
+          this.navConfig.set(clrLiftNavConfig);
         }
       }
     });
