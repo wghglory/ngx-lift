@@ -35,6 +35,12 @@ export const ngxLiftNavConfig: NavConfig[] = [
       {path: '/url', value: 'UrlValidator'},
     ],
   },
+  {
+    path: '/ngx-lift/utilities',
+    value: 'Utilities',
+    icon: 'certificate',
+    children: [{path: '/difference-in-days', value: 'differenceInDays'}],
+  },
 ];
 
 export const clrLiftNavConfig: NavConfig[] = [

@@ -21,6 +21,7 @@ import {ArrayJoinPipeComponent} from './ngx-lib/pages/pipes/array-join-pipe/arra
 import {ByteConverterPipeComponent} from './ngx-lib/pages/pipes/byte-converter-pipe/byte-converter-pipe.component';
 import {IsHttpsPipeComponent} from './ngx-lib/pages/pipes/is-https-pipe/is-https-pipe.component';
 import {MaskPipeComponent} from './ngx-lib/pages/pipes/mask-pipe/mask-pipe.component';
+import {DifferenceInDaysComponent} from './ngx-lib/pages/utilities/difference-in-days/difference-in-days.component';
 import {IfValidatorComponent} from './ngx-lib/pages/validators/if-validator/if-validator.component';
 import {UniqueValidatorComponent} from './ngx-lib/pages/validators/unique-validator/unique-validator.component';
 import {UrlValidatorComponent} from './ngx-lib/pages/validators/url-validator/url-validator.component';
@@ -97,6 +98,15 @@ export const routes: Routes = [
           {
             path: 'url',
             component: UrlValidatorComponent,
+          },
+        ],
+      },
+      {
+        path: 'utilities',
+        children: [
+          {
+            path: 'difference-in-days',
+            component: DifferenceInDaysComponent,
           },
         ],
       },
