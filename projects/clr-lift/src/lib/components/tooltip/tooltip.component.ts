@@ -4,6 +4,7 @@ import {A11yModule} from '@angular/cdk/a11y';
 import {CommonModule} from '@angular/common';
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ComponentRef,
   ElementRef,
@@ -31,11 +32,15 @@ import {isElementClickable, isElementInsideCollection} from './tooltip.util';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TooltipComponent {
+  private cdr = inject(ChangeDetectorRef);
+
   @Input() left = 0;
   @Input() top = 0;
   @Input() width?: number;
   @Input() position?: TooltipPosition;
   @Input() triggerElementHovering = true; // if the trigger element (e.g. button) is being hovered
+
+  @Input() contentContext?: Record<string, any>;
 
   @Input() set content(c: string | TemplateRef<any> | ComponentRef<any>) {
     if (typeof c === 'string') {
@@ -45,7 +50,8 @@ export class TooltipComponent {
 
       // Wait for the component to add the content container
       setTimeout(() => {
-        this.contentContainer?.createEmbeddedView(c);
+        this.contentContainer?.createEmbeddedView(c, this.contentContext);
+        this.cdr.detectChanges();
       });
     } else if (c instanceof ComponentRef) {
       this.text = undefined;

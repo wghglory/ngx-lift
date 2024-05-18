@@ -20,17 +20,24 @@ covered
 ### Usage 1
 
 ```html
-<span cllTooltip="This is our cllTooltip text">Hover 1</span>
+<a href="javascript:void(0)" cllTooltip="This is our cllTooltip text">Basic Tooltip 1</a>
 
-<span cllTooltip cllTooltipContent="This is our cllTooltip text" [cllTooltipHideDelay]="500" [cllTooltipWidth]="100">
-  Hover 2
-</span>
+<a
+  href="javascript:void(0)"
+  cllTooltip
+  cllTooltipContent="This is our cllTooltip text"
+  [cllTooltipHideDelay]="500"
+  [cllTooltipWidth]="100"
+>
+  Basic Tooltip 2
+</a>
 ```
 
 ### Usage 2
 
 ```html
-<span
+<a
+  href="javascript:void(0)"
   cllTooltip
   [cllTooltipContent]="ref"
   [cllTooltipWidth]="100"
@@ -38,22 +45,23 @@ covered
   [cllTooltipPosition]="'tooltip-top-right'"
 >
   Ref
-</span>
+</a>
 <ng-template #ref> Ref template <button (click)="go()" class="btn btn-primary btn-sm">GO</button> </ng-template>
 ```
 
 ### Usage 3
 
 ```html
-<span
+<a
   *ngIf="alertComponent"
+  href="javascript:void(0)"
   cllTooltip
   [cllTooltipContent]="alertComponent"
   [cllTooltipWidth]="600"
   [cllTooltipHideDelay]="2000"
 >
   Component Ref
-</span>
+</a>
 ```
 
 ```typescript

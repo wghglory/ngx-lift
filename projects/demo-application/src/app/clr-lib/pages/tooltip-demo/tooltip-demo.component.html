@@ -44,7 +44,6 @@
 
   <section class="space-y-6">
     <h2>Usages</h2>
-
     <p>
       Import <code>TooltipModule</code> or <code>TooltipDirective</code>, <code>TooltipComponent</code> based on your
       need (standalone components or legacy).
@@ -53,6 +52,18 @@
 
     <h3>Basic Tooltip</h3>
     <app-code-block [code]="basicTooltipCode" lang="html" />
+    <div class="space-x-5">
+      <a href="javascript:void(0)" cllTooltip="This is our cllTooltip text">Basic Tooltip 1</a>
+      <a
+        href="javascript:void(0)"
+        cllTooltip
+        cllTooltipContent="This is our cllTooltip text"
+        [cllTooltipHideDelay]="500"
+        [cllTooltipWidth]="100"
+      >
+        Basic Tooltip 2
+      </a>
+    </div>
     <p>
       In this usage, you can simply add a tooltip by specifying the content directly or through attribute directive
       <code>cllTooltipContent</code>. Additional configurations such as hide delay and width can be customized as per
@@ -60,13 +71,32 @@
     </p>
 
     <h3>Tooltip with Dynamic Content</h3>
-    <app-code-block [code]="refTemplateCode" lang="html" />
-    <ng-template #ref> Ref template <button class="btn btn-primary btn-sm">GO</button> </ng-template>
+    <app-code-block [code]="templateRefCode" lang="html" />
+    <div>
+      <a
+        href="javascript:void(0)"
+        cllTooltip
+        [cllTooltipContent]="content"
+        [cllTooltipContentContext]="{$implicit: 'TemplateRef Example', value: '❤️'}"
+        [cllTooltipWidth]="350"
+        [cllTooltipPosition]="'tooltip-top-right'"
+      >
+        TemplateRef Example Hover
+      </a>
+      <ng-template #content let-data let-value="value">
+        {{ 'A great tooltip:' }} {{ data }} {{ value }}
+        <button class="btn btn-primary btn-sm">GO</button>
+      </ng-template>
+    </div>
     <p>
       In this scenario, Tooltip accepts dynamic content provided through Angular templates. You can specify templates
       using ng-template and bind them to the tooltip component for dynamic display. This allows for more interactive and
       customized tooltips.
     </p>
+    <cll-callout>
+      <code>cllTooltipContentContext</code> is optional, it's the context that will be passed to the ng-template during
+      creating the embedded view.
+    </cll-callout>
 
     <h3>Tooltip with Component Reference</h3>
     <app-code-block [code]="componentRefCode" />
