@@ -1,7 +1,7 @@
 /**
  * Get the coordinates for the tooltip (arrow coordinates) based on the given trigger element's bounding client rect and tooltip class.
  *
- * @param {HTMLElement} triggerElement - The tooltip trigger element. For example, <button clxTooltip>Hover me</button>, where the button is the trigger element.
+ * @param {HTMLElement} triggerElement - The tooltip trigger element. For example, <button cllTooltip>Hover me</button>, where the button is the trigger element.
  * @param {string} tooltipClass - The class of the tooltip.
  * @returns {{ x: number; y: number }} The x and y coordinates for the tooltip (arrow origin).
  */

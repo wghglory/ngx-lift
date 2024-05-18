@@ -39,7 +39,7 @@ describe('TooltipDirective', () => {
     // Trigger mouse leave
     directive.onMouseLeave();
     fixture.detectChanges();
-    tick(directive['clxTooltipHideDelay']);
+    tick(directive['cllTooltipHideDelay']);
 
     // Tooltip should be removed
     expect(directive['tooltipComponent']).toBeFalsy();
@@ -47,7 +47,7 @@ describe('TooltipDirective', () => {
 });
 
 @Component({
-  template: `<div clxTooltip></div>`,
+  template: `<div cllTooltip></div>`,
   standalone: true,
   imports: [TooltipDirective],
 })

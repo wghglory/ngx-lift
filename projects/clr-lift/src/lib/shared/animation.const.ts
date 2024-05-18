@@ -44,7 +44,7 @@ export const lineSecondaryEnterCurve = 'linear';
 export const lineSecondaryEnterTiming = 400;
 export const lineSecondaryEnterDelay = 200;
 
-// –——— CLX ONLY ANIMATIONS —————
+// –——— CLL ONLY ANIMATIONS —————
 export const CLOSE_ICON_DURATION = 300;
 export const CLOSE_ICON_DELAY = 350;
 export const CLOSE_ICON_CURVE = 'cubic-bezier(0, 1.2, 0.7, 1)';

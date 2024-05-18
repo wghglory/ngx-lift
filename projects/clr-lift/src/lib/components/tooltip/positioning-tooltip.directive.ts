@@ -1,11 +1,11 @@
 /* eslint-disable @angular-eslint/directive-selector */
 // This directive is used to position the tooltip automatically. Now it's not being used.
-import { AfterViewInit, Directive, ElementRef, inject } from '@angular/core';
+import {AfterViewInit, Directive, ElementRef, inject} from '@angular/core';
 
-import { collisionDetection } from './tooltip.util';
+import {collisionDetection} from './tooltip.util';
 
 @Directive({
-  selector: '[clxPositioningTooltip]',
+  selector: '[cllPositioningTooltip]',
   standalone: true,
 })
 export class PositioningTooltipDirective implements AfterViewInit {
@@ -27,7 +27,7 @@ export class PositioningTooltipDirective implements AfterViewInit {
     let tooltipClass = tooltipElement.classList.value;
 
     // Update the tooltip class based on collision detection. The 2nd render will be based on the new class (auto positioning)
-    const { left, right, top, bottom } = collisionDetection(tooltipContentElement);
+    const {left, right, top, bottom} = collisionDetection(tooltipContentElement);
 
     if (left) {
       tooltipClass = tooltipClass.replace(/left/g, 'right');

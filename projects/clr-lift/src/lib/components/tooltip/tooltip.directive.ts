@@ -18,15 +18,15 @@ import {TooltipPosition} from './tooltip.model';
 import {collisionDetection, getTooltipCoords} from './tooltip.util';
 
 @Directive({
-  selector: '[clxTooltip]',
+  selector: '[cllTooltip]',
   standalone: true,
 })
 export class TooltipDirective {
-  @Input() clxTooltip = '';
-  @Input() clxTooltipContent: string | TemplateRef<any> | ComponentRef<any> = '';
-  @Input() clxTooltipHideDelay = 500;
-  @Input() clxTooltipWidth = 240;
-  @Input() clxTooltipPosition?: TooltipPosition;
+  @Input() cllTooltip = '';
+  @Input() cllTooltipContent: string | TemplateRef<any> | ComponentRef<any> = '';
+  @Input() cllTooltipHideDelay = 500;
+  @Input() cllTooltipWidth = 240;
+  @Input() cllTooltipPosition?: TooltipPosition;
 
   private elementRef = inject(ElementRef);
   private appRef = inject(ApplicationRef);
@@ -78,7 +78,7 @@ export class TooltipDirective {
     this.document.body.appendChild(this.hostElement);
 
     // calculatedPosition is the 1st render expected tooltip class.
-    const calculatedPosition = this.calculateTooltipPosition(this.clxTooltipPosition);
+    const calculatedPosition = this.calculateTooltipPosition(this.cllTooltipPosition);
     this.setTooltipProps(calculatedPosition);
 
     this.tooltipComponent.hostView.detectChanges(); // OR this.tooltipComponent.changeDetectorRef.detectChanges();
@@ -109,7 +109,7 @@ export class TooltipDirective {
           this.tooltipComponent = undefined;
         }
       },
-      force ? 0 : this.clxTooltipHideDelay,
+      force ? 0 : this.cllTooltipHideDelay,
     );
   }
 
@@ -146,8 +146,8 @@ export class TooltipDirective {
     const coords = getTooltipCoords(this.triggerElement, calculatedPosition);
 
     this.tooltipComponent.setInput('triggerElementHovering', true);
-    this.tooltipComponent.setInput('content', this.clxTooltipContent || this.clxTooltip);
-    this.tooltipComponent.setInput('width', this.clxTooltipWidth);
+    this.tooltipComponent.setInput('content', this.cllTooltipContent || this.cllTooltip);
+    this.tooltipComponent.setInput('width', this.cllTooltipWidth);
     this.tooltipComponent.setInput('position', calculatedPosition);
     this.tooltipComponent.setInput('left', coords.x);
     this.tooltipComponent.setInput('top', coords.y);

@@ -20,9 +20,9 @@ covered
 ### Usage 1
 
 ```html
-<span clxTooltip="This is our clxTooltip text">Hover 1</span>
+<span cllTooltip="This is our cllTooltip text">Hover 1</span>
 
-<span clxTooltip clxTooltipContent="This is our clxTooltip text" [clxTooltipHideDelay]="500" [clxTooltipWidth]="100">
+<span cllTooltip cllTooltipContent="This is our cllTooltip text" [cllTooltipHideDelay]="500" [cllTooltipWidth]="100">
   Hover 2
 </span>
 ```
@@ -31,11 +31,11 @@ covered
 
 ```html
 <span
-  clxTooltip
-  [clxTooltipContent]="ref"
-  [clxTooltipWidth]="100"
-  [clxTooltipHideDelay]="2000"
-  [clxTooltipPosition]="'tooltip-top-right'"
+  cllTooltip
+  [cllTooltipContent]="ref"
+  [cllTooltipWidth]="100"
+  [cllTooltipHideDelay]="2000"
+  [cllTooltipPosition]="'tooltip-top-right'"
 >
   Ref
 </span>
@@ -47,10 +47,10 @@ covered
 ```html
 <span
   *ngIf="alertComponent"
-  clxTooltip
-  [clxTooltipContent]="alertComponent"
-  [clxTooltipWidth]="600"
-  [clxTooltipHideDelay]="2000"
+  cllTooltip
+  [cllTooltipContent]="alertComponent"
+  [cllTooltipWidth]="600"
+  [cllTooltipHideDelay]="2000"
 >
   Component Ref
 </span>
