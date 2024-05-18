@@ -85,7 +85,7 @@
       </a>
       <ng-template #content let-data let-value="value">
         {{ 'A great tooltip:' }} {{ data }} {{ value }}
-        <button class="btn btn-primary btn-sm">GO</button>
+        <cll-callout> You can also put a component inside ng-template </cll-callout>
       </ng-template>
     </div>
     <p>
@@ -100,10 +100,31 @@
 
     <h3>Tooltip with Component Reference</h3>
     <app-code-block [code]="componentRefCode" />
+    <div>
+      <a
+        *ngIf="alertComponentRef"
+        href="javascript:void(0)"
+        cllTooltip
+        [cllTooltipContent]="alertComponentRef"
+        [cllTooltipWidth]="600"
+        [cllTooltipHideDelay]="2000"
+      >
+        Component Ref Example
+      </a>
+    </div>
     <p>
       In this usage, Tooltip can display content from Angular components dynamically. It demonstrates how you can create
       and inject components into the tooltip, providing endless possibilities for displaying rich and interactive
       content.
     </p>
+
+    <h3>Tooltip with Component Type</h3>
+    <app-code-block [code]="componentTypeCode" />
+    <div>
+      <a href="javascript:void(0)" cllTooltip [cllTooltipContent]="SpinnerComponent" [cllTooltipHideDelay]="2000">
+        Component Type Example
+      </a>
+    </div>
+    <p>If you have a component without any inputs, e.g. just display some data. You can pass the component Type.</p>
   </section>
 </cll-page-container>
