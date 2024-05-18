@@ -2,13 +2,14 @@ import {CommonModule} from '@angular/common';
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {PageContainerComponent, TooltipModule} from 'clr-lift';
 
+import {CalloutComponent} from '../../../../../../clr-lift/src/public-api';
 import {CodeBlockComponent} from '../../../shared/components/code-block/code-block.component';
 import {highlight} from '../../../shared/utils/highlight.util';
 
 @Component({
   selector: 'app-tooltip-demo',
   standalone: true,
-  imports: [CommonModule, CodeBlockComponent, TooltipModule, PageContainerComponent],
+  imports: [CommonModule, CodeBlockComponent, TooltipModule, CalloutComponent, PageContainerComponent],
   templateUrl: './tooltip-demo.component.html',
   styleUrl: './tooltip-demo.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -17,38 +18,43 @@ export class TooltipDemoComponent {
   importCode = highlight(`import {TooltipModule, TooltipComponent, TooltipDirective} from 'clr-lift'`);
 
   basicTooltipCode = highlight(`
-<span cllTooltip="This is our cllTooltip text">Hover 1</span>
+<a href="javascript:void(0)" cllTooltip="This is our cllTooltip text">Basic Tooltip 1</a>
 
-<span cllTooltip cllTooltipContent="This is our cllTooltip text" [cllTooltipHideDelay]="500" [cllTooltipWidth]="100">
-  Hover 2
-</span>
+<a href="javascript:void(0)" cllTooltip cllTooltipContent="This is our cllTooltip text" [cllTooltipHideDelay]="500" [cllTooltipWidth]="100">
+  Basic Tooltip 2
+</a>
     `);
 
-  refTemplateCode = highlight(`
-<span
+  templateRefCode = highlight(`
+<a
+  href="javascript:void(0)"
   cllTooltip
   [cllTooltipContent]="ref"
-  [cllTooltipWidth]="100"
-  [cllTooltipHideDelay]="2000"
+  [cllTooltipContentContext]="{$implicit: 'TemplateRef Example', value: '❤️'}"
+  [cllTooltipWidth]="350"
   [cllTooltipPosition]="'tooltip-top-right'"
 >
   Ref
-</span>
-<ng-template #ref> Ref template <button (click)="go()" class="btn btn-primary btn-sm">GO</button> </ng-template>
+</a>
+<ng-template #ref let-data let-value="value">
+  {{ 'A great tooltip:' }} {{ data }} {{ value }}
+  <button class="btn btn-primary btn-sm">GO</button>
+</ng-template>
     `);
 
   componentRefCode = highlight(`
 @Component({
   template: \`
-  <span
+  <a
     *ngIf="alertComponent"
+    href="javascript:void(0)"
     cllTooltip
     [cllTooltipContent]="alertComponent"
     [cllTooltipWidth]="600"
     [cllTooltipHideDelay]="2000"
   >
     Component Ref
-  </span>
+  </a>
   \`
 })
 

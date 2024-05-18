@@ -24,6 +24,7 @@ import {collisionDetection, getTooltipCoords} from './tooltip.util';
 export class TooltipDirective {
   @Input() cllTooltip = '';
   @Input() cllTooltipContent: string | TemplateRef<any> | ComponentRef<any> = '';
+  @Input() cllTooltipContentContext?: Record<string, any>; // when cllTooltipContent is TemplateRef, context may be needed
   @Input() cllTooltipHideDelay = 500;
   @Input() cllTooltipWidth = 240;
   @Input() cllTooltipPosition?: TooltipPosition;
@@ -147,6 +148,9 @@ export class TooltipDirective {
 
     this.tooltipComponent.setInput('triggerElementHovering', true);
     this.tooltipComponent.setInput('content', this.cllTooltipContent || this.cllTooltip);
+    if (this.cllTooltipContentContext) {
+      this.tooltipComponent.setInput('contentContext', this.cllTooltipContentContext);
+    }
     this.tooltipComponent.setInput('width', this.cllTooltipWidth);
     this.tooltipComponent.setInput('position', calculatedPosition);
     this.tooltipComponent.setInput('left', coords.x);
