@@ -1,8 +1,15 @@
 import {CommonModule} from '@angular/common';
-import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {PageContainerComponent, TooltipModule} from 'clr-lift';
+import {
+  ApplicationRef,
+  ChangeDetectionStrategy,
+  Component,
+  ComponentRef,
+  createComponent,
+  inject,
+  OnInit,
+} from '@angular/core';
+import {AlertComponent, CalloutComponent, PageContainerComponent, SpinnerComponent, TooltipModule} from 'clr-lift';
 
-import {CalloutComponent} from '../../../../../../clr-lift/src/public-api';
 import {CodeBlockComponent} from '../../../shared/components/code-block/code-block.component';
 import {highlight} from '../../../shared/utils/highlight.util';
 
@@ -14,7 +21,7 @@ import {highlight} from '../../../shared/utils/highlight.util';
   styleUrl: './tooltip-demo.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TooltipDemoComponent {
+export class TooltipDemoComponent implements OnInit {
   importCode = highlight(`import {TooltipModule, TooltipComponent, TooltipDirective} from 'clr-lift'`);
 
   basicTooltipCode = highlight(`
@@ -38,7 +45,7 @@ export class TooltipDemoComponent {
 </a>
 <ng-template #ref let-data let-value="value">
   {{ 'A great tooltip:' }} {{ data }} {{ value }}
-  <button class="btn btn-primary btn-sm">GO</button>
+  <cll-callout> You can also put a component inside ng-template </cll-callout>
 </ng-template>
     `);
 
@@ -66,8 +73,28 @@ export class DemoComponent {
   ngOnInit() {
     const environmentInjector = this.appRef.injector;
     this.alertComponent = createComponent(AlertComponent, { environmentInjector });
-    this.alertComponent.setInput('content', 'i am from alert component');
-    this.alertComponent.hostView.detectChanges();
+    this.alertComponent.setInput('content', 'I am from alert component');
+    this.alertComponentRef.setInput('alertType', 'success');
   }
 }`);
+
+  componentTypeCode = highlight(`
+<!-- SpinnerComponent is the component class, not the component instance. -->
+<a href="javascript:void(0)" cllTooltip [cllTooltipContent]="SpinnerComponent" [cllTooltipHideDelay]="2000">
+  Component Type Example
+</a>
+  `);
+
+  SpinnerComponent = SpinnerComponent;
+
+  private appRef = inject(ApplicationRef);
+  alertComponentRef?: ComponentRef<AlertComponent>;
+
+  ngOnInit() {
+    const environmentInjector = this.appRef.injector;
+    this.alertComponentRef = createComponent(AlertComponent, {environmentInjector});
+    this.alertComponentRef.setInput('content', 'I am from alert component');
+    this.alertComponentRef.setInput('alertType', 'success');
+    // this.alertComponentRef.hostView.detectChanges();
+  }
 }

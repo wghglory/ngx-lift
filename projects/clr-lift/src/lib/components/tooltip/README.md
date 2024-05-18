@@ -78,3 +78,15 @@ export class DemoComponent {
   }
 }
 ```
+
+### Usage 4
+
+```html
+<a href="javascript:void(0)" cllTooltip [cllTooltipContent]="SpinnerComponent" [cllTooltipHideDelay]="2000">
+  Component Type Example
+</a>
+```
+
+```ts
+SpinnerComponent = SpinnerComponent;
+```

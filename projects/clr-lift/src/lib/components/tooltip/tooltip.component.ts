@@ -14,6 +14,7 @@ import {
   Input,
   Output,
   TemplateRef,
+  Type,
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
@@ -42,23 +43,24 @@ export class TooltipComponent {
 
   @Input() contentContext?: Record<string, any>;
 
-  @Input() set content(c: string | TemplateRef<any> | ComponentRef<any>) {
+  @Input() set content(c: string | TemplateRef<any> | ComponentRef<any> | Type<any>) {
     if (typeof c === 'string') {
       this.text = c;
     } else if (c instanceof TemplateRef) {
-      this.text = undefined;
-
       // Wait for the component to add the content container
       setTimeout(() => {
         this.contentContainer?.createEmbeddedView(c, this.contentContext);
         this.cdr.detectChanges();
       });
     } else if (c instanceof ComponentRef) {
-      this.text = undefined;
-
-      // Wait for the component to add the content container
       setTimeout(() => {
         this.contentContainer?.insert(c.hostView, 0);
+        this.cdr.detectChanges();
+      });
+    } else if (c instanceof Type) {
+      setTimeout(() => {
+        this.contentContainer?.createComponent(c);
+        this.cdr.detectChanges();
       });
     }
   }
