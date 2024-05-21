@@ -56,7 +56,8 @@ export const clrLiftNavConfig: NavConfig[] = [
     icon: 'heat-map',
     children: [
       {path: '/alert', value: 'Alert'},
-      {path: '/multi-alerts', value: 'Multi Alerts'},
+      {path: '/multi-alerts', value: 'Alerts (Multiple)'},
+      {path: '/certificate', value: 'Certificate View'},
       {path: '/key-value-inputs', value: 'Key Value Inputs'},
       {path: '/spinner', value: 'Spinner'},
       {path: '/timeline-wizard', value: 'Timeline Wizard'},

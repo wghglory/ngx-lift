@@ -10,7 +10,7 @@ import {TranslationService} from '../services/translation.service';
 export class TranslatePipe implements PipeTransform {
   private translationService = inject(TranslationService);
 
-  transform(key: string, ...args: any[]) {
+  transform(key = '', ...args: any[]) {
     return this.translationService.translate(key, ...args);
   }
 }
