@@ -1,0 +1,40 @@
+<span [ngSwitch]="iconStatus" class="status-container">
+  <cds-icon
+    *ngSwitchCase="'success'"
+    shape="success-standard"
+    status="success"
+    [attr.size]="iconSize"
+    [attr.aria-label]="'SUCCEEDED' | translate"
+  />
+  <cds-icon
+    *ngSwitchCase="'error'"
+    shape="error-standard"
+    status="danger"
+    [attr.size]="iconSize"
+    [attr.aria-label]="'ERROR' | translate"
+  />
+  <cds-icon
+    *ngSwitchCase="'pending'"
+    shape="sync"
+    status="info"
+    [attr.size]="iconSize"
+    [attr.aria-label]="'PENDING' | translate"
+  />
+  <cds-icon
+    *ngSwitchCase="'warning'"
+    shape="warning-standard"
+    status="warning"
+    [attr.size]="iconSize"
+    [attr.aria-label]="'WARNING' | translate"
+  />
+  <cds-icon
+    *ngSwitchCase="'inactive'"
+    shape="disconnect"
+    status="danger"
+    [attr.size]="iconSize"
+    [attr.aria-label]="'INACTIVE' | translate"
+  />
+  <cds-icon *ngSwitchDefault shape="unknown-status" [attr.size]="iconSize" [attr.aria-label]="'UNKNOWN' | translate" />
+
+  <ng-content></ng-content>
+</span>

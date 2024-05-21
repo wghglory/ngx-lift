@@ -60,6 +60,7 @@ export const clrLiftNavConfig: NavConfig[] = [
       {path: '/certificate', value: 'Certificate View'},
       {path: '/key-value-inputs', value: 'Key Value Inputs'},
       {path: '/spinner', value: 'Spinner'},
+      {path: '/status-indicator', value: 'Status Indicator'},
       {path: '/timeline-wizard', value: 'Timeline Wizard'},
       {path: '/toast', value: 'Toast'},
       {path: '/tooltip', value: 'Tooltip'},
