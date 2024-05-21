@@ -9,6 +9,7 @@ import {FileReaderDemoComponent} from './clr-lib/pages/file-reader-demo/file-rea
 import {KeyValueInputsDemoComponent} from './clr-lib/pages/key-value-inputs-demo/key-value-inputs-demo.component';
 import {MultiAlertsDemoComponent} from './clr-lib/pages/multi-alerts-demo/multi-alerts-demo.component';
 import {SpinnerDemoComponent} from './clr-lib/pages/spinner-demo/spinner-demo.component';
+import {StatusIndicatorDemoComponent} from './clr-lib/pages/status-indicator-demo/status-indicator-demo.component';
 import {TimelineWizardDemoComponent} from './clr-lib/pages/timeline-wizard-demo/timeline-wizard-demo.component';
 import {ToastDemoComponent} from './clr-lib/pages/toast-demo/toast-demo.component';
 import {TooltipDemoComponent} from './clr-lib/pages/tooltip-demo/tooltip-demo.component';
@@ -152,6 +153,10 @@ export const routes: Routes = [
           {
             path: 'key-value-inputs',
             component: KeyValueInputsDemoComponent,
+          },
+          {
+            path: 'status-indicator',
+            component: StatusIndicatorDemoComponent,
           },
           {
             path: 'timeline-wizard',

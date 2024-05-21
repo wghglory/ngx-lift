@@ -6,6 +6,7 @@ export * from './file-reader';
 export * from './key-value-inputs';
 export * from './page-container';
 export * from './spinner';
+export * from './status-indicator';
 export * from './theme-toggle';
 export * from './timeline-wizard';
 export * from './toast';
