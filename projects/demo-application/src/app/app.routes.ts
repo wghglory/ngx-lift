@@ -5,6 +5,7 @@ import {CertificateDemoComponent} from './clr-lib/pages/certificate-demo/certifi
 import {ClrDatagridUtilComponent} from './clr-lib/pages/clr-datagrid-util/clr-datagrid-util.component';
 import {ClrLiftHomeComponent} from './clr-lib/pages/clr-lift-home/clr-lift-home.component';
 import {DgStateComponent} from './clr-lib/pages/dg-state/dg-state.component';
+import {FileReaderDemoComponent} from './clr-lib/pages/file-reader-demo/file-reader-demo.component';
 import {KeyValueInputsDemoComponent} from './clr-lib/pages/key-value-inputs-demo/key-value-inputs-demo.component';
 import {MultiAlertsDemoComponent} from './clr-lib/pages/multi-alerts-demo/multi-alerts-demo.component';
 import {SpinnerDemoComponent} from './clr-lib/pages/spinner-demo/spinner-demo.component';
@@ -163,6 +164,10 @@ export const routes: Routes = [
           {
             path: 'tooltip',
             component: TooltipDemoComponent,
+          },
+          {
+            path: 'file-reader',
+            component: FileReaderDemoComponent,
           },
         ],
       },

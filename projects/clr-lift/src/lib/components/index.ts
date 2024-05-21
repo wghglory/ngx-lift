@@ -2,6 +2,7 @@ export * from './alert';
 export * from './alerts';
 export * from './callout';
 export * from './certificate-signpost';
+export * from './file-reader';
 export * from './key-value-inputs';
 export * from './page-container';
 export * from './spinner';

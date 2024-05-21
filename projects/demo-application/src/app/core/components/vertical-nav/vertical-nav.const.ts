@@ -63,6 +63,7 @@ export const clrLiftNavConfig: NavConfig[] = [
       {path: '/timeline-wizard', value: 'Timeline Wizard'},
       {path: '/toast', value: 'Toast'},
       {path: '/tooltip', value: 'Tooltip'},
+      {path: '/file-reader', value: 'File Reader'},
     ],
   },
   {

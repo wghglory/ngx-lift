@@ -1,5 +1,5 @@
 import {CommonModule} from '@angular/common';
-import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {certificateIcon, ClarityIcons} from '@cds/core/icon';
 import {ClarityModule} from '@clr/angular';
 import {pki} from 'node-forge';
@@ -21,7 +21,7 @@ ClarityIcons.addIcons(certificateIcon);
   styleUrls: ['./certificate-signpost.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CertificateSignpostComponent implements OnInit {
+export class CertificateSignpostComponent implements OnChanges {
   @Input() position:
     | 'top-left'
     | 'top-middle'
@@ -37,7 +37,7 @@ export class CertificateSignpostComponent implements OnInit {
     | 'left-top' = 'right-middle';
   @Input() showIcon = true;
   @Input() pemEncoded = false; // encode pem string or not
-  @Input() pem = '';
+  @Input({required: true}) pem = '';
 
   constructor(
     private translationService: TranslationService,
@@ -52,6 +52,7 @@ export class CertificateSignpostComponent implements OnInit {
     md5: '',
     sha1: '',
   };
+  hasError = false;
 
   get certificateStatusClass() {
     return this.certificateStatus?.status === 'danger'
@@ -94,10 +95,27 @@ export class CertificateSignpostComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
-    this.hash = this.certificateService.getCertificateHashes(this.pem, this.pemEncoded);
+  ngOnChanges(changes: SimpleChanges) {
+    try {
+      this.hasError = false;
 
-    this.certificate = this.certificateService.getCertificateFromPem(this.pem, this.pemEncoded);
-    this.certificateStatus = this.getCertificateStatus(this.certificate);
+      const pem = changes['pem'].currentValue;
+      const pemEncoded = changes['pemEncoded']?.currentValue || false;
+
+      this.hash = this.certificateService.getCertificateHashes(pem, pemEncoded);
+
+      this.certificate = this.certificateService.getCertificateFromPem(pem, pemEncoded);
+      this.certificateStatus = this.getCertificateStatus(this.certificate);
+    } catch (error: unknown) {
+      console.error((<Error>error).message, 'error');
+      this.hasError = true;
+
+      this.certificateStatus = {
+        labelText: `${error}`,
+        labelClass: 'label-danger',
+        status: 'danger',
+        shape: 'error-standard',
+      };
+    }
   }
 }
