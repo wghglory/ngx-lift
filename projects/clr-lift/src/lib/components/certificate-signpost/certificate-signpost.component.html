@@ -4,6 +4,7 @@
     class="btn btn-sm btn-link btn-icon"
     [attr.aria-label]="'certificate.showCertificate' | translate"
     clrSignpostTrigger
+    [disabled]="hasError"
   >
     <cds-icon shape="certificate" size="16" />
   </button>
