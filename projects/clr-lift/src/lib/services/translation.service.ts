@@ -36,6 +36,7 @@ export class TranslationService {
     }
 
     let translation = this.translations[this.language]?.[key] || this.translations[DEFAULT_LANGUAGE]?.[key];
+
     if (!translation) {
       translation = `!! Key ${key} not found !!`;
     }
