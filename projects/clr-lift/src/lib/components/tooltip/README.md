@@ -29,7 +29,7 @@ covered
   [cllTooltipHideDelay]="500"
   [cllTooltipWidth]="100"
 >
-  Basic Tooltip 2
+  Basic Tooltip 2 with Delay
 </a>
 ```
 
@@ -41,7 +41,7 @@ covered
   cllTooltip
   [cllTooltipContent]="ref"
   [cllTooltipWidth]="100"
-  [cllTooltipHideDelay]="2000"
+  [cllTooltipHideDelay]="1000"
   [cllTooltipPosition]="'tooltip-top-right'"
 >
   Ref
@@ -58,7 +58,7 @@ covered
   cllTooltip
   [cllTooltipContent]="alertComponent"
   [cllTooltipWidth]="600"
-  [cllTooltipHideDelay]="2000"
+  [cllTooltipHideDelay]="1000"
 >
   Component Ref
 </a>
@@ -82,7 +82,7 @@ export class DemoComponent {
 ### Usage 4
 
 ```html
-<a href="javascript:void(0)" cllTooltip [cllTooltipContent]="SpinnerComponent" [cllTooltipHideDelay]="2000">
+<a href="javascript:void(0)" cllTooltip [cllTooltipContent]="SpinnerComponent" [cllTooltipHideDelay]="1000">
   Component Type Example
 </a>
 ```
