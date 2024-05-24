@@ -58,7 +58,7 @@ export class TooltipDemoComponent implements OnInit {
     cllTooltip
     [cllTooltipContent]="alertComponent"
     [cllTooltipWidth]="600"
-    [cllTooltipHideDelay]="2000"
+    [cllTooltipHideDelay]="1000"
   >
     Component Ref
   </a>
@@ -80,7 +80,7 @@ export class DemoComponent {
 
   componentTypeCode = highlight(`
 <!-- SpinnerComponent is the component class, not the component instance. -->
-<a href="javascript:void(0)" cllTooltip [cllTooltipContent]="SpinnerComponent" [cllTooltipHideDelay]="2000">
+<a href="javascript:void(0)" cllTooltip [cllTooltipContent]="SpinnerComponent" [cllTooltipHideDelay]="1000">
   Component Type Example
 </a>
   `);

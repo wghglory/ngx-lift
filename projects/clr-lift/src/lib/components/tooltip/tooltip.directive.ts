@@ -26,7 +26,7 @@ export class TooltipDirective {
   @Input() cllTooltip = '';
   @Input() cllTooltipContent: string | TemplateRef<any> | ComponentRef<any> | Type<any> = '';
   @Input() cllTooltipContentContext?: Record<string, any>; // when cllTooltipContent is TemplateRef, context may be needed
-  @Input() cllTooltipHideDelay = 500;
+  @Input() cllTooltipHideDelay = 0;
   @Input() cllTooltipWidth = 240;
   @Input() cllTooltipPosition?: TooltipPosition;
 
