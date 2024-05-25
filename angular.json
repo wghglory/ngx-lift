@@ -61,7 +61,12 @@
             "tsConfig": "projects/demo-application/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": ["projects/demo-application/src/favicon.ico", "projects/demo-application/src/assets"],
-            "styles": ["node_modules/@clr/ui/clr-ui.min.css", "projects/demo-application/src/styles.scss"],
+            "styles": [
+              "node_modules/@cds/core/global.min.css",
+              "node_modules/@cds/core/styles/theme.dark.min.css",
+              "node_modules/@clr/ui/clr-ui.min.css",
+              "projects/demo-application/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
