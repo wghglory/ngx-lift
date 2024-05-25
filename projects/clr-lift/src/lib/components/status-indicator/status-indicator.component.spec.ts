@@ -8,7 +8,7 @@ describe('StatusIndicatorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [StatusIndicatorComponent],
+      imports: [StatusIndicatorComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(StatusIndicatorComponent);
