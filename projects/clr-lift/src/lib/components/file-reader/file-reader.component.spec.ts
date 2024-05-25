@@ -1,4 +1,5 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {NgControl} from '@angular/forms';
 
 import {FileReaderComponent} from './file-reader.component';
 
@@ -9,6 +10,7 @@ describe('FileReaderComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [FileReaderComponent],
+      providers: [NgControl],
     });
     fixture = TestBed.createComponent(FileReaderComponent);
     component = fixture.componentInstance;
