@@ -1,7 +1,7 @@
 import {CommonModule} from '@angular/common';
 import {Component} from '@angular/core';
 import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
-import {certificateIcon, ClarityIcons, heatMapIcon, objectsIcon, wrenchIcon} from '@cds/core/icon';
+import {certificateIcon, ClarityIcons, heatMapIcon, objectsIcon, radarIcon, wrenchIcon} from '@cds/core/icon';
 import {ClarityModule} from '@clr/angular';
 import {ThemeToggleComponent, ToastContainerComponent} from 'clr-lift';
 import hljs from 'highlight.js/lib/core';
@@ -17,8 +17,7 @@ hljs.registerLanguage('typescript', typescript);
 hljs.registerLanguage('javascript', javascript);
 
 // register clarity icons
-
-ClarityIcons.addIcons(objectsIcon, wrenchIcon, certificateIcon, heatMapIcon);
+ClarityIcons.addIcons(objectsIcon, wrenchIcon, certificateIcon, heatMapIcon, radarIcon);
 
 ClarityIcons.addIcons([
   'pipes',

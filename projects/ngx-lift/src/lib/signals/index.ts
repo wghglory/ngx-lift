@@ -1,1 +1,1 @@
-export * from './to-signal-with-state';
+export * from './create-notifier';
