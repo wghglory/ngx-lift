@@ -2,6 +2,14 @@ import {NavConfig} from './nav-config.model';
 
 export const ngxLiftNavConfig: NavConfig[] = [
   {
+    path: '/ngx-lift/signals',
+    value: 'Signal Utils',
+    icon: 'radar',
+    children: [
+      {path: '/createNotifier', value: 'createNotifier'},
+    ],
+  },
+  {
     path: '/ngx-lift/operators',
     value: 'Operators',
     icon: 'objects',
@@ -38,7 +46,7 @@ export const ngxLiftNavConfig: NavConfig[] = [
   {
     path: '/ngx-lift/utilities',
     value: 'Utilities',
-    icon: 'certificate',
+    icon: 'wrench',
     children: [{path: '/difference-in-days', value: 'differenceInDays'}],
   },
 ];
