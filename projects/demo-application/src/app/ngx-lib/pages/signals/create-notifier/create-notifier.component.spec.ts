@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CreateNotifierComponent } from './create-notifier.component';
+import {CreateNotifierComponent} from './create-notifier.component';
 
 describe('CreateNotifierComponent', () => {
   let component: CreateNotifierComponent;
@@ -8,10 +8,9 @@ describe('CreateNotifierComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CreateNotifierComponent]
-    })
-    .compileComponents();
-    
+      imports: [CreateNotifierComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(CreateNotifierComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

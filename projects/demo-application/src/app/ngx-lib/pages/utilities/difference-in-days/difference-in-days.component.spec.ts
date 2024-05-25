@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { DifferenceInDaysComponent } from './difference-in-days.component';
+import {DifferenceInDaysComponent} from './difference-in-days.component';
 
 describe('DifferenceInDaysComponent', () => {
   let component: DifferenceInDaysComponent;
@@ -8,10 +8,9 @@ describe('DifferenceInDaysComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DifferenceInDaysComponent]
-    })
-    .compileComponents();
-    
+      imports: [DifferenceInDaysComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(DifferenceInDaysComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

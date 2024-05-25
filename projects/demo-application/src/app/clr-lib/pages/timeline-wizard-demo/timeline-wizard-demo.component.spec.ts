@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { TimelineWizardDemoComponent } from './timeline-wizard-demo.component';
+import {TimelineWizardDemoComponent} from './timeline-wizard-demo.component';
 
 describe('TimelineWizardDemoComponent', () => {
   let component: TimelineWizardDemoComponent;
@@ -8,10 +8,9 @@ describe('TimelineWizardDemoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TimelineWizardDemoComponent]
-    })
-    .compileComponents();
-    
+      imports: [TimelineWizardDemoComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(TimelineWizardDemoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

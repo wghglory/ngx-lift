@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ByteConverterPipeComponent } from './byte-converter-pipe.component';
+import {ByteConverterPipeComponent} from './byte-converter-pipe.component';
 
 describe('ByteConverterPipeComponent', () => {
   let component: ByteConverterPipeComponent;
@@ -8,10 +8,9 @@ describe('ByteConverterPipeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ByteConverterPipeComponent]
-    })
-    .compileComponents();
-    
+      imports: [ByteConverterPipeComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(ByteConverterPipeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

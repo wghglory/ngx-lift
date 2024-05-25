@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ConfigureRuntimePropComponent } from './configure-runtime-prop.component';
+import {ConfigureRuntimePropComponent} from './configure-runtime-prop.component';
 
 describe('ConfigureRuntimePropComponent', () => {
   let component: ConfigureRuntimePropComponent;

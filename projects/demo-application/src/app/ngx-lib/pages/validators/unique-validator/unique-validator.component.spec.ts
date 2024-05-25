@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { UniqueValidatorComponent } from './unique-validator.component';
+import {UniqueValidatorComponent} from './unique-validator.component';
 
 describe('UniqueValidatorComponent', () => {
   let component: UniqueValidatorComponent;
@@ -8,10 +8,9 @@ describe('UniqueValidatorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UniqueValidatorComponent]
-    })
-    .compileComponents();
-    
+      imports: [UniqueValidatorComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(UniqueValidatorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CertificateDemoComponent } from './certificate-demo.component';
+import {CertificateDemoComponent} from './certificate-demo.component';
 
 describe('CertificateDemoComponent', () => {
   let component: CertificateDemoComponent;
@@ -8,10 +8,9 @@ describe('CertificateDemoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CertificateDemoComponent]
-    })
-    .compileComponents();
-    
+      imports: [CertificateDemoComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(CertificateDemoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
