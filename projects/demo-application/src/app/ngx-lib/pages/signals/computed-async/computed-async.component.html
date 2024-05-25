@@ -127,6 +127,10 @@
     <app-code-block [code]="loadInitiallyHtmlCode" />
     <app-code-block [code]="loadInitiallyTsCode" />
 
+    <cll-callout>
+      Learn <a [routerLink]="['../createNotifier']"><code>createNotifier</code> here</a>.
+    </cll-callout>
+
     <h4>Load users when button clicks</h4>
     <div>
       <button class="btn btn-primary" (click)="load()" [clrLoading]="deferredUsersState()?.loading === true">

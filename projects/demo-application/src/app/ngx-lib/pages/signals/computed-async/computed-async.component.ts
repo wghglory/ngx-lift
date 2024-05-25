@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component, inject, Signal} from '@angular/core';
+import {RouterLink} from '@angular/router';
 import {ClarityModule} from '@clr/angular';
-import {AlertComponent, PageContainerComponent, SpinnerComponent} from 'clr-lift';
+import {AlertComponent, CalloutComponent, PageContainerComponent, SpinnerComponent} from 'clr-lift';
 import {AsyncState, computedAsync, createAsyncState, createNotifier} from 'ngx-lift';
 
 import {CodeBlockComponent} from '../../../../shared/components/code-block/code-block.component';
@@ -15,7 +16,9 @@ import {highlight} from '../../../../shared/utils/highlight.util';
   standalone: true,
   imports: [
     ClarityModule,
+    RouterLink,
     PageContainerComponent,
+    CalloutComponent,
     CodeBlockComponent,
     SpinnerComponent,
     AlertComponent,
@@ -169,6 +172,8 @@ export class UserDetailComponent {
   `);
 
   loadInitiallyTsCode = highlight(`
+import {AsyncState, computedAsync, createAsyncState, createNotifier} from 'ngx-lift';
+
 export class UserDetailComponent {
   private userService = inject(UserService);
   private refreshNotifier = createNotifier();
@@ -215,6 +220,8 @@ export class UserDetailComponent {
   `);
 
   loadDeferTsCode = highlight(`
+import {AsyncState, computedAsync, createAsyncState, createNotifier} from 'ngx-lift';
+
 export class UserDetailComponent {
   private userService = inject(UserService);
   private refreshNotifier = createNotifier();
