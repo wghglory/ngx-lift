@@ -1,6 +1,6 @@
 {
   "name": "ngx-lift",
-  "version": "0.5.0",
+  "version": "1.0.0",
   "description": "A project has been crafted with the goal of enhancing and simplifying your Angular development experience.",
   "author": "Guanghui Wang <guanghui-wang@foxmail.com>",
   "peerDependencies": {
