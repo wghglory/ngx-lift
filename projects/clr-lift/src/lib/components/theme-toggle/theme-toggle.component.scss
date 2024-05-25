@@ -1,4 +1,9 @@
-cds-icon.theme-toggle,
-button:hover cds-icon.theme-toggle {
-  color: hsl(198, 20%, 91%);
+:host {
+  display: flex;
+  align-items: center;
+
+  cds-icon.theme-toggle,
+  button:hover cds-icon.theme-toggle {
+    color: hsl(198, 20%, 91%);
+  }
 }
