@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ConfigureOperatorComponent } from './configure-operator.component';
+import {ConfigureOperatorComponent} from './configure-operator.component';
 
 describe('ConfigureOperatorComponent', () => {
   let component: ConfigureOperatorComponent;

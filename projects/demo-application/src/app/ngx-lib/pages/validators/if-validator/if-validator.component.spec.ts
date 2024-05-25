@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { IfValidatorComponent } from './if-validator.component';
+import {IfValidatorComponent} from './if-validator.component';
 
 describe('IfValidatorComponent', () => {
   let component: IfValidatorComponent;
@@ -8,10 +8,9 @@ describe('IfValidatorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [IfValidatorComponent]
-    })
-    .compileComponents();
-    
+      imports: [IfValidatorComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(IfValidatorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

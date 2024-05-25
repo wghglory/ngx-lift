@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { StatusIndicatorDemoComponent } from './status-indicator-demo.component';
+import {StatusIndicatorDemoComponent} from './status-indicator-demo.component';
 
 describe('StatusIndicatorDemoComponent', () => {
   let component: StatusIndicatorDemoComponent;
@@ -8,10 +8,9 @@ describe('StatusIndicatorDemoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [StatusIndicatorDemoComponent]
-    })
-    .compileComponents();
-    
+      imports: [StatusIndicatorDemoComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(StatusIndicatorDemoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

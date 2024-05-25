@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { UrlValidatorComponent } from './url-validator.component';
+import {UrlValidatorComponent} from './url-validator.component';
 
 describe('UrlValidatorComponent', () => {
   let component: UrlValidatorComponent;
@@ -8,10 +8,9 @@ describe('UrlValidatorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UrlValidatorComponent]
-    })
-    .compileComponents();
-    
+      imports: [UrlValidatorComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(UrlValidatorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
