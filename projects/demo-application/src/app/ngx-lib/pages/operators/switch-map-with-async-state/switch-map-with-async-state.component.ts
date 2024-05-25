@@ -1,7 +1,11 @@
 import {CommonModule} from '@angular/common';
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
+import {toSignal} from '@angular/core/rxjs-interop';
 import {ClarityModule} from '@clr/angular';
-import {PageContainerComponent} from 'clr-lift';
+import {AlertComponent, PageContainerComponent} from 'clr-lift';
+import {switchMapWithAsyncState} from 'ngx-lift';
+import {Subject} from 'rxjs';
 
 import {CodeBlockComponent} from '../../../../shared/components/code-block/code-block.component';
 import {FilterUsersComponent} from '../../../../shared/components/filter-users/filter-users.component';
@@ -10,13 +14,35 @@ import {highlight} from '../../../../shared/utils/highlight.util';
 @Component({
   selector: 'app-switch-map-with-async-state',
   standalone: true,
-  imports: [CommonModule, ClarityModule, PageContainerComponent, CodeBlockComponent, FilterUsersComponent],
+  imports: [
+    CommonModule,
+    ClarityModule,
+    AlertComponent,
+    PageContainerComponent,
+    CodeBlockComponent,
+    FilterUsersComponent,
+  ],
   templateUrl: './switch-map-with-async-state.component.html',
   styleUrl: './switch-map-with-async-state.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SwitchMapWithAsyncStateComponent {
-  exampleCode = highlight(`
+  private http = inject(HttpClient);
+
+  #saveAction = new Subject<void>();
+  saveAction = toSignal(
+    this.#saveAction.pipe(
+      switchMapWithAsyncState(() => {
+        return this.http.post(`https://randomuser.me/api`, {payload: 1});
+      }),
+    ),
+  );
+
+  save() {
+    this.#saveAction.next();
+  }
+
+  example1Code = highlight(`
 import {switchMapWithAsyncState} from 'ngx-lift';
 // ... other imports
 
@@ -54,6 +80,45 @@ export class FilterUsersComponent {
   );
 
   private userService = inject(UserService);
+}
+  `);
+
+  example2Code = highlight(`
+import {switchMapWithAsyncState} from 'ngx-lift';
+import {toSignal} from '@angular/core/rxjs-interop';
+
+@Component({
+  template: \`
+    <form>
+      <clr-input-container>
+        <label>Name</label>
+        <input clrInput name="username" />
+      </clr-input-container>
+
+      <button type="button" class="btn btn-primary" (click)="save()" [clrLoading]="saveAction()?.loading === true">
+        Save
+      </button>
+      @if (saveAction()?.error; as error) {
+        <cll-alert [error]="error" />
+      }
+    </form>
+  \`
+})
+export class SubmitFormComponent {
+  private http = inject(HttpClient);
+
+  #saveAction = new Subject<void>();
+  saveAction = toSignal(
+    this.#saveAction.pipe(
+      switchMapWithAsyncState(() => {
+        return this.http.post(\`https://randomuser.me/api\`, {payload: 1});
+      }),
+    ),
+  );
+
+  save() {
+    this.#saveAction.next();
+  }
 }
   `);
 }

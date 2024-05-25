@@ -10,8 +10,31 @@
   </p>
 
   <section class="space-y-6">
-    <h2>Example Code</h2>
-    <app-code-block [code]="exampleCode" />
+    <h2>Example 1</h2>
+    <p>Selecting a different gender will populate the user list accordingly.</p>
     <app-filter-users />
+    <app-code-block [code]="example1Code" />
+
+    <h2>Example 2</h2>
+    <p>
+      Submit the form using <code>switchMapWithAsyncState</code> and <code>toSignal</code>. The submission will always
+      emit an error because the API is designed to simulate an error.
+    </p>
+
+    <form>
+      <clr-input-container>
+        <label>Name</label>
+        <input clrInput name="username" />
+      </clr-input-container>
+
+      <button type="button" class="btn btn-primary mt-5" (click)="save()" [clrLoading]="saveAction()?.loading === true">
+        Save
+      </button>
+      @if (saveAction()?.error; as error) {
+        <cll-alert [error]="error" />
+      }
+    </form>
+
+    <app-code-block [code]="example2Code" />
   </section>
 </cll-page-container>
