@@ -19,7 +19,7 @@ components built on top of clarity components.
 
 ## Requirements
 
-To ensure optimal performance and compatibility, clr-lift requires **Angular version 15 or higher**.
+To ensure optimal performance and compatibility, clr-lift requires **Angular version 17 or higher**.
 
 ## Getting Started
 

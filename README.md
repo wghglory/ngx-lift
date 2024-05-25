@@ -31,7 +31,7 @@ source code on GitHub.
 
 ## Requirements
 
-To ensure optimal performance and compatibility, ngx-lift requires **Angular version 15 or higher**.
+To ensure optimal performance and compatibility, ngx-lift requires **Angular version 17 or higher**.
 
 ## Get Started
 
