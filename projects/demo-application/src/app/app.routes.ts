@@ -26,6 +26,7 @@ import {IsHttpsPipeComponent} from './ngx-lib/pages/pipes/is-https-pipe/is-https
 import {MaskPipeComponent} from './ngx-lib/pages/pipes/mask-pipe/mask-pipe.component';
 import {ComputedAsyncComponent} from './ngx-lib/pages/signals/computed-async/computed-async.component';
 import {CreateNotifierComponent} from './ngx-lib/pages/signals/create-notifier/create-notifier.component';
+import {InjectParamsComponent} from './ngx-lib/pages/signals/inject-params/inject-params.component';
 import {DifferenceInDaysComponent} from './ngx-lib/pages/utilities/difference-in-days/difference-in-days.component';
 import {IfValidatorComponent} from './ngx-lib/pages/validators/if-validator/if-validator.component';
 import {UniqueValidatorComponent} from './ngx-lib/pages/validators/unique-validator/unique-validator.component';
@@ -49,6 +50,10 @@ export const routes: Routes = [
           {
             path: 'createNotifier',
             component: CreateNotifierComponent,
+          },
+          {
+            path: 'injectParams',
+            component: InjectParamsComponent,
           },
         ],
       },

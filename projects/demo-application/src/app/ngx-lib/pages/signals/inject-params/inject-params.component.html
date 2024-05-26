@@ -1,0 +1,21 @@
+<cll-page-container [title]="'injectParams'" class="space-y-9">
+  <section class="space-y-6">
+    <p>
+      <code>injectParams</code> is a helper function that enables the injection of route parameters as a signal. This
+      approach is beneficial in a modern Angular signals-based architecture, as it allows for reactive handling of route
+      parameters.
+    </p>
+
+    <h2>Usage</h2>
+    <ul class="list-disc">
+      <li>
+        When called without any parameter, <code>injectParams</code> returns a signal containing the current route
+        parameters.
+      </li>
+      <li>To retrieve the value of a specific parameter, pass the parameter name to <code>injectParams</code>.</li>
+      <li>To transform the parameters, provide a function to <code>injectParams</code>.</li>
+    </ul>
+
+    <app-code-block [code]="code" />
+  </section>
+</cll-page-container>
