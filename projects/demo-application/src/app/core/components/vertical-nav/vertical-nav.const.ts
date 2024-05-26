@@ -8,6 +8,7 @@ export const ngxLiftNavConfig: NavConfig[] = [
     children: [
       {path: '/computedAsync', value: 'computedAsync'},
       {path: '/createNotifier', value: 'createNotifier'},
+      {path: '/injectParams/hi-param', value: 'injectParams'},
     ],
   },
   {
