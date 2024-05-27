@@ -9,6 +9,7 @@ export const ngxLiftNavConfig: NavConfig[] = [
       {path: '/computedAsync', value: 'computedAsync'},
       {path: '/createNotifier', value: 'createNotifier'},
       {path: '/injectParams/hi-param', value: 'injectParams'},
+      {path: '/injectQueryParams', queryParams: {search: 7, page: 5}, value: 'injectQueryParams'},
     ],
   },
   {

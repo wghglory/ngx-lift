@@ -5,7 +5,12 @@
       {{ data.value }}
       <clr-vertical-nav-group-children *clrIfExpanded="true">
         @for (child of data.children; track child.value) {
-          <a clrVerticalNavLink [routerLink]="data.path + child.path" routerLinkActive="active">
+          <a
+            clrVerticalNavLink
+            [routerLink]="data.path + child.path"
+            [queryParams]="child?.queryParams"
+            routerLinkActive="active"
+          >
             {{ child.value }}
           </a>
         }
