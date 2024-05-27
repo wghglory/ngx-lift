@@ -24,6 +24,7 @@ import {ArrayJoinPipeComponent} from './ngx-lib/pages/pipes/array-join-pipe/arra
 import {ByteConverterPipeComponent} from './ngx-lib/pages/pipes/byte-converter-pipe/byte-converter-pipe.component';
 import {IsHttpsPipeComponent} from './ngx-lib/pages/pipes/is-https-pipe/is-https-pipe.component';
 import {MaskPipeComponent} from './ngx-lib/pages/pipes/mask-pipe/mask-pipe.component';
+import {CombineFromComponent} from './ngx-lib/pages/signals/combine-from/combine-from.component';
 import {ComputedAsyncComponent} from './ngx-lib/pages/signals/computed-async/computed-async.component';
 import {CreateNotifierComponent} from './ngx-lib/pages/signals/create-notifier/create-notifier.component';
 import {InjectParamsComponent} from './ngx-lib/pages/signals/inject-params/inject-params.component';
@@ -44,6 +45,10 @@ export const routes: Routes = [
       {
         path: 'signals',
         children: [
+          {
+            path: 'combineFrom',
+            component: CombineFromComponent,
+          },
           {
             path: 'computedAsync',
             component: ComputedAsyncComponent,
