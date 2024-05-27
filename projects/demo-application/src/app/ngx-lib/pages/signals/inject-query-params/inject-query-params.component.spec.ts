@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { InjectQueryParamsComponent } from './inject-query-params.component';
+import {InjectQueryParamsComponent} from './inject-query-params.component';
 
 describe('InjectQueryParamsComponent', () => {
   let component: InjectQueryParamsComponent;
@@ -8,10 +8,9 @@ describe('InjectQueryParamsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [InjectQueryParamsComponent]
-    })
-    .compileComponents();
-    
+      imports: [InjectQueryParamsComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(InjectQueryParamsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
