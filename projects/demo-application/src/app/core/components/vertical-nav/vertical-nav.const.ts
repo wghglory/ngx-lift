@@ -6,9 +6,10 @@ export const ngxLiftNavConfig: NavConfig[] = [
     value: 'Signal Utils',
     icon: 'radar',
     children: [
-      {path: '/combineFrom', value: 'combineFrom'},
-      {path: '/computedAsync', value: 'computedAsync'},
       {path: '/createNotifier', value: 'createNotifier'},
+      {path: '/computedAsync', value: 'computedAsync'},
+      {path: '/combineFrom', value: 'combineFrom'},
+      {path: '/mergeFrom', value: 'mergeFrom'},
       {path: '/injectParams/hi-param', value: 'injectParams'},
       {path: '/injectQueryParams', queryParams: {search: 7, page: 5}, value: 'injectQueryParams'},
     ],

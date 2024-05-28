@@ -29,6 +29,7 @@ import {ComputedAsyncComponent} from './ngx-lib/pages/signals/computed-async/com
 import {CreateNotifierComponent} from './ngx-lib/pages/signals/create-notifier/create-notifier.component';
 import {InjectParamsComponent} from './ngx-lib/pages/signals/inject-params/inject-params.component';
 import {InjectQueryParamsComponent} from './ngx-lib/pages/signals/inject-query-params/inject-query-params.component';
+import {MergeFromComponent} from './ngx-lib/pages/signals/merge-from/merge-from.component';
 import {DifferenceInDaysComponent} from './ngx-lib/pages/utilities/difference-in-days/difference-in-days.component';
 import {IfValidatorComponent} from './ngx-lib/pages/validators/if-validator/if-validator.component';
 import {UniqueValidatorComponent} from './ngx-lib/pages/validators/unique-validator/unique-validator.component';
@@ -48,6 +49,10 @@ export const routes: Routes = [
           {
             path: 'combineFrom',
             component: CombineFromComponent,
+          },
+          {
+            path: 'mergeFrom',
+            component: MergeFromComponent,
           },
           {
             path: 'computedAsync',
