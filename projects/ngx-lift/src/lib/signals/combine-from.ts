@@ -13,16 +13,16 @@ import {
   startWith,
 } from 'rxjs';
 
-export type ObservableSignalInput<T> = ObservableInput<T> | Signal<T>;
+type ObservableSignalInput<T> = ObservableInput<T> | Signal<T>;
+
+type ObservableSignalInputTuple<T> = {
+  [K in keyof T]: ObservableSignalInput<T[K]> | (() => T[K]);
+};
 
 // pick from ToSignalOptions
 export type CombineFromOptions<T> = {
   readonly injector?: Injector;
   readonly initialValue?: T | null;
-};
-
-type ObservableSignalInputTuple<T> = {
-  [K in keyof T]: ObservableSignalInput<T[K]> | (() => T[K]);
 };
 
 export function combineFrom<Input extends readonly unknown[], Output = Input>(

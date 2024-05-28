@@ -1,13 +1,13 @@
 <cll-page-container [title]="'combineFrom'" class="space-y-9">
   <section class="space-y-6">
     <p>
-      combineFrom is a utility function that takes an array or object of Observables or Signals and produces a Signal
-      that emits the aggregated value from these sources. This function operates akin to combineLatest, yet it extends
-      its functionality to include Signals in the amalgamation process. Normally, it requires invocation within an
-      injection context. However, it offers the flexibility to be called outside of such contexts by providing the
-      Injector within the third argument options object. In cases where an Observable doesn't emit synchronously, you
-      can utilize the startWith operator to modify the initial emitted value, or alternatively specify an initialValue
-      within the options object.
+      <code>combineFrom</code> is a utility function that takes an array or object of Observables or Signals and
+      produces a Signal that emits the aggregated value from these sources. This function operates akin to
+      combineLatest, yet it extends its functionality to include Signals in the amalgamation process. Normally, it
+      requires invocation within an injection context. However, it offers the flexibility to be called outside of such
+      contexts by providing the Injector within the third argument options object. In cases where an Observable doesn't
+      emit synchronously, you can utilize the <code>startWith</code> operator to modify the initial emitted value, or
+      alternatively specify an initialValue within the options object.
     </p>
 
     <h2>Usage</h2>
@@ -35,8 +35,8 @@
     <p>
       To define the starting value of the resulting Signal and prevent potential errors with real async Observables, you
       can employ the initialValue parameter within the third argument options object. Alternatively, you can address
-      this issue by utilizing the startWith operator within the pipe, ensuring that the Observable always begins with a
-      specified initial value, as demonstrated below.
+      this issue by utilizing the <code>startWith</code> operator within the pipe, ensuring that the Observable always
+      begins with a specified initial value, as demonstrated below.
     </p>
     <app-code-block [code]="asyncCode" />
 
