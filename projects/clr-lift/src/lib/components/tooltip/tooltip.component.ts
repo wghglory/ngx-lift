@@ -8,12 +8,11 @@ import {
   Component,
   ComponentRef,
   ElementRef,
-  EventEmitter,
   HostListener,
   inject,
   Input,
   input,
-  Output,
+  output,
   TemplateRef,
   Type,
   ViewChild,
@@ -67,7 +66,7 @@ export class TooltipComponent {
   }
 
   // force close is true
-  @Output() closePopover = new EventEmitter<boolean>();
+  closePopover = output<boolean>();
 
   @ViewChild('contentContainer', {static: false, read: ViewContainerRef})
   contentContainer?: ViewContainerRef;
@@ -85,7 +84,7 @@ export class TooltipComponent {
 
   // click close button should force close the tooltip immediately
   closeTooltip() {
-    this.closePopover.next(true);
+    this.closePopover.emit(true);
   }
 
   @HostListener('window:click', ['$event'])
@@ -94,7 +93,7 @@ export class TooltipComponent {
 
     // Close the tooltip if the user clicks the mouse outside the tooltip or the user clicks a clickable element inside the tooltip
     if ((target && isElementClickable(target)) || !isElementInsideCollection(target, this.tooltipChildren)) {
-      this.closePopover.next(true);
+      this.closePopover.emit(true);
     }
   }
 
@@ -108,13 +107,13 @@ export class TooltipComponent {
     setTimeout(() => {
       // if mouse out and not place onto the trigger element, close the tooltip
       if (!this.triggerElementHovering()) {
-        this.closePopover.next(false);
+        this.closePopover.emit(false);
       }
     }, 300);
   }
 
   @HostListener('body:keydown.escape', ['$event'])
   onEscape(event: KeyboardEvent) {
-    this.closePopover.next(true);
+    this.closePopover.emit(true);
   }
 }

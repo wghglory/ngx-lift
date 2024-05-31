@@ -2,13 +2,12 @@ import {CommonModule} from '@angular/common';
 import {
   Component,
   ElementRef,
-  EventEmitter,
   forwardRef,
   inject,
   Injector,
   input,
   OnInit,
-  Output,
+  output,
   signal,
   ViewChild,
 } from '@angular/core';
@@ -64,7 +63,7 @@ export class FileReaderComponent implements ControlValueAccessor, Validator, OnI
 
   isDisabled = signal(this.disabled());
 
-  @Output() fileChange = new EventEmitter<string>();
+  fileChange = output<string>();
 
   // @Input({ required: true }) formControl: FormControl;
   formControl?: FormControl;

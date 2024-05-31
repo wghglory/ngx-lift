@@ -1,4 +1,4 @@
-import {Component, EventEmitter, inject, input, OnInit, Output} from '@angular/core';
+import {Component, inject, input, OnInit, output} from '@angular/core';
 import {ClarityIcons, moonIcon, sunIcon} from '@cds/core/icon';
 import {ClarityModule} from '@clr/angular';
 
@@ -20,7 +20,7 @@ export class ThemeToggleComponent implements OnInit {
 
   lang = input('');
 
-  @Output() changeTheme = new EventEmitter<string>();
+  changeTheme = output<string>();
 
   hovering = false;
   theme: 'dark' | 'light' = localStorage['cds-theme'] || 'light';

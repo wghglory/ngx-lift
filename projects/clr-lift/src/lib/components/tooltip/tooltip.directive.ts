@@ -12,7 +12,6 @@ import {
   TemplateRef,
   Type,
 } from '@angular/core';
-import {Subscription} from 'rxjs';
 
 import {TooltipComponent} from './tooltip.component';
 import {TooltipPosition} from './tooltip.model';
@@ -35,8 +34,6 @@ export class TooltipDirective {
   private document = inject(DOCUMENT);
 
   private tooltipComponent?: ComponentRef<TooltipComponent>;
-
-  private sub = new Subscription();
 
   get triggerElement() {
     return this.elementRef.nativeElement as HTMLElement;
@@ -104,7 +101,7 @@ export class TooltipDirective {
         // if mouse moves from trigger to tooltip, keep the tooltip.
         // tooltipHovering means not moving onto the tooltip, remove the tooltip
         if (force || this.tooltipComponent.instance.tooltipHovering === false) {
-          this.sub.unsubscribe();
+          // No need unsubscribe here, since angular will auto unsubscribe when the component is destroyed
 
           this.appRef.detachView(this.tooltipComponent.hostView);
           // this.tooltipComponent.destroy();  // avoid doing this because dynamic component inside tooltip will also be destroyed. 2nd hover will raise error
@@ -157,7 +154,7 @@ export class TooltipDirective {
     this.tooltipComponent.setInput('left', coords.x);
     this.tooltipComponent.setInput('top', coords.y);
 
-    this.sub = this.tooltipComponent.instance.closePopover.subscribe((force) => {
+    this.tooltipComponent.instance.closePopover.subscribe((force) => {
       this.removeTooltip(force);
     });
   }
