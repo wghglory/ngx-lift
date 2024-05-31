@@ -1,4 +1,4 @@
-import {Component, EventEmitter, inject, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, inject, input, OnInit, Output} from '@angular/core';
 import {ClarityIcons, moonIcon, sunIcon} from '@cds/core/icon';
 import {ClarityModule} from '@clr/angular';
 
@@ -18,7 +18,8 @@ ClarityIcons.addIcons(sunIcon);
 export class ThemeToggleComponent implements OnInit {
   private translationService = inject(TranslationService);
 
-  @Input() lang = '';
+  lang = input('');
+
   @Output() changeTheme = new EventEmitter<string>();
 
   hovering = false;
@@ -27,14 +28,14 @@ export class ThemeToggleComponent implements OnInit {
   get themeDisplayName() {
     return this.translationService.translate(
       this.theme === 'light' ? 'theme-toggle.dark' : 'theme-toggle.light',
-      this.lang,
+      this.lang(),
     );
   }
 
   get ariaLabel() {
     return this.translationService.translate(
       this.theme === 'light' ? 'theme-toggle.toggleDark' : 'theme-toggle.toggleLight',
-      this.lang,
+      this.lang(),
     );
   }
 

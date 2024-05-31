@@ -8,12 +8,14 @@
   >
     <cds-icon shape="certificate" size="16" />
   </button>
-  <clr-signpost-content [clrPosition]="position" *clrIfOpen>
-    <cll-certificate [certificate]="certificate" [certificateStatus]="certificateStatus" [hash]="hash" />
+  <clr-signpost-content [clrPosition]="position()" *clrIfOpen>
+    @if (certificate && certificateStatus && hash) {
+      <cll-certificate [certificate]="certificate" [certificateStatus]="certificateStatus" [hash]="hash" />
+    }
   </clr-signpost-content>
 </clr-signpost>
 
-<div *ngIf="showIcon && certificateStatus" class="certificate-status">
+<div *ngIf="showIcon() && certificateStatus" class="certificate-status">
   <cds-icon [attr.shape]="certificateStatus.shape" [attr.status]="certificateStatus.status" />
   <span [ngClass]="certificateStatusClass">{{ certificateStatus.labelText }}</span>
 </div>

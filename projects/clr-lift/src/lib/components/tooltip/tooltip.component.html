@@ -1,15 +1,15 @@
 <a
-  [ngClass]="position"
+  [ngClass]="position()"
   class="tooltip"
-  [style.left.px]="left"
-  [style.top.px]="top"
+  [style.left.px]="left()"
+  [style.top.px]="top()"
   [style.z-index]="5001"
   role="tooltip"
   aria-haspopup="true"
 >
   <span
     class="tooltip-content"
-    [style.width.px]="width"
+    [style.width.px]="width()"
     (mouseenter)="mouseEnter($event)"
     (mouseleave)="mouseLeave($event)"
   >

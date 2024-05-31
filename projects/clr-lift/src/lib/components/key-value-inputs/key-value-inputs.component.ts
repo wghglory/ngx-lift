@@ -1,5 +1,5 @@
 import {CommonModule} from '@angular/common';
-import {Component, EventEmitter, inject, Input, OnInit, Output} from '@angular/core';
+import {Component, computed, EventEmitter, inject, input, OnInit, Output} from '@angular/core';
 import {
   AbstractControl,
   FormArray,
@@ -28,47 +28,41 @@ export class KeyValueInputsComponent implements OnInit {
   private translationService = inject(TranslationService);
   private fb = inject(NonNullableFormBuilder);
 
-  @Input({required: true}) formArray: FormArray<KeyValueFormGroup> | undefined;
-  @Input() data: {key: string; value: string}[] = [];
-  @Input() uniqueKey = true;
-  @Input() keyHelper = '';
-  @Input() valueHelper = '';
-  @Input() addText = '';
-  @Input() inputSize = 40;
-  @Input() isSmallButton = true;
+  formArray = input.required<FormArray<KeyValueFormGroup>>();
+  data = input<{key: string; value: string}[]>([]);
+  uniqueKey = input(true);
+  keyHelper = input('');
+  valueHelper = input('');
+  inputSize = input(40);
+  isSmallButton = input(true);
+  _addText = input('', {alias: 'addText'});
+
+  addText = computed(() => this._addText() || this.translationService.translate('key-value.add'));
 
   @Output() removeKeyValue = new EventEmitter<number>();
   @Output() addKeyValue = new EventEmitter<void>();
 
   constructor() {
     this.translationService.loadTranslationsForComponent('key-value', keyValueTranslations);
-
-    this.addText = this.translationService.translate('key-value.add');
   }
 
   removeKeyValuePair(index: number) {
-    if (this.formArray) {
-      this.formArray.removeAt(index);
-      this.validateAllKeyControls();
-      this.removeKeyValue.emit(index);
-    }
+    this.formArray().removeAt(index);
+    this.validateAllKeyControls();
+    this.removeKeyValue.emit(index);
   }
 
   addKeyValuePair() {
-    if (this.formArray) {
-      const group = this.fb.group({
-        key: ['', Validators.required],
-        value: ['', Validators.required],
-      });
-      this.formArray.push(group);
-      this.addKeyValue.emit();
-    }
+    const group = this.fb.group({
+      key: ['', Validators.required],
+      value: ['', Validators.required],
+    });
+    this.formArray().push(group);
+    this.addKeyValue.emit();
   }
 
   _validateKeyControl(index: number) {
-    if (this.formArray) {
-      this.formArray.controls[index].controls.key.updateValueAndValidity();
-    }
+    this.formArray().controls[index].controls.key.updateValueAndValidity();
   }
   validateKeyControl(control: AbstractControl) {
     control.updateValueAndValidity();
@@ -81,28 +75,26 @@ export class KeyValueInputsComponent implements OnInit {
   }
 
   private validateAllKeyControls() {
-    if (this.formArray) {
-      this.formArray.controls.forEach((group) => {
-        group.controls.key.updateValueAndValidity();
-      });
-    }
+    this.formArray().controls.forEach((group) => {
+      group.controls.key.updateValueAndValidity();
+    });
   }
 
   private addUniqueKeyValidator() {
-    if (this.uniqueKey && this.formArray) {
+    if (this.uniqueKey()) {
       const selector = (control: AbstractControl): AbstractControl =>
         (control as FormGroup<{key: FormControl<string>}>).controls.key;
 
-      this.formArray.addValidators(UniqueValidator.unique(selector));
+      this.formArray().addValidators(UniqueValidator.unique(selector));
 
-      this.formArray.updateValueAndValidity();
+      this.formArray().updateValueAndValidity();
     }
   }
 
   private initializeFormData() {
-    if (this.data.length > 0) {
-      this.data.forEach((prop) => {
-        this.formArray?.push(
+    if (this.data().length > 0) {
+      this.data().forEach((prop) => {
+        this.formArray().push(
           this.fb.group({
             key: [prop.key || '', Validators.required],
             value: [prop.value || '', Validators.required],

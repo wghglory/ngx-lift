@@ -8,7 +8,7 @@
   <span [@gradientMove] class="gradient"></span>
 
   <div class="icon-container">
-    <ng-container [ngSwitch]="toastType">
+    <ng-container [ngSwitch]="toastType()">
       <ng-container *ngSwitchCase="'error'">
         <svg
           width="24"
@@ -128,7 +128,7 @@
         <ng-content select=".toast-date"></ng-content>
 
         <button
-          *ngIf="manualClosable"
+          *ngIf="manualClosable()"
           class="close-button"
           [attr.aria-label]="'toast.close-notification' | translate"
           (click)="close(true)"
@@ -146,24 +146,24 @@
 
     <div class="button-container">
       <button
-        *ngIf="primaryButtonText"
+        *ngIf="primaryButtonText()"
         type="button"
         class="toast-button"
         (focus)="focus(true)"
         (blur)="focus(false)"
         (click)="primaryButtonClick.emit()"
       >
-        {{ primaryButtonText }}
+        {{ primaryButtonText() }}
       </button>
       <button
-        *ngIf="secondaryButtonText"
+        *ngIf="secondaryButtonText()"
         type="button"
         class="toast-button secondary"
         (focus)="focus(true)"
         (blur)="focus(false)"
         (click)="secondaryButtonClick.emit()"
       >
-        {{ secondaryButtonText }}
+        {{ secondaryButtonText() }}
       </button>
     </div>
   </div>

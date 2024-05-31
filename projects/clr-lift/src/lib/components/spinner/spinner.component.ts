@@ -1,5 +1,5 @@
 import {CommonModule} from '@angular/common';
-import {ChangeDetectionStrategy, Component, HostBinding, Input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, HostBinding, input} from '@angular/core';
 import {ClarityModule} from '@clr/angular';
 
 @Component({
@@ -11,7 +11,8 @@ import {ClarityModule} from '@clr/angular';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SpinnerComponent {
-  @Input() size: 'lg' | 'md' | 'sm' = 'lg';
-  @Input() isCenter = true;
+  size = input<'lg' | 'md' | 'sm'>('lg');
+  isCenter = input(true);
+
   @HostBinding('class') customClass = '';
 }

@@ -30,7 +30,7 @@ describe('ToastContainerComponent', () => {
   });
 
   it('should set top offset in the style', () => {
-    component.topOffset = 10;
+    fixture.componentRef.setInput('topOffset', 10);
     fixture.detectChanges();
 
     const element = fixture.debugElement.nativeElement.querySelector('.toast-container');

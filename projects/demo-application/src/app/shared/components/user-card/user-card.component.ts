@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, input} from '@angular/core';
 
 import {User} from '../../models/user.model';
 
@@ -11,5 +11,5 @@ import {User} from '../../models/user.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserCardComponent {
-  @Input({required: true}) user = {} as User;
+  user = input.required<User>();
 }

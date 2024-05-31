@@ -24,7 +24,7 @@ describe('ToastComponent', () => {
   });
 
   it('should set animation as false when close method is called', () => {
-    component.manualClosable = true;
+    fixture.componentRef.setInput('manualClosable', true);
     // const closedSpy = spyOn(component.closed, 'emit');
 
     component.close();
@@ -34,7 +34,7 @@ describe('ToastComponent', () => {
   });
 
   it('should emit primaryButtonClick when primary button is clicked', () => {
-    component.primaryButtonText = 'Primary Button';
+    fixture.componentRef.setInput('primaryButtonText', 'Primary Button');
     const primaryButtonClickSpy = spyOn(component.primaryButtonClick, 'emit');
 
     fixture.detectChanges();
@@ -45,7 +45,7 @@ describe('ToastComponent', () => {
   });
 
   it('should emit secondaryButtonClick when secondary button is clicked', () => {
-    component.secondaryButtonText = 'Secondary Button';
+    fixture.componentRef.setInput('secondaryButtonText', 'Secondary Button');
     const secondaryButtonClickSpy = spyOn(component.secondaryButtonClick, 'emit');
 
     fixture.detectChanges();

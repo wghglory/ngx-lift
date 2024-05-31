@@ -20,17 +20,17 @@ describe('KeyValueInputsComponent', () => {
     component = fixture.componentInstance;
 
     // Mock the required inputs
-    component.formArray = new FormArray<KeyValueFormGroup>([]);
-    component.data = [
+    fixture.componentRef.setInput('formArray', new FormArray<KeyValueFormGroup>([]));
+    fixture.componentRef.setInput('data', [
       {key: 'key1', value: 'value1'},
       {key: 'key2', value: 'value2'},
-    ];
-    component.uniqueKey = true;
-    component.keyHelper = 'Key helper';
-    component.valueHelper = 'Value helper';
-    component.addText = 'Add Key-Value Pair';
-    component.inputSize = 40;
-    component.isSmallButton = true;
+    ]);
+    fixture.componentRef.setInput('uniqueKey', true);
+    fixture.componentRef.setInput('keyHelper', 'Key helper');
+    fixture.componentRef.setInput('valueHelper', 'Value helper');
+    fixture.componentRef.setInput('addText', 'Add Key-Value Pair');
+    fixture.componentRef.setInput('inputSize', 40);
+    fixture.componentRef.setInput('isSmallButton', true);
 
     fixture.detectChanges();
   });
@@ -40,26 +40,26 @@ describe('KeyValueInputsComponent', () => {
   });
 
   it('should initialize form data based on input data', () => {
-    expect(component.formArray?.length).toBe(2);
-    expect(component.formArray?.at(0).get('key')?.value).toBe('key1');
-    expect(component.formArray?.at(0).get('value')?.value).toBe('value1');
-    expect(component.formArray?.at(1).get('key')?.value).toBe('key2');
-    expect(component.formArray?.at(1).get('value')?.value).toBe('value2');
+    expect(component.formArray().length).toBe(2);
+    expect(component.formArray().at(0).get('key')?.value).toBe('key1');
+    expect(component.formArray().at(0).get('value')?.value).toBe('value1');
+    expect(component.formArray().at(1).get('key')?.value).toBe('key2');
+    expect(component.formArray().at(1).get('value')?.value).toBe('value2');
   });
 
   it('should add key-value pair on addKeyValuePair', () => {
-    const initialLength = component.formArray?.length || 0;
+    const initialLength = component.formArray().length || 0;
 
     component.addKeyValuePair();
 
-    expect(component.formArray?.length).toBe(initialLength + 1);
+    expect(component.formArray().length).toBe(initialLength + 1);
   });
 
   it('should remove key-value pair on removeKeyValuePair', () => {
-    const initialLength = component.formArray?.length || 0;
+    const initialLength = component.formArray().length || 0;
 
     component.removeKeyValuePair(0);
 
-    expect(component.formArray?.length).toBe(initialLength - 1);
+    expect(component.formArray().length).toBe(initialLength - 1);
   });
 });

@@ -1,5 +1,5 @@
 import {CommonModule} from '@angular/common';
-import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, input} from '@angular/core';
 import {
   ClarityIcons,
   disconnectIcon,
@@ -31,6 +31,6 @@ ClarityIcons.addIcons(
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StatusIndicatorComponent {
-  @Input() iconStatus!: 'success' | 'error' | 'pending' | 'warning' | 'inactive' | 'unknown';
-  @Input() iconSize: 'lg' | 'md' | 'sm' | number = 'sm';
+  iconStatus = input<'success' | 'error' | 'pending' | 'warning' | 'inactive' | 'unknown'>();
+  iconSize = input<'lg' | 'md' | 'sm' | number>('sm');
 }
