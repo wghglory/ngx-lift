@@ -7,26 +7,28 @@
     <dt>{{ 'certificate.expiresOn' | translate }}</dt>
     <dd>
       {{ certificate().validity.notAfter | date: 'medium' }}
-      <span *ngIf="certificateStatus()" class="label ml-2 align-middle" [ngClass]="certificateStatus().labelClass">
-        {{ certificateStatus().labelText }}
-      </span>
+      @if (certificateStatus()) {
+        <span class="label ml-2 align-middle" [ngClass]="certificateStatus().labelClass">
+          {{ certificateStatus().labelText }}
+        </span>
+      }
     </dd>
   </dl>
 
   <h4 class="certificate-subtitle">{{ 'certificate.issuedTo' | translate }}</h4>
   <dl class="certificate-content">
-    <ng-container *ngFor="let attr of certificate().subject.attributes">
+    @for (attr of certificate().subject.attributes; track attr) {
       <dt>{{ 'certificate.' + attr.name | translate }}</dt>
       <dd>{{ attr.value }}</dd>
-    </ng-container>
+    }
   </dl>
 
   <h4 class="certificate-subtitle">{{ 'certificate.issuedBy' | translate }}</h4>
   <dl class="certificate-content">
-    <ng-container *ngFor="let attr of certificate().issuer.attributes">
+    @for (attr of certificate().issuer.attributes; track attr) {
       <dt>{{ 'certificate.' + attr.name | translate }}</dt>
       <dd>{{ attr.value }}</dd>
-    </ng-container>
+    }
   </dl>
 
   <h4 class="certificate-subtitle">{{ 'certificate.fingerprints' | translate }}</h4>

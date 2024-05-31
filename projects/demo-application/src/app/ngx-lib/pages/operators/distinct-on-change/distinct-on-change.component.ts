@@ -1,4 +1,3 @@
-import {CommonModule} from '@angular/common';
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {ClarityModule} from '@clr/angular';
 import {PageContainerComponent} from 'clr-lift';
@@ -12,7 +11,7 @@ import {highlight} from '../../../../shared/utils/highlight.util';
 @Component({
   selector: 'app-distinct-on-change',
   standalone: true,
-  imports: [CommonModule, ClarityModule, PageContainerComponent, CodeBlockComponent, UserCardListComponent],
+  imports: [ClarityModule, PageContainerComponent, CodeBlockComponent, UserCardListComponent],
   templateUrl: './distinct-on-change.component.html',
   styleUrl: './distinct-on-change.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -101,16 +101,17 @@
     <h3>Tooltip with Component Reference</h3>
     <app-code-block [code]="componentRefCode" />
     <div>
-      <a
-        *ngIf="alertComponentRef"
-        href="javascript:void(0)"
-        cllTooltip
-        [cllTooltipContent]="alertComponentRef"
-        [cllTooltipWidth]="600"
-        [cllTooltipHideDelay]="1000"
-      >
-        Component Ref Example
-      </a>
+      @if (alertComponentRef) {
+        <a
+          href="javascript:void(0)"
+          cllTooltip
+          [cllTooltipContent]="alertComponentRef"
+          [cllTooltipWidth]="600"
+          [cllTooltipHideDelay]="1000"
+        >
+          Component Ref Example
+        </a>
+      }
     </div>
     <p>
       In this usage, Tooltip can display content from Angular components dynamically. It demonstrates how you can create

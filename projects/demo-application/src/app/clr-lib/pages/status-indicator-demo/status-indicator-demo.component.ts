@@ -1,4 +1,3 @@
-import {CommonModule} from '@angular/common';
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {PageContainerComponent, StatusIndicatorComponent} from 'clr-lift';
 
@@ -8,7 +7,7 @@ import {highlight} from '../../../shared/utils/highlight.util';
 @Component({
   selector: 'app-status-indicator-demo',
   standalone: true,
-  imports: [CommonModule, CodeBlockComponent, PageContainerComponent, StatusIndicatorComponent],
+  imports: [CodeBlockComponent, PageContainerComponent, StatusIndicatorComponent],
   templateUrl: './status-indicator-demo.component.html',
   styleUrl: './status-indicator-demo.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

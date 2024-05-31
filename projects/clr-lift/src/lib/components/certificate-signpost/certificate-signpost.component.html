@@ -15,7 +15,9 @@
   </clr-signpost-content>
 </clr-signpost>
 
-<div *ngIf="showIcon() && certificateStatus" class="certificate-status">
-  <cds-icon [attr.shape]="certificateStatus.shape" [attr.status]="certificateStatus.status" />
-  <span [ngClass]="certificateStatusClass">{{ certificateStatus.labelText }}</span>
-</div>
+@if (showIcon() && certificateStatus) {
+  <div class="certificate-status">
+    <cds-icon [attr.shape]="certificateStatus.shape" [attr.status]="certificateStatus.status" />
+    <span [ngClass]="certificateStatusClass">{{ certificateStatus.labelText }}</span>
+  </div>
+}

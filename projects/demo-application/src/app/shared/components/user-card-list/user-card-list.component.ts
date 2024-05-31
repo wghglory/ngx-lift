@@ -1,4 +1,4 @@
-import {CommonModule} from '@angular/common';
+import {AsyncPipe} from '@angular/common';
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {ClarityModule} from '@clr/angular';
 import {AlertComponent, SpinnerComponent} from 'clr-lift';
@@ -11,7 +11,7 @@ import {UserCardComponent} from '../user-card/user-card.component';
 @Component({
   selector: 'app-user-card-list',
   standalone: true,
-  imports: [CommonModule, ClarityModule, SpinnerComponent, AlertComponent, UserCardComponent],
+  imports: [AsyncPipe, ClarityModule, SpinnerComponent, AlertComponent, UserCardComponent],
   templateUrl: './user-card-list.component.html',
   styleUrl: './user-card-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

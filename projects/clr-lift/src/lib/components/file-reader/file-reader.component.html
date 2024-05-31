@@ -12,12 +12,13 @@
 </button>
 <span>{{ selectedFile?.name }}</span>
 
-<button
-  *ngIf="selectedFile"
-  type="button"
-  class="btn btn-sm btn-icon btn-link btn-close"
-  (click)="removeFile()"
-  [attr.aria-label]="'FileReader.removeFile' | translate"
->
-  <cds-icon shape="times" />
-</button>
+@if (selectedFile) {
+  <button
+    type="button"
+    class="btn btn-sm btn-icon btn-link btn-close"
+    (click)="removeFile()"
+    [attr.aria-label]="'FileReader.removeFile' | translate"
+  >
+    <cds-icon shape="times" />
+  </button>
+}

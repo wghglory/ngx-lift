@@ -1,4 +1,3 @@
-import {CommonModule} from '@angular/common';
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {ClarityModule} from '@clr/angular';
 import {CalloutComponent, PageContainerComponent} from 'clr-lift';
@@ -9,7 +8,7 @@ import {highlight} from '../../../shared/utils/highlight.util';
 @Component({
   selector: 'app-clr-datagrid-util',
   standalone: true,
-  imports: [CommonModule, ClarityModule, PageContainerComponent, CalloutComponent, CodeBlockComponent],
+  imports: [ClarityModule, PageContainerComponent, CalloutComponent, CodeBlockComponent],
   templateUrl: './clr-datagrid-util.component.html',
   styleUrl: './clr-datagrid-util.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,4 +1,3 @@
-import {CommonModule} from '@angular/common';
 import {
   Component,
   ElementRef,
@@ -34,7 +33,7 @@ import {fileReaderTranslations} from './file-reader.l10n';
 @Component({
   selector: 'cll-file-reader',
   standalone: true,
-  imports: [CommonModule, TranslatePipe, ClarityModule, FormsModule],
+  imports: [TranslatePipe, ClarityModule, FormsModule],
   templateUrl: './file-reader.component.html',
   styleUrls: ['./file-reader.component.scss'],
   providers: [

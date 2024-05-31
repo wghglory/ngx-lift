@@ -1,4 +1,3 @@
-import {CommonModule} from '@angular/common';
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {ClarityModule} from '@clr/angular';
@@ -12,7 +11,6 @@ import {UserDatagridComponent} from '../../shared/components/user-datagrid/user-
   selector: 'app-dg-state',
   standalone: true,
   imports: [
-    CommonModule,
     ClarityModule,
     RouterLink,
     PageContainerComponent,

@@ -1,4 +1,3 @@
-import {CommonModule} from '@angular/common';
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {PageContainerComponent} from 'clr-lift';
 import {MaskOptions, MaskPipe} from 'ngx-lift';
@@ -9,7 +8,7 @@ import {highlight} from '../../../../shared/utils/highlight.util';
 @Component({
   selector: 'app-mask-pipe',
   standalone: true,
-  imports: [CommonModule, CodeBlockComponent, PageContainerComponent, MaskPipe],
+  imports: [CodeBlockComponent, PageContainerComponent, MaskPipe],
   templateUrl: './mask-pipe.component.html',
   styleUrl: './mask-pipe.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

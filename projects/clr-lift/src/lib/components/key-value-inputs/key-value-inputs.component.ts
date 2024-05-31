@@ -1,4 +1,3 @@
-import {CommonModule} from '@angular/common';
 import {Component, computed, inject, input, OnInit, output} from '@angular/core';
 import {
   AbstractControl,
@@ -20,7 +19,7 @@ import {KeyValueFormGroup} from './key-value-form-group.type';
 @Component({
   selector: 'cll-key-value-inputs',
   standalone: true,
-  imports: [CommonModule, TranslatePipe, ClarityModule, ReactiveFormsModule],
+  imports: [TranslatePipe, ClarityModule, ReactiveFormsModule],
   templateUrl: './key-value-inputs.component.html',
   styleUrls: ['./key-value-inputs.component.scss'],
 })

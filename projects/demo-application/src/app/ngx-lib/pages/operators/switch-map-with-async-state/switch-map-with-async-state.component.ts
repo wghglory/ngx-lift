@@ -1,4 +1,3 @@
-import {CommonModule} from '@angular/common';
 import {HttpClient} from '@angular/common/http';
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {toSignal} from '@angular/core/rxjs-interop';
@@ -14,14 +13,7 @@ import {highlight} from '../../../../shared/utils/highlight.util';
 @Component({
   selector: 'app-switch-map-with-async-state',
   standalone: true,
-  imports: [
-    CommonModule,
-    ClarityModule,
-    AlertComponent,
-    PageContainerComponent,
-    CodeBlockComponent,
-    FilterUsersComponent,
-  ],
+  imports: [ClarityModule, AlertComponent, PageContainerComponent, CodeBlockComponent, FilterUsersComponent],
   templateUrl: './switch-map-with-async-state.component.html',
   styleUrl: './switch-map-with-async-state.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,4 +1,3 @@
-import {CommonModule} from '@angular/common';
 import {Component, inject, OnInit} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ClarityModule} from '@clr/angular';
@@ -9,7 +8,7 @@ import {Deployment} from '../deployment.type';
 @Component({
   selector: 'app-configure-operator',
   standalone: true,
-  imports: [CommonModule, ClarityModule, ReactiveFormsModule],
+  imports: [ClarityModule, ReactiveFormsModule],
   templateUrl: './configure-operator.component.html',
   styleUrl: './configure-operator.component.scss',
 })

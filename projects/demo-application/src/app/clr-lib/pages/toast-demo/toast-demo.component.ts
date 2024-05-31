@@ -1,4 +1,3 @@
-import {CommonModule} from '@angular/common';
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {PageContainerComponent, ToastService} from 'clr-lift';
 
@@ -8,7 +7,7 @@ import {highlight} from '../../../shared/utils/highlight.util';
 @Component({
   selector: 'app-toast-demo',
   standalone: true,
-  imports: [CommonModule, CodeBlockComponent, PageContainerComponent],
+  imports: [CodeBlockComponent, PageContainerComponent],
   templateUrl: './toast-demo.component.html',
   styleUrl: './toast-demo.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

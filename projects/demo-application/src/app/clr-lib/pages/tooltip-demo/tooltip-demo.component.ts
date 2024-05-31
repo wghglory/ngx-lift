@@ -1,4 +1,3 @@
-import {CommonModule} from '@angular/common';
 import {
   ApplicationRef,
   ChangeDetectionStrategy,
@@ -16,7 +15,7 @@ import {highlight} from '../../../shared/utils/highlight.util';
 @Component({
   selector: 'app-tooltip-demo',
   standalone: true,
-  imports: [CommonModule, CodeBlockComponent, TooltipModule, CalloutComponent, PageContainerComponent],
+  imports: [CodeBlockComponent, TooltipModule, CalloutComponent, PageContainerComponent],
   templateUrl: './tooltip-demo.component.html',
   styleUrl: './tooltip-demo.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

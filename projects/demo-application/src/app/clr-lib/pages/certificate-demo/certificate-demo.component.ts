@@ -1,4 +1,3 @@
-import {CommonModule} from '@angular/common';
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {ClarityModule} from '@clr/angular';
 import {CalloutComponent, CertificateSignpostComponent, PageContainerComponent} from 'clr-lift';
@@ -9,14 +8,7 @@ import {highlight} from '../../../shared/utils/highlight.util';
 @Component({
   selector: 'app-certificate-demo',
   standalone: true,
-  imports: [
-    CommonModule,
-    CalloutComponent,
-    PageContainerComponent,
-    CodeBlockComponent,
-    ClarityModule,
-    CertificateSignpostComponent,
-  ],
+  imports: [CalloutComponent, PageContainerComponent, CodeBlockComponent, ClarityModule, CertificateSignpostComponent],
   templateUrl: './certificate-demo.component.html',
   styleUrl: './certificate-demo.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

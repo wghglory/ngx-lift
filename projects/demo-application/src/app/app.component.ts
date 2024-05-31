@@ -1,4 +1,3 @@
-import {CommonModule} from '@angular/common';
 import {Component} from '@angular/core';
 import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
 import {certificateIcon, ClarityIcons, heatMapIcon, objectsIcon, radarIcon, wrenchIcon} from '@cds/core/icon';
@@ -30,7 +29,6 @@ ClarityIcons.addIcons([
   selector: 'app-root',
   standalone: true,
   imports: [
-    CommonModule,
     RouterOutlet,
     RouterLink,
     RouterLinkActive,

@@ -20,12 +20,14 @@
       <cll-callout>Type the same value in below controls and see the effect when blur.</cll-callout>
 
       <ng-container formArrayName="demo1">
-        <clr-input-container *ngFor="let control of form1.controls.demo1.controls; let i = index">
-          <label [attr.for]="i">Control {{ i + 1 }}</label>
-          <input clrInput type="text" [formControlName]="i" (blur)="validateControlByIndex(i)" />
-          <clr-control-helper>Control value should be unique</clr-control-helper>
-          <clr-control-error *clrIfError="'notUnique'">Duplicated</clr-control-error>
-        </clr-input-container>
+        @for (control of form1.controls.demo1.controls; track control; let i = $index) {
+          <clr-input-container>
+            <label [attr.for]="i">Control {{ i + 1 }}</label>
+            <input clrInput type="text" [formControlName]="i" (blur)="validateControlByIndex(i)" />
+            <clr-control-helper>Control value should be unique</clr-control-helper>
+            <clr-control-error *clrIfError="'notUnique'">Duplicated</clr-control-error>
+          </clr-input-container>
+        }
       </ng-container>
     </form>
 
@@ -44,29 +46,27 @@
       <cll-callout>Type the same value in below key controls and see the effect when blur.</cll-callout>
 
       <ng-container formArrayName="demo2">
-        <div
-          *ngFor="let group of form2.controls.demo2.controls; let i = index"
-          [formGroup]="group"
-          style="display: flex; gap: 1rem"
-        >
-          <clr-input-container>
-            <label class="clr-sr-only">key</label>
-            <input
-              clrInput
-              [formControl]="group.controls.key"
-              (blur)="validateControl(group.controls.key)"
-              [size]="30"
-              placeholder="key control"
-            />
-            <clr-control-helper>key control should be unique</clr-control-helper>
-            <clr-control-error *clrIfError="'notUnique'">Duplicated</clr-control-error>
-          </clr-input-container>
-          <clr-input-container>
-            <label class="clr-sr-only">value</label>
-            <input clrInput [formControl]="group.controls.value" [size]="30" placeholder="value control" />
-            <clr-control-helper>value control has not validation</clr-control-helper>
-          </clr-input-container>
-        </div>
+        @for (group of form2.controls.demo2.controls; track group; let i = $index) {
+          <div [formGroup]="group" style="display: flex; gap: 1rem">
+            <clr-input-container>
+              <label class="clr-sr-only">key</label>
+              <input
+                clrInput
+                [formControl]="group.controls.key"
+                (blur)="validateControl(group.controls.key)"
+                [size]="30"
+                placeholder="key control"
+              />
+              <clr-control-helper>key control should be unique</clr-control-helper>
+              <clr-control-error *clrIfError="'notUnique'">Duplicated</clr-control-error>
+            </clr-input-container>
+            <clr-input-container>
+              <label class="clr-sr-only">value</label>
+              <input clrInput [formControl]="group.controls.value" [size]="30" placeholder="value control" />
+              <clr-control-helper>value control has not validation</clr-control-helper>
+            </clr-input-container>
+          </div>
+        }
       </ng-container>
     </form>
 

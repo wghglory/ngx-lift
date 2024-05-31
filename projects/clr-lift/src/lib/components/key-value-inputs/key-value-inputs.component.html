@@ -1,38 +1,39 @@
-<div *ngFor="let kvControl of formArray()?.controls; let i = index" class="inputs-container" [formGroup]="kvControl">
-  <clr-input-container>
-    <label class="clr-sr-only">{{ 'key-value.key' | translate }}</label>
-    <input
-      clrInput
-      [formControl]="kvControl.controls.key"
-      [size]="inputSize()"
-      (blur)="validateKeyControl(kvControl.controls.key)"
-    />
-    <clr-control-helper>{{ keyHelper() }}</clr-control-helper>
-    <clr-control-error *clrIfError="'required'">
-      {{ 'key-value.required' | translate }}
-    </clr-control-error>
-    <clr-control-error *clrIfError="'notUnique'">
-      {{ 'key-value.notUnique' | translate }}
-    </clr-control-error>
-  </clr-input-container>
-  <clr-input-container>
-    <label class="clr-sr-only">{{ 'key-value.value' | translate }}</label>
-    <input clrInput [formControl]="kvControl.controls.value" [size]="inputSize()" />
-    <clr-control-helper>{{ valueHelper() }}</clr-control-helper>
-    <clr-control-error *clrIfError="'required'">
-      {{ 'key-value.required' | translate }}
-    </clr-control-error>
-  </clr-input-container>
-
-  <button
-    type="button"
-    class="btn btn-sm btn-link btn-icon"
-    [attr.aria-label]="'key-value.delete' | translate"
-    (click)="removeKeyValuePair(i)"
-  >
-    <cds-icon shape="times"></cds-icon>
-  </button>
-</div>
+@for (kvControl of formArray()?.controls; track kvControl; let i = $index) {
+  <div class="inputs-container" [formGroup]="kvControl">
+    <clr-input-container>
+      <label class="clr-sr-only">{{ 'key-value.key' | translate }}</label>
+      <input
+        clrInput
+        [formControl]="kvControl.controls.key"
+        [size]="inputSize()"
+        (blur)="validateKeyControl(kvControl.controls.key)"
+      />
+      <clr-control-helper>{{ keyHelper() }}</clr-control-helper>
+      <clr-control-error *clrIfError="'required'">
+        {{ 'key-value.required' | translate }}
+      </clr-control-error>
+      <clr-control-error *clrIfError="'notUnique'">
+        {{ 'key-value.notUnique' | translate }}
+      </clr-control-error>
+    </clr-input-container>
+    <clr-input-container>
+      <label class="clr-sr-only">{{ 'key-value.value' | translate }}</label>
+      <input clrInput [formControl]="kvControl.controls.value" [size]="inputSize()" />
+      <clr-control-helper>{{ valueHelper() }}</clr-control-helper>
+      <clr-control-error *clrIfError="'required'">
+        {{ 'key-value.required' | translate }}
+      </clr-control-error>
+    </clr-input-container>
+    <button
+      type="button"
+      class="btn btn-sm btn-link btn-icon"
+      [attr.aria-label]="'key-value.delete' | translate"
+      (click)="removeKeyValuePair(i)"
+    >
+      <cds-icon shape="times"></cds-icon>
+    </button>
+  </div>
+}
 
 <div class="button-container">
   <button

@@ -1,4 +1,3 @@
-import {CommonModule} from '@angular/common';
 import {Component} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ClarityModule} from '@clr/angular';
@@ -16,7 +15,6 @@ import {highlight} from '../../../shared/utils/highlight.util';
   selector: 'app-file-reader-demo',
   standalone: true,
   imports: [
-    CommonModule,
     ClarityModule,
     ReactiveFormsModule,
     CertificateSignpostComponent,

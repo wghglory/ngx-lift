@@ -51,16 +51,19 @@
           [formControl]="form.controls.caCert"
           (fileChange)="onFileChange($event)"
         />
-        <clr-control-success *ngIf="form.controls.caCert.value">
-          Show certificate:
-          <cll-certificate-signpost
-            *ngIf="form.controls.caCert.valid"
-            [pem]="form.controls.caCert.value"
-            [pemEncoded]="false"
-            [showIcon]="true"
-            [position]="'bottom-right'"
-          />
-        </clr-control-success>
+        @if (form.controls.caCert.value) {
+          <clr-control-success>
+            Show certificate:
+            @if (form.controls.caCert.valid) {
+              <cll-certificate-signpost
+                [pem]="form.controls.caCert.value"
+                [pemEncoded]="false"
+                [showIcon]="true"
+                [position]="'bottom-right'"
+              />
+            }
+          </clr-control-success>
+        }
         <clr-control-error *clrIfError="'exceedLimit'">
           Exceed the maximum file size ({{ certFileLimit }} MB).
         </clr-control-error>
@@ -71,9 +74,9 @@
       <clr-control-container>
         <label for="file">File</label>
         <cll-file-reader controlId="file" clrControl [encoded]="false" [formControl]="form.controls.file" />
-        <clr-control-success *ngIf="form.controls.file.value">
-          File content has been read successfully
-        </clr-control-success>
+        @if (form.controls.file.value) {
+          <clr-control-success> File content has been read successfully </clr-control-success>
+        }
         <clr-control-error *clrIfError="'parse'; error as error"> {{ error }} </clr-control-error>
         <clr-control-error *clrIfError="'required'"> Required </clr-control-error>
       </clr-control-container>

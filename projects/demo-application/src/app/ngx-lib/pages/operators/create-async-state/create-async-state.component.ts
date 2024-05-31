@@ -1,4 +1,3 @@
-import {CommonModule} from '@angular/common';
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {ClarityModule} from '@clr/angular';
 import {PageContainerComponent} from 'clr-lift';
@@ -10,7 +9,7 @@ import {highlight} from '../../../../shared/utils/highlight.util';
 @Component({
   selector: 'app-create-async-state',
   standalone: true,
-  imports: [CommonModule, ClarityModule, PageContainerComponent, CodeBlockComponent, UserCardListComponent],
+  imports: [ClarityModule, PageContainerComponent, CodeBlockComponent, UserCardListComponent],
   templateUrl: './create-async-state.component.html',
   styleUrl: './create-async-state.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,4 +1,3 @@
-import {CommonModule} from '@angular/common';
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ClarityModule} from '@clr/angular';
@@ -11,14 +10,7 @@ import {highlight} from '../../../../shared/utils/highlight.util';
 @Component({
   selector: 'app-if-validator',
   standalone: true,
-  imports: [
-    CommonModule,
-    ClarityModule,
-    ReactiveFormsModule,
-    PageContainerComponent,
-    CalloutComponent,
-    CodeBlockComponent,
-  ],
+  imports: [ClarityModule, ReactiveFormsModule, PageContainerComponent, CalloutComponent, CodeBlockComponent],
   templateUrl: './if-validator.component.html',
   styleUrl: './if-validator.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

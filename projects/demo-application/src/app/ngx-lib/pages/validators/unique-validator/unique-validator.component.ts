@@ -1,4 +1,3 @@
-import {CommonModule} from '@angular/common';
 import {Component, inject} from '@angular/core';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {ClarityModule} from '@clr/angular';
@@ -11,14 +10,7 @@ import {highlight} from '../../../../shared/utils/highlight.util';
 @Component({
   selector: 'app-unique-validator',
   standalone: true,
-  imports: [
-    CommonModule,
-    ClarityModule,
-    ReactiveFormsModule,
-    PageContainerComponent,
-    CalloutComponent,
-    CodeBlockComponent,
-  ],
+  imports: [ClarityModule, ReactiveFormsModule, PageContainerComponent, CalloutComponent, CodeBlockComponent],
   templateUrl: './unique-validator.component.html',
   styleUrl: './unique-validator.component.scss',
 })

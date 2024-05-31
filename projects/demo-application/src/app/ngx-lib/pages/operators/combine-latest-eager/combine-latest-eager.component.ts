@@ -1,4 +1,3 @@
-import {CommonModule} from '@angular/common';
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {ClarityModule} from '@clr/angular';
 import {PageContainerComponent} from 'clr-lift';
@@ -10,7 +9,7 @@ import {highlight} from '../../../../shared/utils/highlight.util';
 @Component({
   selector: 'app-combine-latest-eager',
   standalone: true,
-  imports: [CommonModule, ClarityModule, PageContainerComponent, CodeBlockComponent, RockStarComponent],
+  imports: [ClarityModule, PageContainerComponent, CodeBlockComponent, RockStarComponent],
   templateUrl: './combine-latest-eager.component.html',
   styleUrl: './combine-latest-eager.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,4 +1,3 @@
-import {CommonModule} from '@angular/common';
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ClarityModule} from '@clr/angular';
@@ -11,7 +10,7 @@ import {highlight} from '../../../../shared/utils/highlight.util';
 @Component({
   selector: 'app-url-validator',
   standalone: true,
-  imports: [CommonModule, PageContainerComponent, ClarityModule, ReactiveFormsModule, CodeBlockComponent],
+  imports: [PageContainerComponent, ClarityModule, ReactiveFormsModule, CodeBlockComponent],
   templateUrl: './url-validator.component.html',
   styleUrl: './url-validator.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

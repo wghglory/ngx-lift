@@ -1,4 +1,3 @@
-import {CommonModule} from '@angular/common';
 import {Component, inject} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {ClarityModule} from '@clr/angular';
@@ -9,7 +8,7 @@ type RuntimePropStepData = {appProperties: Array<{key: string; value: string}>};
 @Component({
   selector: 'cll-configure-runtime-prop',
   standalone: true,
-  imports: [CommonModule, ClarityModule, ReactiveFormsModule, KeyValueInputsComponent],
+  imports: [ClarityModule, ReactiveFormsModule, KeyValueInputsComponent],
   templateUrl: './configure-runtime-prop.component.html',
   styleUrls: ['./configure-runtime-prop.component.scss'],
 })

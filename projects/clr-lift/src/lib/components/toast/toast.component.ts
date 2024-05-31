@@ -1,5 +1,5 @@
 import {animate, animateChild, group, keyframes, query, style, transition, trigger} from '@angular/animations';
-import {CommonModule} from '@angular/common';
+
 import {Component, ElementRef, inject, input, NgZone, OnInit, output} from '@angular/core';
 import {ClarityIcons, timesIcon} from '@cds/core/icon';
 import {ClarityModule} from '@clr/angular';
@@ -36,7 +36,7 @@ ClarityIcons.addIcons(timesIcon);
   selector: 'cll-toast',
   templateUrl: './toast.component.html',
   styleUrls: ['./toast.component.scss'],
-  imports: [CommonModule, ClarityModule, TranslatePipe],
+  imports: [ClarityModule, TranslatePipe],
   standalone: true,
   animations: [
     trigger('launchToast', [

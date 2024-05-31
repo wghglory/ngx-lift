@@ -10,12 +10,20 @@
   </clr-radio-wrapper>
 </clr-radio-container>
 
-<div class="mt-6 min-h-[286px]" *ngIf="searchState$ | async as vm">
-  <cll-spinner *ngIf="vm.loading" />
-
-  <cll-alert *ngIf="vm.error as error" [error]="error" />
-
-  <div *ngIf="vm.data as users" class="card-grid">
-    <app-user-card *ngFor="let user of users.results" [user]="user" />
+@if (searchState$ | async; as vm) {
+  <div class="mt-6 min-h-[286px]">
+    @if (vm.loading) {
+      <cll-spinner />
+    }
+    @if (vm.error; as error) {
+      <cll-alert [error]="error" />
+    }
+    @if (vm.data; as users) {
+      <div class="card-grid">
+        @for (user of users.results; track user) {
+          <app-user-card [user]="user" />
+        }
+      </div>
+    }
   </div>
-</div>
+}

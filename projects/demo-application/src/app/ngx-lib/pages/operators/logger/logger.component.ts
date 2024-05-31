@@ -1,4 +1,3 @@
-import {CommonModule} from '@angular/common';
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {PageContainerComponent} from 'clr-lift';
 import {logger} from 'ngx-lift';
@@ -10,7 +9,7 @@ import {highlight} from '../../../../shared/utils/highlight.util';
 @Component({
   selector: 'app-logger',
   standalone: true,
-  imports: [CommonModule, PageContainerComponent, CodeBlockComponent],
+  imports: [PageContainerComponent, CodeBlockComponent],
   templateUrl: './logger.component.html',
   styleUrl: './logger.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
