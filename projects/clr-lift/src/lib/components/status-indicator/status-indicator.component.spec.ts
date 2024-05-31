@@ -13,6 +13,7 @@ describe('StatusIndicatorComponent', () => {
 
     fixture = TestBed.createComponent(StatusIndicatorComponent);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('iconStatus', 'success');
     fixture.detectChanges();
   });
 

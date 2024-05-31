@@ -1,4 +1,4 @@
-@for (kvControl of formArray()?.controls; track kvControl; let i = $index) {
+@for (kvControl of formArray().controls; track kvControl; let i = $index) {
   <div class="inputs-container" [formGroup]="kvControl">
     <clr-input-container>
       <label class="clr-sr-only">{{ 'key-value.key' | translate }}</label>
@@ -41,7 +41,7 @@
     class="btn"
     [class.btn-sm]="isSmallButton()"
     (click)="addKeyValuePair()"
-    [disabled]="formArray()?.invalid"
+    [disabled]="formArray().invalid"
   >
     {{ addText() }}
   </button>

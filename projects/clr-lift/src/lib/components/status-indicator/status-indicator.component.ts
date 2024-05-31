@@ -1,5 +1,5 @@
 import {CommonModule} from '@angular/common';
-import {ChangeDetectionStrategy, Component, input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, input} from '@angular/core';
 import {
   ClarityIcons,
   disconnectIcon,
@@ -12,6 +12,8 @@ import {
 import {ClarityModule} from '@clr/angular';
 
 import {TranslatePipe} from '../../pipes/translate.pipe';
+import {TranslationService} from '../../services/translation.service';
+import {statusIndicatorTranslations} from './status-indicator.l10n';
 
 ClarityIcons.addIcons(
   successStandardIcon,
@@ -31,6 +33,12 @@ ClarityIcons.addIcons(
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StatusIndicatorComponent {
-  iconStatus = input<'success' | 'error' | 'pending' | 'warning' | 'inactive' | 'unknown'>();
+  private translationService = inject(TranslationService);
+
+  iconStatus = input.required<'success' | 'error' | 'pending' | 'warning' | 'inactive' | 'unknown'>();
   iconSize = input<'lg' | 'md' | 'sm' | number>('sm');
+
+  constructor() {
+    this.translationService.loadTranslationsForComponent('status-indicator', statusIndicatorTranslations);
+  }
 }
