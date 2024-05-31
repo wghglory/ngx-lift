@@ -1,4 +1,4 @@
-import {Component, inject, input, OnInit, output} from '@angular/core';
+import {Component, computed, inject, input, OnInit, output, signal} from '@angular/core';
 import {ClarityIcons, moonIcon, sunIcon} from '@cds/core/icon';
 import {ClarityModule} from '@clr/angular';
 
@@ -22,42 +22,42 @@ export class ThemeToggleComponent implements OnInit {
 
   changeTheme = output<string>();
 
-  hovering = false;
-  theme: 'dark' | 'light' = localStorage['cds-theme'] || 'light';
+  hovering = signal(false);
+  theme = signal<'dark' | 'light'>(localStorage['cds-theme'] || 'light');
 
-  get themeDisplayName() {
+  themeDisplayName = computed(() => {
     return this.translationService.translate(
-      this.theme === 'light' ? 'theme-toggle.dark' : 'theme-toggle.light',
+      this.theme() === 'light' ? 'theme-toggle.dark' : 'theme-toggle.light',
       this.lang(),
     );
-  }
+  });
 
-  get ariaLabel() {
+  ariaLabel = computed(() => {
     return this.translationService.translate(
-      this.theme === 'light' ? 'theme-toggle.toggleDark' : 'theme-toggle.toggleLight',
+      this.theme() === 'light' ? 'theme-toggle.toggleDark' : 'theme-toggle.toggleLight',
       this.lang(),
     );
-  }
+  });
 
-  get iconShape() {
-    return this.theme === 'light' ? 'moon' : 'sun';
-  }
+  iconShape = computed(() => {
+    return this.theme() === 'light' ? 'moon' : 'sun';
+  });
 
   constructor() {
     this.translationService.loadTranslationsForComponent('theme-toggle', themeToggleTranslations);
   }
 
   toggleTheme() {
-    const newTheme = this.theme === 'light' ? 'dark' : 'light';
+    const newTheme = this.theme() === 'light' ? 'dark' : 'light';
     this.setTheme(newTheme);
   }
 
   setHovering(value: boolean) {
-    this.hovering = value;
+    this.hovering.set(value);
   }
 
-  private setTheme(newTheme: 'dark' | 'light') {
-    this.theme = newTheme;
+  private setTheme(newTheme: 'light' | 'dark') {
+    this.theme.set(newTheme);
     localStorage['cds-theme'] = newTheme;
     document.body.setAttribute('cds-theme', newTheme);
     this.changeTheme.emit(newTheme);
