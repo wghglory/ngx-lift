@@ -67,7 +67,8 @@
               "node_modules/@clr/ui/clr-ui.min.css",
               "projects/demo-application/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": ["node-forge"]
           },
           "configurations": {
             "production": {
