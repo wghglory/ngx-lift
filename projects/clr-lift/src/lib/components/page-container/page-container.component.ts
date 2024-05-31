@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, input} from '@angular/core';
 
 @Component({
   selector: 'cll-page-container',
@@ -9,7 +9,6 @@ import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageContainerComponent {
-  @Input({required: true}) title = '';
-  // eslint-disable-next-line @angular-eslint/no-input-rename
-  @Input({alias: 'class'}) customClass = '';
+  title = input.required<string>();
+  customClass = input('', {alias: 'class'});
 }

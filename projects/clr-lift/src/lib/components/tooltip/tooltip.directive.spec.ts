@@ -6,7 +6,6 @@ import {TooltipDirective} from './tooltip.directive';
 
 describe('TooltipDirective', () => {
   let fixture: ComponentFixture<TestComponent>;
-  let testComponent: TestComponent;
   let directiveElement: DebugElement;
 
   beforeEach(() => {
@@ -15,7 +14,6 @@ describe('TooltipDirective', () => {
     });
 
     fixture = TestBed.createComponent(TestComponent);
-    testComponent = fixture.componentInstance;
     directiveElement = fixture.debugElement.query(By.directive(TooltipDirective));
   });
 
@@ -38,7 +36,7 @@ describe('TooltipDirective', () => {
     // Trigger mouse leave
     directive.onMouseLeave();
     fixture.detectChanges();
-    tick(directive['cllTooltipHideDelay']);
+    tick(directive['cllTooltipHideDelay']());
 
     // Tooltip should be removed
     expect(directive['tooltipComponent']).toBeFalsy();

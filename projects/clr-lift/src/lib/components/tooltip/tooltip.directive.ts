@@ -8,7 +8,7 @@ import {
   ElementRef,
   HostListener,
   inject,
-  Input,
+  input,
   TemplateRef,
   Type,
 } from '@angular/core';
@@ -23,12 +23,12 @@ import {collisionDetection, getTooltipCoords} from './tooltip.util';
   standalone: true,
 })
 export class TooltipDirective {
-  @Input() cllTooltip = '';
-  @Input() cllTooltipContent: string | TemplateRef<any> | ComponentRef<any> | Type<any> = '';
-  @Input() cllTooltipContentContext?: Record<string, any>; // when cllTooltipContent is TemplateRef, context may be needed
-  @Input() cllTooltipHideDelay = 0;
-  @Input() cllTooltipWidth = 240;
-  @Input() cllTooltipPosition?: TooltipPosition;
+  cllTooltip = input('');
+  cllTooltipContent = input<string | TemplateRef<any> | ComponentRef<any> | Type<any>>('');
+  cllTooltipContentContext = input<Record<string, any>>(); // when cllTooltipContent is TemplateRef, context may be needed
+  cllTooltipHideDelay = input(0);
+  cllTooltipWidth = input(240);
+  cllTooltipPosition = input<TooltipPosition>();
 
   private elementRef = inject(ElementRef);
   private appRef = inject(ApplicationRef);
@@ -80,7 +80,7 @@ export class TooltipDirective {
     this.document.body.appendChild(this.hostElement);
 
     // calculatedPosition is the 1st render expected tooltip class.
-    const calculatedPosition = this.calculateTooltipPosition(this.cllTooltipPosition);
+    const calculatedPosition = this.calculateTooltipPosition(this.cllTooltipPosition());
     this.setTooltipProps(calculatedPosition);
 
     this.tooltipComponent.hostView.detectChanges(); // OR this.tooltipComponent.changeDetectorRef.detectChanges();
@@ -111,7 +111,7 @@ export class TooltipDirective {
           this.tooltipComponent = undefined;
         }
       },
-      force ? 0 : this.cllTooltipHideDelay,
+      force ? 0 : this.cllTooltipHideDelay(),
     );
   }
 
@@ -148,11 +148,11 @@ export class TooltipDirective {
     const coords = getTooltipCoords(this.triggerElement, calculatedPosition);
 
     this.tooltipComponent.setInput('triggerElementHovering', true);
-    this.tooltipComponent.setInput('content', this.cllTooltipContent || this.cllTooltip);
-    if (this.cllTooltipContentContext) {
-      this.tooltipComponent.setInput('contentContext', this.cllTooltipContentContext);
+    this.tooltipComponent.setInput('content', this.cllTooltipContent() || this.cllTooltip());
+    if (this.cllTooltipContentContext()) {
+      this.tooltipComponent.setInput('contentContext', this.cllTooltipContentContext()!);
     }
-    this.tooltipComponent.setInput('width', this.cllTooltipWidth);
+    this.tooltipComponent.setInput('width', this.cllTooltipWidth());
     this.tooltipComponent.setInput('position', calculatedPosition);
     this.tooltipComponent.setInput('left', coords.x);
     this.tooltipComponent.setInput('top', coords.y);

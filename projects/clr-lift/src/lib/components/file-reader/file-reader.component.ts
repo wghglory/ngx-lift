@@ -6,9 +6,10 @@ import {
   forwardRef,
   inject,
   Injector,
-  Input,
+  input,
   OnInit,
   Output,
+  signal,
   ViewChild,
 } from '@angular/core';
 import {
@@ -55,11 +56,13 @@ export class FileReaderComponent implements ControlValueAccessor, Validator, OnI
   private translationService = inject(TranslationService);
 
   @ViewChild('file') fileElement!: ElementRef<HTMLInputElement>;
-  @Input() controlId = '';
-  @Input() acceptFiles = '*';
-  @Input() encoded = false; // read file content as base64
-  @Input() maxSize = Infinity;
-  @Input() disabled = false;
+  controlId = input('');
+  acceptFiles = input('*');
+  encoded = input(false); // read file content as base64
+  maxSize = input(Infinity);
+  disabled = input(false);
+
+  isDisabled = signal(this.disabled());
 
   @Output() fileChange = new EventEmitter<string>();
 
@@ -82,7 +85,7 @@ export class FileReaderComponent implements ControlValueAccessor, Validator, OnI
     if (!this.selectedFile) {
       return false;
     }
-    return this.selectedFile.size > this.maxSize * 1024 * 1024;
+    return this.selectedFile.size > this.maxSize() * 1024 * 1024;
   }
 
   onFileSelected(event: Event) {
@@ -102,7 +105,7 @@ export class FileReaderComponent implements ControlValueAccessor, Validator, OnI
         this.rawContent = fileContent;
         try {
           this.encodedContent = btoa(fileContent);
-          const content = this.encoded ? this.encodedContent : this.rawContent;
+          const content = this.encoded() ? this.encodedContent : this.rawContent;
           this.onChange(content); // Notify the form control
           this.onTouched();
 
@@ -133,7 +136,7 @@ export class FileReaderComponent implements ControlValueAccessor, Validator, OnI
       return;
     }
 
-    if (this.encoded) {
+    if (this.encoded()) {
       this.encodedContent = value;
       this.rawContent = atob(value);
     } else {
@@ -151,7 +154,7 @@ export class FileReaderComponent implements ControlValueAccessor, Validator, OnI
   }
 
   setDisabledState(isDisabled: boolean) {
-    this.disabled = isDisabled;
+    this.isDisabled.set(isDisabled);
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

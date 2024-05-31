@@ -1,6 +1,6 @@
 import {animate, animateChild, group, keyframes, query, style, transition, trigger} from '@angular/animations';
 import {CommonModule} from '@angular/common';
-import {Component, ElementRef, EventEmitter, inject, Input, NgZone, OnInit, Output} from '@angular/core';
+import {Component, ElementRef, EventEmitter, inject, input, NgZone, OnInit, Output} from '@angular/core';
 import {ClarityIcons, timesIcon} from '@cds/core/icon';
 import {ClarityModule} from '@clr/angular';
 import {timer} from 'rxjs';
@@ -236,11 +236,11 @@ export class ToastComponent implements OnInit {
   private ngZone = inject(NgZone);
   private translationService = inject(TranslationService);
 
-  @Input() toastType: ToastType = 'info';
-  @Input() primaryButtonText = '';
-  @Input() secondaryButtonText = '';
-  @Input() manualClosable = true;
-  @Input() timeoutSeconds = 6; // auto close in 6s
+  toastType = input<ToastType>('info');
+  primaryButtonText = input('');
+  secondaryButtonText = input('');
+  manualClosable = input(true);
+  timeoutSeconds = input(6); // auto close in 6s
 
   /**
    * Emit when toast is closed, either by an explicit action of clicking on the X
@@ -290,9 +290,9 @@ export class ToastComponent implements OnInit {
   }
 
   private setUpTimer() {
-    if (this.timeoutSeconds > 0) {
+    if (this.timeoutSeconds() > 0) {
       this.ngZone.runOutsideAngular(() => {
-        timer(this.timeoutSeconds * multiply(1000))
+        timer(this.timeoutSeconds() * multiply(1000))
           .pipe(take(1))
           .subscribe(() => {
             this.ngZone.run(() => {

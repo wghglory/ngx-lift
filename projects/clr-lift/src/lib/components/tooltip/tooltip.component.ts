@@ -12,6 +12,7 @@ import {
   HostListener,
   inject,
   Input,
+  input,
   Output,
   TemplateRef,
   Type,
@@ -35,13 +36,13 @@ import {isElementClickable, isElementInsideCollection} from './tooltip.util';
 export class TooltipComponent {
   private cdr = inject(ChangeDetectorRef);
 
-  @Input() left = 0;
-  @Input() top = 0;
-  @Input() width?: number;
-  @Input() position?: TooltipPosition;
-  @Input() triggerElementHovering = true; // if the trigger element (e.g. button) is being hovered
+  left = input(0);
+  top = input(0);
+  width = input<number>();
+  position = input<TooltipPosition>();
+  triggerElementHovering = input(true); // if the trigger element (e.g. button) is being hovered
 
-  @Input() contentContext?: Record<string, any>;
+  contentContext = input<Record<string, any>>();
 
   @Input() set content(c: string | TemplateRef<any> | ComponentRef<any> | Type<any>) {
     if (typeof c === 'string') {
@@ -49,7 +50,7 @@ export class TooltipComponent {
     } else if (c instanceof TemplateRef) {
       // Wait for the component to add the content container
       setTimeout(() => {
-        this.contentContainer?.createEmbeddedView(c, this.contentContext);
+        this.contentContainer?.createEmbeddedView(c, this.contentContext());
         this.cdr.detectChanges();
       });
     } else if (c instanceof ComponentRef) {
@@ -106,7 +107,7 @@ export class TooltipComponent {
 
     setTimeout(() => {
       // if mouse out and not place onto the trigger element, close the tooltip
-      if (!this.triggerElementHovering) {
+      if (!this.triggerElementHovering()) {
         this.closePopover.next(false);
       }
     }, 300);
