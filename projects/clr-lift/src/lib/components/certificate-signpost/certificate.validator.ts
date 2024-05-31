@@ -7,7 +7,7 @@ export function certificateValidator(shouldDecode = false): (control: AbstractCo
       try {
         pki.certificateFromPem(shouldDecode ? atob(control.value) : control.value);
       } catch (error) {
-        return {invalidCertificate: true};
+        return {invalidCertificate: error};
       }
     }
 

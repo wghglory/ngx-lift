@@ -1,5 +1,5 @@
-import {CommonModule} from '@angular/common';
-import {ChangeDetectionStrategy, Component, inject, input, OnChanges, SimpleChanges} from '@angular/core';
+import {NgClass} from '@angular/common';
+import {ChangeDetectionStrategy, Component, computed, inject, input, signal, untracked} from '@angular/core';
 import {certificateIcon, ClarityIcons} from '@cds/core/icon';
 import {ClarityModule} from '@clr/angular';
 import {pki} from 'node-forge';
@@ -16,12 +16,12 @@ ClarityIcons.addIcons(certificateIcon);
 @Component({
   selector: 'cll-certificate-signpost',
   standalone: true,
-  imports: [ClarityModule, CommonModule, TranslatePipe, CertificateComponent],
+  imports: [NgClass, ClarityModule, TranslatePipe, CertificateComponent],
   templateUrl: './certificate-signpost.component.html',
   styleUrls: ['./certificate-signpost.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CertificateSignpostComponent implements OnChanges {
+export class CertificateSignpostComponent {
   private translationService = inject(TranslationService);
   private certificateService = inject(CertificateService);
 
@@ -43,24 +43,44 @@ export class CertificateSignpostComponent implements OnChanges {
   pemEncoded = input(false); // encode pem string or not
   pem = input.required<string>();
 
-  constructor() {
-    this.translationService.loadTranslationsForComponent('certificate', certificateTranslations);
-  }
+  error = signal('');
 
-  certificate?: pki.Certificate;
-  certificateStatus?: CertificateStatus;
-  hash = {
-    md5: '',
-    sha1: '',
-  };
-  hasError = false;
+  certificate = computed(() => {
+    try {
+      return this.certificateService.getCertificateFromPem(this.pem(), this.pemEncoded());
+    } catch (error: unknown) {
+      untracked(() => {
+        this.error.set(error as string);
+      });
+      return undefined;
+    }
+  });
 
-  get certificateStatusClass() {
-    return this.certificateStatus?.status === 'danger'
+  certificateStatus = computed<CertificateStatus>(() => {
+    const cert = this.certificate();
+
+    return cert
+      ? this.getCertificateStatus(cert)
+      : {
+          labelText: this.error(),
+          labelClass: 'label-danger',
+          status: 'danger',
+          shape: 'error-standard',
+        };
+  });
+
+  hash = computed(() => this.certificateService.getCertificateHashes(this.pem(), this.pemEncoded()));
+
+  certificateStatusClass = computed(() => {
+    return this.certificateStatus().status === 'danger'
       ? 'text-danger'
-      : this.certificateStatus?.status === 'warning'
+      : this.certificateStatus().status === 'warning'
         ? 'text-warning'
         : 'text-success';
+  });
+
+  constructor() {
+    this.translationService.loadTranslationsForComponent('certificate', certificateTranslations);
   }
 
   /**
@@ -92,30 +112,6 @@ export class CertificateSignpostComponent implements OnChanges {
         labelClass: 'label-success',
         status: 'success',
         shape: 'success-standard',
-      };
-    }
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    try {
-      this.hasError = false;
-
-      const pem = changes['pem'].currentValue;
-      const pemEncoded = changes['pemEncoded']?.currentValue || false;
-
-      this.hash = this.certificateService.getCertificateHashes(pem, pemEncoded);
-
-      this.certificate = this.certificateService.getCertificateFromPem(pem, pemEncoded);
-      this.certificateStatus = this.getCertificateStatus(this.certificate);
-    } catch (error: unknown) {
-      console.error((<Error>error).message, 'error');
-      this.hasError = true;
-
-      this.certificateStatus = {
-        labelText: `${error}`,
-        labelClass: 'label-danger',
-        status: 'danger',
-        shape: 'error-standard',
       };
     }
   }

@@ -67,7 +67,9 @@
         <clr-control-error *clrIfError="'exceedLimit'">
           Exceed the maximum file size ({{ certFileLimit }} MB).
         </clr-control-error>
-        <clr-control-error *clrIfError="'invalidCertificate'"> Cannot parse the file correctly </clr-control-error>
+        <clr-control-error *clrIfError="'invalidCertificate'; error as error">
+          {{ error }}
+        </clr-control-error>
         <clr-control-error *clrIfError="'required'"> Required </clr-control-error>
       </clr-control-container>
 
