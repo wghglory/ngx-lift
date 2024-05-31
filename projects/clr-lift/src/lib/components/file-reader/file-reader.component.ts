@@ -1,11 +1,11 @@
 import {
   Component,
+  computed,
   ElementRef,
   forwardRef,
   inject,
   Injector,
   input,
-  OnInit,
   output,
   signal,
   viewChild,
@@ -49,28 +49,37 @@ import {fileReaderTranslations} from './file-reader.l10n';
     },
   ],
 })
-export class FileReaderComponent implements ControlValueAccessor, Validator, OnInit {
+export class FileReaderComponent implements ControlValueAccessor, Validator {
   private injector = inject(Injector);
   private translationService = inject(TranslationService);
 
   fileElement = viewChild.required<ElementRef<HTMLInputElement>>('file');
+
   controlId = input('');
   acceptFiles = input('*');
   encoded = input(false); // read file content as base64
   maxSize = input(Infinity);
   disabled = input(false);
 
-  isDisabled = signal(this.disabled());
-
   fileChange = output<string>();
 
-  // @Input({ required: true }) formControl: FormControl;
-  formControl?: FormControl;
+  isDisabled = signal(this.disabled());
 
-  selectedFile?: File;
-  parseError = '';
-  rawContent = '';
-  encodedContent = '';
+  // @Input({ required: true }) formControl: FormControl;
+  formControl = computed(() => {
+    const ngControl = this.injector.get(NgControl);
+
+    if (ngControl instanceof FormControlName) {
+      return this.injector.get(FormGroupDirective).getControl(ngControl);
+    } else {
+      return (ngControl as FormControlDirective).form as FormControl;
+    }
+  });
+
+  selectedFile = signal<File | undefined>(undefined);
+  parseError = signal('');
+  rawContent = signal('');
+  encodedContent = signal('');
 
   constructor() {
     this.translationService.loadTranslationsForComponent('FileReader', fileReaderTranslations);
@@ -79,20 +88,21 @@ export class FileReaderComponent implements ControlValueAccessor, Validator, OnI
   private onChange: (value: string) => void = () => {};
   private onTouched: () => void = () => {};
 
-  get sizeInvalid() {
-    if (!this.selectedFile) {
+  sizeInvalid = computed(() => {
+    const selectedFile = this.selectedFile();
+    if (!selectedFile) {
       return false;
     }
-    return this.selectedFile.size > this.maxSize() * 1024 * 1024;
-  }
+    return selectedFile.size > this.maxSize() * 1024 * 1024;
+  });
 
   onFileSelected(event: Event) {
-    this.parseError = '';
+    this.parseError.set('');
 
     const inputElement = event.target as HTMLInputElement;
     if (inputElement.files && inputElement.files.length > 0) {
       const selectedFile = inputElement.files[0];
-      this.selectedFile = selectedFile;
+      this.selectedFile.set(selectedFile);
 
       const reader = new FileReader();
 
@@ -100,16 +110,16 @@ export class FileReaderComponent implements ControlValueAccessor, Validator, OnI
         const fileReader = e.target as FileReader;
         const fileContent = fileReader.result as string;
 
-        this.rawContent = fileContent;
+        this.rawContent.set(fileContent);
         try {
-          this.encodedContent = btoa(fileContent);
-          const content = this.encoded() ? this.encodedContent : this.rawContent;
+          this.encodedContent.set(btoa(fileContent));
+          const content = this.encoded() ? this.encodedContent() : this.rawContent();
           this.onChange(content); // Notify the form control
           this.onTouched();
 
           this.fileChange.emit(content);
         } catch (error) {
-          this.parseError = (error as Error).message;
+          this.parseError.set((error as Error).message);
           this.onChange(' '); // use 1 space string to avoid required error, onChange will trigger validate method
           this.onTouched();
         }
@@ -121,9 +131,9 @@ export class FileReaderComponent implements ControlValueAccessor, Validator, OnI
 
   removeFile() {
     this.fileElement().nativeElement.value = '';
-    this.selectedFile = undefined;
-    this.rawContent = '';
-    this.encodedContent = '';
+    this.selectedFile.set(undefined);
+    this.rawContent.set('');
+    this.encodedContent.set('');
     this.onChange('');
     this.onTouched();
   }
@@ -135,11 +145,11 @@ export class FileReaderComponent implements ControlValueAccessor, Validator, OnI
     }
 
     if (this.encoded()) {
-      this.encodedContent = value;
-      this.rawContent = atob(value);
+      this.encodedContent.set(value);
+      this.rawContent.set(atob(value));
     } else {
-      this.rawContent = value;
-      this.encodedContent = btoa(value);
+      this.rawContent.set(value);
+      this.encodedContent.set(btoa(value));
     }
   }
 
@@ -157,23 +167,13 @@ export class FileReaderComponent implements ControlValueAccessor, Validator, OnI
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   validate(control: AbstractControl): ValidationErrors | null {
-    if (this.sizeInvalid) {
+    if (this.sizeInvalid()) {
       return {exceedLimit: true};
     }
-    if (this.parseError) {
-      return {parse: this.parseError};
+    if (this.parseError()) {
+      return {parse: this.parseError()};
     }
 
     return null;
-  }
-
-  ngOnInit() {
-    const ngControl = this.injector.get(NgControl);
-
-    if (ngControl instanceof FormControlName) {
-      this.formControl = this.injector.get(FormGroupDirective).getControl(ngControl);
-    } else {
-      this.formControl = (ngControl as FormControlDirective).form as FormControl;
-    }
   }
 }

@@ -8,11 +8,11 @@
 />
 
 <button type="button" [disabled]="isDisabled()" class="btn btn-outline btn-sm" (click)="file.click()">
-  {{ (selectedFile ? 'FileReader.replace' : 'FileReader.browse') | translate }}
+  {{ (selectedFile() ? 'FileReader.replace' : 'FileReader.browse') | translate }}
 </button>
-<span>{{ selectedFile?.name }}</span>
+<span>{{ selectedFile()?.name }}</span>
 
-@if (selectedFile) {
+@if (selectedFile()) {
   <button
     type="button"
     class="btn btn-sm btn-icon btn-link btn-close"
