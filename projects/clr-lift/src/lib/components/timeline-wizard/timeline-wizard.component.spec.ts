@@ -82,20 +82,20 @@ describe('TimelineWizardComponent', () => {
   });
 
   it('should handle renderComponent (live = false)', () => {
-    spyOn(component.container, 'clear');
+    spyOn(component.container(), 'clear');
 
     component.live = false;
     component.renderComponent();
 
-    expect(component.container.clear).toHaveBeenCalled();
+    expect(component.container().clear).toHaveBeenCalled();
   });
 
   it('should handle renderComponent (live = true)', () => {
-    spyOn(component.container, 'clear');
+    spyOn(component.container(), 'clear');
 
     component.live = true;
     component.renderComponent();
 
-    expect(component.container.clear).not.toHaveBeenCalled();
+    expect(component.container().clear).not.toHaveBeenCalled();
   });
 });

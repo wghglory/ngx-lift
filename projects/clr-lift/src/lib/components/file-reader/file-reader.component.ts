@@ -9,7 +9,7 @@ import {
   OnInit,
   output,
   signal,
-  ViewChild,
+  viewChild,
 } from '@angular/core';
 import {
   AbstractControl,
@@ -54,7 +54,7 @@ export class FileReaderComponent implements ControlValueAccessor, Validator, OnI
   private injector = inject(Injector);
   private translationService = inject(TranslationService);
 
-  @ViewChild('file') fileElement!: ElementRef<HTMLInputElement>;
+  fileElement = viewChild.required<ElementRef<HTMLInputElement>>('file');
   controlId = input('');
   acceptFiles = input('*');
   encoded = input(false); // read file content as base64
@@ -121,7 +121,7 @@ export class FileReaderComponent implements ControlValueAccessor, Validator, OnI
   }
 
   removeFile() {
-    this.fileElement.nativeElement.value = '';
+    this.fileElement().nativeElement.value = '';
     this.selectedFile = undefined;
     this.rawContent = '';
     this.encodedContent = '';

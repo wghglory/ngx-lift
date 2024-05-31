@@ -10,7 +10,7 @@ import {
   inject,
   Input,
   Output,
-  ViewChild,
+  viewChild,
   ViewContainerRef,
 } from '@angular/core';
 import {ClarityModule, ClrTimelineStepState} from '@clr/angular';
@@ -38,7 +38,7 @@ export class TimelineWizardComponent implements AfterViewInit {
   public timelineWizardService = inject(TimelineWizardService);
 
   // Dynamic component container
-  @ViewChild('container', {read: ViewContainerRef}) container!: ViewContainerRef;
+  container = viewChild.required('container', {read: ViewContainerRef});
 
   /**
    * Controls whether to destroy step components when clicking prev/next buttons.
@@ -111,11 +111,11 @@ export class TimelineWizardComponent implements AfterViewInit {
   renderComponent() {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
     if (!this.live) {
-      this.container.clear();
+      this.container().clear();
     }
 
     // Create dynamic component
-    const componentRef = this.container.createComponent(this.timelineWizardService.currentStep.component);
+    const componentRef = this.container().createComponent(this.timelineWizardService.currentStep.component);
 
     // Save current component ref to know if the form is valid
     this.componentRefMap = {...this.componentRefMap, [this.timelineWizardService.currentStepIndex]: componentRef};

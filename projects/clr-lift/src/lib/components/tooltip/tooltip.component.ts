@@ -15,7 +15,7 @@ import {
   output,
   TemplateRef,
   Type,
-  ViewChild,
+  viewChild,
   ViewContainerRef,
 } from '@angular/core';
 
@@ -49,17 +49,17 @@ export class TooltipComponent {
     } else if (c instanceof TemplateRef) {
       // Wait for the component to add the content container
       setTimeout(() => {
-        this.contentContainer?.createEmbeddedView(c, this.contentContext());
+        this.contentContainer().createEmbeddedView(c, this.contentContext());
         this.cdr.detectChanges();
       });
     } else if (c instanceof ComponentRef) {
       setTimeout(() => {
-        this.contentContainer?.insert(c.hostView, 0);
+        this.contentContainer().insert(c.hostView, 0);
         this.cdr.detectChanges();
       });
     } else if (c instanceof Type) {
       setTimeout(() => {
-        this.contentContainer?.createComponent(c);
+        this.contentContainer().createComponent(c);
         this.cdr.detectChanges();
       });
     }
@@ -68,8 +68,7 @@ export class TooltipComponent {
   // force close is true
   closePopover = output<boolean>();
 
-  @ViewChild('contentContainer', {static: false, read: ViewContainerRef})
-  contentContainer?: ViewContainerRef;
+  contentContainer = viewChild.required('contentContainer', {read: ViewContainerRef});
 
   text? = '';
   showClose = true;
