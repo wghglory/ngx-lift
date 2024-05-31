@@ -56,179 +56,205 @@ describe('dgState', () => {
     });
   });
 
-  it('should emit when filter changes after 500ms', (done) => {
-    // Arrange
-    const initialState: ClrDatagridStateInterface | null = null;
-    const newState1: ClrDatagridStateInterface | null = {filters: [{column1: 'value1'}]};
-    const newState2: ClrDatagridStateInterface | null = {filters: [{column1: 'value2'}]};
+  it('should emit when filter changes after 500ms', () => {
+    testScheduler.run(({flush}) => {
+      // Arrange
+      const initialState: ClrDatagridStateInterface | null = null;
+      const newState1: ClrDatagridStateInterface | null = {filters: [{column1: 'value1'}]};
+      const newState2: ClrDatagridStateInterface | null = {filters: [{column1: 'value2'}]};
 
-    const source$ = new BehaviorSubject<ClrDatagridStateInterface | null>(initialState);
+      const source$ = new BehaviorSubject<ClrDatagridStateInterface | null>(initialState);
 
-    setTimeout(() => {
-      source$.next(newState1);
-    }, 100);
+      setTimeout(() => {
+        source$.next(newState1);
+      }, 100);
 
-    setTimeout(() => {
-      source$.next(newState2);
-      source$.complete();
-    }, 700);
+      setTimeout(() => {
+        source$.next(newState2);
+        source$.complete();
+      }, 700);
 
-    // Act
-    const result$ = source$.pipe(dgState());
+      // Act
+      const result$ = source$.pipe(dgState());
 
-    let count = 0;
+      let count = 0;
 
-    result$.subscribe((result) => {
-      if (count === 0) {
-        expect(result).toEqual(null);
-      } else if (count === 1) {
-        expect(result).toEqual(newState1);
-      } else if (count === 2) {
-        expect(result).toEqual(newState2);
-        done();
-      }
+      const subscription = result$.subscribe((result) => {
+        if (count === 0) {
+          expect(result).toEqual(null);
+        } else if (count === 1) {
+          expect(result).toEqual(newState1);
+        } else if (count === 2) {
+          expect(result).toEqual(newState2);
+          subscription.unsubscribe();
+        }
 
-      count++;
+        count++;
+      });
+
+      // Advance virtual time
+      flush();
     });
   });
 
-  it('should not emit when filter changes back to original value within 500ms', (done) => {
-    // Arrange
-    const initialState: ClrDatagridStateInterface | null = null;
-    const newState1: ClrDatagridStateInterface | null = {filters: [{column1: 'value1'}]};
-    const newState2: ClrDatagridStateInterface | null = {filters: [{column1: 'value2'}]};
+  it('should not emit when filter changes back to original value within 500ms', () => {
+    testScheduler.run(({flush}) => {
+      // Arrange
+      const initialState: ClrDatagridStateInterface | null = null;
+      const newState1: ClrDatagridStateInterface | null = {filters: [{column1: 'value1'}]};
+      const newState2: ClrDatagridStateInterface | null = {filters: [{column1: 'value2'}]};
 
-    const source$ = new BehaviorSubject<ClrDatagridStateInterface | null>(initialState);
+      const source$ = new BehaviorSubject<ClrDatagridStateInterface | null>(initialState);
 
-    setTimeout(() => {
-      source$.next(newState1);
-    }, 100);
-    setTimeout(() => {
-      source$.next(newState2);
-    }, 200);
-    setTimeout(() => {
-      source$.next(newState1);
-      source$.complete();
-    }, 300);
+      setTimeout(() => {
+        source$.next(newState1);
+      }, 100);
+      setTimeout(() => {
+        source$.next(newState2);
+      }, 200);
+      setTimeout(() => {
+        source$.next(newState1);
+        source$.complete();
+      }, 300);
 
-    // Act
-    const result$ = source$.pipe(dgState());
+      // Act
+      const result$ = source$.pipe(dgState());
 
-    let count = 0;
+      let count = 0;
 
-    result$.subscribe((result) => {
-      if (count === 0) {
-        expect(result).toEqual(null);
-      } else if (count === 1) {
-        expect(result).toEqual(newState1);
-        done();
-      }
+      const subscription = result$.subscribe((result) => {
+        if (count === 0) {
+          expect(result).toEqual(null);
+        } else if (count === 1) {
+          expect(result).toEqual(newState1);
+          // The error "NG0953: Unexpected emit for destroyed OutputRef" indicates that Angular is trying to emit an event from a destroyed component or directive. This issue often occurs when you're using BehaviorSubject or other subjects and the component or directive that owns the subscription gets destroyed.
+          subscription.unsubscribe();
+        }
 
-      count++;
+        count++;
+      });
+
+      // Advance virtual time
+      flush();
     });
   });
 
-  it('should not emit when filter does not change', (done) => {
-    // Arrange
-    const initialState: ClrDatagridStateInterface | null = null;
-    const newState1: ClrDatagridStateInterface | null = {filters: [{column1: 'value1'}]};
-    const newState2: ClrDatagridStateInterface | null = {filters: [{column1: 'value1'}]};
+  it('should not emit when filter does not change', () => {
+    testScheduler.run(({flush}) => {
+      // Arrange
+      const initialState: ClrDatagridStateInterface | null = null;
+      const newState1: ClrDatagridStateInterface | null = {filters: [{column1: 'value1'}]};
+      const newState2: ClrDatagridStateInterface | null = {filters: [{column1: 'value1'}]};
 
-    const source$ = new BehaviorSubject<ClrDatagridStateInterface | null>(initialState);
+      const source$ = new BehaviorSubject<ClrDatagridStateInterface | null>(initialState);
 
-    setTimeout(() => {
-      source$.next(newState1);
-    }, 100);
+      setTimeout(() => {
+        source$.next(newState1);
+      }, 100);
 
-    setTimeout(() => {
-      source$.next(newState2);
-      source$.complete();
-    }, 700);
+      setTimeout(() => {
+        source$.next(newState2);
+        source$.complete();
+      }, 700);
 
-    // Act
-    const result$ = source$.pipe(dgState());
+      // Act
+      const result$ = source$.pipe(dgState());
 
-    let count = 0;
+      let count = 0;
 
-    result$.subscribe((result) => {
-      if (count === 0) {
-        expect(result).toEqual(null);
-      } else if (count === 1) {
-        expect(result).toEqual(newState1);
-        done();
-      }
+      const subscription = result$.subscribe((result) => {
+        if (count === 0) {
+          expect(result).toEqual(null);
+        } else if (count === 1) {
+          expect(result).toEqual(newState1);
+          subscription.unsubscribe();
+        }
 
-      count++;
+        count++;
+      });
+
+      // Advance virtual time
+      flush();
     });
   });
 
-  it('should emit the same state when enableDistinctUntilChanged is false', (done) => {
-    // Arrange
-    const initialState: ClrDatagridStateInterface | null = null;
-    const newState1: ClrDatagridStateInterface | null = clrDgState;
-    const newState2: ClrDatagridStateInterface | null = clrDgState;
+  it('should emit the same state when enableDistinctUntilChanged is false', () => {
+    testScheduler.run(({flush}) => {
+      // Arrange
+      const initialState: ClrDatagridStateInterface | null = null;
+      const newState1: ClrDatagridStateInterface | null = clrDgState;
+      const newState2: ClrDatagridStateInterface | null = clrDgState;
 
-    const source$ = new BehaviorSubject<ClrDatagridStateInterface | null>(initialState);
+      const source$ = new BehaviorSubject<ClrDatagridStateInterface | null>(initialState);
 
-    setTimeout(() => {
-      source$.next(newState1);
-    }, 100);
+      setTimeout(() => {
+        source$.next(newState1);
+      }, 100);
 
-    setTimeout(() => {
-      source$.next(newState2);
-      source$.complete();
-    }, 700);
+      setTimeout(() => {
+        source$.next(newState2);
+        source$.complete();
+      }, 700);
 
-    // Act
-    const result$ = source$.pipe(dgState(false)); // Disable distinctUntilChanged
+      // Act
+      const result$ = source$.pipe(dgState(false)); // Disable distinctUntilChanged
 
-    let count = 0;
+      let count = 0;
 
-    result$.subscribe((result) => {
-      if (count === 0) {
-        expect(result).toEqual(null);
-      } else if (count === 1) {
-        expect(result).toEqual(clrDgState);
-      } else if (count === 2) {
-        expect(result).toEqual(clrDgState);
-        done();
-      }
+      const subscription = result$.subscribe((result) => {
+        if (count === 0) {
+          expect(result).toEqual(null);
+        } else if (count === 1) {
+          expect(result).toEqual(clrDgState);
+        } else if (count === 2) {
+          expect(result).toEqual(clrDgState);
+          subscription.unsubscribe();
+        }
 
-      count++;
+        count++;
+      });
+
+      // Advance virtual time
+      flush();
     });
   });
 
-  it('should not emit the same state when enableDistinctUntilChanged is true', (done) => {
-    // Arrange
-    const initialState: ClrDatagridStateInterface | null = null;
-    const newState1: ClrDatagridStateInterface | null = clrDgState;
-    const newState2: ClrDatagridStateInterface | null = clrDgState;
+  it('should not emit the same state when enableDistinctUntilChanged is true', () => {
+    testScheduler.run(({flush}) => {
+      // Arrange
+      const initialState: ClrDatagridStateInterface | null = null;
+      const newState1: ClrDatagridStateInterface | null = clrDgState;
+      const newState2: ClrDatagridStateInterface | null = clrDgState;
 
-    const source$ = new BehaviorSubject<ClrDatagridStateInterface | null>(initialState);
+      const source$ = new BehaviorSubject<ClrDatagridStateInterface | null>(initialState);
 
-    setTimeout(() => {
-      source$.next(newState1);
-    }, 100);
+      setTimeout(() => {
+        source$.next(newState1);
+      }, 100);
 
-    setTimeout(() => {
-      source$.next(newState2);
-      source$.complete();
-    }, 700);
+      setTimeout(() => {
+        source$.next(newState2);
+        source$.complete();
+      }, 700);
 
-    // Act
-    const result$ = source$.pipe(dgState());
+      // Act
+      const result$ = source$.pipe(dgState());
 
-    let count = 0;
+      let count = 0;
 
-    result$.subscribe((result) => {
-      if (count === 0) {
-        expect(result).toEqual(null);
-      } else if (count === 1) {
-        expect(result).toEqual(clrDgState);
-        done();
-      }
+      const subscription = result$.subscribe((result) => {
+        if (count === 0) {
+          expect(result).toEqual(null);
+        } else if (count === 1) {
+          expect(result).toEqual(clrDgState);
+          subscription.unsubscribe();
+        }
 
-      count++;
+        count++;
+      });
+
+      // Advance virtual time
+      flush();
     });
   });
 });
