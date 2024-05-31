@@ -1,6 +1,6 @@
 import {animate, animateChild, group, keyframes, query, style, transition, trigger} from '@angular/animations';
 import {CommonModule} from '@angular/common';
-import {Component, ElementRef, EventEmitter, inject, input, NgZone, OnInit, Output} from '@angular/core';
+import {Component, ElementRef, inject, input, NgZone, OnInit, output} from '@angular/core';
 import {ClarityIcons, timesIcon} from '@cds/core/icon';
 import {ClarityModule} from '@clr/angular';
 import {timer} from 'rxjs';
@@ -247,9 +247,9 @@ export class ToastComponent implements OnInit {
    * or after the auto close timeout. If the user clicked the X, the emission will be
    * a boolean true, otherwise false.
    */
-  @Output() closed = new EventEmitter<boolean>();
-  @Output() primaryButtonClick = new EventEmitter();
-  @Output() secondaryButtonClick = new EventEmitter();
+  closed = output<boolean>();
+  primaryButtonClick = output<void>();
+  secondaryButtonClick = output<void>();
 
   disableAutoClose = false;
   animate = true;

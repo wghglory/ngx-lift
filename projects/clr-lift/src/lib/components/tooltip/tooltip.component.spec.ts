@@ -27,7 +27,7 @@ describe('TooltipComponent', () => {
   });
 
   it('should emit close event when closeTooltip is called', () => {
-    const spy = spyOn(component.closePopover, 'next');
+    const spy = spyOn(component.closePopover, 'emit');
 
     component.closeTooltip();
 
@@ -35,7 +35,7 @@ describe('TooltipComponent', () => {
   });
 
   it('should emit close event on window click outside the tooltip', () => {
-    const spy = spyOn(component.closePopover, 'next');
+    const spy = spyOn(component.closePopover, 'emit');
 
     const event = new MouseEvent('click');
     component.click(event);
@@ -44,7 +44,7 @@ describe('TooltipComponent', () => {
   });
 
   it('should emit close event on escape key press', () => {
-    const spy = spyOn(component.closePopover, 'next');
+    const spy = spyOn(component.closePopover, 'emit');
 
     component.onEscape({} as KeyboardEvent);
 

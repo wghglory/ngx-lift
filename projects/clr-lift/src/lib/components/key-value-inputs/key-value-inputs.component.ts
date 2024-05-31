@@ -1,5 +1,5 @@
 import {CommonModule} from '@angular/common';
-import {Component, computed, EventEmitter, inject, input, OnInit, Output} from '@angular/core';
+import {Component, computed, inject, input, OnInit, output} from '@angular/core';
 import {
   AbstractControl,
   FormArray,
@@ -39,8 +39,8 @@ export class KeyValueInputsComponent implements OnInit {
 
   addText = computed(() => this._addText() || this.translationService.translate('key-value.add'));
 
-  @Output() removeKeyValue = new EventEmitter<number>();
-  @Output() addKeyValue = new EventEmitter<void>();
+  removeKeyValue = output<number>();
+  addKeyValue = output<void>();
 
   constructor() {
     this.translationService.loadTranslationsForComponent('key-value', keyValueTranslations);
