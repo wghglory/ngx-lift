@@ -7,6 +7,7 @@ import {
   ComponentRef,
   EmbeddedViewRef,
   EventEmitter,
+  inject,
   Input,
   Output,
   ViewChild,
@@ -32,6 +33,10 @@ import {TimelineWizardService} from './timeline-wizard.service';
   styleUrls: ['./timeline-wizard.component.scss'],
 })
 export class TimelineWizardComponent implements AfterViewInit {
+  private translationService = inject(TranslationService);
+  private cdr = inject(ChangeDetectorRef);
+  public timelineWizardService = inject(TimelineWizardService);
+
   // Dynamic component container
   @ViewChild('container', {read: ViewContainerRef}) container!: ViewContainerRef;
 
@@ -81,12 +86,8 @@ export class TimelineWizardComponent implements AfterViewInit {
     ),
   );
 
-  constructor(
-    private translationService: TranslationService,
-    private cdr: ChangeDetectorRef,
-    public timelineWizardService: TimelineWizardService,
-  ) {
-    translationService.loadTranslationsForComponent('timeline-wizard', timelineWizardTranslations);
+  constructor() {
+    this.translationService.loadTranslationsForComponent('timeline-wizard', timelineWizardTranslations);
     this.confirmButtonText = this.translationService.translate('timeline-wizard.confirm');
   }
 

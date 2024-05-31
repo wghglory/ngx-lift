@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import {BehaviorSubject, map} from 'rxjs';
 
@@ -8,7 +8,7 @@ import {Alert, RequiredAlert} from './alert.type';
   providedIn: 'root',
 })
 export class AlertService {
-  constructor(private sanitizer: DomSanitizer) {}
+  private sanitizer = inject(DomSanitizer);
 
   private alertsBS = new BehaviorSubject<RequiredAlert[]>([]);
   alerts$ = this.alertsBS.asObservable().pipe(

@@ -1,5 +1,5 @@
 import {CommonModule} from '@angular/common';
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {ClarityModule} from '@clr/angular';
 
 import {TranslatePipe} from '../../pipes/translate.pipe';
@@ -16,13 +16,13 @@ import {AlertService} from './alert.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AlertContainerComponent {
+  private alertService = inject(AlertService);
+  private translationService = inject(TranslationService);
+
   alerts$ = this.alertService.alerts$;
 
-  constructor(
-    private alertService: AlertService,
-    private translationService: TranslationService,
-  ) {
-    translationService.loadTranslationsForComponent('alert', alertTranslations);
+  constructor() {
+    this.translationService.loadTranslationsForComponent('alert', alertTranslations);
   }
 
   onCloseAlert(id: symbol) {

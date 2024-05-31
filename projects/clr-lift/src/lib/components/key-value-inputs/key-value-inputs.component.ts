@@ -1,5 +1,5 @@
 import {CommonModule} from '@angular/common';
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, inject, Input, OnInit, Output} from '@angular/core';
 import {
   AbstractControl,
   FormArray,
@@ -25,6 +25,9 @@ import {KeyValueFormGroup} from './key-value-form-group.type';
   styleUrls: ['./key-value-inputs.component.scss'],
 })
 export class KeyValueInputsComponent implements OnInit {
+  private translationService = inject(TranslationService);
+  private fb = inject(NonNullableFormBuilder);
+
   @Input({required: true}) formArray: FormArray<KeyValueFormGroup> | undefined;
   @Input() data: {key: string; value: string}[] = [];
   @Input() uniqueKey = true;
@@ -37,12 +40,10 @@ export class KeyValueInputsComponent implements OnInit {
   @Output() removeKeyValue = new EventEmitter<number>();
   @Output() addKeyValue = new EventEmitter<void>();
 
-  constructor(
-    private translationService: TranslationService,
-    private fb: NonNullableFormBuilder,
-  ) {
-    translationService.loadTranslationsForComponent('key-value', keyValueTranslations);
-    this.addText = translationService.translate('key-value.add');
+  constructor() {
+    this.translationService.loadTranslationsForComponent('key-value', keyValueTranslations);
+
+    this.addText = this.translationService.translate('key-value.add');
   }
 
   removeKeyValuePair(index: number) {
