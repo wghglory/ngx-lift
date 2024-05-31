@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import {CommonModule} from '@angular/common';
-import {Component, DebugElement} from '@angular/core';
+import {Component, DebugElement, signal} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 import {ClarityModule} from '@clr/angular';
-import {of} from 'rxjs';
 
 import {TranslationService} from '../../services/translation.service';
 import {MockTranslationService} from '../../services/translation.service.mock';
@@ -23,7 +22,7 @@ describe('AlertContainerComponent', () => {
       providers: [
         {
           provide: AlertService,
-          useValue: {alerts$: of([{content: 'alert 1'}, {content: 'alert 2'}]), deleteAlert: (id: symbol) => {}},
+          useValue: {alerts: signal([{content: 'alert 1'}, {content: 'alert 2'}]), deleteAlert: (id: symbol) => {}},
         },
         {provide: TranslationService, useClass: MockTranslationService},
       ],
@@ -72,7 +71,7 @@ describe('TestAlertsHostComponent', () => {
       providers: [
         {
           provide: AlertService,
-          useValue: {alerts$: of(mockAlerts), deleteAlert: (id: symbol) => {}},
+          useValue: {alerts: signal(mockAlerts), deleteAlert: (id: symbol) => {}},
         },
         {provide: TranslationService, useClass: MockTranslationService},
       ],
@@ -98,7 +97,7 @@ describe('TestAlertsHostComponent', () => {
 
   it('should call onCloseAlert when alert is closed', () => {
     const mockAlert = {id: Symbol(), content: 'Test Alert', alertType: 'info' as const, isAppLevel: true};
-    alertService.alerts$ = of([mockAlert]);
+    alertService.alerts = signal([mockAlert]);
     const deleteAlertSpy = spyOn(alertService, 'deleteAlert');
 
     fixture.detectChanges();

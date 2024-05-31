@@ -1,6 +1,5 @@
 import {TestBed} from '@angular/core/testing';
 import {DomSanitizer} from '@angular/platform-browser';
-import {take} from 'rxjs';
 
 import {AlertService} from './alert.service';
 import {Alert} from './alert.type';
@@ -21,21 +20,20 @@ describe('AlertService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should add and sanitize alert', (done) => {
+  it('should add and sanitize alert', () => {
     const mockAlert: Alert = {content: '<strong>Test Alert</strong>'};
 
     service.addAlert(mockAlert);
 
-    service.alerts$.pipe(take(2)).subscribe((alerts) => {
-      expect(alerts.length).toBe(1);
+    const alerts = service.alerts();
 
-      const addedAlert = alerts[0];
-      expect(addedAlert.content).toEqual(sanitizer.bypassSecurityTrustHtml(mockAlert.content));
-      done();
-    });
+    expect(alerts.length).toBe(1);
+
+    const addedAlert = alerts[0];
+    expect(addedAlert.content).toEqual(sanitizer.bypassSecurityTrustHtml(mockAlert.content));
   });
 
-  it('should delete alert and unregister event', (done) => {
+  it('should delete alert and unregister event', () => {
     const mockAlert: Alert = {
       content: 'Test Alert <button id="testId">Click</button>',
       targetSelector: '#testId',
@@ -43,15 +41,13 @@ describe('AlertService', () => {
     };
 
     const addedAlert = service.addAlert(mockAlert);
-    service.deleteAlert(addedAlert.id);
+    expect(service.alerts().length).toBe(1);
 
-    service.alerts$.pipe(take(3)).subscribe((alerts) => {
-      expect(alerts.length).toBe(0);
-      done();
-    });
+    service.deleteAlert(addedAlert.id);
+    expect(service.alerts().length).toBe(0);
   });
 
-  it('should clear alerts', (done) => {
+  it('should clear alerts', () => {
     const mockAlert: Alert = {
       content: 'Test Alert <button class="test">Click</button>',
       targetSelector: '.test',
@@ -62,10 +58,6 @@ describe('AlertService', () => {
     service.addAlert(mockAlert);
     service.addAlert(mockAlert);
     service.clearAlerts();
-
-    service.alerts$.pipe(take(5)).subscribe((alerts) => {
-      expect(alerts.length).toBe(0);
-      done();
-    });
+    expect(service.alerts().length).toBe(0);
   });
 });

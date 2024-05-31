@@ -1,4 +1,3 @@
-import {CommonModule} from '@angular/common';
 import {HttpErrorResponse} from '@angular/common/http';
 import {ChangeDetectionStrategy, Component, input} from '@angular/core';
 import {ClarityModule} from '@clr/angular';
@@ -10,7 +9,7 @@ import {AlertType} from '../alerts/alert.type';
   templateUrl: './alert.component.html',
   styleUrl: './alert.component.scss',
   standalone: true,
-  imports: [ClarityModule, CommonModule],
+  imports: [ClarityModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AlertComponent {

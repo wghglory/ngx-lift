@@ -1,4 +1,3 @@
-import {CommonModule} from '@angular/common';
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {ClarityModule} from '@clr/angular';
 
@@ -10,7 +9,7 @@ import {AlertService} from './alert.service';
 @Component({
   selector: 'cll-alert-container',
   standalone: true,
-  imports: [CommonModule, ClarityModule, TranslatePipe],
+  imports: [ClarityModule, TranslatePipe],
   templateUrl: './alert-container.component.html',
   styleUrl: './alert-container.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -19,7 +18,7 @@ export class AlertContainerComponent {
   private alertService = inject(AlertService);
   private translationService = inject(TranslationService);
 
-  alerts$ = this.alertService.alerts$;
+  alerts = this.alertService.alerts;
 
   constructor() {
     this.translationService.loadTranslationsForComponent('alert', alertTranslations);

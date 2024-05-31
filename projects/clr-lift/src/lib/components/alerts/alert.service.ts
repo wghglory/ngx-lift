@@ -1,6 +1,5 @@
-import {inject, Injectable} from '@angular/core';
+import {computed, inject, Injectable, signal} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
-import {BehaviorSubject, map} from 'rxjs';
 
 import {Alert, RequiredAlert} from './alert.type';
 
@@ -10,20 +9,19 @@ import {Alert, RequiredAlert} from './alert.type';
 export class AlertService {
   private sanitizer = inject(DomSanitizer);
 
-  private alertsBS = new BehaviorSubject<RequiredAlert[]>([]);
-  alerts$ = this.alertsBS.asObservable().pipe(
-    map((alerts) => {
-      return alerts.map((alert) => ({
-        ...alert,
-        content: this.sanitizer.bypassSecurityTrustHtml(alert.content),
-      }));
-    }),
-  );
+  private alertsSource = signal<RequiredAlert[]>([]);
+
+  alerts = computed(() => {
+    return this.alertsSource().map((alert) => ({
+      ...alert,
+      content: this.sanitizer.bypassSecurityTrustHtml(alert.content),
+    }));
+  });
 
   addAlert(alert: Alert) {
     const newAlert = this.createAlert(alert);
 
-    this.alertsBS.next([newAlert, ...this.alertsBS.value]);
+    this.alertsSource.update((alerts) => [newAlert, ...alerts]);
 
     this.registerEvent(newAlert);
 
@@ -31,21 +29,21 @@ export class AlertService {
   }
 
   deleteAlert(id: symbol) {
-    const alert = this.alertsBS.value.find((alert) => alert.id === id);
+    const alert = this.alertsSource().find((alert) => alert.id === id);
 
     if (alert) {
       // TODO: https://github.com/vmware-clarity/ng-clarity/issues/1151
       this.unregisterEvent(alert);
-      this.alertsBS.next(this.alertsBS.value.filter((alert) => alert.id !== id));
+      this.alertsSource.update((alerts) => alerts.filter((alert) => alert.id !== id));
     }
   }
 
   clearAlerts() {
-    this.alertsBS.value.forEach((alert) => {
+    this.alertsSource().forEach((alert) => {
       this.unregisterEvent(alert);
     });
 
-    this.alertsBS.next([]);
+    this.alertsSource.set([]);
   }
 
   /**
