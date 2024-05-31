@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, inject, Input, OnInit, Output} from '@angular/core';
 import {ClarityIcons, moonIcon, sunIcon} from '@cds/core/icon';
 import {ClarityModule} from '@clr/angular';
 
@@ -16,6 +16,8 @@ ClarityIcons.addIcons(sunIcon);
   styleUrl: './theme-toggle.component.scss',
 })
 export class ThemeToggleComponent implements OnInit {
+  private translationService = inject(TranslationService);
+
   @Input() lang = '';
   @Output() changeTheme = new EventEmitter<string>();
 
@@ -40,8 +42,8 @@ export class ThemeToggleComponent implements OnInit {
     return this.theme === 'light' ? 'moon' : 'sun';
   }
 
-  constructor(private translationService: TranslationService) {
-    translationService.loadTranslationsForComponent('theme-toggle', themeToggleTranslations);
+  constructor() {
+    this.translationService.loadTranslationsForComponent('theme-toggle', themeToggleTranslations);
   }
 
   toggleTheme() {

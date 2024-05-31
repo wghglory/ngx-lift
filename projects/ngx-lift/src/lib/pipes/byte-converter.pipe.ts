@@ -1,4 +1,4 @@
-import {Inject, LOCALE_ID, Pipe, PipeTransform} from '@angular/core';
+import {inject, LOCALE_ID, Pipe, PipeTransform} from '@angular/core';
 
 /**
  * import { LOCALE_ID, NgModule } from '@angular/core';
@@ -35,8 +35,7 @@ import {Inject, LOCALE_ID, Pipe, PipeTransform} from '@angular/core';
   standalone: true,
 })
 export class ByteConverterPipe implements PipeTransform {
-  constructor(@Inject(LOCALE_ID) private locale: string) {}
-
+  private locale = inject<string>(LOCALE_ID);
   // If using navigator.language directly in the pipe, this approach directly uses the browser's language at the moment the ByteConverterPipe is constructed. If the user changes the language while using the application, it won't be automatically reflected. If dynamic language changes are a requirement, using the LOCALE_ID provider as demonstrated in the AppModule is a more Angular-centric approach.
   // private locale: string;
   // constructor() {

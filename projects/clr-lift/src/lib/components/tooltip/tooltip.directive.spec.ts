@@ -2,7 +2,6 @@ import {Component, DebugElement} from '@angular/core';
 import {ComponentFixture, fakeAsync, TestBed, tick} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 
-import {TooltipComponent} from './tooltip.component';
 import {TooltipDirective} from './tooltip.directive';
 
 describe('TooltipDirective', () => {

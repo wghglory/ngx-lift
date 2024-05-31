@@ -4,6 +4,7 @@ import {
   ElementRef,
   EventEmitter,
   forwardRef,
+  inject,
   Injector,
   Input,
   OnInit,
@@ -50,6 +51,9 @@ import {fileReaderTranslations} from './file-reader.l10n';
   ],
 })
 export class FileReaderComponent implements ControlValueAccessor, Validator, OnInit {
+  private injector = inject(Injector);
+  private translationService = inject(TranslationService);
+
   @ViewChild('file') fileElement!: ElementRef<HTMLInputElement>;
   @Input() controlId = '';
   @Input() acceptFiles = '*';
@@ -67,11 +71,8 @@ export class FileReaderComponent implements ControlValueAccessor, Validator, OnI
   rawContent = '';
   encodedContent = '';
 
-  constructor(
-    private injector: Injector,
-    private translationService: TranslationService,
-  ) {
-    translationService.loadTranslationsForComponent('FileReader', fileReaderTranslations);
+  constructor() {
+    this.translationService.loadTranslationsForComponent('FileReader', fileReaderTranslations);
   }
 
   private onChange: (value: string) => void = () => {};

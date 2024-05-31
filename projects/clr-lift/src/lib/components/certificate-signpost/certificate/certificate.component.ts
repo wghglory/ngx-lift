@@ -1,5 +1,5 @@
 import {CommonModule} from '@angular/common';
-import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, Input} from '@angular/core';
 import {ClarityModule} from '@clr/angular';
 import {pki} from 'node-forge';
 
@@ -17,12 +17,14 @@ import {CertificateStatus} from '../certificate.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CertificateComponent {
+  private translationService = inject(TranslationService);
+
   @Input() certificate?: pki.Certificate;
   @Input() certificateStatus?: CertificateStatus;
 
   @Input() hash?: {md5: string; sha1: string};
 
-  constructor(private translationService: TranslationService) {
-    translationService.loadTranslationsForComponent('certificate', certificateTranslations);
+  constructor() {
+    this.translationService.loadTranslationsForComponent('certificate', certificateTranslations);
   }
 }

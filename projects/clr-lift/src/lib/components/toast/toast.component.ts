@@ -1,6 +1,6 @@
 import {animate, animateChild, group, keyframes, query, style, transition, trigger} from '@angular/animations';
 import {CommonModule} from '@angular/common';
-import {Component, ElementRef, EventEmitter, Input, NgZone, OnInit, Output} from '@angular/core';
+import {Component, ElementRef, EventEmitter, inject, Input, NgZone, OnInit, Output} from '@angular/core';
 import {ClarityIcons, timesIcon} from '@cds/core/icon';
 import {ClarityModule} from '@clr/angular';
 import {timer} from 'rxjs';
@@ -232,6 +232,10 @@ ClarityIcons.addIcons(timesIcon);
   ],
 })
 export class ToastComponent implements OnInit {
+  private element = inject(ElementRef);
+  private ngZone = inject(NgZone);
+  private translationService = inject(TranslationService);
+
   @Input() toastType: ToastType = 'info';
   @Input() primaryButtonText = '';
   @Input() secondaryButtonText = '';
@@ -250,12 +254,8 @@ export class ToastComponent implements OnInit {
   disableAutoClose = false;
   animate = true;
 
-  constructor(
-    private element: ElementRef,
-    private ngZone: NgZone,
-    private translationService: TranslationService,
-  ) {
-    translationService.loadTranslationsForComponent('toast', toastTranslations);
+  constructor() {
+    this.translationService.loadTranslationsForComponent('toast', toastTranslations);
   }
 
   get loaded() {

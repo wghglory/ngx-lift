@@ -1,5 +1,5 @@
 import {CommonModule} from '@angular/common';
-import {ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {certificateIcon, ClarityIcons} from '@cds/core/icon';
 import {ClarityModule} from '@clr/angular';
 import {pki} from 'node-forge';
@@ -22,6 +22,9 @@ ClarityIcons.addIcons(certificateIcon);
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CertificateSignpostComponent implements OnChanges {
+  private translationService = inject(TranslationService);
+  private certificateService = inject(CertificateService);
+
   @Input() position:
     | 'top-left'
     | 'top-middle'
@@ -39,11 +42,8 @@ export class CertificateSignpostComponent implements OnChanges {
   @Input() pemEncoded = false; // encode pem string or not
   @Input({required: true}) pem = '';
 
-  constructor(
-    private translationService: TranslationService,
-    private certificateService: CertificateService,
-  ) {
-    translationService.loadTranslationsForComponent('certificate', certificateTranslations);
+  constructor() {
+    this.translationService.loadTranslationsForComponent('certificate', certificateTranslations);
   }
 
   certificate?: pki.Certificate;
