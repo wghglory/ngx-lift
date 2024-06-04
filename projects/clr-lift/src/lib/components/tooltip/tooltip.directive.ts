@@ -3,6 +3,7 @@ import {DOCUMENT} from '@angular/common';
 import {
   ApplicationRef,
   ComponentRef,
+  computed,
   createComponent,
   Directive,
   ElementRef,
@@ -22,6 +23,10 @@ import {collisionDetection, getTooltipCoords} from './tooltip.util';
   standalone: true,
 })
 export class TooltipDirective {
+  private elementRef = inject(ElementRef);
+  private appRef = inject(ApplicationRef);
+  private document = inject(DOCUMENT);
+
   cllTooltip = input('');
   cllTooltipContent = input<string | TemplateRef<any> | ComponentRef<any> | Type<any>>('');
   cllTooltipContentContext = input<Record<string, any>>(); // when cllTooltipContent is TemplateRef, context may be needed
@@ -29,9 +34,9 @@ export class TooltipDirective {
   cllTooltipWidth = input(240);
   cllTooltipPosition = input<TooltipPosition>();
 
-  private elementRef = inject(ElementRef);
-  private appRef = inject(ApplicationRef);
-  private document = inject(DOCUMENT);
+  tooltipContent = computed(() => {
+    return this.cllTooltipContent() || this.cllTooltip();
+  });
 
   private tooltipComponent?: ComponentRef<TooltipComponent>;
 
@@ -70,6 +75,11 @@ export class TooltipDirective {
    * Show tooltip and position it on the screen.
    */
   showTooltip() {
+    if (!this.tooltipContent()) {
+      console.warn('Tooltip content not defined, cannot show tooltip');
+      return;
+    }
+
     const environmentInjector = this.appRef.injector;
     this.tooltipComponent = createComponent(TooltipComponent, {environmentInjector});
 
@@ -145,7 +155,7 @@ export class TooltipDirective {
     const coords = getTooltipCoords(this.triggerElement, calculatedPosition);
 
     this.tooltipComponent.setInput('triggerElementHovering', true);
-    this.tooltipComponent.setInput('content', this.cllTooltipContent() || this.cllTooltip());
+    this.tooltipComponent.setInput('content', this.tooltipContent());
     if (this.cllTooltipContentContext()) {
       this.tooltipComponent.setInput('contentContext', this.cllTooltipContentContext()!);
     }

@@ -29,6 +29,8 @@ export class TooltipDemoComponent implements OnInit {
 <a href="javascript:void(0)" cllTooltip cllTooltipContent="This is our cllTooltip text" [cllTooltipHideDelay]="500" [cllTooltipWidth]="100">
   Basic Tooltip 2
 </a>
+
+<a href="javascript:void(0)" cllTooltip cllTooltipContent="">Empty Content Will NOT Show Tooltip</a>
     `);
 
   templateRefCode = highlight(`
