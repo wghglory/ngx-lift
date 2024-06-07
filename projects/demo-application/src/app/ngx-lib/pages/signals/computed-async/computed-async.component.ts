@@ -177,7 +177,6 @@ import {AsyncState, computedAsync, createAsyncState, createNotifier} from 'ngx-l
 export class UserDetailComponent {
   private userService = inject(UserService);
   private refreshNotifier = createNotifier();
-  private fetchNotifier = createNotifier();
 
   // user list will initially be fetched
   usersState: Signal<AsyncState<PaginationResponse<User>>> = computedAsync(
@@ -224,7 +223,6 @@ import {AsyncState, computedAsync, createAsyncState, createNotifier} from 'ngx-l
 
 export class UserDetailComponent {
   private userService = inject(UserService);
-  private refreshNotifier = createNotifier();
   private fetchNotifier = createNotifier();
 
   // user list will be fetched only when button clicks
