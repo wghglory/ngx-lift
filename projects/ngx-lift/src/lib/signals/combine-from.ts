@@ -20,31 +20,88 @@ type ObservableSignalInputTuple<T> = {
 };
 
 // pick from ToSignalOptions
-export type CombineFromOptions<T> = {
+export type CombineFromOptions<IValue> = {
   readonly injector?: Injector;
-  readonly initialValue?: T | null;
+  readonly initialValue?: IValue;
 };
 
+// array inputs only
+export function combineFrom<Input extends readonly unknown[], Output = Input>(
+  sources: readonly [...ObservableSignalInputTuple<Input>],
+): Signal<Output>;
+
+// ---------- 3 args with array inputs -------------
+// combineFrom([signal, obs$], pipeOperator, { initialValue: [1,2] }), Input is [signal, obs$]
+// 1. no initialValue
+export function combineFrom<Input extends readonly unknown[], Output = Input>(
+  sources: readonly [...ObservableSignalInputTuple<Input>],
+  operator?: OperatorFunction<Input, Output>,
+  options?: CombineFromOptions<undefined>,
+): Signal<Output | undefined>;
+// 2. initialValue is null, returning type should include null
+export function combineFrom<Input extends readonly unknown[], Output = Input>(
+  sources: readonly [...ObservableSignalInputTuple<Input>],
+  operator?: OperatorFunction<Input, Output>,
+  options?: CombineFromOptions<null>,
+): Signal<Output | null>;
+// 3. provide initialValue
 export function combineFrom<Input extends readonly unknown[], Output = Input>(
   sources: readonly [...ObservableSignalInputTuple<Input>],
   operator?: OperatorFunction<Input, Output>,
   options?: CombineFromOptions<Output>,
 ): Signal<Output>;
 
+// ---------- 2 args wit array inputs -------------
+// 1. no initialValue
 export function combineFrom<Input extends readonly unknown[], Output = Input>(
   sources: readonly [...ObservableSignalInputTuple<Input>],
-  options?: CombineFromOptions<Input>,
+  options?: CombineFromOptions<undefined>,
+): Signal<Output | undefined>;
+// 2. initialValue is null, returning type should include null
+export function combineFrom<Input extends readonly unknown[], Output = Input>(
+  sources: readonly [...ObservableSignalInputTuple<Input>],
+  options?: CombineFromOptions<null>,
+): Signal<Output | null>;
+// 3. provide initialValue
+export function combineFrom<Input extends readonly unknown[], Output = Input>(
+  sources: readonly [...ObservableSignalInputTuple<Input>],
+  options?: CombineFromOptions<Output>,
 ): Signal<Output>;
 
+// object input only, e.g. Input is { a: signal, b: obs$ }
+export function combineFrom<Input extends object, Output = Input>(
+  sources: ObservableSignalInputTuple<Input>,
+): Signal<Output>;
+
+// ----------------- 3 args with object input --------------------
+export function combineFrom<Input extends object, Output = Input>(
+  sources: ObservableSignalInputTuple<Input>,
+  operator?: OperatorFunction<Input, Output>,
+  options?: CombineFromOptions<undefined>,
+): Signal<Output | undefined>;
+export function combineFrom<Input extends object, Output = Input>(
+  sources: ObservableSignalInputTuple<Input>,
+  operator?: OperatorFunction<Input, Output>,
+  options?: CombineFromOptions<null>,
+): Signal<Output | null>;
 export function combineFrom<Input extends object, Output = Input>(
   sources: ObservableSignalInputTuple<Input>,
   operator?: OperatorFunction<Input, Output>,
   options?: CombineFromOptions<Output>,
 ): Signal<Output>;
 
+// ----------------- 2 args with object input --------------------
 export function combineFrom<Input extends object, Output = Input>(
   sources: ObservableSignalInputTuple<Input>,
-  options?: CombineFromOptions<Input>,
+  options?: CombineFromOptions<undefined>,
+): Signal<Output | undefined>;
+export function combineFrom<Input extends object, Output = Input>(
+  sources: ObservableSignalInputTuple<Input>,
+  options?: CombineFromOptions<null>,
+): Signal<Output | null>;
+export function combineFrom<Input extends object, Output = Input>(
+  sources: ObservableSignalInputTuple<Input>,
+  options?: CombineFromOptions<Output>,
 ): Signal<Output>;
 
 /**
@@ -71,20 +128,20 @@ export function combineFrom<Input extends object, Output = Input>(
  * }
  * ```
  */
-export function combineFrom<Input = any, Output = Input>(...args: any[]): Signal<Output> {
+export function combineFrom<Input = any, Output = Input>(...args: any[]): Signal<Output | null | undefined> {
   assertInInjectionContext(combineFrom);
 
   const {normalizedSources, hasInitValue, operator, options} = normalizeArgs<Input, Output>(args);
 
-  const ret: Signal<Output> = hasInitValue
+  const ret = hasInitValue
     ? toSignal(combineLatest(normalizedSources).pipe(operator), {
         initialValue: options!.initialValue!,
         injector: options?.injector,
       })
-    : toSignal(combineLatest(normalizedSources).pipe(operator), {
+    : (toSignal(combineLatest(normalizedSources).pipe(operator), {
         injector: options?.injector,
-        requireSync: true,
-      });
+        // requireSync: true,
+      }) as Signal<Output | undefined>);
 
   return ret;
 }
@@ -109,7 +166,7 @@ function normalizeArgs<Input, Output>(
 
   // pass sources and options
   if (!hasOperator) {
-    // add identity function to args at index 1as operator function as x=>x
+    // add identity function to args at index 1 as operator function as x=>x
     args.splice(1, 0, identity);
   }
 
