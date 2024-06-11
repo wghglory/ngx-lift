@@ -1,17 +1,17 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {CreateNotifierComponent} from './create-notifier.component';
+import {CreateTriggerComponent} from './create-trigger.component';
 
-describe('CreateNotifierComponent', () => {
-  let component: CreateNotifierComponent;
-  let fixture: ComponentFixture<CreateNotifierComponent>;
+describe('CreateTriggerComponent', () => {
+  let component: CreateTriggerComponent;
+  let fixture: ComponentFixture<CreateTriggerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CreateNotifierComponent],
+      imports: [CreateTriggerComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CreateNotifierComponent);
+    fixture = TestBed.createComponent(CreateTriggerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

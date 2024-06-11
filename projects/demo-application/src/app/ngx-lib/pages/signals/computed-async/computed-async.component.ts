@@ -2,7 +2,7 @@ import {ChangeDetectionStrategy, Component, inject, Signal} from '@angular/core'
 import {RouterLink} from '@angular/router';
 import {ClarityModule} from '@clr/angular';
 import {AlertComponent, CalloutComponent, PageContainerComponent, SpinnerComponent} from 'clr-lift';
-import {AsyncState, computedAsync, createAsyncState, createNotifier} from 'ngx-lift';
+import {AsyncState, computedAsync, createAsyncState, createTrigger} from 'ngx-lift';
 
 import {CodeBlockComponent} from '../../../../shared/components/code-block/code-block.component';
 import {UserCardComponent} from '../../../../shared/components/user-card/user-card.component';
@@ -30,13 +30,13 @@ import {highlight} from '../../../../shared/utils/highlight.util';
 })
 export class ComputedAsyncComponent {
   private userService = inject(UserService);
-  private refreshNotifier = createNotifier();
-  private fetchNotifier = createNotifier();
+  private refreshTrigger = createTrigger();
+  private fetchTrigger = createTrigger();
 
   // user list will initially be fetched
   usersState: Signal<AsyncState<PaginationResponse<User>>> = computedAsync(
     () => {
-      this.refreshNotifier.listen();
+      this.refreshTrigger.value();
 
       return this.userService.getUsers({results: 9}).pipe(createAsyncState());
     },
@@ -45,15 +45,15 @@ export class ComputedAsyncComponent {
 
   // user list will be fetched only when button clicks
   deferredUsersState: Signal<AsyncState<PaginationResponse<User>> | undefined> = computedAsync(() => {
-    return this.fetchNotifier.listen() ? this.userService.getUsers({results: 9}).pipe(createAsyncState()) : undefined;
+    return this.fetchTrigger.value() ? this.userService.getUsers({results: 9}).pipe(createAsyncState()) : undefined;
   });
 
   refresh() {
-    this.refreshNotifier.notify();
+    this.refreshTrigger.next();
   }
 
   load() {
-    this.fetchNotifier.notify();
+    this.fetchTrigger.next();
   }
 
   promiseCode = highlight(`
@@ -172,16 +172,16 @@ export class UserDetailComponent {
   `);
 
   loadInitiallyTsCode = highlight(`
-import {AsyncState, computedAsync, createAsyncState, createNotifier} from 'ngx-lift';
+import {AsyncState, computedAsync, createAsyncState, createTrigger} from 'ngx-lift';
 
 export class UserDetailComponent {
   private userService = inject(UserService);
-  private refreshNotifier = createNotifier();
+  private refreshTrigger = createTrigger();
 
   // user list will initially be fetched
   usersState: Signal<AsyncState<PaginationResponse<User>>> = computedAsync(
     () => {
-      this.refreshNotifier.listen();
+      this.refreshTrigger.value();
 
       return this.userService.getUsers({results: 9}).pipe(createAsyncState());
     },
@@ -189,7 +189,7 @@ export class UserDetailComponent {
   );
 
   refresh() {
-    this.refreshNotifier.notify();
+    this.refreshTrigger.next();
   }
 }
   `);
@@ -219,19 +219,19 @@ export class UserDetailComponent {
   `);
 
   loadDeferTsCode = highlight(`
-import {AsyncState, computedAsync, createAsyncState, createNotifier} from 'ngx-lift';
+import {AsyncState, computedAsync, createAsyncState, createTrigger} from 'ngx-lift';
 
 export class UserDetailComponent {
   private userService = inject(UserService);
-  private fetchNotifier = createNotifier();
+  private fetchTrigger = createTrigger();
 
   // user list will be fetched only when button clicks
   deferredUsersState: Signal<AsyncState<PaginationResponse<User>> | undefined> = computedAsync(() => {
-    return this.fetchNotifier.listen() ? this.userService.getUsers({results: 9}).pipe(createAsyncState()) : undefined;
+    return this.fetchTrigger.value() ? this.userService.getUsers({results: 9}).pipe(createAsyncState()) : undefined;
   });
 
   load() {
-    this.fetchNotifier.notify();
+    this.fetchTrigger.next();
   }
 }
   `);

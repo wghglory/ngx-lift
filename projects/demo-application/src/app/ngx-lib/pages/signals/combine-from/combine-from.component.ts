@@ -165,15 +165,15 @@ import {combineFrom} from 'ngx-lift';
 
 @Component({
   template: \`
-    @if (usersState().loading) {
+    @if (usersState()?.loading) {
       <cll-spinner />
     }
 
-    @if (usersState().error; as error) {
+    @if (usersState()?.error; as error) {
       <cll-alert [error]="error" />
     }
 
-    @if (usersState().data; as users) {
+    @if (usersState()?.data; as users) {
       <div class="card-grid">
         @for (user of users; track user.id.value) {
           <app-user-card [user]="user" />

@@ -26,7 +26,7 @@ import {IsHttpsPipeComponent} from './ngx-lib/pages/pipes/is-https-pipe/is-https
 import {MaskPipeComponent} from './ngx-lib/pages/pipes/mask-pipe/mask-pipe.component';
 import {CombineFromComponent} from './ngx-lib/pages/signals/combine-from/combine-from.component';
 import {ComputedAsyncComponent} from './ngx-lib/pages/signals/computed-async/computed-async.component';
-import {CreateNotifierComponent} from './ngx-lib/pages/signals/create-notifier/create-notifier.component';
+import {CreateTriggerComponent} from './ngx-lib/pages/signals/create-trigger/create-trigger.component';
 import {InjectParamsComponent} from './ngx-lib/pages/signals/inject-params/inject-params.component';
 import {InjectQueryParamsComponent} from './ngx-lib/pages/signals/inject-query-params/inject-query-params.component';
 import {MergeFromComponent} from './ngx-lib/pages/signals/merge-from/merge-from.component';
@@ -59,8 +59,8 @@ export const routes: Routes = [
             component: ComputedAsyncComponent,
           },
           {
-            path: 'createNotifier',
-            component: CreateNotifierComponent,
+            path: 'createTrigger',
+            component: CreateTriggerComponent,
           },
           {
             path: 'injectParams/:id',

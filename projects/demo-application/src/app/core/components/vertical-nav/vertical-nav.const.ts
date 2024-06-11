@@ -6,7 +6,7 @@ export const ngxLiftNavConfig: NavConfig[] = [
     value: 'Signal Utils',
     icon: 'radar',
     children: [
-      {path: '/createNotifier', value: 'createNotifier'},
+      {path: '/createTrigger', value: 'createTrigger'},
       {path: '/computedAsync', value: 'computedAsync'},
       {path: '/combineFrom', value: 'combineFrom'},
       {path: '/mergeFrom', value: 'mergeFrom'},

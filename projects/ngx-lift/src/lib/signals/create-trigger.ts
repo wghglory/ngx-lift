@@ -1,12 +1,12 @@
 import {signal} from '@angular/core';
 
-export function createNotifier() {
+export function createTrigger() {
   const sourceSignal = signal(0);
 
   return {
-    notify: () => {
+    next: () => {
       sourceSignal.update((v) => v + 1);
     },
-    listen: sourceSignal.asReadonly(),
+    value: sourceSignal.asReadonly(),
   };
 }
