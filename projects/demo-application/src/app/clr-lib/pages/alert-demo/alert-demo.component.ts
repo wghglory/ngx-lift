@@ -32,6 +32,16 @@ export class AlertDemoComponent {
 <cll-alert alertType="danger" content="I'm a small alert" [isSmall]="true" />
   `);
 
+  lightweightAlertsCode = highlight(`
+<cll-alert [isLightweight]="true" [error]="error" />
+<cll-alert [isLightweight]="true" alertType="success" content="I'm a successful content" />
+<cll-alert [isLightweight]="true" alertType="info" content="I'm a info content" />
+<cll-alert [isLightweight]="true" alertType="warning" content="I'm a warning content" />
+<cll-alert [isLightweight]="true" alertType="neutral" content="I'm a neutral content" />
+<cll-alert [isLightweight]="true" alertType="loading" content="I'm a loading content" />
+<cll-alert [isLightweight]="true" alertType="unknown" content="I'm a unknown content" />
+  `);
+
   appLevelAlertsCode = highlight(`
 <cll-alert [error]="error" [isAppLevel]="true" />
 <cll-alert

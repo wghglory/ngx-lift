@@ -1,6 +1,6 @@
 {
   "name": "clr-lift",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "The library is designed to augment the capabilities of the Clarity library by providing a set of reusable components built on top of clarity components.",
   "author": "Guanghui Wang <guanghui-wang@foxmail.com>",
   "peerDependencies": {

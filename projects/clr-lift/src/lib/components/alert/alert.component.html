@@ -1,4 +1,9 @@
-<clr-alert [clrAlertType]="alertType()" [clrAlertSizeSmall]="isSmall()" [clrAlertAppLevel]="isAppLevel()">
+<clr-alert
+  [clrAlertType]="alertType()"
+  [clrAlertSizeSmall]="isSmall()"
+  [clrAlertAppLevel]="isAppLevel()"
+  [clrAlertLightweight]="isLightweight()"
+>
   <clr-alert-item>
     @if (error()) {
       <span class="alert-text" role="alert">{{ error()?.error.message || error()?.message }}</span>
