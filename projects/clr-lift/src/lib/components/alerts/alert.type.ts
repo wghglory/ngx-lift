@@ -1,7 +1,7 @@
 /**
- * Represents the type of alert, which can be 'success', 'info', 'warning', or 'danger'.
+ * Represents the type of alert, which can be 'neutral', 'loading', 'unknown', 'success', 'info', 'warning', or 'danger'.
  */
-export type AlertType = 'success' | 'info' | 'warning' | 'danger';
+export type AlertType = 'success' | 'info' | 'warning' | 'danger' | 'neutral' | 'loading' | 'unknown';
 
 /**
  * Represents an alert that developers can configure when calling alertService.addAlert()
@@ -18,13 +18,19 @@ export type Alert = {
   readonly id?: symbol;
 
   /**
-   * The type of alert, which can be 'success', 'info', 'warning', or 'danger'.
+   * The type of alert, which can be 'neutral', 'loading', 'unknown', 'success', 'info', 'warning', or 'danger'.
    */
   alertType?: AlertType;
+
   /**
    * Indicates whether the alert is at the application level.
    */
   isAppLevel?: boolean;
+
+  /**
+   * Indicates whether the alert is lightweight.
+   */
+  isLightweight?: boolean;
 
   /**
    * The class or ID of the clickable target element such as a button or a link.

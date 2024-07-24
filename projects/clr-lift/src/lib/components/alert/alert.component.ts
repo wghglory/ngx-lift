@@ -15,6 +15,7 @@ import {AlertType} from '../alerts/alert.type';
 export class AlertComponent {
   alertType = input<AlertType>('danger');
   isSmall = input(false);
+  isLightweight = input(false);
   isAppLevel = input(false);
   error = input<HttpErrorResponse>();
   content = input('');
