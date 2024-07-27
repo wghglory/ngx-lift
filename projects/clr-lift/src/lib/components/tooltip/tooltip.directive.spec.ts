@@ -44,7 +44,7 @@ describe('TooltipDirective', () => {
 });
 
 @Component({
-  template: `<div cllTooltip></div>`,
+  template: `<div cllTooltip cllTooltipContent="Tooltip content"></div>`,
   standalone: true,
   imports: [TooltipDirective],
 })

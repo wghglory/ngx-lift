@@ -9,6 +9,13 @@
         (blur)="validateKeyControl(kvControl.controls.key)"
       />
       <clr-control-helper>{{ keyHelper() }}</clr-control-helper>
+      <clr-control-error *clrIfError="'pattern'">
+        {{
+          keyPattern()?.message
+            ? keyPattern()?.message
+            : ('key-value.pattern' | translate: kvControl.controls.key.errors?.['pattern']?.['requiredPattern'])
+        }}
+      </clr-control-error>
       <clr-control-error *clrIfError="'required'">
         {{ 'key-value.required' | translate }}
       </clr-control-error>
@@ -20,6 +27,13 @@
       <label class="clr-sr-only">{{ 'key-value.value' | translate }}</label>
       <input clrInput [formControl]="kvControl.controls.value" [size]="inputSize()" />
       <clr-control-helper>{{ valueHelper() }}</clr-control-helper>
+      <clr-control-error *clrIfError="'pattern'">
+        {{
+          valuePattern()?.message
+            ? valuePattern()?.message
+            : ('key-value.pattern' | translate: kvControl.controls.value.errors?.['pattern']?.['requiredPattern'])
+        }}
+      </clr-control-error>
       <clr-control-error *clrIfError="'required'">
         {{ 'key-value.required' | translate }}
       </clr-control-error>
@@ -30,19 +44,13 @@
       [attr.aria-label]="'key-value.delete' | translate"
       (click)="removeKeyValuePair(i)"
     >
-      <cds-icon shape="times"></cds-icon>
+      <cds-icon shape="times" />
     </button>
   </div>
 }
 
 <div class="button-container">
-  <button
-    type="button"
-    class="btn"
-    [class.btn-sm]="isSmallButton()"
-    (click)="addKeyValuePair()"
-    [disabled]="formArray().invalid"
-  >
+  <button type="button" [class]="'btn ' + buttonClass()" (click)="addKeyValuePair()" [disabled]="formArray().invalid">
     {{ addText() }}
   </button>
 </div>

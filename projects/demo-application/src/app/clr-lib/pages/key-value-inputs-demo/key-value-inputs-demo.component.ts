@@ -42,14 +42,20 @@ import {KeyValueFormGroup, KeyValueInputsComponent} from 'clr-lift';
   template: \`
     <cll-key-value-inputs
       [formArray]="form.controls.appProperties"
+      [inputSize]="30"
       [data]="data"
+      [keyPattern]="{
+        regex: '^\\w+\\d+$',
+        message: 'custom error message: key must start with a letter and end with a number',
+      }"
+      [valuePattern]="{regex: '^\\w+\\d+$'}"
+      [smartMode]="true"
       [uniqueKey]="true"
-      [keyHelper]="'Enter a unique key'"
-      [valueHelper]="'Enter a value'"
-      [addText]="'Add Key-Value Pair'"
-      [inputSize]="40"
-      [isSmallButton]="true"
-    ></cll-key-value-inputs>
+      buttonClass="btn-sm btn-link"
+      keyHelper="run time property key"
+      valueHelper="run time property value"
+      addText="add key value"
+    />
   \`
 })
 export class KeyValueInputsDemoComponent {

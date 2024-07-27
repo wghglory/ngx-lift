@@ -5,6 +5,7 @@ export const keyValueTranslations: Record<string, Record<string, string>> = {
     key: 'Key',
     value: 'Value',
     notUnique: 'Key should be unique',
+    pattern: "This field doesn't match pattern {0}",
     delete: 'Delete',
   },
   'en-US': {
@@ -13,6 +14,7 @@ export const keyValueTranslations: Record<string, Record<string, string>> = {
     key: 'Key',
     value: 'Value',
     notUnique: 'Key should be unique',
+    pattern: "This field doesn't match pattern {0}",
     delete: 'Delete',
   },
   de: {
@@ -21,6 +23,7 @@ export const keyValueTranslations: Record<string, Record<string, string>> = {
     key: 'Schlüssel',
     value: 'Wert',
     notUnique: 'Schlüssel sollte eindeutig sein',
+    pattern: 'Dieses Feld stimmt nicht mit dem Muster {0} überein',
     delete: 'Löschen',
   },
   es: {
@@ -29,6 +32,7 @@ export const keyValueTranslations: Record<string, Record<string, string>> = {
     key: 'Clave',
     value: 'Valor',
     notUnique: 'La clave debe ser única',
+    pattern: 'Este campo no coincide con el patrón {0}',
     delete: 'Eliminar',
   },
   fr: {
@@ -37,6 +41,7 @@ export const keyValueTranslations: Record<string, Record<string, string>> = {
     key: 'Clé',
     value: 'Valeur',
     notUnique: 'La clé doit être unique',
+    pattern: 'Ce champ ne correspond pas au modèle {0}',
     delete: 'Supprimer',
   },
   it: {
@@ -45,6 +50,7 @@ export const keyValueTranslations: Record<string, Record<string, string>> = {
     key: 'Chiave',
     value: 'Valore',
     notUnique: 'La chiave dovrebbe essere unica',
+    pattern: 'Questo campo non corrisponde al modello {0}',
     delete: 'Elimina',
   },
   ja: {
@@ -53,6 +59,7 @@ export const keyValueTranslations: Record<string, Record<string, string>> = {
     key: 'キー',
     value: '値',
     notUnique: 'キーは一意であるべきです',
+    pattern: 'このフィールドはパターン {0} と一致しません',
     delete: '削除',
   },
   ko: {
@@ -61,6 +68,7 @@ export const keyValueTranslations: Record<string, Record<string, string>> = {
     key: '키',
     value: '값',
     notUnique: '키는 고유해야 합니다',
+    pattern: '이 필드는 패턴 {0}과 일치하지 않습니다',
     delete: '삭제',
   },
   'pt-BR': {
@@ -69,6 +77,7 @@ export const keyValueTranslations: Record<string, Record<string, string>> = {
     key: 'Chave',
     value: 'Valor',
     notUnique: 'A chave deve ser única',
+    pattern: 'Este campo não corresponde ao padrão {0}',
     delete: 'Excluir',
   },
   'zh-CN': {
@@ -77,6 +86,7 @@ export const keyValueTranslations: Record<string, Record<string, string>> = {
     key: '键',
     value: '值',
     notUnique: '键应该是唯一的',
+    pattern: '此字段不符合模式 {0}',
     delete: '删除',
   },
   'zh-TW': {
@@ -85,6 +95,7 @@ export const keyValueTranslations: Record<string, Record<string, string>> = {
     key: '鍵',
     value: '值',
     notUnique: '鍵應該是唯一的',
+    pattern: '此欄位不符合模式 {0}',
     delete: '刪除',
   },
   ru: {
@@ -93,6 +104,7 @@ export const keyValueTranslations: Record<string, Record<string, string>> = {
     key: 'Ключ',
     value: 'Значение',
     notUnique: 'Ключ должен быть уникальным',
+    pattern: 'Это поле не соответствует шаблону {0}',
     delete: 'Удалить',
   },
 };
