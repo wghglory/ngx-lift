@@ -46,9 +46,17 @@
       <li><strong>valueHelper (optional):</strong> Helper text for the value input field.</li>
       <li><strong>addText (optional):</strong> Text for the &quot;Add Key-Value Pair&quot; button.</li>
       <li><strong>inputSize (optional):</strong> Size of the input fields.</li>
+      <li><strong>buttonClass (optional):</strong> Custom class to apply to "Add Key-Value Pair" button.</li>
       <li>
-        <strong>isSmallButton (optional):</strong> Set to <code>true</code> to use a small button for adding key-value
-        pairs.
+        <strong>smartMode (optional):</strong> If set to <code>true</code>, the component will automatically create one
+        key-value pair when there's no any key-value inputs.
+      </li>
+      <li>
+        <strong>keyPattern (optional):</strong> If key control needs to pass a custom regex pattern. You can pass an
+        object with two keys: <code>regex</code> and <code>message</code>. message property is optional.
+      </li>
+      <li>
+        <strong>valuePattern (optional):</strong> Similar with <code>keyPattern</code>, but used for value control.
       </li>
     </ul>
 
@@ -67,7 +75,14 @@
       [formArray]="form.controls.appProperties"
       [inputSize]="30"
       [data]="data"
+      [keyPattern]="{
+        regex: '^\\w+\\d+$',
+        message: 'custom error message: key must start with a letter and end with a number',
+      }"
+      [valuePattern]="{regex: '^\\w+\\d+$'}"
+      [smartMode]="true"
       [uniqueKey]="true"
+      buttonClass="btn-link"
       keyHelper="run time property key"
       valueHelper="run time property value"
       addText="add key value"

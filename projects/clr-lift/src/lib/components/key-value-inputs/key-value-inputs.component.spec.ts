@@ -30,7 +30,9 @@ describe('KeyValueInputsComponent', () => {
     fixture.componentRef.setInput('valueHelper', 'Value helper');
     fixture.componentRef.setInput('addText', 'Add Key-Value Pair');
     fixture.componentRef.setInput('inputSize', 40);
-    fixture.componentRef.setInput('isSmallButton', true);
+    fixture.componentRef.setInput('smartMode', false);
+    fixture.componentRef.setInput('buttonClass', 'btn-sm btn-outline');
+    fixture.componentRef.setInput('smartMode', false);
 
     fixture.detectChanges();
   });
