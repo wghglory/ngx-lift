@@ -49,9 +49,6 @@ $bgColorDark: #0f171c;
     display: flex;
 
     .close-button {
-      cds-icon[shape='times'] {
-        fill: #adbbc4;
-      }
       background: transparent;
       display: inline-block;
       cursor: pointer;
@@ -61,6 +58,10 @@ $bgColorDark: #0f171c;
 
       &:hover {
         background: rgba(0, 0, 0, 0.15);
+      }
+
+      cds-icon[shape='times'] {
+        fill: #adbbc4;
       }
     }
 
