@@ -32,30 +32,32 @@
     <p>The <code>poll</code> operator takes an options object containing essential parameters:</p>
 
     <ul class="list-disc">
-      <li><code>pollingFn</code>: A function that returns an Observable emitting the polled data.</li>
+      <li>
+        <code>pollingFn</code>: A function that returns an <strong>Observable, Promise or a primitive value</strong>.
+      </li>
       <li><code>interval</code>: The interval in milliseconds between each poll.</li>
       <li><code>paramsBuilder</code>: An optional function that builds parameters for the polling function.</li>
-      <li><code>trigger</code>: An optional Observable that triggers a manual poll.</li>
+      <li><code>trigger</code>: An optional <strong>Observable or Signal</strong> that triggers a manual poll.</li>
     </ul>
   </section>
 
   <section class="space-y-6">
     <h2>Example</h2>
 
+    <h3>Poll with different types of polling function</h3>
+    <p>Polling function supports Promise, Observable, or primitive value.</p>
+    <app-code-block [code]="simpleCode" />
+    <cll-callout>
+      poll operator is especially handy when fetching data periodically from an API endpoint. This is useful for
+      scenarios where real-time updates are required but the server does not support push notifications.
+    </cll-callout>
+
     <h3>Poll Until Condition is Met</h3>
     <p>Poll every 1 second until the output is greater than 8.</p>
     <app-code-block [code]="pollingTakeWhileCode" />
     <cll-callout>You can add <code>takeUntil, takeWhile</code> to end the polling as your need.</cll-callout>
 
-    <h3>API Polling</h3>
-    <p>
-      Fetch data periodically from an API endpoint. This is useful for scenarios where real-time updates are required
-      but the server does not support push notifications.
-    </p>
-    <app-code-block [code]="simpleCode" />
-
     <h3>Advanced Usage</h3>
-
     <ul class="list-disc">
       <li>Custom Parameters: You can customize API parameters by providing a paramsBuilder function.</li>
       <li>
