@@ -37,7 +37,7 @@ export class UserDatagridComponent {
   total$ = this.usersState$.pipe(
     filter((state) => Boolean(state.data)),
     distinctUntilChanged<AsyncState<PaginationResponse<User>, HttpErrorResponse>>(isEqual),
-    map((res) => res.data?.info?.total),
+    map((res) => res.data?.info?.total || 0),
   );
 
   refresh(state: ClrDatagridStateInterface) {
