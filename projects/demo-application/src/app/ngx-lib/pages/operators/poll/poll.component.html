@@ -10,19 +10,13 @@
 
     <p>
       The <code>poll</code> operator is a custom operator built on top of RxJS, a powerful library for reactive
-      programming in JavaScript. It allows developers to create observables that periodically emit data by making
-      requests to an API at specified intervals.
+      programming in JavaScript. It allows developers to create observables that periodically emit data at specified
+      intervals.
     </p>
-
-    <h2>Why</h2>
 
     <ul class="list-disc">
       <li>
         <strong>Simplicity</strong>: It abstracts away the complexity of managing polling intervals and API requests.
-      </li>
-      <li>
-        <strong>Efficiency</strong>: It ensures efficient resource utilization by controlling the frequency of API
-        requests.
       </li>
       <li>
         <strong>Flexibility</strong>: Developers can customize parameters, such as polling intervals and request
@@ -38,18 +32,26 @@
     <p>The <code>poll</code> operator takes an options object containing essential parameters:</p>
 
     <ul class="list-disc">
-      <li><code>interval</code>: The time interval between consecutive API requests.</li>
-      <li><code>apiCall</code>: A function that makes the API request and returns an Observable.</li>
-      <li>
-        <code>paramsBuilder</code>: (Optional) A function to build parameters for the API request based on input data.
-      </li>
-      <li><code>trigger</code>$: (Optional) An Observable that triggers API requests.</li>
+      <li><code>pollingFn</code>: A function that returns an Observable emitting the polled data.</li>
+      <li><code>interval</code>: The interval in milliseconds between each poll.</li>
+      <li><code>paramsBuilder</code>: An optional function that builds parameters for the polling function.</li>
+      <li><code>trigger</code>: An optional Observable that triggers a manual poll.</li>
     </ul>
   </section>
 
   <section class="space-y-6">
     <h2>Example</h2>
 
+    <h3>Poll Until Condition is Met</h3>
+    <p>Poll every 1 second until the output is greater than 8.</p>
+    <app-code-block [code]="pollingTakeWhileCode" />
+    <cll-callout>You can add <code>takeUntil, takeWhile</code> to end the polling as your need.</cll-callout>
+
+    <h3>API Polling</h3>
+    <p>
+      Fetch data periodically from an API endpoint. This is useful for scenarios where real-time updates are required
+      but the server does not support push notifications.
+    </p>
     <app-code-block [code]="simpleCode" />
 
     <h3>Advanced Usage</h3>
@@ -57,8 +59,8 @@
     <ul class="list-disc">
       <li>Custom Parameters: You can customize API parameters by providing a paramsBuilder function.</li>
       <li>
-        Additional API trigger: Use the trigger observable to force fetch API when needed, such as in response to user
-        actions.
+        Additional trigger: Use the trigger observable to force the execution of the pollingFn when needed, such as in
+        response to user actions.
       </li>
     </ul>
 
@@ -104,10 +106,10 @@
       }
 
       <clr-dg-footer>
-        @if (!(total$ | async)) {
-          No items
-        } @else {
+        @if (total$ | async) {
           {{ pagination.firstItem + 1 }} - {{ pagination.lastItem + 1 }} of {{ total$ | async }} items
+        } @else {
+          No items
         }
         <clr-dg-pagination #pagination [clrDgPageSize]="10" [clrDgTotalItems]="(total$ | async) || 0" />
       </clr-dg-footer>

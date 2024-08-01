@@ -122,10 +122,10 @@ export class DgStateComponent {
   }
 
   <clr-dg-footer>
-    @if (!(total$ | async)) {
-      No items
-    } @else {
+    @if (total$ | async) {
       {{ pagination.firstItem + 1 }} - {{ pagination.lastItem + 1 }} of {{ total$ | async }} items
+    } @else {
+      No items
     }
     <clr-dg-pagination #pagination [clrDgPageSize]="10" [clrDgTotalItems]="(total$ | async) || 0" />
   </clr-dg-footer>
