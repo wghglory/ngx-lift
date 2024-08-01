@@ -81,8 +81,21 @@ import { poll } from 'ngx-lift';
 import { ajax } from 'rxjs/ajax';
 
 poll({
-  interval: 5000, // Poll every 5 seconds
-  pollingFn: () => ajax('https://api.example.com/data'), // API observable
+  interval: 5000, // Poll every 5 second
+  pollingFn: () => Math.random(), // return a primitive value
+}).subscribe(console.log);
+
+poll({
+  interval: 5000,
+  pollingFn: () =>
+    new Promise((resolve) => {
+      setTimeout(() => { resolve(Math.random()); }, 200); // return a promise
+    }),
+}).subscribe(console.log);
+
+poll({
+  interval: 5000,
+  pollingFn: () => ajax('https://api.example.com/data'), // return an observable
 }).subscribe(console.log);
 `);
 
