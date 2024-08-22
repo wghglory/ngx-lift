@@ -43,9 +43,12 @@ export class ByteConverterPipe implements PipeTransform {
   //   this.locale = navigator.language || 'en';
   // }
 
-  transform(value: number): string {
+  transform(value: number): string;
+  transform(value?: number): string | null;
+  transform(value?: number | null): string | null;
+  transform(value?: null | number | undefined): string | null {
     if (value === null || value === undefined || isNaN(value)) {
-      return '-';
+      return null;
     }
 
     const units = ['BYTE', 'KB', 'MB', 'GB', 'TB'];
