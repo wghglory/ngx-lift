@@ -65,21 +65,21 @@ describe('ByteConverterPipe', () => {
     component.fileSize = null;
     fixture.detectChanges();
     const element = fixture.nativeElement.querySelector('div');
-    expect(element.textContent).toBe('-');
+    expect(element.textContent).toBe('');
   });
 
   it('should handle undefined input', () => {
     component.fileSize = undefined;
     fixture.detectChanges();
     const element = fixture.nativeElement.querySelector('div');
-    expect(element.textContent).toBe('-');
+    expect(element.textContent).toBe('');
   });
 
   it('should handle NaN input', () => {
     component.fileSize = NaN;
     fixture.detectChanges();
     const element = fixture.nativeElement.querySelector('div');
-    expect(element.textContent).toBe('-');
+    expect(element.textContent).toBe('');
   });
 });
 
