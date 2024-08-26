@@ -24,6 +24,7 @@ import {ArrayJoinPipeComponent} from './ngx-lib/pages/pipes/array-join-pipe/arra
 import {ByteConverterPipeComponent} from './ngx-lib/pages/pipes/byte-converter-pipe/byte-converter-pipe.component';
 import {IsHttpsPipeComponent} from './ngx-lib/pages/pipes/is-https-pipe/is-https-pipe.component';
 import {MaskPipeComponent} from './ngx-lib/pages/pipes/mask-pipe/mask-pipe.component';
+import {RangePipeComponent} from './ngx-lib/pages/pipes/range-pipe/range-pipe.component';
 import {CombineFromComponent} from './ngx-lib/pages/signals/combine-from/combine-from.component';
 import {ComputedAsyncComponent} from './ngx-lib/pages/signals/computed-async/computed-async.component';
 import {CreateTriggerComponent} from './ngx-lib/pages/signals/create-trigger/create-trigger.component';
@@ -31,6 +32,9 @@ import {InjectParamsComponent} from './ngx-lib/pages/signals/inject-params/injec
 import {InjectQueryParamsComponent} from './ngx-lib/pages/signals/inject-query-params/inject-query-params.component';
 import {MergeFromComponent} from './ngx-lib/pages/signals/merge-from/merge-from.component';
 import {DifferenceInDaysComponent} from './ngx-lib/pages/utilities/difference-in-days/difference-in-days.component';
+import {IsEmptyComponent} from './ngx-lib/pages/utilities/is-empty/is-empty.component';
+import {IsEqualComponent} from './ngx-lib/pages/utilities/is-equal/is-equal.component';
+import {PickByComponent} from './ngx-lib/pages/utilities/pick-by/pick-by.component';
 import {IfValidatorComponent} from './ngx-lib/pages/validators/if-validator/if-validator.component';
 import {UniqueValidatorComponent} from './ngx-lib/pages/validators/unique-validator/unique-validator.component';
 import {UrlValidatorComponent} from './ngx-lib/pages/validators/url-validator/url-validator.component';
@@ -124,6 +128,10 @@ export const routes: Routes = [
             path: 'mask',
             component: MaskPipeComponent,
           },
+          {
+            path: 'range',
+            component: RangePipeComponent,
+          },
         ],
       },
       {
@@ -149,6 +157,18 @@ export const routes: Routes = [
           {
             path: 'difference-in-days',
             component: DifferenceInDaysComponent,
+          },
+          {
+            path: 'is-empty',
+            component: IsEmptyComponent,
+          },
+          {
+            path: 'is-equal',
+            component: IsEqualComponent,
+          },
+          {
+            path: 'pick-by',
+            component: PickByComponent,
           },
         ],
       },

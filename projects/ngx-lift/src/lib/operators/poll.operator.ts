@@ -27,15 +27,35 @@ import {isPromise} from '../utils/is-promise.util';
  * @param {object} options - The configuration options for polling.
  * @param {number} options.interval - The interval in milliseconds between each poll.
  * @param {(params: any) => Observable<Data> | Data} options.pollingFn - A function that returns an Observable, Promise, or primitive value.
- * @param {(input: Input | undefined) => any} [options.paramsBuilder] - An optional function that builds parameters for the polling function based on the input. The value emitted by the trigger observable will serve as the parameter.
  * @param {Observable<Input> | Signal<Input>} [options.trigger] - An optional Observable or Signal that triggers a manual poll.
+ * @param {(input: Input) => any} [options.paramsBuilder] - An optional function that builds parameters for the polling function based on the input. The value emitted by the trigger observable will serve as the parameter.
  * @returns {Observable<AsyncState<Data>>} An Observable emitting objects representing the state of the asynchronous operation.
  */
+export function poll<Data>(options: {
+  interval: number;
+  pollingFn: (params: any) => Observable<Data> | Promise<Data> | Data;
+}): Observable<AsyncState<Data>>;
+
+// trigger output is the pollingFn params' input
+export function poll<Data, Input>(options: {
+  interval: number;
+  pollingFn: (params: Input) => Observable<Data> | Promise<Data> | Data;
+  trigger: Observable<Input> | Signal<Input>;
+}): Observable<AsyncState<Data>>;
+
+// paramsBuilder exists, trigger output is the paramsBuilder params' input
 export function poll<Data, Input>(options: {
   interval: number;
   pollingFn: (params: any) => Observable<Data> | Promise<Data> | Data;
-  paramsBuilder?: (input?: Input | undefined) => any;
+  trigger: Observable<Input> | Signal<Input>;
+  paramsBuilder: (input: Input) => any;
+}): Observable<AsyncState<Data>>;
+
+export function poll<Data, Input>(options: {
+  interval: number;
+  pollingFn: (params: any) => Observable<Data> | Promise<Data> | Data;
   trigger?: Observable<Input> | Signal<Input>;
+  paramsBuilder?: (input: Input) => any;
 }): Observable<AsyncState<Data>> {
   const timerEmitValue = '__timer__emission__';
   const timer$ = timer(0, options.interval).pipe(map((i) => `${timerEmitValue}${i}`));
@@ -61,7 +81,7 @@ export function poll<Data, Input>(options: {
       // build params by trigger input
       // if paramsBuilder is provided, params will be the value of this function call
       // if paramsBuilder is not provided, params will be the value emitted by the trigger
-      const params = options.paramsBuilder ? options.paramsBuilder(inputByTrigger) : inputByTrigger;
+      const params = options.paramsBuilder ? options.paramsBuilder(inputByTrigger as Input) : inputByTrigger;
 
       // NOTE: using exhaustMap will NOT emit ${timerEmitValue}0 if trigger is not provided
       // using concatMap will emit ${timerEmitValue}0 if trigger is not provided
