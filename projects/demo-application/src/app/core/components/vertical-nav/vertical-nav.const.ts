@@ -36,6 +36,7 @@ export const ngxLiftNavConfig: NavConfig[] = [
       {path: '/byte-converter', value: 'Byte Converter'},
       {path: '/is-https', value: 'Is Https'},
       {path: '/mask', value: 'Mask'},
+      {path: '/range', value: 'Range'},
     ],
   },
   {
@@ -52,7 +53,12 @@ export const ngxLiftNavConfig: NavConfig[] = [
     path: '/ngx-lift/utilities',
     value: 'Utilities',
     icon: 'wrench',
-    children: [{path: '/difference-in-days', value: 'differenceInDays'}],
+    children: [
+      {path: '/difference-in-days', value: 'differenceInDays'},
+      {path: '/is-empty', value: 'isEmpty'},
+      {path: '/is-equal', value: 'isEqual'},
+      {path: '/pick-by', value: 'pickBy & omitBy'},
+    ],
   },
 ];
 

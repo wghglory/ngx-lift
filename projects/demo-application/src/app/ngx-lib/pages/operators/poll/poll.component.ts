@@ -30,7 +30,7 @@ export class PollComponent implements OnInit {
   usersState$ = poll({
     interval: 10000,
     pollingFn: (params) => this.userService.getUsers({...params, results: 10, seed: 'abc'}),
-    paramsBuilder: (dgState) => convertToHttpParams(dgState),
+    paramsBuilder: (dgState: ClrDatagridStateInterface | null) => convertToHttpParams(dgState),
     trigger: this.dgState$,
   });
 
@@ -113,7 +113,7 @@ export class PollComponent {
   usersState$ = poll({
     interval: 10000,
     pollingFn: (params) => this.userService.getUsers({...params, results: 10, seed: 'abc'}),
-    paramsBuilder: (dgState) => convertToHttpParams(dgState), // build params for getUsers
+    paramsBuilder: (dgState: ClrDatagridStateInterface | null) => convertToHttpParams(dgState), // build params for getUsers
     trigger: this.dgState$,  // datagrid filter, sort, pagination will trigger the API call
   });
 }
