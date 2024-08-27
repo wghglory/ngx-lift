@@ -36,6 +36,21 @@ console.log(isIP('www.example.com')); // false
 console.log(isIP('192.168.0.1')); // true
     `);
 
+  tryCatchCode = highlight(`
+import {isFQDN} from 'ngx-lift';
+
+try {
+  const host = new URL('your-url').host;
+
+  if (isFQDN(host)) {
+    // the rest of your logic
+  }
+} catch (error) {
+  // your-url is invalid
+  console.error(error);
+}
+        `);
+
   urlCode = highlight(`
 import {isHttps, isURL} from 'ngx-lift';
 
