@@ -59,6 +59,7 @@ export const ngxLiftNavConfig: NavConfig[] = [
       {path: '/is-empty', value: 'isEmpty'},
       {path: '/is-equal', value: 'isEqual'},
       {path: '/pick-by', value: 'pickBy & omitBy'},
+      {path: '/url', value: 'URL'},
     ],
   },
 ];

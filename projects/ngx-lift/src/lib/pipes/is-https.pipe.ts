@@ -1,6 +1,6 @@
 import {Pipe, PipeTransform} from '@angular/core';
 
-import {httpsPattern} from '../const';
+import {isHttps} from '../utils';
 
 @Pipe({
   name: 'isHttps',
@@ -8,6 +8,6 @@ import {httpsPattern} from '../const';
 })
 export class IsHttpsPipe implements PipeTransform {
   transform(value: string): boolean {
-    return httpsPattern.test(value);
+    return isHttps(value);
   }
 }

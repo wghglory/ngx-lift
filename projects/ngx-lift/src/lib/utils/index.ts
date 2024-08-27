@@ -5,3 +5,4 @@ export * from './is-equal.util';
 export * from './omit-by.util';
 export * from './pick-by.util';
 export * from './range.util';
+export * from './url.util';

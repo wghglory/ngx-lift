@@ -35,6 +35,7 @@ import {DifferenceInDaysComponent} from './ngx-lib/pages/utilities/difference-in
 import {IsEmptyComponent} from './ngx-lib/pages/utilities/is-empty/is-empty.component';
 import {IsEqualComponent} from './ngx-lib/pages/utilities/is-equal/is-equal.component';
 import {PickByComponent} from './ngx-lib/pages/utilities/pick-by/pick-by.component';
+import {UrlComponent} from './ngx-lib/pages/utilities/url/url.component';
 import {IfValidatorComponent} from './ngx-lib/pages/validators/if-validator/if-validator.component';
 import {IntersectionValidatorComponent} from './ngx-lib/pages/validators/intersection-validator/intersection-validator.component';
 import {UniqueValidatorComponent} from './ngx-lib/pages/validators/unique-validator/unique-validator.component';
@@ -174,6 +175,10 @@ export const routes: Routes = [
           {
             path: 'pick-by',
             component: PickByComponent,
+          },
+          {
+            path: 'url',
+            component: UrlComponent,
           },
         ],
       },
