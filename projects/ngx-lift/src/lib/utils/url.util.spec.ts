@@ -2,6 +2,7 @@ import {isFQDN, isHttps, isIP, isURL} from './url.util';
 
 describe('isIP', () => {
   it('should return true for valid IPv4 addresses', () => {
+    expect(isIP(new URL('https://192.168.1.1:443').host)).toBe(true);
     expect(isIP('192.168.1.1')).toBe(true);
     expect(isIP('255.255.255.255')).toBe(true);
     expect(isIP('127.0.0.1')).toBe(true);
@@ -17,6 +18,7 @@ describe('isIP', () => {
 
 describe('isFQDN', () => {
   it('should return true for valid FQDNs', () => {
+    expect(isFQDN(new URL('https://example.com:443').host)).toBe(true);
     expect(isFQDN('example.com')).toBe(true);
     expect(isFQDN('www.example.com')).toBe(true);
     expect(isFQDN('subdomain.example.co.uk')).toBe(true);
