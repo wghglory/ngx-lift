@@ -36,6 +36,7 @@ import {IsEmptyComponent} from './ngx-lib/pages/utilities/is-empty/is-empty.comp
 import {IsEqualComponent} from './ngx-lib/pages/utilities/is-equal/is-equal.component';
 import {PickByComponent} from './ngx-lib/pages/utilities/pick-by/pick-by.component';
 import {IfValidatorComponent} from './ngx-lib/pages/validators/if-validator/if-validator.component';
+import {IntersectionValidatorComponent} from './ngx-lib/pages/validators/intersection-validator/intersection-validator.component';
 import {UniqueValidatorComponent} from './ngx-lib/pages/validators/unique-validator/unique-validator.component';
 import {UrlValidatorComponent} from './ngx-lib/pages/validators/url-validator/url-validator.component';
 
@@ -138,8 +139,12 @@ export const routes: Routes = [
         path: 'validators',
         children: [
           {
-            path: 'if-validator',
+            path: 'if',
             component: IfValidatorComponent,
+          },
+          {
+            path: 'intersection',
+            component: IntersectionValidatorComponent,
           },
           {
             path: 'unique',
