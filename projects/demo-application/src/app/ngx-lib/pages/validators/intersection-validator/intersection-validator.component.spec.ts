@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { IntersectionValidatorComponent } from './intersection-validator.component';
+import {IntersectionValidatorComponent} from './intersection-validator.component';
 
 describe('IntersectionValidatorComponent', () => {
   let component: IntersectionValidatorComponent;
@@ -8,9 +8,8 @@ describe('IntersectionValidatorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [IntersectionValidatorComponent]
-    })
-    .compileComponents();
+      imports: [IntersectionValidatorComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(IntersectionValidatorComponent);
     component = fixture.componentInstance;

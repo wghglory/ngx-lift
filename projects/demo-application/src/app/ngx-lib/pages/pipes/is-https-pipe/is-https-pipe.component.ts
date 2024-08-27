@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {PageContainerComponent} from 'clr-lift';
+import {RouterLink} from '@angular/router';
+import {CalloutComponent, PageContainerComponent} from 'clr-lift';
 
 import {CodeBlockComponent} from '../../../../shared/components/code-block/code-block.component';
 import {highlight} from '../../../../shared/utils/highlight.util';
@@ -7,7 +8,7 @@ import {highlight} from '../../../../shared/utils/highlight.util';
 @Component({
   selector: 'app-is-https-pipe',
   standalone: true,
-  imports: [CodeBlockComponent, PageContainerComponent],
+  imports: [CodeBlockComponent, PageContainerComponent, CalloutComponent, RouterLink],
   templateUrl: './is-https-pipe.component.html',
   styleUrl: './is-https-pipe.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
