@@ -1,21 +1,21 @@
 import {fqdnRegex, httpsPattern, ipRegex, urlPattern} from '../const';
 
 /**
- * Check if host is IP
- * @param host new URL(your-url).host
- * @returns true if host is a IP
+ * Check if hostname is IP
+ * @param hostname new URL(your-url).hostname
+ * @returns true if hostname is a IP
  */
-export function isIP(host: string) {
-  return ipRegex.test(host);
+export function isIP(hostname: string) {
+  return ipRegex.test(hostname);
 }
 
 /**
- * Check if host is FQDN
- * @param host new URL(your-url).host
- * @returns true if host is a FQDN
+ * Check if hostname is FQDN
+ * @param hostname new URL(your-url).hostname
+ * @returns true if hostname is a FQDN
  */
-export function isFQDN(host: string) {
-  return fqdnRegex.test(host);
+export function isFQDN(hostname: string) {
+  return fqdnRegex.test(hostname);
 }
 
 /**

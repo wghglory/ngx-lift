@@ -40,9 +40,9 @@ console.log(isIP('192.168.0.1')); // true
 import {isFQDN} from 'ngx-lift';
 
 try {
-  const host = new URL('your-url').host;
+  const hostname = new URL('your-url').hostname;
 
-  if (isFQDN(host)) {
+  if (isFQDN(hostname)) {
     // the rest of your logic
   }
 } catch (error) {
