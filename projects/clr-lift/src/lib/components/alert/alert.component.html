@@ -11,5 +11,11 @@
     @if (content()) {
       <span class="alert-text" role="alert" [innerHTML]="content()"></span>
     }
+
+    @if (!error() && !content()) {
+      <span class="alert-text" role="alert">
+        <ng-content></ng-content>
+      </span>
+    }
   </clr-alert-item>
 </clr-alert>
