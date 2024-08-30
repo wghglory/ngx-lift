@@ -9,48 +9,57 @@ describe('intersectionValidator', () => {
   beforeEach(() => {
     validator = intersectionValidator('field1', 'field2');
 
-    formGroup = new FormGroup({
-      field1: new FormControl([]),
-      field2: new FormControl([]),
-    });
+    formGroup = new FormGroup(
+      {
+        field1: new FormControl([]),
+        field2: new FormControl([]),
+      },
+      {validators: validator},
+    );
   });
 
   it('should return null when no intersection exists', () => {
     formGroup.get('field1')!.setValue(['apple', 'banana']);
     formGroup.get('field2')!.setValue(['orange', 'grape']);
 
-    const result = validator(formGroup);
+    formGroup.updateValueAndValidity();
 
-    expect(result).toBeNull();
+    expect(formGroup.errors).toBeNull();
   });
 
   it('should return an error when an intersection exists', () => {
     formGroup.get('field1')!.setValue(['apple', 'banana']);
     formGroup.get('field2')!.setValue(['banana', 'orange']);
 
-    const result = validator(formGroup);
+    formGroup.updateValueAndValidity();
 
-    expect(result).toEqual({intersection: true});
+    expect(formGroup.errors).toEqual({intersection: true});
   });
 
   it('should return null when one of the controls is missing', () => {
-    formGroup = new FormGroup({
-      field1: new FormControl(['apple', 'banana']),
-    });
+    formGroup = new FormGroup(
+      {
+        field1: new FormControl(['apple', 'banana']),
+      },
+      {validators: validator},
+    );
 
-    const result = validator(formGroup);
+    formGroup.updateValueAndValidity();
 
-    expect(result).toBeNull();
+    expect(formGroup.errors).toBeNull();
   });
 
   it('should return null when one of the controls is not an array', () => {
-    formGroup = new FormGroup({
-      field1: new FormControl('apple'),
-      field2: new FormControl(['orange', 'grape']),
-    });
+    formGroup = new FormGroup(
+      {
+        field1: new FormControl('apple'),
+        field2: new FormControl(['orange', 'grape']),
+      },
+      {validators: validator},
+    );
 
-    const result = validator(formGroup);
+    formGroup.updateValueAndValidity();
 
-    expect(result).toBeNull();
+    expect(formGroup.errors).toBeNull();
   });
 });

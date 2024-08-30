@@ -1,4 +1,4 @@
-import {AbstractControl, ValidatorFn} from '@angular/forms';
+import {AbstractControl, ValidationErrors, ValidatorFn} from '@angular/forms';
 
 /**
  * A custom validator function that checks for intersection between two form controls. The two controls' values must be arrays.
@@ -8,8 +8,7 @@ import {AbstractControl, ValidatorFn} from '@angular/forms';
  * @returns {ValidatorFn} A function that validates the form group and returns an error if there is an intersection.
  */
 export function intersectionValidator<T = string>(controlName1: string, controlName2: string): ValidatorFn {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return (formGroup: AbstractControl): {[key: string]: any} | null => {
+  return (formGroup: AbstractControl): ValidationErrors | null => {
     const control1 = formGroup.get(controlName1);
     const control2 = formGroup.get(controlName2);
 
