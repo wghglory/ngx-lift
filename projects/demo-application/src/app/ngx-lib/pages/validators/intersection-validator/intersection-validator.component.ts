@@ -66,7 +66,7 @@ export class IntersectionValidatorComponent {
 
   <button type="submit" class="btn-primary btn" [disabled]="form.invalid">Submit</button>
 </form>
-    `);
+  `);
 
   intersectionTsCode = highlight(`
 import {intersectionValidator} from 'ngx-lift';
@@ -80,5 +80,5 @@ form = new FormGroup(
     validators: [intersectionValidator('includedNamespaces', 'excludedNamespaces')],
   },
 );
-    `);
+  `);
 }

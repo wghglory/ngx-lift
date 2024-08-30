@@ -44,6 +44,7 @@ export const ngxLiftNavConfig: NavConfig[] = [
     value: 'Validators',
     icon: 'certificate',
     children: [
+      {path: '/date-range', value: 'dateRangeValidator'},
       {path: '/if', value: 'ifValidator / ifAsyncValidator'},
       {path: '/intersection', value: 'intersectionValidator'},
       {path: '/unique', value: 'UniqueValidator'},

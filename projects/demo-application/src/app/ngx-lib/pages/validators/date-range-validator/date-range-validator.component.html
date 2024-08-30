@@ -1,0 +1,86 @@
+<cll-page-container [title]="'dateRangeValidator'" class="space-y-9">
+  <section class="space-y-6">
+    <h2>Overview</h2>
+    <p><code>dateRangeValidator</code> is a custom validator that ensures a date falls within a specified range.</p>
+
+    <p>
+      The <code>dateRangeValidator</code> function accepts an interface, <code>DateRangeOptions</code>, which defines
+      the options for the date range validation. Here's a breakdown of the options:
+    </p>
+    <ul class="list-disc">
+      <li>
+        <code>minDate</code>: The minimum allowed date. If provided, the selected date must be equal to or later than
+        this date. The equality is determined based on the <code>minInclusive</code> option.
+      </li>
+      <li>
+        <code>maxDate</code>: The maximum allowed date. If provided, the selected date must be equal to or earlier than
+        this date. The equality is determined based on the <code>maxInclusive</code> option.
+      </li>
+      <li>
+        <code>minInclusive</code>: A boolean indicating whether the comparison for the minimum date can include the
+        exact date. Defaults to false.
+      </li>
+      <li>
+        <code>maxInclusive</code>: A boolean indicating whether the comparison for the maximum date can include the
+        exact date. Defaults to false.
+      </li>
+      <li>
+        <code>compareTime</code>: A boolean indicating whether to compare the time as well. If true, comparisons will
+        include the time components of the date; if false, the time parts will be ignored.
+      </li>
+    </ul>
+    <app-code-block [code]="dateRangeOptionsInterface" />
+
+    <h2>Usage</h2>
+
+    <h3>1. Validating a Date</h3>
+    <p>
+      To validate a date, you can specify <code>minDate</code> and <code>maxDate</code>: This configuration ensures that
+      the selected date must fall between September 1st, 2024, and September 15th, 2024 (exclusive), ignoring the time
+      components. Sep. 15th is not valid since <code>maxInclusive</code> is false.
+    </p>
+    <app-code-block [code]="dateExample" />
+
+    <h4>Real Example: Select a Future Date</h4>
+    <p>
+      Below example allows to select a future date and include today. To include the <code>minDate</code>, set
+      <code>minInclusive</code> to <code>true</code>.
+    </p>
+    <form clrForm [formGroup]="dateForm">
+      <clr-input-container class="!mt-1">
+        <label class="clr-required-mark">Expires Date</label>
+        <input type="date" clrInput [formControl]="dateForm.controls.expires" required [min]="minDate" />
+        <clr-control-error *clrIfError="'required'">Required</clr-control-error>
+        <clr-control-error *clrIfError="'dateTooEarly'">The date is too early</clr-control-error>
+      </clr-input-container>
+    </form>
+    <app-code-block [code]="dateCode" />
+
+    <h3>2. Validating a Date and Time</h3>
+    <p>
+      To validate both the date and the time, set <code>compareTime</code> to true. With the below configuration, the
+      selected date and time must fall between September 1st, 2024, at noon UTC, and September 2nd, 2024, at noon UTC,
+      considering the time components.
+    </p>
+    <app-code-block [code]="dateTimeExample" />
+
+    <h4>Real Example: Select a Date with Time Within a Range</h4>
+    <form clrForm [formGroup]="dateTimeForm">
+      <clr-input-container class="!mt-1">
+        <label class="clr-required-mark">Expires Date</label>
+        <input
+          type="datetime-local"
+          clrInput
+          [formControl]="dateTimeForm.controls.expires"
+          required
+          [min]="minTimestamp"
+          [max]="maxTimestamp"
+        />
+        <clr-control-error *clrIfError="'required'">Required</clr-control-error>
+        <clr-control-error *clrIfError="'dateTooEarly'">The date time is too early</clr-control-error>
+        <clr-control-error *clrIfError="'dateTooLate'">The date time is too late</clr-control-error>
+      </clr-input-container>
+    </form>
+    <app-code-block [code]="dateTimeCode" />
+  </section>
+</cll-page-container>

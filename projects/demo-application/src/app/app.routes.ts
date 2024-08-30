@@ -36,6 +36,7 @@ import {IsEmptyComponent} from './ngx-lib/pages/utilities/is-empty/is-empty.comp
 import {IsEqualComponent} from './ngx-lib/pages/utilities/is-equal/is-equal.component';
 import {PickByComponent} from './ngx-lib/pages/utilities/pick-by/pick-by.component';
 import {UrlComponent} from './ngx-lib/pages/utilities/url/url.component';
+import {DateRangeValidatorComponent} from './ngx-lib/pages/validators/date-range-validator/date-range-validator.component';
 import {IfValidatorComponent} from './ngx-lib/pages/validators/if-validator/if-validator.component';
 import {IntersectionValidatorComponent} from './ngx-lib/pages/validators/intersection-validator/intersection-validator.component';
 import {UniqueValidatorComponent} from './ngx-lib/pages/validators/unique-validator/unique-validator.component';
@@ -139,6 +140,10 @@ export const routes: Routes = [
       {
         path: 'validators',
         children: [
+          {
+            path: 'date-range',
+            component: DateRangeValidatorComponent,
+          },
           {
             path: 'if',
             component: IfValidatorComponent,
