@@ -1,82 +1,56 @@
-<cll-page-container title="Welcome to clr-lift" class="space-y-9">
-  <section>
-    <p>
-      The <strong>clr-lift</strong> library is designed to augment the capabilities of the Clarity library by providing
-      a set of reusable components built on top of clarity components, and powerful collection of utilities, operators.
-    </p>
+<div class="space-y-9 p-10 relative">
+  <section class="grid xl:grid-cols-2 gap-10">
+    <div>
+      <h1 class="!text-6xl leading-loose">clr-lift</h1>
+      <p class="!text-3xl !mt-16">Extending the Clarity library with reusable components, utilities and operators.</p>
+      <p class="!text-2xl">Supports Angular 17 and later versions</p>
+      <p>
+        <app-code-block [code]="'npm install clr-lift ngx-lift &#64;clr/angular &#64;clr/ui'" lang="shell" />
+      </p>
+    </div>
+    <svg-icon class="flex-1" [src]="'./assets/clr-lift.svg'" [svgStyle]="{width: '100%'}" />
   </section>
 
-  <section>
-    <h2>Features</h2>
-    <h3>Operators</h3>
-    <p>
-      <strong>clr-lift</strong> introduces powerful operators, such as <code>dgState</code>, designed to amplify the
-      functionality of the Clarity library. The <code>dgState</code> operator streamlines datagrid state management,
-      offering developers an intuitive and efficient approach when working with Clarity datagrids.
-    </p>
-    <h3>Utilities</h3>
-    <p>
-      Our library includes a suite of utilities finely tuned for Clarity components. These utilities simplify common
-      tasks and operations, providing developers with a seamless and cohesive experience when interacting with Clarity
-      components.
-    </p>
-    <h3>Components</h3>
-    <p>
-      <strong>clr-lift</strong> offers a variety of custom components adhering to Clarity styling standards, including
-      toast, alert, and more.
-    </p>
+  <section class="grid lg:grid-cols-3 gap-5">
+    <app-tile-with-icon
+      icon="⚒️"
+      title="Utilities"
+      description="A suite of utilities finely tuned for Clarity components. These utilities simplify common tasks
+      and operations, providing developers with a seamless and cohesive experience when interacting with Clarity
+      components."
+    >
+    </app-tile-with-icon>
+    <app-tile-with-icon
+      icon="📦"
+      title="RxJS Operators"
+      [description]="
+        'Amplify the functionality of the Clarity library. For example, the <code>dgState</code> operator streamlines datagrid state management, offering developers an intuitive and efficient approach when working with Clarity datagrids.'
+      "
+    >
+    </app-tile-with-icon>
+    <app-tile-with-icon
+      icon="🧩"
+      title="Components"
+      description="A variety of custom components adhering to Clarity styling standards, including
+    toast, alert, and more"
+    >
+    </app-tile-with-icon>
   </section>
 
-  <section>
-    <h2>Requirements</h2>
-    <p>
-      To ensure optimal performance and compatibility, clr-lift requires
-      <strong>Angular version 17 or higher</strong>.
-    </p>
-  </section>
-
-  <section class="space-y-6">
-    <h2>Getting Started</h2>
-    <h3>Installation</h3>
-    <p>
-      <strong>clr-lift</strong> has specified peer dependencies on ngx-lift and &#64;clr/angular, To integrate
-      <strong>clr-lift</strong> in your project, you can install it using your preferred package manager. For example,
-      with npm:
-    </p>
-    <app-code-block [code]="'npm install clr-lift ngx-lift &#64;clr/angular &#64;clr/ui'" lang="shell" />
-    <cll-callout>
-      <ul class="list-disc space-y-2">
-        <li>
-          In some cases, a <strong>force installation</strong> may be necessary, particularly if &#64;clr/angular's
-          peerDependency mandates a distinct Angular version.
-        </li>
-        <li>
-          If you're not utilizing the latest Angular version, consider setting <code>skipLibCheck: true</code> in
-          tsconfig.json to circumvent potential build errors.
-        </li>
-        <li>
-          For guidance on setting up Clarity for your project, you can refer to the
-          <a href="https://clarity.design/pages/developing" target="_blank">Clarity Design</a> documentation.
-        </li>
-      </ul>
-    </cll-callout>
-  </section>
-
-  <section>
-    <h2>Contributing</h2>
-    <p>
-      We welcome contributions to the <strong>clr-lift</strong> library. If you encounter any issues, have feature
-      requests, or would like to contribute code, please check out our
-      <a href="https://github.com/wghglory/ngx-lift/CONTRIBUTING.md">contribution guidelines</a>.
-    </p>
-    <h2>License</h2>
-    <p><strong>clr-lift</strong> is licensed under the MIT License.</p>
-    <h2>Acknowledgments</h2>
-    <p>
-      We would like to express our gratitude to the Clarity library maintainers and contributors for their foundational
-      work that enables the development of <strong>clr-lift</strong>. Feel free to explore the
-      <strong>clr-lift</strong> library and enhance your Clarity datagrid implementation with ease! If you have any
-      questions or concerns, please don&#39;t hesitate to reach out to us. Happy coding!
-    </p>
-  </section>
-</cll-page-container>
+  <cll-callout>
+    <ul class="list-disc space-y-2">
+      <li>
+        In some cases, a <strong>force installation</strong> may be necessary, particularly if &#64;clr/angular's
+        peerDependency mandates a distinct Angular version.
+      </li>
+      <li>
+        If you're not utilizing the latest Angular version, consider setting <code>skipLibCheck: true</code> in
+        tsconfig.json to circumvent potential build errors.
+      </li>
+      <li>
+        For guidance on setting up Clarity for your project, you can refer to the
+        <a href="https://clarity.design/pages/developing" target="_blank">Clarity Design</a> documentation.
+      </li>
+    </ul>
+  </cll-callout>
+</div>
