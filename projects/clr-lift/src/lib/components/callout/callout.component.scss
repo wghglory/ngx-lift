@@ -27,6 +27,12 @@ $callout-border-radius: 0 0 2px 2px;
   height: 1.5rem;
   width: 1.5rem;
   color: $primary-color;
+
+  display: hidden;
+
+  @media screen and (min-width: 576px) {
+    display: block;
+  }
 }
 
 :host-context([cds-theme='dark']) {

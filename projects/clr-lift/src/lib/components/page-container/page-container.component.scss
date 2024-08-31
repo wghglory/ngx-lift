@@ -15,4 +15,8 @@
 .page-title {
   margin-bottom: 1.2rem;
   margin-top: 0;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
