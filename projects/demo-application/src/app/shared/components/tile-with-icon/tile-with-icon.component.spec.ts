@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { TileWithIconComponent } from './tile-with-icon.component';
+import {TileWithIconComponent} from './tile-with-icon.component';
 
 describe('TileWithIconComponent', () => {
   let component: TileWithIconComponent;
@@ -8,9 +8,8 @@ describe('TileWithIconComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TileWithIconComponent]
-    })
-    .compileComponents();
+      imports: [TileWithIconComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(TileWithIconComponent);
     component = fixture.componentInstance;

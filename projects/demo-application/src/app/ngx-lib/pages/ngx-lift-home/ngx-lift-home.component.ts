@@ -2,7 +2,7 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {ClarityModule} from '@clr/angular';
 import {SvgIconComponent} from 'angular-svg-icon';
 import {PageContainerComponent} from 'clr-lift';
-import {AnimationOptions, LottieComponent} from 'ngx-lottie';
+import {LottieComponent} from 'ngx-lottie';
 
 import {CodeBlockComponent} from '../../../shared/components/code-block/code-block.component';
 import {TileWithIconComponent} from '../../../shared/components/tile-with-icon/tile-with-icon.component';
@@ -23,7 +23,7 @@ import {TileWithIconComponent} from '../../../shared/components/tile-with-icon/t
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NgxLiftHomeComponent {
-  options: AnimationOptions = {
-    path: '/assets/workloads-migrate-dark.json',
-  };
+  // options: AnimationOptions = {
+  //   path: '/assets/lottie.json',
+  // };
 }
