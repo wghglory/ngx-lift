@@ -12,6 +12,15 @@
       </a>
     </div>
     <div class="header-actions">
+      <a
+        class="nav-link nav-icon"
+        target="_blank"
+        rel="noreferrer noopener"
+        aria-label="Open on GitHub"
+        href="https://github.com/wghglory/ngx-lift"
+      >
+        <svg-icon src="./assets/github.svg" />
+      </a>
       <cll-theme-toggle (changeTheme)="onThemeChange($event)" lang="en" />
     </div>
   </clr-header>
@@ -19,6 +28,10 @@
   <div class="content-container">
     <main class="content-area">
       <router-outlet></router-outlet>
+      <footer class="px-10 pt-5">
+        <hr />
+        <p>Code licensed by <a href="https://opensource.org/licenses/MIT" target="_blank">MIT License</a></p>
+      </footer>
     </main>
 
     <app-vertical-nav />
