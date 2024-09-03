@@ -24,9 +24,12 @@ import {highlight} from '../../../../shared/utils/highlight.util';
 })
 export class DateRangeValidatorComponent {
   today = new Date();
+  tomorrow = new Date(new Date().getTime() + 1 * 24 * 60 * 60 * 1000);
   fiveDaysLater = new Date(new Date().getTime() + 5 * 24 * 60 * 60 * 1000); // 5 days from now
 
-  minDate = this.today.toISOString().split('T')[0]; // get only the date part in YYYY-MM-DD format
+  todayInISO = this.today.toISOString().split('T')[0]; // get only the date part in YYYY-MM-DD format
+  tomorrowInISO = this.tomorrow.toISOString().split('T')[0];
+  fiveDaysLaterInISO = this.fiveDaysLater.toISOString().split('T')[0];
 
   minTimestamp = this.today.toISOString().slice(0, 16); // slice to ignore seconds part
   maxTimestamp = this.fiveDaysLater.toISOString().slice(0, 16);
@@ -38,6 +41,18 @@ export class DateRangeValidatorComponent {
         Validators.required,
         // If you want to be more accurate, minDate should be new Date() instead of this.today
         dateRangeValidator({minDate: this.today, minInclusive: true}),
+      ],
+    }),
+    futureDays: new FormControl<string>('', {
+      nonNullable: true,
+      validators: [
+        Validators.required,
+        dateRangeValidator({
+          maxDate: this.fiveDaysLater,
+          maxInclusive: true,
+          minDate: this.tomorrow,
+          minInclusive: true,
+        }),
       ],
     }),
   });
@@ -64,22 +79,54 @@ interface DateRangeOptions {
     `);
 
   dateCode = highlight(`
-<form clrForm [formGroup]="dateForm">
-  <clr-input-container>
-    <label class="clr-required-mark">Expires Date</label>
-    <input type="date" clrInput [formControl]="dateForm.controls.expires" required [min]="minDate" />
+<form clrForm [formGroup]="dateForm" clrLabelSize="3">
+  <clr-input-container class="!mt-1">
+    <label class="clr-required-mark">Expiration Date (Raw HTML Input)</label>
+    <input
+      type="date"
+      class="w-[10rem]"
+      clrInput
+      [formControl]="dateForm.controls.expires"
+      required
+      [min]="todayInISO"
+    />
     <clr-control-error *clrIfError="'required'">Required</clr-control-error>
     <clr-control-error *clrIfError="'dateTooEarly'">The date is too early</clr-control-error>
   </clr-input-container>
+
+  <clr-date-container>
+    <label class="clr-required-mark">Future 5 Days (Clarity Date Input)</label>
+    <input
+      type="date"
+      clrDate
+      [formControl]="dateForm.controls.futureDays"
+      required
+      [min]="tomorrowInISO"
+      [max]="fiveDaysLaterInISO"
+    />
+    <clr-control-error *clrIfError="'required'">Required</clr-control-error>
+    <clr-control-error *clrIfError="'dateInvalid'">The date is invalid</clr-control-error>
+    <clr-control-error *clrIfError="'dateTooEarly'; error as err">
+      The date {{ err.actualValue }} is too early
+    </clr-control-error>
+    <clr-control-error *clrIfError="'dateTooLate'; error as err">
+      Your input date is {{ err.actualValue }}. But the maximum date is {{ err.maxDate }}
+    </clr-control-error>
+    <clr-control-error *clrIfError="'max'">The date is too late (clarity validation)</clr-control-error>
+    <clr-control-error *clrIfError="'min'">The date is too early (clarity validation)</clr-control-error>
+  </clr-date-container>
 </form>
 
 import {dateRangeValidator} from 'ngx-lift';
 
 export class DateRangeValidatorComponent {
   today = new Date();
+  tomorrow = new Date(new Date().getTime() + 1 * 24 * 60 * 60 * 1000);
   fiveDaysLater = new Date(new Date().getTime() + 5 * 24 * 60 * 60 * 1000); // 5 days from now
 
-  minDate = this.today.toISOString().split('T')[0]; // get only the date part in YYYY-MM-DD format
+  todayInISO = this.today.toISOString().split('T')[0]; // get only the date part in YYYY-MM-DD format
+  tomorrowInISO = this.tomorrow.toISOString().split('T')[0];
+  fiveDaysLaterInISO = this.fiveDaysLater.toISOString().split('T')[0];
 
   dateForm = new FormGroup({
     expires: new FormControl<string>('', {
@@ -90,6 +137,18 @@ export class DateRangeValidatorComponent {
         dateRangeValidator({minDate: this.today, minInclusive: true}),
       ],
     }),
+    futureDays: new FormControl<string>('', {
+      nonNullable: true,
+      validators: [
+        Validators.required,
+        dateRangeValidator({
+          maxDate: this.fiveDaysLater,
+          maxInclusive: true,
+          minDate: this.tomorrow,
+          minInclusive: true,
+        }),
+      ],
+    }),
   });
 }
   `);
@@ -97,7 +156,7 @@ export class DateRangeValidatorComponent {
   dateTimeCode = highlight(`
 <form clrForm [formGroup]="dateTimeForm">
   <clr-input-container>
-    <label class="clr-required-mark">Expires Date</label>
+    <label class="clr-required-mark">Expiration Date</label>
     <input
       type="datetime-local"
       clrInput

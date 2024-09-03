@@ -1,13 +1,14 @@
 <cll-page-container [title]="'dateRangeValidator'" class="space-y-9">
   <section class="space-y-6">
     <h2>Overview</h2>
-    <p><code>dateRangeValidator</code> is a custom validator that ensures a date falls within a specified range.</p>
+    <p><code>dateRangeValidator</code> is a custom validator that validates a date falls within a specified range.</p>
 
+    <h3>Inputs</h3>
     <p>
       The <code>dateRangeValidator</code> function accepts an interface, <code>DateRangeOptions</code>, which defines
       the options for the date range validation. Here's a breakdown of the options:
     </p>
-    <ul class="list-disc">
+    <ol class="list-decimal space-y-3">
       <li>
         <code>minDate</code>: The minimum allowed date. If provided, the selected date must be equal to or later than
         this date. The equality is determined based on the <code>minInclusive</code> option.
@@ -28,8 +29,51 @@
         <code>compareTime</code>: A boolean indicating whether to compare the time as well. If true, comparisons will
         include the time components of the date; if false, the time parts will be ignored.
       </li>
-    </ul>
+    </ol>
     <app-code-block [code]="dateRangeOptionsInterface" />
+
+    <h3>Outputs</h3>
+    <p>The outputs of the <code>dateRangeValidator</code> function are as follows:</p>
+
+    <ol class="list-decimal space-y-3">
+      <li>
+        <code>dateInvalid</code>: An object indicating whether the date is invalid. The object value is the user input.
+        <ul class="list-disc indent-3">
+          <li>The user enters a date that is not in a valid format (e.g., "2023-13-01").</li>
+          <li>The user enters a non-date value (e.g., "hello world").</li>
+        </ul>
+      </li>
+
+      <li>
+        <code>dateTooEarly</code>: This error is returned when the selected date is earlier than the minimum allowed
+        date.
+        <ul class="list-disc indent-3">
+          <li>The minDate option is set. The selected date is before the minDate</li>
+          <li>If minInclusive is false, the selected date is on or before the minDate.</li>
+          <li>If minInclusive is true, the selected date is strictly before the minDate.</li>
+        </ul>
+      </li>
+
+      <li>
+        <code>dateTooLate</code>: This error is returned when the selected date is later than the maximum allowed date.
+        <ul class="list-disc indent-3">
+          <li>The maxDate option is set. The selected date is after the maxDate.</li>
+          <li>If maxInclusive is false, the selected date is on or after the maxDate.</li>
+          <li>If maxInclusive is true, the selected date is strictly after the maxDate.</li>
+        </ul>
+      </li>
+    </ol>
+
+    <h4>Validation Errors</h4>
+    <p>
+      For the <code>dateTooEarly</code> and <code>dateTooLate</code> errors, more information is provided so you can
+      display a more detailed error message:
+    </p>
+    <ul class="list-disc">
+      <li><code>actualValue</code>: The actual date value provided by the user, formatted as an ISO string.</li>
+      <li><code>minDate</code>: The minimum allowed date, formatted as an ISO string (if applicable).</li>
+      <li><code>maxDate</code>: The maximum allowed date, formatted as an ISO string (if applicable).</li>
+    </ul>
 
     <h2>Usage</h2>
 
@@ -46,15 +90,49 @@
       Below example allows to select a future date and include today. To include the <code>minDate</code>, set
       <code>minInclusive</code> to <code>true</code>.
     </p>
-    <form clrForm [formGroup]="dateForm">
+    <form clrForm [formGroup]="dateForm" clrLabelSize="3">
       <clr-input-container class="!mt-1">
-        <label class="clr-required-mark">Expires Date</label>
-        <input type="date" clrInput [formControl]="dateForm.controls.expires" required [min]="minDate" />
+        <label class="clr-required-mark">Expiration Date (Raw HTML Input)</label>
+        <input
+          type="date"
+          class="w-[10rem]"
+          clrInput
+          [formControl]="dateForm.controls.expires"
+          required
+          [min]="todayInISO"
+        />
         <clr-control-error *clrIfError="'required'">Required</clr-control-error>
         <clr-control-error *clrIfError="'dateTooEarly'">The date is too early</clr-control-error>
       </clr-input-container>
+
+      <clr-date-container>
+        <label class="clr-required-mark">Future 5 Days (Clarity Date Input)</label>
+        <input
+          type="date"
+          clrDate
+          [formControl]="dateForm.controls.futureDays"
+          required
+          [min]="tomorrowInISO"
+          [max]="fiveDaysLaterInISO"
+        />
+        <clr-control-error *clrIfError="'required'">Required</clr-control-error>
+        <clr-control-error *clrIfError="'dateInvalid'">The date is invalid</clr-control-error>
+        <clr-control-error *clrIfError="'dateTooEarly'; error as err">
+          The date {{ err.actualValue }} is too early
+        </clr-control-error>
+        <clr-control-error *clrIfError="'dateTooLate'; error as err">
+          Your input date is {{ err.actualValue }}. But the maximum date is {{ err.maxDate }}
+        </clr-control-error>
+        <clr-control-error *clrIfError="'max'">The date is too late (clarity validation)</clr-control-error>
+        <clr-control-error *clrIfError="'min'">The date is too early (clarity validation)</clr-control-error>
+      </clr-date-container>
     </form>
     <app-code-block [code]="dateCode" />
+
+    <cll-callout>
+      We could use the <code>min</code> and <code>max</code> pattern to validate the range. However, this validation
+      will not fail when typing a number like 12 or a string like 12hello.
+    </cll-callout>
 
     <h3>2. Validating a Date and Time</h3>
     <p>
@@ -67,7 +145,7 @@
     <h4>Real Example: Select a Date with Time Within a Range</h4>
     <form clrForm [formGroup]="dateTimeForm">
       <clr-input-container class="!mt-1">
-        <label class="clr-required-mark">Expires Date</label>
+        <label class="clr-required-mark">Expiration Date</label>
         <input
           type="datetime-local"
           clrInput

@@ -16,7 +16,7 @@ describe('dateRangeValidator', () => {
 
     control.updateValueAndValidity();
 
-    expect(control.errors).toEqual({dateInvalid: true});
+    expect(control.errors).toEqual({dateInvalid: 'invalid-date'});
   });
 
   it('should validate date within the specified range', () => {
@@ -41,16 +41,22 @@ describe('dateRangeValidator', () => {
         minInclusive: true,
       }),
     );
+
     control.updateValueAndValidity();
 
-    expect(control.errors).toEqual({dateTooEarly: true});
+    expect(control.errors).toEqual({
+      dateTooEarly: {
+        actualValue: '2024-08-31T00:00:00.000Z',
+        minDate: '2024-09-01T00:00:00.000Z',
+      },
+    });
   });
 
   it('should pass validation if date is on the minimum date and inclusive is true', () => {
     const control = new FormControl(
-      new Date('2024-09-01'),
+      new Date('2024-09-01T12:00:00.000Z'),
       dateRangeValidator({
-        minDate: '2024-09-01',
+        minDate: '2024-09-01T13:00:00.000Z',
         minInclusive: true,
       }),
     );
@@ -58,6 +64,25 @@ describe('dateRangeValidator', () => {
     control.updateValueAndValidity();
 
     expect(control.errors).toBeNull();
+  });
+
+  it('should pass validation if date is on the minimum date and inclusive is false', () => {
+    const control = new FormControl(
+      new Date('2024-09-01T12:00:00.000Z'),
+      dateRangeValidator({
+        minDate: '2024-09-01T13:00:00.000Z',
+        minInclusive: false,
+      }),
+    );
+
+    control.updateValueAndValidity();
+
+    expect(control.errors).toEqual({
+      dateTooEarly: {
+        actualValue: '2024-09-01T12:00:00.000Z',
+        minDate: '2024-09-01T13:00:00.000Z',
+      },
+    });
   });
 
   it('should fail validation if date is on the minimum date and inclusive is false', () => {
@@ -71,7 +96,12 @@ describe('dateRangeValidator', () => {
 
     control.updateValueAndValidity();
 
-    expect(control.errors).toEqual({dateTooEarly: true});
+    expect(control.errors).toEqual({
+      dateTooEarly: {
+        actualValue: '2024-09-01T00:00:00.000Z',
+        minDate: '2024-09-01T00:00:00.000Z',
+      },
+    });
   });
 
   it('should fail validation if date is after the maximum date', () => {
@@ -85,7 +115,12 @@ describe('dateRangeValidator', () => {
 
     control.updateValueAndValidity();
 
-    expect(control.errors).toEqual({dateTooLate: true});
+    expect(control.errors).toEqual({
+      dateTooLate: {
+        actualValue: '2024-09-02T00:00:00.000Z',
+        maxDate: '2024-09-01T00:00:00.000Z',
+      },
+    });
   });
 
   it('should pass validation if date is on the maximum date and inclusive is true', () => {
@@ -113,7 +148,12 @@ describe('dateRangeValidator', () => {
 
     control.updateValueAndValidity();
 
-    expect(control.errors).toEqual({dateTooLate: true});
+    expect(control.errors).toEqual({
+      dateTooLate: {
+        actualValue: '2024-09-01T00:00:00.000Z',
+        maxDate: '2024-09-01T00:00:00.000Z',
+      },
+    });
   });
 
   it('should ignore time parts when compareTime is false', () => {
@@ -144,6 +184,11 @@ describe('dateRangeValidator', () => {
 
     control.updateValueAndValidity();
 
-    expect(control.errors).toEqual({dateTooEarly: true});
+    expect(control.errors).toEqual({
+      dateTooEarly: {
+        actualValue: '2024-09-01T11:59:59.000Z',
+        minDate: '2024-09-01T12:00:00.000Z',
+      },
+    });
   });
 });
