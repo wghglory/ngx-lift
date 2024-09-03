@@ -1,5 +1,7 @@
 import {AbstractControl, ValidationErrors, ValidatorFn} from '@angular/forms';
 
+import {differenceInDays} from '../utils/difference-in-days.util';
+
 /**
  * Interface defining the options for the date range validator.
  */
@@ -23,37 +25,48 @@ export function dateRangeValidator(options: DateRangeOptions): ValidatorFn {
     const selectedDate = new Date(control.value);
 
     if (isNaN(selectedDate.getTime())) {
-      return {dateInvalid: true};
-    }
-
-    // If compareTime is false or undefined, ignore the time parts
-    if (!options.compareTime) {
-      selectedDate.setHours(0, 0, 0, 0);
+      return {dateInvalid: control.value};
     }
 
     const minDate = options.minDate ? new Date(options.minDate) : null;
     const maxDate = options.maxDate ? new Date(options.maxDate) : null;
 
-    if (minDate && !options.compareTime) {
-      minDate.setHours(0, 0, 0, 0);
-    }
-    if (maxDate && !options.compareTime) {
-      maxDate.setHours(0, 0, 0, 0);
+    if (minDate) {
+      let errorCondition = false;
+
+      if (options.compareTime) {
+        errorCondition = options.minInclusive
+          ? selectedDate.getTime() < minDate.getTime()
+          : selectedDate.getTime() <= minDate.getTime();
+      } else {
+        const diff = differenceInDays(selectedDate, minDate);
+        errorCondition = options.minInclusive ? diff < 0 : diff <= 0;
+      }
+
+      if (errorCondition) {
+        return {
+          dateTooEarly: {actualValue: selectedDate.toISOString(), minDate: minDate.toISOString()},
+        };
+      }
     }
 
-    // Perform validation checks
-    if (
-      minDate &&
-      (options.minInclusive ? selectedDate.getTime() < minDate.getTime() : selectedDate.getTime() <= minDate.getTime())
-    ) {
-      return {dateTooEarly: true};
-    }
+    if (maxDate) {
+      let errorCondition = false;
 
-    if (
-      maxDate &&
-      (options.maxInclusive ? selectedDate.getTime() > maxDate.getTime() : selectedDate.getTime() >= maxDate.getTime())
-    ) {
-      return {dateTooLate: true};
+      if (options.compareTime) {
+        errorCondition = options.maxInclusive
+          ? selectedDate.getTime() > maxDate.getTime()
+          : selectedDate.getTime() >= maxDate.getTime();
+      } else {
+        const diff = differenceInDays(selectedDate, maxDate);
+        errorCondition = options.maxInclusive ? diff > 0 : diff >= 0;
+      }
+
+      if (errorCondition) {
+        return {
+          dateTooLate: {actualValue: selectedDate.toISOString(), maxDate: maxDate.toISOString()},
+        };
+      }
     }
 
     return null;

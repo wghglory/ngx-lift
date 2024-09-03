@@ -17,4 +17,9 @@ describe('differenceInDays', () => {
     const result5 = differenceInDays(Date.now(), new Date('2024-01-01'));
     expect(result5).toBeGreaterThan(0);
   });
+
+  it('should return the difference between two dates with time', () => {
+    const result1 = differenceInDays(new Date('2022-09-08'), new Date('2022-09-08T12:00:00'));
+    expect(result1).toBe(0);
+  });
 });
