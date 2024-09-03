@@ -25,6 +25,7 @@ export class YourComponent { }
   defaultCode = highlight(`<cll-spinner />`);
   middleSizeCode = highlight(`<cll-spinner [size]="'md'" />`);
   smallSizeCode = highlight(`<cll-spinner [size]="'sm'" />`);
-  alignLeftCode = highlight(`<cll-spinner [isCenter]="false" />`);
-  customClassCode = highlight(`<cll-spinner [isCenter]="false" class="px-10 inline-block" />`);
+  inlineCode = highlight(`<div><cll-spinner inline class="mx-2" /><span>Loading...</span></div>`);
+  alignLeftCode = highlight(`<cll-spinner [center]="false" />`);
+  customClassCode = highlight(`<cll-spinner [center]="false" class="mx-10" />`);
 }

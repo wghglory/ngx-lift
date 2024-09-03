@@ -1,5 +1,5 @@
 import {CommonModule} from '@angular/common';
-import {ChangeDetectionStrategy, Component, HostBinding, input} from '@angular/core';
+import {booleanAttribute, ChangeDetectionStrategy, Component, input} from '@angular/core';
 import {ClarityModule} from '@clr/angular';
 
 @Component({
@@ -12,7 +12,7 @@ import {ClarityModule} from '@clr/angular';
 })
 export class SpinnerComponent {
   size = input<'lg' | 'md' | 'sm'>('lg');
-  isCenter = input(true);
-
-  @HostBinding('class') customClass = '';
+  center = input(true);
+  inline = input(false, {transform: booleanAttribute});
+  customClass = input('', {alias: 'class'});
 }
