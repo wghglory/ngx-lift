@@ -76,7 +76,7 @@ interface DateRangeOptions {
   maxInclusive?: boolean;
   compareTime?: boolean;
 }
-    `);
+  `);
 
   dateCode = highlight(`
 <form clrForm [formGroup]="dateForm" clrLabelSize="3">
@@ -91,7 +91,7 @@ interface DateRangeOptions {
       [min]="todayInISO"
     />
     <clr-control-error *clrIfError="'required'">Required</clr-control-error>
-    <clr-control-error *clrIfError="'dateTooEarly'">The date is too early</clr-control-error>
+    <clr-control-error *clrIfError="'minDate'">The date is too early</clr-control-error>
   </clr-input-container>
 
   <clr-date-container>
@@ -105,13 +105,17 @@ interface DateRangeOptions {
       [max]="fiveDaysLaterInISO"
     />
     <clr-control-error *clrIfError="'required'">Required</clr-control-error>
-    <clr-control-error *clrIfError="'dateInvalid'">The date is invalid</clr-control-error>
-    <clr-control-error *clrIfError="'dateTooEarly'; error as err">
-      The date {{ err.actualValue }} is too early
+    <clr-control-error *clrIfError="'invalidDate'">The date is invalid</clr-control-error>
+
+    <!-- use the ValidationErrors provided by dateRangeValidator -->
+    <clr-control-error *clrIfError="'maxDate'; error as err">
+      The date cannot be later than {{ err.maxDate }}
     </clr-control-error>
-    <clr-control-error *clrIfError="'dateTooLate'; error as err">
-      Your input date is {{ err.actualValue }}. But the maximum date is {{ err.maxDate }}
+    <clr-control-error *clrIfError="'minDate'">
+      The date is too early
     </clr-control-error>
+
+    <!-- use the ValidationErrors provided by Clarity -->
     <clr-control-error *clrIfError="'max'">The date is too late (clarity validation)</clr-control-error>
     <clr-control-error *clrIfError="'min'">The date is too early (clarity validation)</clr-control-error>
   </clr-date-container>
@@ -166,8 +170,8 @@ export class DateRangeValidatorComponent {
       [max]="maxTimestamp"
     />
     <clr-control-error *clrIfError="'required'">Required</clr-control-error>
-    <clr-control-error *clrIfError="'dateTooEarly'">The date time is too early</clr-control-error>
-    <clr-control-error *clrIfError="'dateTooLate'">The date time is too late</clr-control-error>
+    <clr-control-error *clrIfError="'minDate'">The date time is too early</clr-control-error>
+    <clr-control-error *clrIfError="'maxDate'">The date time is too late</clr-control-error>
   </clr-input-container>
 </form>
 
@@ -201,7 +205,7 @@ const validator = dateRangeValidator({
   maxInclusive: false,
   compareTime: false,
 });
-`);
+  `);
 
   dateTimeExample = highlight(`
 const validator = dateRangeValidator({
@@ -209,5 +213,5 @@ const validator = dateRangeValidator({
   maxDate: '2024-09-02T12:00:00Z',
   compareTime: true,
 });
-`);
+  `);
 }
