@@ -16,7 +16,7 @@ describe('dateRangeValidator', () => {
 
     control.updateValueAndValidity();
 
-    expect(control.errors).toEqual({dateInvalid: 'invalid-date'});
+    expect(control.errors).toEqual({invalidDate: 'invalid-date'});
   });
 
   it('should validate date within the specified range', () => {
@@ -45,8 +45,8 @@ describe('dateRangeValidator', () => {
     control.updateValueAndValidity();
 
     expect(control.errors).toEqual({
-      dateTooEarly: {
-        actualValue: '2024-08-31T00:00:00.000Z',
+      beforeMinDate: {
+        actualDate: '2024-08-31T00:00:00.000Z',
         minDate: '2024-09-01T00:00:00.000Z',
       },
     });
@@ -78,8 +78,8 @@ describe('dateRangeValidator', () => {
     control.updateValueAndValidity();
 
     expect(control.errors).toEqual({
-      dateTooEarly: {
-        actualValue: '2024-09-01T12:00:00.000Z',
+      beforeMinDate: {
+        actualDate: '2024-09-01T12:00:00.000Z',
         minDate: '2024-09-01T13:00:00.000Z',
       },
     });
@@ -97,8 +97,8 @@ describe('dateRangeValidator', () => {
     control.updateValueAndValidity();
 
     expect(control.errors).toEqual({
-      dateTooEarly: {
-        actualValue: '2024-09-01T00:00:00.000Z',
+      beforeMinDate: {
+        actualDate: '2024-09-01T00:00:00.000Z',
         minDate: '2024-09-01T00:00:00.000Z',
       },
     });
@@ -116,8 +116,8 @@ describe('dateRangeValidator', () => {
     control.updateValueAndValidity();
 
     expect(control.errors).toEqual({
-      dateTooLate: {
-        actualValue: '2024-09-02T00:00:00.000Z',
+      afterMaxDate: {
+        actualDate: '2024-09-02T00:00:00.000Z',
         maxDate: '2024-09-01T00:00:00.000Z',
       },
     });
@@ -149,8 +149,8 @@ describe('dateRangeValidator', () => {
     control.updateValueAndValidity();
 
     expect(control.errors).toEqual({
-      dateTooLate: {
-        actualValue: '2024-09-01T00:00:00.000Z',
+      afterMaxDate: {
+        actualDate: '2024-09-01T00:00:00.000Z',
         maxDate: '2024-09-01T00:00:00.000Z',
       },
     });
@@ -185,8 +185,8 @@ describe('dateRangeValidator', () => {
     control.updateValueAndValidity();
 
     expect(control.errors).toEqual({
-      dateTooEarly: {
-        actualValue: '2024-09-01T11:59:59.000Z',
+      beforeMinDate: {
+        actualDate: '2024-09-01T11:59:59.000Z',
         minDate: '2024-09-01T12:00:00.000Z',
       },
     });

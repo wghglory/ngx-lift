@@ -37,7 +37,7 @@
 
     <ol class="list-decimal space-y-3">
       <li>
-        <code>dateInvalid</code>: An object indicating whether the date is invalid. The object value is the user input.
+        <code>invalidDate</code>: An object indicating whether the date is invalid. The object value is the user input.
         <ul class="list-disc indent-3">
           <li>The user enters a date that is not in a valid format (e.g., "2023-13-01").</li>
           <li>The user enters a non-date value (e.g., "hello world").</li>
@@ -45,7 +45,7 @@
       </li>
 
       <li>
-        <code>dateTooEarly</code>: This error is returned when the selected date is earlier than the minimum allowed
+        <code>beforeMinDate</code>: This error is returned when the selected date is earlier than the minimum allowed
         date.
         <ul class="list-disc indent-3">
           <li>The minDate option is set. The selected date is before the minDate</li>
@@ -55,7 +55,7 @@
       </li>
 
       <li>
-        <code>dateTooLate</code>: This error is returned when the selected date is later than the maximum allowed date.
+        <code>afterMaxDate</code>: This error is returned when the selected date is later than the maximum allowed date.
         <ul class="list-disc indent-3">
           <li>The maxDate option is set. The selected date is after the maxDate.</li>
           <li>If maxInclusive is false, the selected date is on or after the maxDate.</li>
@@ -66,11 +66,11 @@
 
     <h4>Validation Errors</h4>
     <p>
-      For the <code>dateTooEarly</code> and <code>dateTooLate</code> errors, more information is provided so you can
+      For the <code>beforeMinDate</code> and <code>afterMaxDate</code> errors, more information is provided so you can
       display a more detailed error message:
     </p>
     <ul class="list-disc">
-      <li><code>actualValue</code>: The actual date value provided by the user, formatted as an ISO string.</li>
+      <li><code>actualDate</code>: The actual date value provided by the user, formatted as an ISO string.</li>
       <li><code>minDate</code>: The minimum allowed date, formatted as an ISO string (if applicable).</li>
       <li><code>maxDate</code>: The maximum allowed date, formatted as an ISO string (if applicable).</li>
     </ul>
@@ -102,7 +102,7 @@
           [min]="todayInISO"
         />
         <clr-control-error *clrIfError="'required'">Required</clr-control-error>
-        <clr-control-error *clrIfError="'dateTooEarly'">The date is too early</clr-control-error>
+        <clr-control-error *clrIfError="'beforeMinDate'">The date is too early</clr-control-error>
       </clr-input-container>
 
       <clr-date-container>
@@ -116,12 +116,12 @@
           [max]="fiveDaysLaterInISO"
         />
         <clr-control-error *clrIfError="'required'">Required</clr-control-error>
-        <clr-control-error *clrIfError="'dateInvalid'">The date is invalid</clr-control-error>
-        <clr-control-error *clrIfError="'dateTooEarly'; error as err">
-          The date {{ err.actualValue }} is too early
+        <clr-control-error *clrIfError="'invalidDate'">The date is invalid</clr-control-error>
+        <clr-control-error *clrIfError="'beforeMinDate'; error as err">
+          The date {{ err.actualDate }} is too early
         </clr-control-error>
-        <clr-control-error *clrIfError="'dateTooLate'; error as err">
-          Your input date is {{ err.actualValue }}. But the maximum date is {{ err.maxDate }}
+        <clr-control-error *clrIfError="'afterMaxDate'; error as err">
+          Your input date is {{ err.actualDate }}. But the maximum date is {{ err.maxDate }}
         </clr-control-error>
         <clr-control-error *clrIfError="'max'">The date is too late (clarity validation)</clr-control-error>
         <clr-control-error *clrIfError="'min'">The date is too early (clarity validation)</clr-control-error>
@@ -155,8 +155,8 @@
           [max]="maxTimestamp"
         />
         <clr-control-error *clrIfError="'required'">Required</clr-control-error>
-        <clr-control-error *clrIfError="'dateTooEarly'">The date time is too early</clr-control-error>
-        <clr-control-error *clrIfError="'dateTooLate'">The date time is too late</clr-control-error>
+        <clr-control-error *clrIfError="'beforeMinDate'">The date time is too early</clr-control-error>
+        <clr-control-error *clrIfError="'afterMaxDate'">The date time is too late</clr-control-error>
       </clr-input-container>
     </form>
     <app-code-block [code]="dateTimeCode" />

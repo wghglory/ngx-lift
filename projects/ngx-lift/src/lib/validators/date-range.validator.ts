@@ -25,7 +25,7 @@ export function dateRangeValidator(options: DateRangeOptions): ValidatorFn {
     const selectedDate = new Date(control.value);
 
     if (isNaN(selectedDate.getTime())) {
-      return {dateInvalid: control.value};
+      return {invalidDate: control.value};
     }
 
     const minDate = options.minDate ? new Date(options.minDate) : null;
@@ -45,7 +45,7 @@ export function dateRangeValidator(options: DateRangeOptions): ValidatorFn {
 
       if (errorCondition) {
         return {
-          dateTooEarly: {actualValue: selectedDate.toISOString(), minDate: minDate.toISOString()},
+          beforeMinDate: {actualDate: selectedDate.toISOString(), minDate: minDate.toISOString()},
         };
       }
     }
@@ -64,7 +64,7 @@ export function dateRangeValidator(options: DateRangeOptions): ValidatorFn {
 
       if (errorCondition) {
         return {
-          dateTooLate: {actualValue: selectedDate.toISOString(), maxDate: maxDate.toISOString()},
+          afterMaxDate: {actualDate: selectedDate.toISOString(), maxDate: maxDate.toISOString()},
         };
       }
     }
