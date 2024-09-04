@@ -91,7 +91,9 @@ interface DateRangeOptions {
       [min]="todayInISO"
     />
     <clr-control-error *clrIfError="'required'">Required</clr-control-error>
-    <clr-control-error *clrIfError="'minDate'">The date is too early</clr-control-error>
+    <clr-control-error *clrIfError="'minDate'; error as minDate">
+      The date cannot be earlier than {{ minDate }}
+    </clr-control-error>
   </clr-input-container>
 
   <clr-date-container>
@@ -108,11 +110,11 @@ interface DateRangeOptions {
     <clr-control-error *clrIfError="'invalidDate'">The date is invalid</clr-control-error>
 
     <!-- use the ValidationErrors provided by dateRangeValidator -->
-    <clr-control-error *clrIfError="'maxDate'; error as err">
-      The date cannot be later than {{ err.maxDate }}
+    <clr-control-error *clrIfError="'maxDate'; error as maxDate">
+      The date cannot be later than {{ maxDate }}
     </clr-control-error>
-    <clr-control-error *clrIfError="'minDate'">
-      The date is too early
+    <clr-control-error *clrIfError="'minDate'; error as minDate">
+      The date cannot be earlier than {{ minDate }}
     </clr-control-error>
 
     <!-- use the ValidationErrors provided by Clarity -->
@@ -170,8 +172,12 @@ export class DateRangeValidatorComponent {
       [max]="maxTimestamp"
     />
     <clr-control-error *clrIfError="'required'">Required</clr-control-error>
-    <clr-control-error *clrIfError="'minDate'">The date time is too early</clr-control-error>
-    <clr-control-error *clrIfError="'maxDate'">The date time is too late</clr-control-error>
+    <clr-control-error *clrIfError="'minDate'; error as minDate">
+      The date time cannot be earlier than {{ minDate }}
+    </clr-control-error>
+    <clr-control-error *clrIfError="'maxDate'; error as maxDate">
+      The date time cannot be later than {{ maxDate }}
+    </clr-control-error>
   </clr-input-container>
 </form>
 
