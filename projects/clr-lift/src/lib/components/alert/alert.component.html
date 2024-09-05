@@ -6,7 +6,7 @@
 >
   <clr-alert-item>
     @if (error()) {
-      <span class="alert-text" role="alert">{{ error()?.error.message || error()?.message }}</span>
+      <span class="alert-text" role="alert">{{ error()?.error?.message || error()?.message }}</span>
     }
     @if (content()) {
       <span class="alert-text" role="alert" [innerHTML]="content()"></span>
