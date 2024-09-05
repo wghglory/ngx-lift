@@ -21,6 +21,11 @@ interface DateRangeOptions {
  */
 export function dateRangeValidator(options: DateRangeOptions): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
+    // if control doesn't have any value, pass validation. Developer should use Angular required validator.
+    if (!control.value) {
+      return null;
+    }
+
     // Parse the selected date from the control value
     const selectedDate = new Date(control.value);
 

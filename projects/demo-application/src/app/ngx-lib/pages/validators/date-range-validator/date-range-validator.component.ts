@@ -38,7 +38,6 @@ export class DateRangeValidatorComponent {
     expires: new FormControl<string>('', {
       nonNullable: true,
       validators: [
-        Validators.required,
         // If you want to be more accurate, minDate should be new Date() instead of this.today
         dateRangeValidator({minDate: this.today, minInclusive: true}),
       ],
@@ -87,10 +86,8 @@ interface DateRangeOptions {
       class="w-[10rem]"
       clrInput
       [formControl]="dateForm.controls.expires"
-      required
       [min]="todayInISO"
     />
-    <clr-control-error *clrIfError="'required'">Required</clr-control-error>
     <clr-control-error *clrIfError="'minDate'; error as minDate">
       The date cannot be earlier than {{ minDate }}
     </clr-control-error>
@@ -138,7 +135,6 @@ export class DateRangeValidatorComponent {
     expires: new FormControl<string>('', {
       nonNullable: true,
       validators: [
-        Validators.required,
         // If you want to be more accurate, minDate should be new Date() instead of this.today
         dateRangeValidator({minDate: this.today, minInclusive: true}),
       ],
