@@ -35,8 +35,11 @@
     },
     {
       "files": ["*.html"],
-      "extends": ["plugin:@angular-eslint/template/recommended"],
-      "rules": {}
+      "extends": ["plugin:@angular-eslint/template/recommended", "plugin:@angular-eslint/template/accessibility"],
+      "rules": {
+        "@angular-eslint/template/prefer-control-flow": ["error"],
+        "@angular-eslint/template/label-has-associated-control": ["warn"]
+      }
     }
   ]
 }
