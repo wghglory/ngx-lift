@@ -3,6 +3,14 @@ import {FormControl} from '@angular/forms';
 import {dateRangeValidator} from './date-range.validator';
 
 describe('dateRangeValidator', () => {
+  it('should not throw error when input is empty', () => {
+    const control = new FormControl('', dateRangeValidator({}));
+
+    control.updateValueAndValidity();
+
+    expect(control.errors).toBeNull();
+  });
+
   it('should validate date when no range is specified', () => {
     const control = new FormControl(new Date(), dateRangeValidator({}));
 

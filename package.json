@@ -1,6 +1,6 @@
 {
   "name": "ngx-lift",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -12,6 +12,7 @@
     "build-ngx:watch": "ng build --project=ngx-lift --watch",
     "publish-clr": "npm run build-clr && cd ./dist/clr-lift && npm publish",
     "publish-ngx": "npm run build-ngx && cd ./dist/ngx-lift && npm publish",
+    "publish": "npm run publish-ngx && npm run publish-clr",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "test-clr": "ng test --project=clr-lift",

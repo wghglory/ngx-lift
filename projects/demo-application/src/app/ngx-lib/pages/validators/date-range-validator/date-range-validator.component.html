@@ -80,16 +80,8 @@
     </p>
     <form clrForm [formGroup]="dateForm" clrLabelSize="3">
       <clr-input-container class="!mt-1">
-        <label class="clr-required-mark">Expiration Date (Raw HTML Input)</label>
-        <input
-          type="date"
-          class="w-[10rem]"
-          clrInput
-          [formControl]="dateForm.controls.expires"
-          required
-          [min]="todayInISO"
-        />
-        <clr-control-error *clrIfError="'required'">Required</clr-control-error>
+        <label>Expiration Date (Raw HTML Input)</label>
+        <input type="date" class="w-[10rem]" clrInput [formControl]="dateForm.controls.expires" [min]="todayInISO" />
         <clr-control-error *clrIfError="'minDate'; error as minDate">
           The date cannot be earlier than {{ minDate }}
         </clr-control-error>
