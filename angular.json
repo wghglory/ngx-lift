@@ -68,7 +68,7 @@
               "projects/demo-application/src/styles.scss"
             ],
             "scripts": [],
-            "allowedCommonJsDependencies": ["node-forge"]
+            "allowedCommonJsDependencies": []
           },
           "configurations": {
             "production": {

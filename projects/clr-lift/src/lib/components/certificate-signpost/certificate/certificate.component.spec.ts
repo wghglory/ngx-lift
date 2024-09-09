@@ -14,18 +14,10 @@ describe('CertificateComponent', () => {
     component = fixture.componentInstance;
 
     fixture.componentRef.setInput('certificate', {
-      validity: {
-        notBefore: new Date(),
-        notAfter: new Date(),
-      },
-      issuer: {
-        attributes: [{name: 'string', value: 'string'}],
-        hash: {md5: '', sha1: ''},
-      },
-      subject: {
-        attributes: [{name: 'string', value: 'string'}],
-        hash: {md5: '', sha1: ''},
-      },
+      notBefore: new Date(),
+      notAfter: new Date(),
+      issuer: '',
+      subject: '',
     });
     fixture.componentRef.setInput('certificateStatus', {
       labelText: 'string',
@@ -33,7 +25,7 @@ describe('CertificateComponent', () => {
       status: 'info',
       shape: 'error-standard',
     });
-    fixture.componentRef.setInput('hash', {md5: '', sha1: ''});
+    fixture.componentRef.setInput('hash', {sha256: '', sha1: ''});
 
     fixture.detectChanges();
   });

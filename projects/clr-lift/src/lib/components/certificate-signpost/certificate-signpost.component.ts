@@ -1,8 +1,9 @@
-import {NgClass} from '@angular/common';
+import {JsonPipe, NgClass} from '@angular/common';
 import {ChangeDetectionStrategy, Component, computed, inject, input, signal, untracked} from '@angular/core';
 import {certificateIcon, ClarityIcons} from '@cds/core/icon';
 import {ClarityModule} from '@clr/angular';
-import {pki} from 'node-forge';
+import {X509Certificate} from '@peculiar/x509';
+import {computedAsync} from 'ngx-lift';
 
 import {TranslatePipe} from '../../pipes/translate.pipe';
 import {TranslationService} from '../../services/translation.service';
@@ -16,7 +17,7 @@ ClarityIcons.addIcons(certificateIcon);
 @Component({
   selector: 'cll-certificate-signpost',
   standalone: true,
-  imports: [NgClass, ClarityModule, TranslatePipe, CertificateComponent],
+  imports: [NgClass, ClarityModule, TranslatePipe, CertificateComponent, JsonPipe],
   templateUrl: './certificate-signpost.component.html',
   styleUrls: ['./certificate-signpost.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -47,7 +48,11 @@ export class CertificateSignpostComponent {
 
   certificate = computed(() => {
     try {
-      return this.certificateService.getCertificateFromPem(this.pem(), this.pemEncoded());
+      if (this.pem()) {
+        return this.certificateService.parseCertificate(this.pem(), this.pemEncoded());
+      } else {
+        return undefined;
+      }
     } catch (error: unknown) {
       untracked(() => {
         this.error.set(error as string);
@@ -69,7 +74,10 @@ export class CertificateSignpostComponent {
         };
   });
 
-  hash = computed(() => this.certificateService.getCertificateHashes(this.pem(), this.pemEncoded()));
+  hash = computedAsync(() => {
+    const cert = this.certificate();
+    return cert ? this.certificateService.getFingerprints(cert) : undefined;
+  });
 
   certificateStatusClass = computed(() => {
     return this.certificateStatus().status === 'danger'
@@ -86,11 +94,11 @@ export class CertificateSignpostComponent {
   /**
    * Returns the status of a certificate based on its expiration date.
    *
-   * @param {pki.Certificate} certificate - The certificate to check the status of.
+   * @param {X509Certificate} certificate - The certificate to check the status of.
    * @return {CertificateStatus} The status of the certificate, including label text, label class, status, and shape.
    */
-  private getCertificateStatus(certificate: pki.Certificate): CertificateStatus {
-    const daysDiff = this.certificateService.getDayDifferences(certificate.validity.notAfter);
+  private getCertificateStatus(certificate: X509Certificate): CertificateStatus {
+    const daysDiff = this.certificateService.getDayDifferences(certificate.notAfter);
 
     if (daysDiff < 0) {
       return {

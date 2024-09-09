@@ -1,7 +1,7 @@
 import {CommonModule} from '@angular/common';
 import {ChangeDetectionStrategy, Component, inject, input} from '@angular/core';
 import {ClarityModule} from '@clr/angular';
-import {pki} from 'node-forge';
+import {X509Certificate} from '@peculiar/x509';
 
 import {TranslatePipe} from '../../../pipes/translate.pipe';
 import {TranslationService} from '../../../services/translation.service';
@@ -19,13 +19,16 @@ import {CertificateStatus} from '../certificate.model';
 export class CertificateComponent {
   private translationService = inject(TranslationService);
 
-  certificate = input.required<pki.Certificate>();
+  certificate = input.required<X509Certificate>();
   certificateStatus = input.required<CertificateStatus>();
 
-  hash = input.required<{
-    md5: string;
-    sha1: string;
-  }>();
+  hash = input.required<
+    | {
+        sha1: string;
+        sha256: string;
+      }
+    | undefined
+  >();
 
   constructor() {
     this.translationService.loadTranslationsForComponent('certificate', certificateTranslations);

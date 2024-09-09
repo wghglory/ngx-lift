@@ -29,8 +29,8 @@
 
   @media screen and (min-width: 768px) {
     .certificate-content {
-      grid-template-columns: 1fr 2fr;
-      font-size: 0.7rem;
+      grid-template-columns: 1fr 4fr;
+      column-gap: 2rem;
     }
   }
 }
