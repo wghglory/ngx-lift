@@ -1,8 +1,10 @@
-import {Component, computed, inject, input, OnInit, output, signal} from '@angular/core';
+import {Component, computed, inject, input, output, signal} from '@angular/core';
 import {ClarityIcons, moonIcon, sunIcon} from '@cds/core/icon';
 import {ClarityModule} from '@clr/angular';
 
 import {TranslationService} from '../../services/translation.service';
+import {ThemeService} from './theme.service';
+import {ClarityTheme} from './theme.type';
 import {themeToggleTranslations} from './theme-toggle.l10n';
 
 ClarityIcons.addIcons(moonIcon);
@@ -15,15 +17,16 @@ ClarityIcons.addIcons(sunIcon);
   templateUrl: './theme-toggle.component.html',
   styleUrl: './theme-toggle.component.scss',
 })
-export class ThemeToggleComponent implements OnInit {
+export class ThemeToggleComponent {
   private translationService = inject(TranslationService);
+  private themeService = inject(ThemeService);
 
   lang = input('');
 
-  changeTheme = output<string>();
+  changeTheme = output<ClarityTheme>();
 
   hovering = signal(false);
-  theme = signal<'dark' | 'light'>(localStorage['cds-theme'] || 'light');
+  theme = this.themeService.theme;
 
   themeDisplayName = computed(() => {
     return this.translationService.translate(
@@ -49,24 +52,11 @@ export class ThemeToggleComponent implements OnInit {
 
   toggleTheme() {
     const newTheme = this.theme() === 'light' ? 'dark' : 'light';
-    this.setTheme(newTheme);
+    this.themeService.setTheme(newTheme);
+    this.changeTheme.emit(newTheme);
   }
 
   setHovering(value: boolean) {
     this.hovering.set(value);
-  }
-
-  private setTheme(newTheme: 'light' | 'dark') {
-    this.theme.set(newTheme);
-    localStorage['cds-theme'] = newTheme;
-    document.body.setAttribute('cds-theme', newTheme);
-    this.changeTheme.emit(newTheme);
-  }
-
-  ngOnInit() {
-    const themeInUsing = localStorage['cds-theme'];
-    if (themeInUsing) {
-      this.setTheme(themeInUsing);
-    }
   }
 }

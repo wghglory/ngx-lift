@@ -4,6 +4,7 @@ import {ClarityModule} from '@clr/angular';
 
 import {TranslationService} from '../../services/translation.service';
 import {MockTranslationService} from '../../services/translation.service.mock';
+import {ThemeService} from './theme.service';
 import {ThemeToggleComponent} from './theme-toggle.component';
 
 describe('ThemeToggleComponent', () => {
@@ -13,7 +14,7 @@ describe('ThemeToggleComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [ClarityModule, ThemeToggleComponent],
-      providers: [{provide: TranslationService, useClass: MockTranslationService}],
+      providers: [{provide: TranslationService, useClass: MockTranslationService}, ThemeService],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ThemeToggleComponent);
@@ -40,13 +41,6 @@ describe('ThemeToggleComponent', () => {
     const button = fixture.nativeElement.querySelector('button');
     button.click();
     expect(component.changeTheme.emit).toHaveBeenCalledOnceWith(jasmine.any(String));
-  });
-
-  it('should set theme on initialization if stored in local storage', () => {
-    const storedTheme = 'dark';
-    localStorage.setItem('cds-theme', storedTheme);
-    component.ngOnInit();
-    expect(component.theme()).toEqual(storedTheme);
   });
 
   // Cleanup

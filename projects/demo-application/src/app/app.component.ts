@@ -3,7 +3,7 @@ import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
 import {certificateIcon, ClarityIcons, heatMapIcon, objectsIcon, radarIcon, wrenchIcon} from '@cds/core/icon';
 import {ClarityModule} from '@clr/angular';
 import {SvgIconComponent} from 'angular-svg-icon';
-import {ThemeToggleComponent, ToastContainerComponent} from 'clr-lift';
+import {ClarityTheme, ThemeToggleComponent, ToastContainerComponent} from 'clr-lift';
 import hljs from 'highlight.js/lib/core';
 import javascript from 'highlight.js/lib/languages/javascript';
 import typescript from 'highlight.js/lib/languages/typescript';
@@ -43,7 +43,7 @@ ClarityIcons.addIcons([
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  onThemeChange(theme: string) {
+  onThemeChange(theme: ClarityTheme) {
     const linkElement = document.querySelector('#highlightLink');
 
     if (linkElement) {
