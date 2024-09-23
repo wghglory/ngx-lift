@@ -57,6 +57,7 @@ export const ngxLiftNavConfig: NavConfig[] = [
     icon: 'wrench',
     children: [
       {path: '/difference-in-days', value: 'differenceInDays'},
+      {path: '/idle-detection', value: 'Idle Detection'},
       {path: '/is-empty', value: 'isEmpty'},
       {path: '/is-equal', value: 'isEqual'},
       {path: '/pick-by', value: 'pickBy & omitBy'},

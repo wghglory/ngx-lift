@@ -32,6 +32,7 @@ import {InjectParamsComponent} from './ngx-lib/pages/signals/inject-params/injec
 import {InjectQueryParamsComponent} from './ngx-lib/pages/signals/inject-query-params/inject-query-params.component';
 import {MergeFromComponent} from './ngx-lib/pages/signals/merge-from/merge-from.component';
 import {DifferenceInDaysComponent} from './ngx-lib/pages/utilities/difference-in-days/difference-in-days.component';
+import {IdleDetectionDemoComponent} from './ngx-lib/pages/utilities/idle-detection-demo/idle-detection-demo.component';
 import {IsEmptyComponent} from './ngx-lib/pages/utilities/is-empty/is-empty.component';
 import {IsEqualComponent} from './ngx-lib/pages/utilities/is-equal/is-equal.component';
 import {PickByComponent} from './ngx-lib/pages/utilities/pick-by/pick-by.component';
@@ -168,6 +169,10 @@ export const routes: Routes = [
           {
             path: 'difference-in-days',
             component: DifferenceInDaysComponent,
+          },
+          {
+            path: 'idle-detection',
+            component: IdleDetectionDemoComponent,
           },
           {
             path: 'is-empty',
