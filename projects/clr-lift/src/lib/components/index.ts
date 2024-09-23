@@ -3,6 +3,7 @@ export * from './alerts';
 export * from './callout';
 export * from './certificate-signpost';
 export * from './file-reader';
+export * from './idle-detection';
 export * from './key-value-inputs';
 export * from './page-container';
 export * from './spinner';
