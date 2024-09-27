@@ -1,45 +1,53 @@
-<span [ngSwitch]="iconStatus()" class="status-container">
-  <cds-icon
-    *ngSwitchCase="'success'"
-    shape="success-standard"
-    status="success"
-    [attr.size]="iconSize()"
-    [attr.aria-label]="'status-indicator.success' | translate"
-  />
-  <cds-icon
-    *ngSwitchCase="'error'"
-    shape="error-standard"
-    status="danger"
-    [attr.size]="iconSize()"
-    [attr.aria-label]="'status-indicator.error' | translate"
-  />
-  <cds-icon
-    *ngSwitchCase="'pending'"
-    shape="sync"
-    status="info"
-    [attr.size]="iconSize()"
-    [attr.aria-label]="'status-indicator.pending' | translate"
-  />
-  <cds-icon
-    *ngSwitchCase="'warning'"
-    shape="warning-standard"
-    status="warning"
-    [attr.size]="iconSize()"
-    [attr.aria-label]="'status-indicator.warning' | translate"
-  />
-  <cds-icon
-    *ngSwitchCase="'inactive'"
-    shape="disconnect"
-    status="danger"
-    [attr.size]="iconSize()"
-    [attr.aria-label]="'status-indicator.inactive' | translate"
-  />
-  <cds-icon
-    *ngSwitchDefault
-    shape="unknown-status"
-    [attr.size]="iconSize()"
-    [attr.aria-label]="'status-indicator.unknown' | translate"
-  />
+<span class="status-container">
+  @switch (iconStatus()) {
+    @case ('success') {
+      <cds-icon
+        shape="success-standard"
+        status="success"
+        [attr.size]="iconSize()"
+        [attr.aria-label]="'status-indicator.success' | translate"
+      />
+    }
+    @case ('error') {
+      <cds-icon
+        shape="error-standard"
+        status="danger"
+        [attr.size]="iconSize()"
+        [attr.aria-label]="'status-indicator.error' | translate"
+      />
+    }
+    @case ('pending') {
+      <cds-icon
+        shape="sync"
+        status="info"
+        [attr.size]="iconSize()"
+        [attr.aria-label]="'status-indicator.pending' | translate"
+      />
+    }
+    @case ('warning') {
+      <cds-icon
+        shape="warning-standard"
+        status="warning"
+        [attr.size]="iconSize()"
+        [attr.aria-label]="'status-indicator.warning' | translate"
+      />
+    }
+    @case ('inactive') {
+      <cds-icon
+        shape="disconnect"
+        status="danger"
+        [attr.size]="iconSize()"
+        [attr.aria-label]="'status-indicator.inactive' | translate"
+      />
+    }
+    @default {
+      <cds-icon
+        shape="unknown-status"
+        [attr.size]="iconSize()"
+        [attr.aria-label]="'status-indicator.unknown' | translate"
+      />
+    }
+  }
 
   <ng-content></ng-content>
 </span>
