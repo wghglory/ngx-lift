@@ -1,5 +1,6 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
 import {CalloutComponent, IdleDetectionComponent, PageContainerComponent} from 'clr-lift';
+import {IdleDetectionService} from 'ngx-lift';
 
 import {CodeBlockComponent} from '../../../../shared/components/code-block/code-block.component';
 import {highlight} from '../../../../shared/utils/highlight.util';
@@ -11,7 +12,7 @@ import {highlight} from '../../../../shared/utils/highlight.util';
   templateUrl: './idle-detection-demo.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IdleDetectionDemoComponent {
+export class IdleDetectionDemoComponent implements OnInit, OnDestroy {
   configCode = highlight(`
 export class IdleDetectionConfig {
   idleDurationInSeconds?: number;
@@ -108,7 +109,8 @@ export class AppComponent {
 }
   `);
 
-  /*
+  constructor(private idleDetectionService: IdleDetectionService) {}
+
   ngOnInit() {
     this.idleDetectionService.setConfig({
       idleDurationInSeconds: 5,
@@ -135,5 +137,4 @@ export class AppComponent {
   ngOnDestroy() {
     this.idleDetectionService.clearTimers();
   }
-  */
 }

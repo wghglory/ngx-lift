@@ -15,9 +15,9 @@ To experience the full potential of `ngx-lift` and `clr-lift`, visit our live si
 - **Operator Support:** The project includes a range of operators that can be seamlessly integrated into your Angular
   applications. These operators aim to simplify complex operations and promote cleaner, more maintainable code.
 
-- **Component Repository:** `ngx-lift` comes bundled with reusable components. These components are crafted with the best
-  practices in mind, allowing you to integrate them into your projects and focus effortlessly on building outstanding user
-  interfaces.
+- **Component Repository:** `ngx-lift` comes bundled with reusable components. These components are crafted with the
+  best practices in mind, allowing you to integrate them into your projects and focus effortlessly on building
+  outstanding user interfaces.
 
 ## Why?
 

@@ -1,4 +1,4 @@
-import { makeEnvironmentProviders } from '@angular/core';
+import {makeEnvironmentProviders} from '@angular/core';
 
 export class IdleDetectionConfig {
   idleDurationInSeconds?: number;
@@ -6,5 +6,5 @@ export class IdleDetectionConfig {
 }
 
 export function provideIdleDetectionConfig(config: IdleDetectionConfig) {
-  return makeEnvironmentProviders([{ provide: IdleDetectionConfig, useValue: config }]);
+  return makeEnvironmentProviders([{provide: IdleDetectionConfig, useValue: config}]);
 }

@@ -1,6 +1,6 @@
-import { ModuleWithProviders, NgModule } from '@angular/core';
+import {ModuleWithProviders, NgModule} from '@angular/core';
 
-import { IdleDetectionConfig, provideIdleDetectionConfig } from './idle-detection.config';
+import {IdleDetectionConfig, provideIdleDetectionConfig} from './idle-detection.config';
 
 /**
  * Idle detection module.

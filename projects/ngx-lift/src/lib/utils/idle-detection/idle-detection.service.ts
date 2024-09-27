@@ -110,12 +110,12 @@ export class IdleDetectionService {
    * @private
    */
   private setupInterruptionEvents() {
-    this.interruptionSubscription?.unsubscribe();
-
-    const debouncedInterruptionEvents = this.interruptionEvents.map((eventName) =>
-      fromEvent(document, eventName).pipe(throttleTime(1000)),
-    );
-    this.interruptionSubscription = merge(...debouncedInterruptionEvents).subscribe(() => this.resetTimer());
+    if (!this.interruptionSubscription) {
+      const throttledInterruptionEvents = this.interruptionEvents.map((eventName) =>
+        fromEvent(document, eventName).pipe(throttleTime(1000)),
+      );
+      this.interruptionSubscription = merge(...throttledInterruptionEvents).subscribe(() => this.resetTimer());
+    }
   }
 
   /**
@@ -200,6 +200,7 @@ export class IdleDetectionService {
     clearInterval(this.countdownTimer);
 
     this.interruptionSubscription?.unsubscribe();
+    this.interruptionSubscription = undefined;
   }
 
   /**
