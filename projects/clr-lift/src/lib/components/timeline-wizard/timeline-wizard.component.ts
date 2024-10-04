@@ -1,3 +1,4 @@
+import {AsyncPipe, NgClass} from '@angular/common';
 import {HttpErrorResponse} from '@angular/common/http';
 import {
   AfterViewInit,
@@ -26,7 +27,7 @@ import {TimelineWizardService} from './timeline-wizard.service';
 @Component({
   selector: 'cll-timeline-wizard',
   standalone: true,
-  imports: [ClarityModule, TranslatePipe],
+  imports: [ClarityModule, TranslatePipe, AsyncPipe, NgClass],
   providers: [TimelineWizardService],
   templateUrl: './timeline-wizard.component.html',
   styleUrls: ['./timeline-wizard.component.scss'],
