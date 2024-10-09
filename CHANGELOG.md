@@ -2,6 +2,23 @@
 
 ## [1.7.3](https://github.com/wghglory/ngx-lift/compare/v1.7.2...v1.7.3) (2024-10-09)
 
+
+### Features
+
+* add idle detection util and component ([dc64367](https://github.com/wghglory/ngx-lift/commit/dc64367f1f1749ef8293ce70e0857e77ad402c8c))
+
+
+### Bug Fixes
+
+* timeline component missing imports ([d4c4671](https://github.com/wghglory/ngx-lift/commit/d4c46711e13e52e59ea9f9a9cfa9941aa0f478c4))
+
+
+### Miscellaneous Chores
+
+* release 1.7.3 ([10aae21](https://github.com/wghglory/ngx-lift/commit/10aae212575073e1935deaf0e345633107e14b28))
+
+## [1.7.3](https://github.com/wghglory/ngx-lift/compare/v1.7.2...v1.7.3) (2024-10-09)
+
 ### Features
 
 - add idle detection util and component
