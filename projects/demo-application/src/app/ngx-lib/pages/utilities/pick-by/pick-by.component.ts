@@ -47,7 +47,7 @@ const inputObject = {
 
 const predicate = (value: unknown, key: string) => typeof value === 'string' || key === 'isActive';
 
-const result = pickBy(inputObject, predicate);
+const result = omitBy(inputObject, predicate);
 
 // Output:
 // {
