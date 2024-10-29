@@ -4,7 +4,7 @@ import {ChangeDetectionStrategy, Component, inject, OnInit} from '@angular/core'
 import {ClarityModule, ClrDatagridStateInterface} from '@clr/angular';
 import {AlertComponent, CalloutComponent, convertToHttpParams, dgState, PageContainerComponent} from 'clr-lift';
 import {AsyncState, isEqual, poll} from 'ngx-lift';
-import {BehaviorSubject, delay, distinctUntilChanged, filter, map, of, takeWhile} from 'rxjs';
+import {BehaviorSubject, delay, distinctUntilChanged, filter, map, of, Subject, switchMap, takeWhile} from 'rxjs';
 
 import {CodeBlockComponent} from '../../../../shared/components/code-block/code-block.component';
 import {PaginationResponse} from '../../../../shared/models/pagination.model';
@@ -31,7 +31,7 @@ export class PollComponent implements OnInit {
     interval: 10000,
     pollingFn: (params) => this.userService.getUsers({...params, results: 10, seed: 'abc'}),
     paramsBuilder: (dgState: ClrDatagridStateInterface | null) => convertToHttpParams(dgState),
-    trigger: this.dgState$,
+    forceRefresh: this.dgState$,
   });
 
   total$ = this.usersState$.pipe(
@@ -76,6 +76,26 @@ poll({
   .subscribe(console.log);
     `);
 
+  deferPollingCode = highlight(`
+const startPolling = new Subject<void>();
+
+// start button click
+function start() {
+  startPolling.next();
+}
+
+startPolling
+  .pipe(
+    switchMap(() => {
+      return poll({
+        interval: 1000,
+        pollingFn: () => of(Math.random() * 10).pipe(delay(300)),
+      }).pipe(takeWhile((state) => state.data === null || state.data <= 8, true));
+    }),
+  )
+  .subscribe(console.log);
+    `);
+
   simpleCode = highlight(`
 import { poll } from 'ngx-lift';
 import { ajax } from 'rxjs/ajax';
@@ -114,17 +134,31 @@ export class PollComponent {
     interval: 10000,
     pollingFn: (params) => this.userService.getUsers({...params, results: 10, seed: 'abc'}),
     paramsBuilder: (dgState: ClrDatagridStateInterface | null) => convertToHttpParams(dgState), // build params for getUsers
-    trigger: this.dgState$,  // datagrid filter, sort, pagination will trigger the API call
+    forceRefresh: this.dgState$,  // datagrid filter, sort, pagination change will immediately force a refresh of the API call
   });
 }
     `);
 
+  startPolling = new Subject<void>();
+
+  start() {
+    this.startPolling.next();
+  }
+
   ngOnInit() {
-    poll({
-      interval: 1000,
-      pollingFn: () => of(Math.random() * 10).pipe(delay(300)),
-    })
-      .pipe(takeWhile((state) => state.data === null || state.data <= 8, true))
+    this.startPolling
+      .pipe(
+        switchMap(() => {
+          return poll({
+            interval: 1000,
+            pollingFn: () => of(Math.random() * 10).pipe(delay(300)),
+          }).pipe(takeWhile((state) => state.data === null || state.data <= 8, true));
+        }),
+      )
       .subscribe(console.log);
+  }
+
+  scrollToElement(element: HTMLElement) {
+    element.scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'});
   }
 }
