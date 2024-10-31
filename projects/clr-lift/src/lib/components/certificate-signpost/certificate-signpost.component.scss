@@ -6,22 +6,22 @@
     max-width: unset;
     max-height: unset;
   }
+}
 
-  .text-success {
-    color: var(--cds-alias-status-success);
-  }
-  .text-warning {
-    color: var(--cds-alias-status-warning);
-  }
-  .text-danger {
-    color: var(--cds-alias-status-danger);
-  }
+.text-success {
+  color: var(--cds-alias-status-success);
+}
+.text-warning {
+  color: var(--cds-alias-status-warning);
+}
+.text-danger {
+  color: var(--cds-alias-status-danger);
+}
 
-  .certificate-status {
-    display: inline-block;
+.certificate-status {
+  display: inline-block;
 
-    & > * + * {
-      margin-left: 0.25rem;
-    }
+  & > * + * {
+    margin-left: 0.25rem;
   }
 }
