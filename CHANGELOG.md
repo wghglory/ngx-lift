@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.0](https://github.com/wghglory/ngx-lift/compare/v1.7.3...v1.8.0) (2024-10-31)
+
+
+### Miscellaneous Chores
+
+* release 1.8.0 ([66fb678](https://github.com/wghglory/ngx-lift/commit/66fb678e27f5d0c2e362a7c408a4a2d90434aa92))
+
 ## [1.7.3](https://github.com/wghglory/ngx-lift/compare/v1.7.2...v1.7.3) (2024-10-09)
 
 ### Features
