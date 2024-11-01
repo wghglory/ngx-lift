@@ -92,11 +92,14 @@ export class IdleDetectionService {
 
   /**
    * Resets the idle timer when user activity is detected.
+   * @param withCountdownReset - Flag to indicate if countdown should be reset.
+   * By default, it only reset the idle-detection timer. If you enter the countdown phase, it won't stop the countdown.
+   * Pass true when you want to reset the countdown as well. This is useful when you click "Keep Me Signed In" button in cll-idle-detection component
    */
-  resetTimer() {
+  resetTimer(withCountdownReset = false) {
     this.startIdleTimer();
 
-    if (this.isCountingDown) {
+    if (withCountdownReset && this.isCountingDown) {
       this.stopCountdown();
     }
   }
