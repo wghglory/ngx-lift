@@ -1,4 +1,6 @@
-import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, DestroyRef, inject, OnDestroy, OnInit} from '@angular/core';
+import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
+import {Router} from '@angular/router';
 import {CalloutComponent, IdleDetectionComponent, PageContainerComponent} from 'clr-lift';
 import {IdleDetectionService} from 'ngx-lift';
 
@@ -13,6 +15,9 @@ import {highlight} from '../../../../shared/utils/highlight.util';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IdleDetectionDemoComponent implements OnInit, OnDestroy {
+  private router = inject(Router);
+  private destroyRef = inject(DestroyRef);
+
   configCode = highlight(`
 export class IdleDetectionConfig {
   idleDurationInSeconds?: number;
@@ -109,6 +114,10 @@ export class AppComponent {
 }
   `);
 
+  // onTimeout() {
+  //   this.router.navigate(['/login']);
+  // }
+
   constructor(private idleDetectionService: IdleDetectionService) {}
 
   ngOnInit() {
@@ -118,20 +127,29 @@ export class AppComponent {
     });
     this.idleDetectionService.startWatching();
 
-    this.idleDetectionService.onIdleEnd().subscribe(() => {
-      // Handle idle end event, e.g., show a warning dialog
-      console.log('idle for a long time, enter timeout phase');
-    });
+    this.idleDetectionService
+      .onIdleEnd()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => {
+        // Handle idle end event, e.g., show a warning dialog
+        console.log('idle for a long time, enter timeout phase');
+      });
 
-    this.idleDetectionService.onTimeoutEnd().subscribe(() => {
-      // Handle timeout end event, e.g., log out the user
-      console.log('timeout, should logout');
-    });
+    this.idleDetectionService
+      .onTimeoutEnd()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => {
+        // Handle timeout end event, e.g., log out the user
+        console.log('timeout, should logout');
+      });
 
-    this.idleDetectionService.onCountDown().subscribe((countdown) => {
-      // Update the UI with the remaining time
-      console.log(countdown);
-    });
+    this.idleDetectionService
+      .onCountDown()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((countdown) => {
+        // Update the UI with the remaining time
+        console.log(countdown);
+      });
   }
 
   ngOnDestroy() {

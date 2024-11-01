@@ -15,9 +15,9 @@ describe('poll', () => {
 
   it('should call pollingFn with correct params and return data', (done) => {
     const interval = 1000;
-    const trigger = of(null); // Mocking a trigger observable emitting once
+    const forceRefresh = of(null); // Mocking a trigger observable emitting once
 
-    poll({interval, pollingFn: mockPollingFn, paramsBuilder: mockParamsBuilder, trigger})
+    poll({interval, pollingFn: mockPollingFn, paramsBuilder: mockParamsBuilder, forceRefresh})
       .pipe(take(1))
       .subscribe((state) => {
         expect(state).toEqual({loading: true, error: null, data: null}); // Initial loading state
@@ -31,9 +31,9 @@ describe('poll', () => {
 
   it('should handle initial trigger emissions', (done) => {
     const interval = 1000;
-    const trigger = of('trigger');
+    const forceRefresh = of('trigger');
 
-    poll({interval, pollingFn: mockPollingFn, paramsBuilder: mockParamsBuilder, trigger})
+    poll({interval, pollingFn: mockPollingFn, paramsBuilder: mockParamsBuilder, forceRefresh})
       .pipe(take(1))
       .subscribe((state: AsyncState<unknown, Error>) => {
         expect(state).toEqual({loading: true, error: null, data: null}); // Initial loading state

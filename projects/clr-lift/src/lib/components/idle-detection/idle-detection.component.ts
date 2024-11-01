@@ -72,6 +72,6 @@ export class IdleDetectionComponent implements OnInit {
 
   keepMeSignedIn() {
     this.closeSubject.next();
-    this.idleDetectionService.resetTimer();
+    this.idleDetectionService.resetTimer(true);
   }
 }
