@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.9.0](https://github.com/wghglory/ngx-lift/compare/v1.8.0...v1.9.0) (2024-12-23)
+
+
+### Features
+
+* add kubernetes models and operator ([#85](https://github.com/wghglory/ngx-lift/issues/85)) ([399cc10](https://github.com/wghglory/ngx-lift/commit/399cc104ca334c35639460576945007935fcb907))
+
+
+### Bug Fixes
+
+* fix UT ([b9b904a](https://github.com/wghglory/ngx-lift/commit/b9b904a47d57d5c08f88bb9bc57505e6f8dca6af))
+
 ## [1.8.0](https://github.com/wghglory/ngx-lift/compare/v1.7.3...v1.8.0) (2024-11-01)
 
 
