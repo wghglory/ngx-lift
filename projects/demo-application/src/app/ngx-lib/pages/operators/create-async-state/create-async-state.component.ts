@@ -55,4 +55,28 @@ export class UserCardListComponent {
   usersState$ = inject(UserService).getUsers({results: 9}).pipe(createAsyncState());
 }
   `);
+
+  exampleWithoutLoadingCode = highlight(`
+import {createAsyncState} from 'ngx-lift';
+import { Location } from '@angular/common';
+import {noop} from 'rxjs';
+
+import {User} from '../../models/user.model';
+
+@Component({
+  selector: 'app-user-detail',
+  standalone: true,
+  imports: [SpinnerComponent, AlertComponent],
+  templateUrl: './user-detail.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class UserDetailComponent {
+  private userService = inject(UserService);
+  private location = inject(Location);
+
+  userState$ = this.userService
+    .getUserById(1)
+    .pipe(createAsyncState<User>(noop, {loading: false, error: null, data: this.location.getState()}));
+}
+  `);
 }
