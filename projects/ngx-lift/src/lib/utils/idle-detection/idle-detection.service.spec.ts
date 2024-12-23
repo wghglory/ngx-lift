@@ -30,22 +30,24 @@ describe('IdleDetectionService', () => {
     expect(service['isCountingDown']).toBeFalse();
   });
 
-  it('should start countdown after idle end', () => {
+  it('should start countdown after idle end', (done) => {
     service.startWatching();
     setTimeout(
       () => {
         expect(service['isCountingDown']).toBeTrue();
+        done();
       },
       service['idleDuration'] * 1000 + 100,
     );
   });
 
-  it('should stop countdown on user activity during countdown', () => {
+  it('should stop countdown on user activity during countdown', (done) => {
     service.startWatching();
     setTimeout(() => {
       const event = new MouseEvent('mousemove');
       document.dispatchEvent(event);
       expect(service['isCountingDown']).toBeFalse();
+      done();
     }, 3000);
   });
 
