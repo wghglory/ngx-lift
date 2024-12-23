@@ -18,5 +18,15 @@ import {StatusIndicatorComponent} from 'clr-lift';
 
 <cll-status-indicator [iconStatus]="'error'" [iconSize]="'sm'"> Error </cll-status-indicator>
 <cll-status-indicator [iconStatus]="'success'" [iconSize]="24"> Success </cll-status-indicator>
+
+<li>
+  <cll-status-indicator
+    [iconStatus]="'pending'"
+    [tooltip]="'some pending happen'"
+    [tooltipPosition]="'tooltip-left'"
+  >
+    Pending
+  </cll-status-indicator>
+</li>
   `);
 }
