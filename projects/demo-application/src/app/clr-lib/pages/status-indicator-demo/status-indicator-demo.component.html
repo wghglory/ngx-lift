@@ -32,6 +32,67 @@
     </section>
   </div>
 
+  <section class="space-y-3">
+    <h3>Icon with Tooltip</h3>
+    <p>Hover your mouse over the icon.</p>
+    <ul>
+      <li>
+        <cll-status-indicator
+          [iconStatus]="'error'"
+          [tooltip]="'describe the error reason'"
+          [tooltipPosition]="'tooltip-top-left'"
+        >
+          Error
+        </cll-status-indicator>
+      </li>
+      <li>
+        <cll-status-indicator
+          [iconStatus]="'success'"
+          [tooltip]="'status is success'"
+          [tooltipPosition]="'tooltip-bottom-left'"
+        >
+          Success
+        </cll-status-indicator>
+      </li>
+      <li>
+        <cll-status-indicator
+          [iconStatus]="'warning'"
+          [tooltip]="'status is warning'"
+          [tooltipPosition]="'tooltip-bottom-right'"
+        >
+          Warning
+        </cll-status-indicator>
+      </li>
+      <li>
+        <cll-status-indicator
+          [iconStatus]="'unknown'"
+          [tooltip]="'unknown status'"
+          [tooltipPosition]="'tooltip-top-right'"
+        >
+          unknown
+        </cll-status-indicator>
+      </li>
+      <li>
+        <cll-status-indicator
+          [iconStatus]="'inactive'"
+          [tooltip]="'inactive status'"
+          [tooltipPosition]="'tooltip-top-left'"
+        >
+          Inactive
+        </cll-status-indicator>
+      </li>
+      <li>
+        <cll-status-indicator
+          [iconStatus]="'pending'"
+          [tooltip]="'some pending happen'"
+          [tooltipPosition]="'tooltip-left'"
+        >
+          Pending
+        </cll-status-indicator>
+      </li>
+    </ul>
+  </section>
+
   <section class="space-y-6">
     <h2>Example</h2>
     <app-code-block [code]="exampleCode" lang="html" />

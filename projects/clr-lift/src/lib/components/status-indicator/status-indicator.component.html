@@ -1,4 +1,21 @@
 <span class="status-container">
+  @if (tooltip(); as tooltip) {
+    <button
+      class="btn btn-icon"
+      [cllTooltip]="tooltip"
+      [cllTooltipPosition]="tooltipPosition()"
+      [attr.aria-label]="tooltip"
+    >
+      <ng-container *ngTemplateOutlet="icon"></ng-container>
+    </button>
+  } @else {
+    <ng-container *ngTemplateOutlet="icon"></ng-container>
+  }
+
+  <ng-content></ng-content>
+</span>
+
+<ng-template #icon>
   @switch (iconStatus()) {
     @case ('success') {
       <cds-icon
@@ -48,6 +65,4 @@
       />
     }
   }
-
-  <ng-content></ng-content>
-</span>
+</ng-template>
