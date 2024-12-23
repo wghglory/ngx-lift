@@ -47,15 +47,26 @@ import {AsyncState} from '../models/async-state.model';
  *   ))
  * )
  *
+ * Usage 3: provide initialValue
+ *
+ * import {createAsyncState} from 'ngx-lift';
+ * import {noop} from 'rxjs';
+ *
+ * private userService = inject(UserService);
+ * private location = inject(Location);
+ *
+ * userState$ = this.userService
+ *   .getUserById(1)
+ *   .pipe(createAsyncState<User>(noop, {loading: false, error: null, data: this.location.getState()}));
  */
 export function createAsyncState<T, E = HttpErrorResponse>(
   observerOrNextForOrigin?: Partial<TapObserver<T>> | ((value: T) => void),
+  initialValue: {loading: boolean; error: E | null; data: T | null} = {loading: true, error: null, data: null},
 ): UnaryFunction<Observable<T>, Observable<AsyncState<T, E>>> {
   return pipe(
     tap(observerOrNextForOrigin),
     map((data) => ({loading: false, error: null, data})),
-    startWith({loading: true, error: null, data: null}),
-    // retry(1), // if you want to add retry
+    startWith(initialValue),
     catchError((error: E) => of({loading: false, error, data: null})),
   );
 }

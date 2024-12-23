@@ -29,9 +29,12 @@
     <app-code-block [code]="asyncStateCode" />
 
     <p>
-      The <code>createAsyncState</code> operator accepts an optional parameter,
-      <code>observerOrNextForOrigin?: Partial&lt;TapObserver&lt;T&gt;&gt; | ((value: T) => void)</code>, the same type
-      as RxJS <code>tap</code>. This allows you to pass callbacks for success and error scenarios if needed.
+      The <code>createAsyncState</code> operator accepts 2 parameters. The first optional parameter,
+      <code>observerOrNextForOrigin?: Partial&lt;TapObserver&lt;T&gt;&gt; | ((value: T) => void)</code>, has the same
+      type as RxJS <code>tap</code>. This allows you to pass callbacks for success and error scenarios if needed. The
+      second optional <code>initialValue</code> parameter specifies the initial state of the asynchronous operation. The
+      default initialValue is <code>&#123; loading: true, error: null, data: null &#125;</code>, meaning that the
+      observable starts in a loading state.
     </p>
 
     <app-code-block [code]="callbackCode" />
@@ -43,9 +46,19 @@
     </p>
   </section>
 
-  <section class="space-y-6">
-    <h2>Example Code</h2>
-    <app-code-block [code]="exampleCode" />
-    <app-user-card-list />
-  </section>
+  <app-code-block [code]="exampleCode" />
+  <app-user-card-list />
+
+  <h2>Provide initialValue</h2>
+  <p>
+    Suppose there is a users table which contains comprehensive user information. When you click on a specific user
+    within this table, it will direct you to the user detail page. During this navigation process, the user's
+    information will be passed as route state. On the user detail page, you can initially showcase the data obtained
+    from the state. Subsequently, you can initiate a call to the user API. Once the API call is completed successfully,
+    the user information can be refreshed without having to display a loading spinner. You can set the initialValue in
+    the following manner: <code>&#123;loading: false, error: null, data: this.location.getState()&#125;</code>. This
+    configuration allows for a smooth presentation of user details and seamless updates when new data is fetched from
+    the API, enhancing the overall user experience on the detail page.
+  </p>
+  <app-code-block [code]="exampleWithoutLoadingCode" />
 </cll-page-container>
