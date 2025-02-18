@@ -55,6 +55,10 @@
         <code>forceRefresh</code>: An optional <strong>Observable or Signal</strong> that forces an immediate execution
         of the <code>pollingFn</code> function when emitted.
       </li>
+      <li>
+        <code>initialValue</code>: An optional value as the initial value of the poll results. You can use it if you
+        don't want to display a <code>loading: true</code> state.
+      </li>
     </ul>
   </section>
 
@@ -69,6 +73,14 @@
     <p>Poll every 1 second until the output is greater than 8.</p>
     <app-code-block [code]="pollingTakeWhileCode" />
     <cll-callout>You can add <code>takeUntil, takeWhile</code> to end the polling as your need.</cll-callout>
+
+    <h3>Poll with initialValue</h3>
+    <p>
+      By default the poll initial result is <code>&#123;loading: true, error: null, data: null&#125;</code>. It's
+      convenient to display a spinner since loading is true. However, in some cases, you may not want to display a
+      loading spinner. You can set <code>initialValue</code> to any value you want.
+    </p>
+    <app-code-block [code]="pollingInitialValue" />
 
     <h3 #deferPolling>Start Polling After an Action (Defer polling)</h3>
     <p>

@@ -34,6 +34,7 @@ import {isPromise} from '../utils/is-promise.util';
 export function poll<Data>(options: {
   interval: number;
   pollingFn: (params: any) => Observable<Data> | Promise<Data> | Data;
+  initialValue?: any;
 }): Observable<AsyncState<Data>>;
 
 // forceRefresh output is the pollingFn params' input
@@ -41,6 +42,7 @@ export function poll<Data, Input>(options: {
   interval: number;
   pollingFn: (params: Input) => Observable<Data> | Promise<Data> | Data;
   forceRefresh: Observable<Input> | Signal<Input>;
+  initialValue?: any;
 }): Observable<AsyncState<Data>>;
 
 // paramsBuilder exists, forceRefresh output is the paramsBuilder params' input
@@ -49,6 +51,7 @@ export function poll<Data, Input>(options: {
   pollingFn: (params: any) => Observable<Data> | Promise<Data> | Data;
   forceRefresh: Observable<Input> | Signal<Input>;
   paramsBuilder: (input: Input) => any;
+  initialValue?: any;
 }): Observable<AsyncState<Data>>;
 
 export function poll<Data, Input>(options: {
@@ -56,6 +59,7 @@ export function poll<Data, Input>(options: {
   pollingFn: (params: any) => Observable<Data> | Promise<Data> | Data;
   forceRefresh?: Observable<Input> | Signal<Input>;
   paramsBuilder?: (input: Input) => any;
+  initialValue?: any;
 }): Observable<AsyncState<Data>> {
   const timerEmitValue = '__timer__emission__';
   const timer$ = timer(0, options.interval).pipe(map((i) => `${timerEmitValue}${i}`));
@@ -86,7 +90,6 @@ export function poll<Data, Input>(options: {
       // NOTE: using exhaustMap will NOT emit ${timerEmitValue}0 if forceRefresh is not provided
       // using concatMap will emit ${timerEmitValue}0 if forceRefresh is not provided
       const isFirstRequest = input === `${timerEmitValue}0`; // timer first emission when forceRefresh is not provided
-      const shouldShowLoading = isManualTrigger || isFirstRequest;
 
       const fnResult = options.pollingFn(params);
       const fnResult$ = isObservable(fnResult) ? fnResult : isPromise(fnResult) ? from(fnResult) : of(fnResult);
@@ -96,7 +99,10 @@ export function poll<Data, Input>(options: {
         catchError((error) => of({loading: false, error, data: null})),
       );
 
-      if (shouldShowLoading) {
+      if (isFirstRequest) {
+        observable$ = observable$.pipe(startWith(options.initialValue ?? {loading: true, error: null, data: null}));
+      }
+      if (isManualTrigger) {
         observable$ = observable$.pipe(startWith({loading: true, error: null, data: null}));
       }
 
