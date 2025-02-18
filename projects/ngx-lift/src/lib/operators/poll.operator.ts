@@ -34,7 +34,7 @@ import {isPromise} from '../utils/is-promise.util';
 export function poll<Data>(options: {
   interval: number;
   pollingFn: (params: any) => Observable<Data> | Promise<Data> | Data;
-  initialValue?: any;
+  initialValue?: AsyncState<Data>;
 }): Observable<AsyncState<Data>>;
 
 // forceRefresh output is the pollingFn params' input
@@ -42,7 +42,7 @@ export function poll<Data, Input>(options: {
   interval: number;
   pollingFn: (params: Input) => Observable<Data> | Promise<Data> | Data;
   forceRefresh: Observable<Input> | Signal<Input>;
-  initialValue?: any;
+  initialValue?: AsyncState<Data>;
 }): Observable<AsyncState<Data>>;
 
 // paramsBuilder exists, forceRefresh output is the paramsBuilder params' input
@@ -51,7 +51,7 @@ export function poll<Data, Input>(options: {
   pollingFn: (params: any) => Observable<Data> | Promise<Data> | Data;
   forceRefresh: Observable<Input> | Signal<Input>;
   paramsBuilder: (input: Input) => any;
-  initialValue?: any;
+  initialValue?: AsyncState<Data>;
 }): Observable<AsyncState<Data>>;
 
 export function poll<Data, Input>(options: {
@@ -59,7 +59,7 @@ export function poll<Data, Input>(options: {
   pollingFn: (params: any) => Observable<Data> | Promise<Data> | Data;
   forceRefresh?: Observable<Input> | Signal<Input>;
   paramsBuilder?: (input: Input) => any;
-  initialValue?: any;
+  initialValue?: AsyncState<Data>;
 }): Observable<AsyncState<Data>> {
   const timerEmitValue = '__timer__emission__';
   const timer$ = timer(0, options.interval).pipe(map((i) => `${timerEmitValue}${i}`));
@@ -100,7 +100,9 @@ export function poll<Data, Input>(options: {
       );
 
       if (isFirstRequest) {
-        observable$ = observable$.pipe(startWith(options.initialValue ?? {loading: true, error: null, data: null}));
+        observable$ = observable$.pipe(
+          startWith(options.initialValue ?? ({loading: true, error: null, data: null} as any)),
+        );
       }
       if (isManualTrigger) {
         observable$ = observable$.pipe(startWith({loading: true, error: null, data: null}));
