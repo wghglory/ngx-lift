@@ -36,3 +36,22 @@ To experience the full potential of `ngx-lift` and `clr-lift`, visit our live si
 ## Requirements
 
 To ensure optimal performance and compatibility, `ngx-lift` and `clr-lift` require **Angular version 17 or higher**.
+
+## How do I change the version number?
+
+When a commit to the main branch has Release-As: x.x.x (case insensitive) in the commit body, Release Please will open a
+new pull request for the specified version.
+
+Empty commit example:
+
+```bash
+git commit --allow-empty -m "chore: release 2.0.0" -m "Release-As: 2.0.0"
+```
+
+This command results in the following commit message:
+
+```
+chore: release 2.0.0
+
+Release-As: 2.0.0
+```
