@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.10.1](https://github.com/wghglory/ngx-lift/compare/v1.10.0...v1.10.1) (2025-02-26)
+
+
+### Miscellaneous Chores
+
+* release 1.10.1 ([c5535b8](https://github.com/wghglory/ngx-lift/commit/c5535b88980975627ffd184540aba51bd70e2dc3))
+
 ## [1.10.0](https://github.com/wghglory/ngx-lift/compare/v1.9.0...v1.10.0) (2025-02-26)
 
 
