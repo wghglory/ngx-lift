@@ -1,6 +1,19 @@
 {
   "name": "ngx-lift",
-  "version": "1.10.0",
+  "version": "1.10.1",
+  "license": "MIT",
+  "author": "Derek Wang <guanghui-wang@foxmail.com>",
+  "keywords": [
+    "angular",
+    "ngx-lift",
+    "clr-lift"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wghglory/ngx-lift.git"
+  },
+  "homepage": "https://ngx-lift.netlify.app/",
+  "description": "A project has been crafted with the goal of enhancing and simplifying your Angular development experience.",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -20,7 +33,6 @@
     "lint": "ng lint",
     "format": "prettier --write \"**/*.+(ts|json|css|scss|md|html)\""
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "^18.2.7",
     "@angular/cdk": "^18.2.7",
