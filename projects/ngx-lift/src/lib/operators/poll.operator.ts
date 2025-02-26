@@ -20,21 +20,25 @@ import {AsyncState} from '../models';
 import {isPromise} from '../utils/is-promise.util';
 
 /**
- * Polls data at a specified interval and can be triggered manually.
+ * Polls data at a specified interval and can be triggered manually, and returns an observable that
+ * emits the result of the poll as an `AsyncState` object.
  *
  * @template Data - The type of the data emitted by the polling function.
  * @template Input - The type of the input parameter used to build polling parameters.
- * @param {object} options - The configuration options for polling.
- * @param {number} options.interval - The interval in milliseconds between each poll.
- * @param {(params: any) => Observable<Data> | Data} options.pollingFn - A function that returns an Observable, Promise, or primitive value.
- * @param {Observable<Input> | Signal<Input>} [options.forceRefresh] - An optional Observable or Signal that triggers a manual refresh of the polling function.
- * @param {(input: Input) => any} [options.paramsBuilder] - An optional function that builds parameters for the polling function based on the input. The value emitted by the forceRefresh observable will serve as the parameter.
- * @returns {Observable<AsyncState<Data>>} An Observable emitting objects representing the state of the asynchronous operation.
+ * @param options.interval - The interval in milliseconds between each poll.
+ * @param options.pollingFn - A function that returns an Observable, Promise, or primitive value.
+ * @param options.forceRefresh - An optional Observable or Signal that triggers a manual refresh of the polling function.
+ * @param options.paramsBuilder - An optional function that builds parameters for the polling function based on the input. The value emitted by the forceRefresh observable will serve as the parameter.
+ * @param options.initialValue - An initial value to return before the first poll.
+ * @param options.delay - An optional delay, in milliseconds, to wait before starting the first poll.
+ *
+ * @returns An observable that emits the result of the poll as an `AsyncState` object.
  */
 export function poll<Data>(options: {
   interval: number;
   pollingFn: (params: any) => Observable<Data> | Promise<Data> | Data;
   initialValue?: AsyncState<Data>;
+  delay?: number;
 }): Observable<AsyncState<Data>>;
 
 // forceRefresh output is the pollingFn params' input
@@ -43,6 +47,7 @@ export function poll<Data, Input>(options: {
   pollingFn: (params: Input) => Observable<Data> | Promise<Data> | Data;
   forceRefresh: Observable<Input> | Signal<Input>;
   initialValue?: AsyncState<Data>;
+  delay?: number;
 }): Observable<AsyncState<Data>>;
 
 // paramsBuilder exists, forceRefresh output is the paramsBuilder params' input
@@ -52,6 +57,7 @@ export function poll<Data, Input>(options: {
   forceRefresh: Observable<Input> | Signal<Input>;
   paramsBuilder: (input: Input) => any;
   initialValue?: AsyncState<Data>;
+  delay?: number;
 }): Observable<AsyncState<Data>>;
 
 export function poll<Data, Input>(options: {
@@ -60,9 +66,10 @@ export function poll<Data, Input>(options: {
   forceRefresh?: Observable<Input> | Signal<Input>;
   paramsBuilder?: (input: Input) => any;
   initialValue?: AsyncState<Data>;
+  delay?: number;
 }): Observable<AsyncState<Data>> {
   const timerEmitValue = '__timer__emission__';
-  const timer$ = timer(0, options.interval).pipe(map((i) => `${timerEmitValue}${i}`));
+  const timer$ = timer(options.delay || 0, options.interval).pipe(map((i) => `${timerEmitValue}${i}`));
 
   const trigger$ =
     options.forceRefresh === undefined

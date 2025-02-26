@@ -59,6 +59,10 @@
         <code>initialValue</code>: An optional value as the initial value of the poll results. You can use it if you
         don't want to display a <code>loading: true</code> state.
       </li>
+      <li>
+        <code>delay</code>: An optional value if you'd like to delay the start of polling. By default, the polling
+        starts immediately.
+      </li>
     </ul>
   </section>
 
@@ -82,9 +86,13 @@
     </p>
     <app-code-block [code]="pollingInitialValue" />
 
-    <h3 #deferPolling>Start Polling After an Action (Defer polling)</h3>
+    <h3 #deferPolling>Defer polling</h3>
+
+    <p>By default, the polling immediately starts. We support <code>delay</code> prop to delay the start of polling.</p>
+    <app-code-block [code]="deferPolling2Code" />
+
     <p>
-      By default, the polling immediately starts. Sometime you may want to start the polling after an action.
+      Sometime you may want to start the polling after an action.
       <code>poll</code> operator can work with other RxJS operators to achieve this.
     </p>
     <app-code-block [code]="deferPollingCode" />

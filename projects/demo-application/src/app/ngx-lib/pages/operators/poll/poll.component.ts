@@ -84,8 +84,7 @@ poll({
   interval: 1000,
   pollingFn: () => of(Math.random() * 10).pipe(delay(300)),
   initialValue: { loading: false, error: null, data: 0 }, // display 0 for initial value
-})
-  .subscribe(console.log);
+}).subscribe(console.log);
     `);
 
   deferPollingCode = highlight(`
@@ -107,6 +106,17 @@ startPolling
   )
   .subscribe(console.log);
     `);
+
+  deferPolling2Code = highlight(`
+import { poll } from 'ngx-lift';
+import { of } from 'rxjs';
+
+poll({
+  interval: 1000,
+  pollingFn: () => of(Math.random() * 10),
+  delay: 3000, // delay 3s and start polling
+}).subscribe(console.log);
+  `);
 
   simpleCode = highlight(`
 import { poll } from 'ngx-lift';
