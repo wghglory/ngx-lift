@@ -12,7 +12,7 @@
 </button>
 <span>{{ selectedFile()?.name }}</span>
 
-@if (selectedFile()) {
+@if (selectedFile() || formControl().value) {
   <button
     type="button"
     class="btn btn-sm btn-icon btn-link btn-close"

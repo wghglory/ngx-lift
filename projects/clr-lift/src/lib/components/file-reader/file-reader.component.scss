@@ -6,6 +6,9 @@
   padding: 0;
   height: auto;
   max-height: unset;
+
+  // avoid background transition for clr input background-size transition
+  background: none !important;
 }
 
 .btn-close {
