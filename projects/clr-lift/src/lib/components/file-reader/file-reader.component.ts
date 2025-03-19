@@ -151,6 +151,12 @@ export class FileReaderComponent implements ControlValueAccessor, Validator {
       this.rawContent.set(value);
       this.encodedContent.set(btoa(value));
     }
+
+    setTimeout(() => {
+      const content = this.encoded() ? this.encodedContent() : this.rawContent();
+      this.onChange(content);
+      this.onTouched();
+    });
   }
 
   registerOnChange(fn: (value: string) => void) {
