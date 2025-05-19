@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.10.2](https://github.com/wghglory/ngx-lift/compare/v1.10.1...v1.10.2) (2025-05-19)
+
+
+### Bug Fixes
+
+* (clr-lift): file reader should be marked as touched when control value is provided initially ([#92](https://github.com/wghglory/ngx-lift/issues/92)) ([f6083dc](https://github.com/wghglory/ngx-lift/commit/f6083dcac39ddd72794eec2dd969f540b11879a1))
+
+
+### Miscellaneous Chores
+
+* release 1.10.2 ([c4a8282](https://github.com/wghglory/ngx-lift/commit/c4a828264df659187b0aced70eab23ee58a36fe6))
+
 ## [1.10.1](https://github.com/wghglory/ngx-lift/compare/v1.10.0...v1.10.1) (2025-02-26)
 
 
