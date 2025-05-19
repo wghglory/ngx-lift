@@ -5,6 +5,11 @@ describe('isEmpty function', () => {
     expect(isEmpty('')).toBe(true);
   });
 
+  it('should return true for empty set/map', () => {
+    expect(isEmpty(new Set())).toBe(true);
+    expect(isEmpty(new Map())).toBe(true);
+  });
+
   it('should return true for empty array', () => {
     expect(isEmpty([])).toBe(true);
   });
