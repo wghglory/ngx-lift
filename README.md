@@ -45,7 +45,7 @@ new pull request for the specified version.
 Empty commit example:
 
 ```bash
-git commit --allow-empty -m "chore: release 2.0.0" -m "Release-As: 2.0.0"
+git commit --allow-empty -m "chore: release 1.10.2" -m "Release-As: 1.10.2"
 ```
 
 This command results in the following commit message:
