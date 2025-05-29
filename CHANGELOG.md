@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.10.3](https://github.com/wghglory/ngx-lift/compare/v1.10.2...v1.10.3) (2025-05-29)
+
+
+### Bug Fixes
+
+* fix combineFrom cannot use with angular input.required ([#95](https://github.com/wghglory/ngx-lift/issues/95)) ([159f33f](https://github.com/wghglory/ngx-lift/commit/159f33f151b87d93863bc0995b1a0a2e2de0d8a6))
+
 ## [1.10.2](https://github.com/wghglory/ngx-lift/compare/v1.10.1...v1.10.2) (2025-05-19)
 
 
