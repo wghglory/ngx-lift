@@ -178,10 +178,17 @@ function normalizeArgs<Input, Output>(
   const normalizedSources = Object.entries(sources).reduce(
     (acc, [keyOrIndex, source]) => {
       if (isSignal(source)) {
-        acc[keyOrIndex] = toObservable(source, {injector: options?.injector}).pipe(
-          // toObservable doesn't immediately emit initialValue of the signal
-          startWith(untracked(source)),
-        );
+        // fix angular NG0950: Input is required but no value is available yet.
+        // when input.required is used as combineFrom's input, its value is undefined, untracked(source) will throw error
+        let initialValue: any;
+        try {
+          initialValue = untracked(source);
+        } catch (e) {
+          // If the input is not set, skip startWith or provide a fallback
+          initialValue = undefined;
+        }
+        // toObservable doesn't immediately emit initialValue of the signal
+        acc[keyOrIndex] = toObservable(source, {injector: options?.injector}).pipe(startWith(initialValue));
       } else if (isObservable(source)) {
         acc[keyOrIndex] = source.pipe(distinctUntilChanged());
       } else if (typeof source === 'function') {
